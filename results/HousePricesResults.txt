@@ -1,0 +1,38 @@
+Best Parameters KNN regression: ({'predictor__n_neighbors': 14, 'preprocessor__num__room_size__insert': True},)
+Best Score KNN regression: -57.66712842712843
+Best Parameters Neural net regression: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (256, 128), 'preprocessor__num__room_size__insert': True},)
+Best Score Neural net regression: -55.41561606816259
+Best Parameters Linger regression: ({'predictor__hidden_layer_sizes': 128, 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 14, 'predictor__weighted_knn': True, 'preprocessor__num__room_size__insert': True},)
+Best Score Linger Regression: -54.36987491711617
+--------------------------------------------------------------
+Best Parameters KNN regression: ({'predictor__n_neighbors': 14, 'preprocessor__num__room_size__insert': True},)
+Best Score KNN regression: -57.66712842712843
+Best Parameters Neural net regression: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (256, 128), 'preprocessor__num__room_size__insert': True},)
+Best Score Neural net regression: -55.685394343214604
+Best Parameters Linger regression: ({'predictor__hidden_layer_sizes': 64, 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 14, 'predictor__weighted_knn': False, 'preprocessor__num__room_size__insert': True},)
+Best Score Linger Regression: -54.29454384515638
+--------------------------------------------------------------
+Test Time: 14:15:00.530639
+Best Parameters KNN regression: ({'predictor__n_neighbors': 14, 'preprocessor__num__room_size__insert': True},)
+Best Score KNN regression: -57.66712842712843
+Best Parameters Neural net regression: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (128, 64), 'preprocessor__num__room_size__insert': True},)
+Best Score Neural net regression: -55.55474686145819
+Best Parameters Linger regression: ({'predictor__hidden_layer_sizes': 64, 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 14, 'predictor__weighted_knn': False, 'preprocessor__num__room_size__insert': True},)
+Best Score Linger Regression: -54.28126092092516
+--------------------------------------------------------------
+Test Time: 13:18:44.038947
+Best Parameters KNN regression: ({'predictor__n_neighbors': 15, 'preprocessor__num__room_size__insert': True},)
+Best Score KNN regression: -57.6792962962963
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 19}Best score for distance weighted KNN: -57.141007978189066Best Parameters Neural net regression: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (256, 128), 'preprocessor__num__room_size__insert': True},)
+Best Score Neural net regression: -55.48248977038999
+Best Parameters Linger regression: ({'predictor__hidden_layer_sizes': 64, 'predictor__max_iter': 250, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 14, 'predictor__weighted_knn': False, 'preprocessor__num__room_size__insert': True},)
+Best Score Linger Regression: -55.866521358596216
+--------------------------------------------------------------
+Test Time: 22:48:03.879664
+Best Parameters KNN regression: ({'predictor__n_neighbors': 15, 'preprocessor__num__room_size__insert': True},)
+Best Score KNN regression: -57.6792962962963
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 19}Best score for distance weighted KNN: -57.141007978189066Best Parameters Neural net regression: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (256, 128), 'preprocessor__num__room_size__insert': True},)
+Best Score Neural net regression: -55.475661870713076
+Best Parameters Linger regression: ({'predictor__duplicated_on_distance': True, 'predictor__hidden_layer_sizes': 64, 'predictor__max_iter': 250, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 14, 'predictor__weighted_knn': False, 'preprocessor__num__room_size__insert': True},)
+Best Score Linger Regression: -59.61780688425796
+--------------------------------------------------------------

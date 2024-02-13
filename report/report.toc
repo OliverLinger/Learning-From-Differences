@@ -1,0 +1,18 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {0.1}Acknowledgements}{1}{section.0.1}%
+\contentsline {chapter}{\numberline {1}Introduction}{6}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Literature Review}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}KNN + ANN for Regression, utilizing (CBR)}{8}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Learning From Differences Paper}{8}{subsection.2.1.1}%
+\contentsline {section}{\numberline {2.2}KNN + ANN for Classification}{9}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Design}{10}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Implementation}{11}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Evaluation}{12}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Conclusions}{13}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Experiments}{14}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Experiment 1: Abalone dataset Linger Regression}{14}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Experiment 2: House Prices Dataset Regression}{14}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Experiment 3: Glass Dataset Classification}{14}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Experiment 4: Raisin Dataset Classification}{14}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Experiment 5: Car Safety Dataset Classification}{14}{section.7.5}%
+\contentsline {chapter}{\numberline {8}Results}{15}{chapter.8}%

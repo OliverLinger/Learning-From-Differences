@@ -1,0 +1,114 @@
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 5},)
+Best Score KNN classifier: 0.8652777777777778
+Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1000},)
+Best Score Neural net classifier: 0.888888888888889
+Best Parameters Linger classifier: ({'predictor__hidden_layer_sizes': (256, 128), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 13, 'predictor__n_neighbours_2': 19},)
+Best Score Linger classifier: 0.8791666666666667
+--------------------------------------------------------------
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 7},)
+Best Score KNN classifier: 0.8736111111111111
+Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1200},)
+Best Score Neural net classifier: 0.8791666666666667
+Best Parameters Linger classifier: ({'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 4, 'predictor__n_neighbours_2': 8},)
+Best Score Linger classifier: 0.875
+--------------------------------------------------------------
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 7},)
+Best Score KNN classifier: 0.8736111111111111
+Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1200},)
+Best Score Neural net classifier: 0.8777777777777777
+Best Parameters Linger classifier: ({'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 4, 'predictor__n_neighbours_2': 8},)
+Best Score Linger classifier: 0.875
+--------------------------------------------------------------
+Test Accuracy for KNN classifier: 0.8222222222222222
+Test Accuracy for Neural Network classifier: 0.8111111111111111
+Test Accuracy for Linger Classifier: 0.8388888888888889
+--------------------------------------------------------------
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 7},)
+Best Score KNN classifier: 0.8736111111111111
+Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1200},)
+Best Score Neural net classifier: 0.8791666666666667
+Best Parameters Linger classifier: ({'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 4, 'predictor__n_neighbours_2': 8, 'predictor__weighted_knn': True},)
+Best Score Linger classifier: 0.8736111111111111
+--------------------------------------------------------------
+Test Time: 18:58:39.625650
+Test Accuracy for KNN classifier: 0.8222222222222222
+Test Accuracy for Neural Network classifier: 0.8222222222222222
+Test Accuracy for Linger Classifier: 0.8388888888888889
+--------------------------------------------------------------
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 7},)
+Best Score KNN classifier: 0.8736111111111111
+Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1200},)
+Best Score Neural net classifier: 0.8666666666666668
+Best Parameters Linger classifier: ({'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 4, 'predictor__n_neighbours_2': 8, 'predictor__weighted_knn': True},)
+Best Score Linger classifier: 0.6652777777777777
+--------------------------------------------------------------
+Test Time: 19:02:19.304340
+Test Accuracy for KNN classifier: 0.8222222222222222
+Test Accuracy for Neural Network classifier: 0.8222222222222222
+Test Accuracy for Linger Classifier: 0.6555555555555556
+--------------------------------------------------------------
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 7},)
+Best Score KNN classifier: 0.8736111111111111
+Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1200},)
+Best Score Neural net classifier: 0.8777777777777779
+Best Parameters Linger classifier: ({'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 4, 'predictor__n_neighbours_2': 8, 'predictor__weighted_knn': True},)
+Best Score Linger classifier: 0.6652777777777777
+--------------------------------------------------------------
+Test Time: 19:05:39.237261
+Test Accuracy for KNN classifier: 0.8222222222222222
+Test Accuracy for Neural Network classifier: 0.7888888888888889
+Test Accuracy for Linger Classifier: 0.6555555555555556
+--------------------------------------------------------------
+Test Time: 19:08:15.702770
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 7},)
+Best Score KNN classifier: 0.8736111111111111
+Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1200},)
+Best Score Neural net classifier: 0.8833333333333334
+Best Parameters Linger classifier: ({'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 4, 'predictor__n_neighbours_2': 8, 'predictor__weighted_knn': True},)
+Best Score Linger classifier: 0.6652777777777777
+--------------------------------------------------------------
+Test Time: 19:08:15.729518
+Test Accuracy for KNN classifier: 0.8222222222222222
+Test Accuracy for Neural Network classifier: 0.8166666666666667
+Test Accuracy for Linger Classifier: 0.6555555555555556
+--------------------------------------------------------------
+Test Time: 19:10:31.491712
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 7},)
+Best Score KNN classifier: 0.8736111111111111
+Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1200},)
+Best Score Neural net classifier: 0.875
+Best Parameters Linger classifier: ({'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 4, 'predictor__n_neighbours_2': 8, 'predictor__weighted_knn': False},)
+Best Score Linger classifier: 0.875
+--------------------------------------------------------------
+Test Time: 19:10:31.529901
+Test Accuracy for KNN classifier: 0.8222222222222222
+Test Accuracy for Neural Network classifier: 0.8111111111111111
+Test Accuracy for Linger Classifier: 0.8388888888888889
+--------------------------------------------------------------
+
+Test Time: 19:15:09.853501
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 7},)
+Best Score KNN classifier: 0.8736111111111111
+Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1200},)
+Best Score Neural net classifier: 0.8777777777777777
+Best Parameters Linger classifier: ({'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 4, 'predictor__n_neighbours_2': 8, 'predictor__weighted_knn': True},)
+Best Score Linger classifier: 0.6652777777777777
+--------------------------------------------------------------
+Test Time: 19:15:09.872076
+Test Accuracy for KNN classifier: 0.8222222222222222
+Test Accuracy for Neural Network classifier: 0.8222222222222222
+Test Accuracy for Linger Classifier: 0.6555555555555556
+--------------------------------------------------------------
+Test Time: 19:17:07.996391
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 7},)
+Best Score KNN classifier: 0.8736111111111111
+Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1200},)
+Best Score Neural net classifier: 0.8833333333333334
+Best Parameters Linger classifier: ({'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 4, 'predictor__n_neighbours_2': 8, 'predictor__weighted_knn': False},)
+Best Score Linger classifier: 0.8736111111111111
+--------------------------------------------------------------
+Test Time: 19:17:08.032145
+Test Accuracy for KNN classifier: 0.8222222222222222
+Test Accuracy for Neural Network classifier: 0.8055555555555556
+Test Accuracy for Linger Classifier: 0.8388888888888889
+--------------------------------------------------------------

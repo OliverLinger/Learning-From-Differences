@@ -1,0 +1,27 @@
+\begin{thebibliography}{1}
+
+\bibitem{learningFromDifferences2022}
+Mathieu D'Aquin, Emmanuel Nauer, and Justine Lieber.
+\newblock A factorial study of neural network learning from differences for
+  regression.
+\newblock In Mark~T. Keane and Nirmalie Wiratunga, editors, {\em Case-Based
+  Reasoning Research and Development. ICCBR 2022. Lecture Notes in Computer
+  Science}, volume 13405, page PageNumbersHere. Springer, Cham, 2022.
+
+\bibitem{neuralNetForRegression}
+Leorey Marquez, Tim Hill, Reginald Worthley, and William Remus.
+\newblock Neural network models as an alternative to regression.
+\newblock In {\em Proceedings of the Twenty-Fourth Annual Hawaii International
+  Conference on System Sciences}, volume~4, pages 129--135. IEEE, 1991.
+
+\bibitem{riesbeck2013inside}
+Christopher~K Riesbeck and Roger~C Schank.
+\newblock {\em Inside case-based reasoning}.
+\newblock Psychology Press, 2013.
+
+\bibitem{watsonCaseBasedReasoningReview}
+Ian Watson and Farhi Marir.
+\newblock Case-based reasoning: A review.
+\newblock {\em The knowledge engineering review}, 9(4):327--354, 1994.
+
+\end{thebibliography}

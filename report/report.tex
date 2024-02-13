@@ -1,0 +1,186 @@
+\documentclass[a4paper, 12pt]{report}
+
+% Packages
+\usepackage[utf8]{inputenc} % Input encoding
+\usepackage[T1]{fontenc}    % Font encoding
+\usepackage[english]{babel}  % Language setting
+\usepackage{geometry}       % Page layout
+\usepackage{setspace}       % Line spacing
+\usepackage{graphicx}       % For including images
+\usepackage{listings}       % For code listings
+\usepackage{amsmath}        % For mathematical symbols and environments
+\usepackage{hyperref}       % For hyperlinks
+\usepackage{caption}        % For customized captions
+\usepackage{subcaption}     % For subfigures
+\usepackage{xcolor}         % For defining colors
+\usepackage{tabularx}       % For defining tables
+\usepackage{csquotes}       % For defining tables
+
+% Page layout
+\geometry{margin=1in} % Adjust margins as needed
+\setlength{\parindent}{0pt} % No paragraph indentation
+\setlength{\parskip}{1em}   % Add space between paragraphs
+\onehalfspacing % Adjust line spacing as needed
+
+% Code listing setup
+
+% Title and Author
+\title{Learning From Differences}
+\author{Oliver Linger}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\vspace*{\fill} % Vertical space fill
+
+\centering
+\textbf{Final-Year Project - B.Sc. in Computer Science}
+
+\textbf{Supervisor:} Dr. Derek Bridge
+
+\textbf{Department of Computer Science}
+
+\textbf{University College Cork}
+
+\vspace*{\fill} % Vertical space fill
+
+% Abstract
+\begin{abstract}
+	% Your abstract goes here
+\end{abstract}
+
+
+% Declaration of Originality
+\section*{Declaration of Originality}
+In signing this declaration, you are confirming, in writing that the submitted
+work is entirely your own original work, except where it clearly attributed otherwise,
+and that it has not been submitted partly or wholly for any other educational award.
+\begin{enumerate}
+	\item This body of work is all my own, unless clearly stated otherwise, with the full and proper accreditation;
+	\item With respect to my work: none of it has been submitted to any educational institution contributing in any way to an educational award.
+	\item With respect to anyone else's work: all diagrams, text, code, or ideas have been duly attributed to the source in a scholarly manner,
+	      whether from books, papers, lecture notes or any other student's work, whether published or unpublished, electronically or print.
+\end{enumerate}
+
+\vspace{2em} % Vertical space for the signature
+
+\begin{flushright}
+	\textit{Signed} \\
+	\rule{6cm}{0.4pt} \\
+	\textit{Date: \today}
+\end{flushright}
+
+\section{Acknowledgements}
+
+
+% Table of Contents
+\tableofcontents
+
+% List of Figures and Tables
+\listoffigures
+
+% List of tables 
+\listoftables
+
+% Main Sections
+\chapter{Introduction}
+\label{ch:introduction}
+% Your introduction content goes here
+
+
+% Start your content here
+\chapter{Literature Review}
+\label{ch:Literature Review}
+In recent years, the application of neural networks in regression tasks has garnered significant attention within the realm of machine learning and artificial intelligence. 
+Applying neural networks to regression tasks has become a common practice within the machine learning community \cite{neuralNetForRegression}. 
+Traditionally, supervised learning approaches entail presenting datasets described by features alongside their corresponding expected values to the artificial neural network (ANN), 
+facilitating the learning process aimed at predicting these expected values.
+
+However, inspired by case-based reasoning, which involves solving new problems by adapting solutions from old ones \cite{riesbeck2013inside}, 
+researchers have developed new predictive ensemble models based on the principles of case-based reasoning (CBR). 
+These principles involve retrieving the most similar case(s), reusing the case(s) to attempt to solve the problem,
+revising the proposed solution if necessary, and retaining the new solution as part of a new case \cite{watsonCaseBasedReasoningReview}.
+
+Researchers have posited the potential advantages of deviating from this conventional paradigm by 
+training neural networks on differences between sets of features to predict differences between values. 
+This departure from the traditional approach underscores a shift towards a more nuanced understanding of the learning process, 
+emphasizing the exploration of alternative methodologies to enhance the efficiency and efficacy of neural network training. 
+Additionally, it aims to provide more transparency within the learning process to offer insights into the black box that is a neural network.
+
+\section{KNN + ANN for Regression, utilizing  (CBR)}
+In recent years, the exploration of alternative methodologies for enhancing the performance of neural networks in 
+regression tasks has attracted considerable attention within the machine learning community. One such innovative approach, 
+inspired by the principles of case-based reasoning (CBR), involves training neural networks to predict differences between values based on differences 
+between sets of features. 
+
+This departure from the conventional supervised learning paradigm aims to leverage the inherent advantages of learning from differences, 
+potentially leading to more interpretable and efficient models. 
+The study under consideration \cite{learningFromDifferences2022} gives a systematic factorial study conducted to 
+investigate the efficacy of this approach across various datasets and experimental conditions. 
+The study's findings suggest that neural networks trained on differences demonstrate comparable or even superior performance to those 
+trained using traditional methods, while requiring significantly fewer epochs for convergence. 
+In this section of the literature review, 
+we consider the utilization of case-based reasoning for regression tasks, with a specific focus on the implementation of KNN (K-Nearest Neighbors) and ANN (Artificial Neural Network) frameworks.
+
+\subsection{Learning From Differences Paper}
+The paper by \cite{learningFromDifferences2022} introduces the innovative concept of training a 
+neural network based on the disparities between a base case and its closest neighbors. 
+Titled "A Factorial Study of Neural Network Learning from Differences for Regression" \cite{learningFromDifferences2022}, the study aims to 
+present novel learning methodologies geared towards enhancing performance and fostering a more interpretable learning process.
+The research evaluates three model variations: a benchmark neural network, a learning from differences model, and an augmented learning from differences model incorporating the original context. 
+The context here refers to the base case, from which differences with its nearest neighbors are calculated.
+
+According to \cite{learningFromDifferences2022}, the study's key findings underscore a significant increase in accuracy when incorporating contextual information in the learning process. 
+Moreover, comparable or superior results were achieved with fewer training epochs compared to the basic neural network. 
+This enhancement is attributed partly to the broader training dataset that encompasses neighbors greater than 1. 
+Notably, the paper advocates for a hybrid approach, combining learning from differences with direct feature-based learning, which yields superior results.
+
+The graphical representations in the paper highlight a distinct trend: rapid attainment of high accuracy levels with the learning from differences method, 
+particularly when contextual information is included. Conversely, the basic neural network requires a substantially larger number of epochs to achieve comparable accuracy, 
+if not worse. This disparity suggests the efficiency of the learning from differences approach.
+
+In conclusion, the paper suggests a marginal performance enhancement and a substantial reduction in training epochs through the adoption of the 
+differences method and inclusion of contextual information. However, it is crucial to acknowledge the time overhead associated with retrieving and training using similar cases.
+
+Despite its contributions, the paper falls short in adequately addressing classification and exploring additional variations of the learning from differences model beyond context inclusion. 
+Incorporating original values for the base case in the generated differences dataset provides a valuable framework for understanding the observed disparities. 
+While the model with contextual inclusion demonstrates slight improvements over the base model in learning from differences, a more comprehensive examination 
+of the methodology is warranted for further refinement and enhancement.
+
+
+\section{KNN + ANN for Classification}
+
+\chapter{Design}
+\label{ch:Design}
+
+\chapter{Implementation}
+\label{ch:Implementation}
+
+\chapter{Evaluation}
+\label{ch:Evaluation}
+
+\chapter{Conclusions}
+\label{ch:Conclusions}
+
+
+\chapter{Experiments}
+\label{ch:Experimnents}
+
+\section{Experiment 1: Abalone dataset Linger Regression}
+
+\section{Experiment 2: House Prices Dataset Regression}
+
+\section{Experiment 3: Glass Dataset Classification}
+
+\section{Experiment 4: Raisin Dataset Classification}
+
+\section{Experiment 5: Car Safety Dataset Classification}
+
+\chapter{Results}
+\label{ch:Results}
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
