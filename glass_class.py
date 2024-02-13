@@ -136,6 +136,7 @@ lfd_classifier_param_grid = {
     "predictor__n_neighbours_2": [4],
     "predictor__hidden_layer_sizes": [(64, 32)],
     "predictor__max_iter": [1000],
+    "predictor__addition_of_context": [True],
     # Include other hyperparameters for LingerClassifier here
 }
 

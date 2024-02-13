@@ -34,3 +34,15 @@ Test Accuracy for KNN classifier: 0.6744186046511628
 Test Accuracy for Neural Network classifier: 0.6511627906976745
 Test Accuracy for Linger Classifier: 0.6744186046511628
 --------------------------------------------------------------
+Test Time: 23:15:07.413970
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 1},)
+Best Score KNN classifier: 0.7058823529411764
+Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (128, 64), 'predictor__max_iter': 1200},)
+Best Score Neural net classifier: 0.711764705882353
+Best Parameters Linger classifier: ({'predictor__addition_of_context': True, 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 3, 'predictor__n_neighbours_2': 4},)
+Best Score Linger classifier: 0.6705882352941177
+--------------------------------------------------------------
+Test Accuracy for KNN classifier: 0.6744186046511628
+Test Accuracy for Neural Network classifier: 0.6511627906976745
+Test Accuracy for Linger Classifier: 0.7209302325581395
+--------------------------------------------------------------

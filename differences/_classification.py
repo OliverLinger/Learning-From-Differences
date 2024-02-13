@@ -156,7 +156,7 @@ class LingerClassifier(BaseEstimator, ClassifierMixin):
         # Addition of context
         if self.addition_of_context:
             print("Addition of context")
-            differences_X, differences_y = self.addition_of_context_func(
+            differences_X, differences_y = self.addition_of_context_func_fit(
                 X=X,
                 y=y,
                 indices=indices,
@@ -237,6 +237,14 @@ class LingerClassifier(BaseEstimator, ClassifierMixin):
                 differences_X=differences_test_X, distances=distances_X
             )
 
+        """function for addition of base case context to the training data.
+            The addition of the base case context."""
+        # Addition of context
+        if self.addition_of_context:
+            differences_test_X = self.addition_of_context_func_pred(
+                differences_test_X=differences_test_X, X=X
+            )
+            
         # makes a prediction based on the differences in the test set X
         predictions = self.classifier.predict(differences_test_X)
 
@@ -435,7 +443,7 @@ class LingerClassifier(BaseEstimator, ClassifierMixin):
         # Retrun the duplicated lists
         return duplicated_list_X, duplicated_list_y
 
-    def addition_of_context_func(self, X, y, indices, differences_X, differences_y):
+    def addition_of_context_func_fit(self, X, y, indices, differences_X, differences_y):
         for i in indices:
             base = i[0]
             neighbors = i[1:]
@@ -446,3 +454,18 @@ class LingerClassifier(BaseEstimator, ClassifierMixin):
                 differences_X.append(np.array(combined_list))
                 differences_y.append(y[base] - y[n])
         return differences_X, differences_y
+
+    def addition_of_context_func_pred(self, differences_test_X, X):
+        combined_differences_test_X = []
+        duplicated_test_data = [item for item in X for _ in range(self.n_neighbours_2)]
+        num_items = len(duplicated_test_data)
+        for item_pos in range(num_items):
+            combined_list = [
+                item
+                for pair in zip(
+                    differences_test_X[item_pos], duplicated_test_data[item_pos]
+                )
+                for item in pair
+            ]
+            combined_differences_test_X.append(np.array(combined_list))
+        return combined_differences_test_X

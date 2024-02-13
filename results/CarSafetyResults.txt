@@ -111,3 +111,11 @@ Best Score Neural net classifier: 0.9949327494526118
 Best Parameters Linger classifier: ({'predictor__additional_results_column': True, 'predictor__duplicated_on_distance': False, 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 250, 'predictor__n_neighbours_1': 1, 'predictor__n_neighbours_2': 9, 'predictor__weighted_knn': True},)
 Best Score Linger classifier: 0.8928057553956833
 --------------------------------------------------------------
+Test Time: 23:05:51.003614
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 7},)
+Best Score KNN classifier: 0.899327494526118
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 7}Best score for distance weighted KNN: 0.899327494526118Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__hidden_layer_sizes': (128, 64), 'predictor__max_iter': 1200},)
+Best Score Neural net classifier: 0.9934886873110207
+Best Parameters Linger classifier: ({'predictor__additional_results_column': True, 'predictor__duplicated_on_distance': False, 'predictor__hidden_layer_sizes': (64, 32), 'predictor__max_iter': 250, 'predictor__n_neighbours_1': 1, 'predictor__n_neighbours_2': 9, 'predictor__weighted_knn': True},)
+Best Score Linger classifier: 0.8928057553956833
+--------------------------------------------------------------
