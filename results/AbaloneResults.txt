@@ -88,3 +88,15 @@ Best Score KNN regression: -1.5335959659628113
 Best parameters for distance weighted KNN: {'predictor__n_neighbors': 19}Best score for distance weighted KNN: -1.5301467614839792Best Parameters Linger regression: ({'predictor__additional_results_column': True, 'predictor__duplicated_on_distance': False, 'predictor__hidden_layer_sizes': (256, 128), 'predictor__max_iter': 250, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 19, 'predictor__weighted_knn': True},)
 Best Score Linger Regression: -1.609136423121526
 --------------------------------------------------------------
+Test Time: 21:52:58.661685
+Best Parameters KNN regression: ({'predictor__n_neighbors': 19},)
+Best Score KNN regression: -1.5335959659628113
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 19}Best score for distance weighted KNN: -1.5301467614839792Best Parameters Linger regression: ({'predictor__addition_of_context': True, 'predictor__additional_results_column': False, 'predictor__duplicated_on_distance': False, 'predictor__hidden_layer_sizes': (256, 128), 'predictor__max_iter': 250, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 19, 'predictor__weighted_knn': True},)
+Best Score Linger Regression: nan
+--------------------------------------------------------------
+Test Time: 22:06:02.817675
+Best Parameters KNN regression: ({'predictor__n_neighbors': 19},)
+Best Score KNN regression: -1.5335959659628113
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 19}Best score for distance weighted KNN: -1.5301467614839792Best Parameters Linger regression: ({'predictor__addition_of_context': True, 'predictor__additional_results_column': False, 'predictor__duplicated_on_distance': False, 'predictor__hidden_layer_sizes': (256, 128), 'predictor__max_iter': 250, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 19, 'predictor__weighted_knn': True},)
+Best Score Linger Regression: nan
+--------------------------------------------------------------

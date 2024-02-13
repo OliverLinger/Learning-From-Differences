@@ -142,7 +142,7 @@ lfd_pipeline = Pipeline([
 lfd_param_grid = {
     "predictor__hidden_layer_sizes": [(256, 128)],
     "predictor__n_neighbours_1": [2],
-    "predictor__n_neighbours_2": [19],
+    "predictor__n_neighbours_2": [2],
     "predictor__max_iter": [250],
     "predictor__weighted_knn": [True],
     "predictor__additional_results_column": [False],
