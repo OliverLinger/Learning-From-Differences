@@ -80,7 +80,7 @@ knn = Pipeline([
 knn_param_grid = {"predictor__n_neighbors": [2, 5, 7, 10, 13, 15, 17, 21]}
 
 # Create the grid search object which will find the best hyperparameter values based on validation error
-knn_gs = GridSearchCV(knn, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
+knn_gs = GridSearchCV(knn, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 knn_gs.fit(dev_X, dev_y)
@@ -96,7 +96,7 @@ KNN_weighted = Pipeline([
 knn_param_grid = {"predictor__n_neighbors": [2, 5, 7, 10, 13, 15, 17, 21]}
 
 # Create the grid search object which will find the best hyperparameter values based on validation error
-knn_weighted = GridSearchCV(KNN_weighted, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
+knn_weighted = GridSearchCV(KNN_weighted, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 knn_weighted.fit(dev_X, dev_y)
@@ -170,7 +170,7 @@ nn_param_grid = [
 ]
 
 # Create the grid search object for the neural network
-nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
+nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
 nn_gs.fit(dev_X, dev_y)
 
 # Print the best parameters and score for the neural network
@@ -188,36 +188,54 @@ lfd_pipeline = Pipeline([
 ])
 
 # Create a dictionary of hyperparameters for LingerRegressor
-lfd_param_grid = {
+param_grid_1 = {
     "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (100,)],
     "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 21],
     "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 21],
+}
+param_grid_2 = {
     "predictor__max_iter": [100, 200, 250, 300, 500, 1000, 1200],
     "predictor__weighted_knn": [True, False],
     "predictor__additional_results_column": [True, False],
     "predictor__duplicated_on_distance": [True, False],
+}
+param_grid_3 = {
     "predictor__addition_of_context": [True, False],
     "predictor__alpha": [0.0001, 0.001, 0.01],
     "predictor__batch_size": ["auto", 32, 64],
+}
+param_grid_4 = {
     "predictor__learning_rate": ["constant", "adaptive"],
     "predictor__learning_rate_init": [0.0001, 0.001, 0.01],
     "predictor__power_t": [0.3, 0.5, 0.7],
+}
+param_grid_5 = {
     "predictor__shuffle": [True, False],
     "predictor__verbose": [True, False],
     "predictor__warm_start": [True, False],
+}
+param_grid_6 = {
     "predictor__momentum": [0.9, 0.95, 0.99],
     "predictor__nesterovs_momentum": [True, False],
     "predictor__early_stopping": [True, False],
+}
+param_grid_7 = {
     "predictor__validation_fraction": [0.1, 0.2, 0.3],
     "predictor__beta_1": [0.8, 0.9, 0.95],
     "predictor__beta_2": [0.99, 0.999],
+}
+param_grid_8 = {
     "predictor__epsilon": [1e-8, 1e-7, 1e-6],
     "predictor__n_iter_no_change": [5, 10, 15],
     "predictor__max_fun": [10000, 15000, 20000],
 }
 
+lfd_param_grid = [
+    param_grid_1, param_grid_2, param_grid_3, param_grid_4,
+    param_grid_5, param_grid_6, param_grid_7, param_grid_8, param_grid_9
+]
 # Create the grid search object
-lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
+lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 
