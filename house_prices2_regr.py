@@ -116,7 +116,7 @@ knn_param_grid = {"predictor__n_neighbors": [2, 5, 7, 10, 13, 15, 17, 21],
                   "preprocessor__num__room_size__insert": [True]}
 
 # Create the grid search object which will find the best hyperparameter values based on validation error
-knn_gs = GridSearchCV(knn, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+knn_gs = GridSearchCV(knn, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 knn_gs.fit(dev_X, dev_y)
@@ -132,7 +132,7 @@ KNN_weighted = Pipeline([
 knn_param_grid = {"predictor__n_neighbors": [2, 5, 7, 10, 13, 15, 17, 21]}
 
 # Create the grid search object which will find the best hyperparameter values based on validation error
-knn_weighted = GridSearchCV(KNN_weighted, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+knn_weighted = GridSearchCV(KNN_weighted, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 knn_weighted.fit(dev_X, dev_y)
@@ -181,7 +181,7 @@ nn_param_grid = {
 }
 
 # Create the grid search object for the neural network
-nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
 nn_gs.fit(dev_X, dev_y)
 
 # Print the best parameters and score for the neural network
@@ -234,7 +234,7 @@ lfd_param_grid = {
 }
 
 # Create the grid search object
-lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 

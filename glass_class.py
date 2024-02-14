@@ -88,7 +88,7 @@ knn_classifier_param_grid = {"predictor__n_neighbors": [2, 5, 7, 10, 13, 15, 17,
 
 # Create the grid search object which will find the best hyperparameter values based on a classification metric
 knn_classifier_gs = GridSearchCV(
-    knn_classifier, knn_classifier_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
+    knn_classifier, knn_classifier_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 knn_classifier_gs.fit(dev_X, dev_y)
@@ -107,7 +107,7 @@ knn_classifier_param_grid_weighted  = {"predictor__n_neighbors": [2, 5, 7, 10, 1
 
 # Create the grid search object which will find the best hyperparameter values based on a classification metric
 knn_classifier_gs_weighted = GridSearchCV(
-    knn_classifier_weighted , knn_classifier_param_grid_weighted , scoring="accuracy", cv=10, refit=True, n_jobs=1)
+    knn_classifier_weighted , knn_classifier_param_grid_weighted , scoring="accuracy", cv=10, refit=True, n_jobs=8)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 knn_classifier_gs_weighted.fit(dev_X, dev_y)
@@ -152,7 +152,7 @@ nn_param_grid = {
 }
 
 # Create the grid search object for the neural network
-nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
+nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
 nn_gs.fit(dev_X, dev_y)
 
 # Print the best parameters and score for the neural network
@@ -200,7 +200,7 @@ lfd_classifier_param_grid = {
 
 # Create the grid search object
 lfd_classifier_gs = GridSearchCV(
-    lfd_classifier_pipeline, lfd_classifier_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
+    lfd_classifier_pipeline, lfd_classifier_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 lfd_classifier_gs.fit(dev_X, dev_y)
