@@ -164,7 +164,10 @@ param_grid_9 = {
     "predictor__n_iter_no_change": [5, 10, 15],
     "predictor__max_fun": [10000, 15000, 20000],
 }
-
+nn_param_grid = [
+    param_grid_1, param_grid_2, param_grid_3, param_grid_4,
+    param_grid_5, param_grid_6, param_grid_7, param_grid_8, param_grid_9
+]
 
 # Create the grid search object for the neural network
 nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
