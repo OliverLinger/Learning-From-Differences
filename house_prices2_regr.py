@@ -112,11 +112,11 @@ knn = Pipeline([
 
 
 # Create a dictionary of hyperparameters for kNN
-knn_param_grid = {"predictor__n_neighbors": [15],
+knn_param_grid = {"predictor__n_neighbors": [2, 5, 7, 10, 13, 15, 17, 21],
                   "preprocessor__num__room_size__insert": [True]}
 
 # Create the grid search object which will find the best hyperparameter values based on validation error
-knn_gs = GridSearchCV(knn, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True)
+knn_gs = GridSearchCV(knn, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 knn_gs.fit(dev_X, dev_y)
@@ -129,10 +129,10 @@ KNN_weighted = Pipeline([
     ("predictor", KNeighborsRegressor(weights='distance'))])
 
 # Create a dictionary of hyperparameters for kNN
-knn_param_grid = {"predictor__n_neighbors": [19]}
+knn_param_grid = {"predictor__n_neighbors": [2, 5, 7, 10, 13, 15, 17, 21]}
 
 # Create the grid search object which will find the best hyperparameter values based on validation error
-knn_weighted = GridSearchCV(KNN_weighted, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True)
+knn_weighted = GridSearchCV(KNN_weighted, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 knn_weighted.fit(dev_X, dev_y)
@@ -154,13 +154,34 @@ nn_pipeline = Pipeline([
 
 # Create a dictionary of hyperparameters for the neural network
 nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(64, 32), (128, 64), (256, 128)],
-    "predictor__activation": ['relu'],
-    "preprocessor__num__room_size__insert": [True]
+    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (100,)],
+    "predictor__activation": ['relu', 'tanh', 'logistic'],
+    "predictor__solver": ['adam', 'sgd'],
+    "predictor__alpha": [0.0001, 0.001, 0.01],
+    "predictor__batch_size": ['auto', 32, 64],
+    "predictor__learning_rate": ['constant', 'adaptive'],
+    "predictor__learning_rate_init": [0.0001, 0.001, 0.01],
+    "predictor__power_t": [0.3, 0.5, 0.7],
+    "predictor__max_iter": [100, 200, 250, 300, 500, 1000, 1200],
+    "predictor__shuffle": [True, False],
+    "predictor__random_state": [None, 42],
+    "predictor__tol": [1e-4, 1e-3, 1e-2],
+    "predictor__verbose": [True, False],
+    "predictor__warm_start": [True, False],
+    "predictor__momentum": [0.9, 0.95, 0.99],
+    "predictor__nesterovs_momentum": [True, False],
+    "predictor__early_stopping": [True, False],
+    "predictor__validation_fraction": [0.1, 0.2, 0.3],
+    "predictor__beta_1": [0.8, 0.9, 0.95],
+    "predictor__beta_2": [0.99, 0.999],
+    "predictor__epsilon": [1e-8, 1e-7, 1e-6],
+    "predictor__n_iter_no_change": [5, 10, 15],
+    "predictor__max_fun": [10000, 15000, 20000],
+    "preprocessor__num__room_size__insert": [True, False]
 }
 
 # Create the grid search object for the neural network
-nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True)
+nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
 nn_gs.fit(dev_X, dev_y)
 
 # Print the best parameters and score for the neural network
@@ -184,18 +205,36 @@ lfd_pipeline = Pipeline([
 
 # Create a dictionary of hyperparameters for LingerRegressor
 lfd_param_grid = {
-    "predictor__n_neighbours_1": [2],
-    "predictor__n_neighbours_2": [14],
-    "predictor__max_iter": [250],
-    'predictor__hidden_layer_sizes': (128, 64),
-    "preprocessor__num__room_size__insert": [True],
-    "predictor__weighted_knn": [False],
-    "predictor__duplicated_on_distance": [True],
-    # Include other hyperparameters for LingerRegressor here
+    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (100,)],
+    "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 21],
+    "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 21],
+    "predictor__max_iter": [100, 200, 250, 300, 500, 1000, 1200],
+    "predictor__weighted_knn": [True, False],
+    "predictor__additional_results_column": [True, False],
+    "predictor__duplicated_on_distance": [True, False],
+    "predictor__addition_of_context": [True, False],
+    "predictor__alpha": [0.0001, 0.001, 0.01],
+    "predictor__batch_size": ["auto", 32, 64],
+    "predictor__learning_rate": ["constant", "adaptive"],
+    "predictor__learning_rate_init": [0.0001, 0.001, 0.01],
+    "predictor__power_t": [0.3, 0.5, 0.7],
+    "predictor__shuffle": [True, False],
+    "predictor__verbose": [True, False],
+    "predictor__warm_start": [True, False],
+    "predictor__momentum": [0.9, 0.95, 0.99],
+    "predictor__nesterovs_momentum": [True, False],
+    "predictor__early_stopping": [True, False],
+    "predictor__validation_fraction": [0.1, 0.2, 0.3],
+    "predictor__beta_1": [0.8, 0.9, 0.95],
+    "predictor__beta_2": [0.99, 0.999],
+    "predictor__epsilon": [1e-8, 1e-7, 1e-6],
+    "predictor__n_iter_no_change": [5, 10, 15],
+    "predictor__max_fun": [10000, 15000, 20000],
+    "predictor__duplicated_on_distance": [True, False],
 }
 
 # Create the grid search object
-lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True)
+lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 
@@ -219,3 +258,35 @@ with open(file_path, 'a') as file:
     file.write(f"Best Parameters Linger regression: {lfd_gs.best_params_,}\n")
     file.write(f"Best Score Linger Regression: {lfd_gs.best_score_}\n")
     file.write("--------------------------------------------------------------\n")
+
+# Test the kNN regressor
+knn_test_accuracy = knn_gs.score(test_X, test_y)
+print(f"Test Accuracy for KNN regressor: {knn_test_accuracy}")
+
+# Test the Neural Network regressor
+nn_test_accuracy = nn_gs.score(test_X, test_y)
+print(f"Test Accuracy for Neural Network regressor: {nn_test_accuracy}")
+
+# Test the Linger regressor
+lfd_classifier_test_accuracy = lfd_gs.score(test_X, test_y)
+print(f"Test Accuracy for Linger Regressor: {lfd_classifier_test_accuracy}")
+
+with open(file_path, 'a') as file:
+    # Test the kNN regressor
+    knn_test_accuracy = knn_gs.score(test_X, test_y)
+    file.write(f"Test Accuracy for KNN regressor: {knn_test_accuracy}\n")
+
+    # Test the weighted kNN regressor
+    knn_weighted_test_accuracy = knn_weighted.score(test_X, test_y)
+    file.write(f"Test Accuracy for Weighted KNN regressor: {knn_weighted_test_accuracy}\n")
+
+    # Test the Neural Network regressor
+    nn_test_accuracy = nn_gs.score(test_X, test_y)
+    file.write(f"Test Accuracy for Neural Network regressor: {nn_test_accuracy}\n")
+
+    # Test the Linger Regressor
+    lfd_classifier_test_accuracy = lfd_gs.score(test_X, test_y)
+    file.write(f"Test Accuracy for Linger Regressor: {lfd_classifier_test_accuracy}\n")
+    file.write("--------------------------------------------------------------\n")
+
+print(f"Results have been saved to {file_path}")
