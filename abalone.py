@@ -4,7 +4,7 @@ from differences import _regression
 import pandas as pd
 import numpy as np
 
-from sklearn.model_selection import RandomizedSearchCV, train_test_split
+from sklearn.model_selection import GridSearchCV, train_test_split
 
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -16,7 +16,6 @@ from sklearn.preprocessing import OneHotEncoder
 
 from sklearn.neighbors import KNeighborsRegressor
 
-from sklearn.model_selection import GridSearchCV
 from datetime import datetime
 LingerRegressor = _regression.LingerRegressor
 
@@ -116,35 +115,59 @@ nn_pipeline = Pipeline([
 
 # Create a dictionary of hyperparameters for the neural network
 # Neural Network
-nn_param_grid = {
+# Define the subsets of parameters
+param_grid_1 = {
     "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (100,)],
     "predictor__activation": ['relu', 'tanh', 'logistic'],
     "predictor__solver": ['adam', 'sgd'],
     "predictor__alpha": [0.0001, 0.001, 0.01],
+}
+
+param_grid_2 = {
     "predictor__batch_size": ['auto', 32, 64],
     "predictor__learning_rate": ['constant', 'adaptive'],
     "predictor__learning_rate_init": [0.0001, 0.001, 0.01],
+}
+
+param_grid_3 = {
     "predictor__power_t": [0.3, 0.5, 0.7],
     "predictor__max_iter": [100, 200, 250, 300, 500, 1000, 1200],
+}
+
+param_grid_4 = {
     "predictor__shuffle": [True, False],
-    "predictor__random_state": [None, 42],
+    "predictor__random_state": [None, 42],}
+
+param_grid_5 = {
     "predictor__tol": [1e-4, 1e-3, 1e-2],
     "predictor__verbose": [True, False],
+}
+
+param_grid_6 = {
     "predictor__warm_start": [True, False],
     "predictor__momentum": [0.9, 0.95, 0.99],
     "predictor__nesterovs_momentum": [True, False],
+}
+
+param_grid_7 = {
     "predictor__early_stopping": [True, False],
     "predictor__validation_fraction": [0.1, 0.2, 0.3],
+}
+
+param_grid_8 = {
     "predictor__beta_1": [0.8, 0.9, 0.95],
     "predictor__beta_2": [0.99, 0.999],
     "predictor__epsilon": [1e-8, 1e-7, 1e-6],
+}
+
+param_grid_9 = {
     "predictor__n_iter_no_change": [5, 10, 15],
     "predictor__max_fun": [10000, 15000, 20000],
 }
 
 
 # Create the grid search object for the neural network
-nn_gs = RandomizedSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
+nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
 nn_gs.fit(dev_X, dev_y)
 
 # Print the best parameters and score for the neural network
@@ -191,7 +214,7 @@ lfd_param_grid = {
 }
 
 # Create the grid search object
-lfd_gs = RandomizedSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
+lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
 
 # Run grid search by calling fit. It will also re-train on train+validation using the best parameters.
 
