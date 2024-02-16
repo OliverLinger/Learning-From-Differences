@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{craw2006learning}
+Susan Craw, Nirmalie Wiratunga, and Ray~C Rowe.
+\newblock Learning adaptation knowledge to improve case-based reasoning.
+\newblock {\em Artificial intelligence}, 170(16-17):1175--1192, 2006.
+
 \bibitem{learningFromDifferences2022}
 Mathieu D'Aquin, Emmanuel Nauer, and Justine Lieber.
 \newblock A factorial study of neural network learning from differences for
@@ -7,6 +12,12 @@ Mathieu D'Aquin, Emmanuel Nauer, and Justine Lieber.
 \newblock In Mark~T. Keane and Nirmalie Wiratunga, editors, {\em Case-Based
   Reasoning Research and Development. ICCBR 2022. Lecture Notes in Computer
   Science}, volume 13405, page PageNumbersHere. Springer, Cham, 2022.
+
+\bibitem{hanney1996learning}
+Kathleen Hanney and Mark~T Keane.
+\newblock Learning adaptation rules from a case-base.
+\newblock In {\em European Workshop on Advances in Case-Based Reasoning}, pages
+  179--192. Springer, 1996.
 
 \bibitem{neuralNetForRegression}
 Leorey Marquez, Tim Hill, Reginald Worthley, and William Remus.

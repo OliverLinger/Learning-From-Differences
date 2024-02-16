@@ -93,42 +93,40 @@ and that it has not been submitted partly or wholly for any other educational aw
 % Start your content here
 \chapter{Literature Review}
 \label{ch:Literature Review}
-In recent years, the application of neural networks in regression tasks has garnered significant attention within the realm of machine learning and artificial intelligence. 
-Applying neural networks to regression tasks has become a common practice within the machine learning community \cite{neuralNetForRegression}. 
-Traditionally, supervised learning approaches entail presenting datasets described by features alongside their corresponding expected values to the artificial neural network (ANN), 
+
+In recent years, the application of neural networks in regression tasks has gained significant attention within the realm of machine learning and artificial intelligence. 
+Applying neural networks to regression tasks has become common practice within the machine learning community \cite{neuralNetForRegression}. 
+Traditionally, supervised learning approaches involve presenting datasets described by features alongside their corresponding expected values to the artificial neural network (ANN), 
 facilitating the learning process aimed at predicting these expected values.
 
-However, inspired by case-based reasoning, which involves solving new problems by adapting solutions from old ones \cite{riesbeck2013inside}, 
-researchers have developed new predictive ensemble models based on the principles of case-based reasoning (CBR). 
-These principles involve retrieving the most similar case(s), reusing the case(s) to attempt to solve the problem,
-revising the proposed solution if necessary, and retaining the new solution as part of a new case \cite{watsonCaseBasedReasoningReview}.
+Inspired by case-based reasoning, which involves solving new problems by adapting solutions from old ones \cite{riesbeck2013inside}, 
+researchers have developed predictive ensemble models based on the principles of case-based reasoning (CBR). 
+These principles involve retrieving the most similar cases, reusing them to attempt to solve the problem, revising the proposed solution if necessary, 
+and retaining the new solution as part of a new case \cite{watsonCaseBasedReasoningReview}.
 
-Researchers have posited the potential advantages of deviating from this conventional paradigm by 
-training neural networks on differences between sets of features to predict differences between values. 
-This departure from the traditional approach underscores a shift towards a more nuanced understanding of the learning process, 
-emphasizing the exploration of alternative methodologies to enhance the efficiency and efficacy of neural network training. 
+Researchers have suggested the potential advantages of deviating from this conventional paradigm by training neural networks on differences between sets of features to predict 
+differences between values. This departure from the traditional approach underscores a shift towards a more nuanced understanding of the learning process, 
+emphasizing the exploration of alternative methodologies to enhance the efficiency and efficacy of neural network training.
 Additionally, it aims to provide more transparency within the learning process to offer insights into the black box that is a neural network.
 
-\section{KNN + ANN for Regression, utilizing  (CBR)}
-In recent years, the exploration of alternative methodologies for enhancing the performance of neural networks in 
-regression tasks has attracted considerable attention within the machine learning community. One such innovative approach, 
-inspired by the principles of case-based reasoning (CBR), involves training neural networks to predict differences between values based on differences 
-between sets of features. 
+\section{KNN + ANN for Regression, utilizing (CBR)}
 
-This departure from the conventional supervised learning paradigm aims to leverage the inherent advantages of learning from differences, 
-potentially leading to more interpretable and efficient models. 
-The study under consideration \cite{learningFromDifferences2022} gives a systematic factorial study conducted to 
-investigate the efficacy of this approach across various datasets and experimental conditions. 
-The study's findings suggest that neural networks trained on differences demonstrate comparable or even superior performance to those 
-trained using traditional methods, while requiring significantly fewer epochs for convergence. 
-In this section of the literature review, 
-we consider the utilization of case-based reasoning for regression tasks, with a specific focus on the implementation of KNN (K-Nearest Neighbors) and ANN (Artificial Neural Network) frameworks.
+The exploration of alternative methodologies for enhancing the performance of neural networks in regression tasks has attracted considerable attention within the machine 
+learning community in recent years. One innovative approach, inspired by the principles of case-based reasoning (CBR), 
+involves training neural networks to predict differences between values based on differences between sets of features.
+
+This departure from the conventional supervised learning paradigm aims to leverage the inherent advantages of learning from differences, potentially 
+leading to more interpretable and efficient models. The study under consideration \cite{learningFromDifferences2022} conducts a 
+systematic factorial study to investigate the efficacy of this approach across various datasets and experimental conditions. 
+The findings suggest that neural networks trained on differences demonstrate comparable or even superior performance to those trained using traditional methods, 
+while requiring significantly fewer epochs for convergence. In this section of the literature review, we consider the utilization of case-based reasoning for regression tasks, 
+with a specific focus on the implementation of KNN (K-Nearest Neighbors) and ANN (Artificial Neural Network) frameworks.
 
 \subsection{Learning From Differences Paper}
-The paper by \cite{learningFromDifferences2022} introduces the innovative concept of training a 
-neural network based on the disparities between a base case and its closest neighbors. 
-Titled "A Factorial Study of Neural Network Learning from Differences for Regression" \cite{learningFromDifferences2022}, the study aims to 
-present novel learning methodologies geared towards enhancing performance and fostering a more interpretable learning process.
+
+The paper by \cite{learningFromDifferences2022} introduces the innovative concept of training a neural network based on the disparities between a base case and its closest neighbors. 
+Titled "A Factorial Study of Neural Network Learning from Differences for Regression" \cite{learningFromDifferences2022}, 
+the study aims to present novel learning methodologies geared towards enhancing performance and fostering a more interpretable learning process. 
 The research evaluates three model variations: a benchmark neural network, a learning from differences model, and an augmented learning from differences model incorporating the original context. 
 The context here refers to the base case, from which differences with its nearest neighbors are calculated.
 
@@ -137,23 +135,100 @@ Moreover, comparable or superior results were achieved with fewer training epoch
 This enhancement is attributed partly to the broader training dataset that encompasses neighbors greater than 1. 
 Notably, the paper advocates for a hybrid approach, combining learning from differences with direct feature-based learning, which yields superior results.
 
+The related work for the paper \cite{learningFromDifferences2022} has addressed the use of neural networks in the case-based reasoning process. 
+These papers have focused on exploiting the base case using the idea that adaptation of information is acquirable from the differences between pairs \cite{hanney1996learning}. 
+Since then, various different approaches have been used. More recently, in relation to using neural networks to predict the differences between problems, 
+a few interesting points have been investigated. These points show the ability of a neural network to correct the solution of the most similar retrieved case. 
+These preliminary works expressed in the paper showed that the use of differences plus context yielded superior results \cite{craw2006learning}. 
+The previous studies examined in the paper \cite{learningFromDifferences2022} did not examine the impact of different parameters during the (CBR) case-based reasoning experiments. 
+The paper \cite{learningFromDifferences2022} made an effort to explore the effect of epochs in the learning process.
+
 The graphical representations in the paper highlight a distinct trend: rapid attainment of high accuracy levels with the learning from differences method, 
 particularly when contextual information is included. Conversely, the basic neural network requires a substantially larger number of epochs to achieve comparable accuracy, 
 if not worse. This disparity suggests the efficiency of the learning from differences approach.
 
-In conclusion, the paper suggests a marginal performance enhancement and a substantial reduction in training epochs through the adoption of the 
-differences method and inclusion of contextual information. However, it is crucial to acknowledge the time overhead associated with retrieving and training using similar cases.
+In conclusion, the paper suggests a marginal performance enhancement and a substantial reduction in training epochs through the adoption of the differences method 
+and inclusion of contextual information. However, it is crucial to acknowledge the time overhead associated with retrieving and training using similar cases.
+
+The process of learning from differences for regression, as described in the paper by \cite{learningFromDifferences2022},
+ demonstrates the use of the case difference heuristic in the creation of a predictive model. 
+ Consider a dataset $D$ of pairs $(X_i, Y_i)$, where $Y_i$ is a vector of $n$ numerical values corresponding to the result we expect to predict. Within the paper, 
+ the method of executing a regression model follows the normal pattern of training and predicting that a standard model would. However, 
+ instead of the features themselves being passed into the neural net, 
+ the differences between the features and their nearest neighbors are passed in. The differences set is represented by $\Delta D^{\text{train}}$. 
+ The network, after being fitted with the above, is used again to make predictions. This time, the test set is used, 
+ where nearest neighbors in the training set are retrieved using the items in the training set $D^{\text{train}}$. 
+ The resultant dataset of test differences is called $\Delta D^{\text{test}}$. Predictions are made on this dataset, 
+ and the predictions are added to their corresponding differences in $D^{\text{train}}$. 
+ The average of the resultant label is taken as the regression prediction.
+
+The paper \cite{learningFromDifferences2022} has an associated library where they have implemented a regression-based machine learning model.
+
+The new model proposed in the paper is tested using the factorial study methodology. 
+This process involved finding a network structure through experimental means for each dataset. 
+It entailed training and testing using a wide range of hyperparameters to determine the optimal settings.
 
 Despite its contributions, the paper falls short in adequately addressing classification and exploring additional variations of the learning from differences model beyond context inclusion. 
 Incorporating original values for the base case in the generated differences dataset provides a valuable framework for understanding the observed disparities. 
-While the model with contextual inclusion demonstrates slight improvements over the base model in learning from differences, a more comprehensive examination 
-of the methodology is warranted for further refinement and enhancement.
+While the model with contextual inclusion demonstrates slight improvements over the base model in learning from differences, a more comprehensive examination of the methodology 
+is warranted for further refinement and enhancement.
 
+The paper tested three models using the same factorial methodology: a base version, which is a basic neural network trained empirically; 
+a differences model employing the (CBH) Case-based Heuristic for predictions; and a differences model with its base context included. The results yielded interesting insights, 
+with similar performance for all three models and a slight improvement in the differences $+$ context model. 
+Notably, the differences and differences $+$ context models required significantly fewer epochs to achieve accuracy compared to the basic neural network, 
+which achieved similar accuracy after more epochs.
 
-\section{KNN + ANN for Classification}
+Another consideration in the paper \cite{learningFromDifferences2022} was the number of neighbors for both training and prediction. 
+The study revealed no consistent trend across datasets, suggesting dataset-specific requirements. 
+This approach could be seen as a method of data augmentation, as choosing a larger number of neighbors dramatically increases the dataset size.
+
+In conclusion, the learning from differences method achieved equal or higher accuracy compared to the base neural network model with far fewer epochs, 
+potentially leading to faster training times. However, careful consideration must be given to the number of neighbors used, as increasing it can lead to significantly higher time overhead.
+
+An improvement on the study \cite{learningFromDifferences2022} would be to vary the network structure, including but not limited to increasing the number of layers and neurons. 
+Additionally, including datasets that require different types of networks could provide valuable insights. 
+Exploring these parameters could lead to improvements in the existing learning from differences regression model. 
+While the study tested a singular variant through the inclusion of context, exploring more variants of the model could yield further enhancements.
+\subsection{Learning Adaptations for Case-based classification}
 
 \chapter{Design}
 \label{ch:Design}
+\section{Linger regression model}
+\subsection{Objective}
+The objective of the Linger Regresssion model is to provide a more dynamic and interpretive model for Regression using differences rather. This model hopes to improve 
+and provide better regression models allow a more interpretable learning process.
+
+\subsection{Architecture Overview}
+Provide a concise overview of the architecture of the machine learning device.
+
+\subsection{Data Collection and Preprocessing}
+Explain how training and validation datasets were collected and preprocessed.
+
+\subsection{Feature Engineering}
+Describe the process of feature extraction or engineering for the machine learning model.
+
+\subsection{Model Selection}
+Explain the rationale behind selecting the machine learning model or algorithm.
+
+\subsection{Training Procedure}
+Detail the training procedure, including optimization algorithms and hyperparameters.
+
+\subsection{Evaluation Metrics}
+Define the evaluation metrics used to assess the performance of the machine learning device.
+
+\subsection{Cross-Validation and Testing}
+Describe the methodology used for cross-validation and testing of the machine learning model.
+
+\subsection{Hardware and Software Specifications}
+Provide details about the hardware and software infrastructure used in the development and deployment of the machine learning device.
+
+\subsection{Ethical Considerations}
+Discuss any ethical considerations associated with the machine learning device.
+
+\subsection{Limitations and Future Work}
+Acknowledge limitations and propose future improvements for the machine learning device.
+
 
 \chapter{Implementation}
 \label{ch:Implementation}
@@ -163,7 +238,6 @@ of the methodology is warranted for further refinement and enhancement.
 
 \chapter{Conclusions}
 \label{ch:Conclusions}
-
 
 \chapter{Experiments}
 \label{ch:Experimnents}
