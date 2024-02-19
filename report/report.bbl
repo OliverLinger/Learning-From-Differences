@@ -19,6 +19,16 @@ Kathleen Hanney and Mark~T Keane.
 \newblock In {\em European Workshop on Advances in Case-Based Reasoning}, pages
   179--192. Springer, 1996.
 
+\bibitem{kramer2016scikit}
+Oliver Kramer and Oliver Kramer.
+\newblock Scikit-learn.
+\newblock {\em Machine learning for evolution strategies}, pages 45--53, 2016.
+
+\bibitem{leake1996acquiring}
+David~B Leake and Andrew Kinley.
+\newblock Acquiring case adaptation knowledge: A hy rid approae.
+\newblock 1996.
+
 \bibitem{neuralNetForRegression}
 Leorey Marquez, Tim Hill, Reginald Worthley, and William Remus.
 \newblock Neural network models as an alternative to regression.
@@ -34,5 +44,13 @@ Christopher~K Riesbeck and Roger~C Schank.
 Ian Watson and Farhi Marir.
 \newblock Case-based reasoning: A review.
 \newblock {\em The knowledge engineering review}, 9(4):327--354, 1994.
+
+\bibitem{ye2021learning}
+Xiaomeng Ye, David Leake, Vahid Jalali, and David~J Crandall.
+\newblock Learning adaptations for case-based classification: A neural network
+  approach.
+\newblock In {\em Case-Based Reasoning Research and Development: 29th
+  International Conference, ICCBR 2021, Salamanca, Spain, September 13--16,
+  2021, Proceedings 29}, pages 279--293. Springer, 2021.
 
 \end{thebibliography}

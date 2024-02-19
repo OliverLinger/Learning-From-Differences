@@ -190,17 +190,102 @@ An improvement on the study \cite{learningFromDifferences2022} would be to vary 
 Additionally, including datasets that require different types of networks could provide valuable insights. 
 Exploring these parameters could lead to improvements in the existing learning from differences regression model. 
 While the study tested a singular variant through the inclusion of context, exploring more variants of the model could yield further enhancements.
-\subsection{Learning Adaptations for Case-based classification}
+% End of subsection
+\section{Learning Adaptations for Case-based classification}
+The paper \cite{ye2021learning} "Learning Adaptations for Case-based Classification" explores the implementation of Case-Based Reasoning (CBR) for classification.
+It investigates recent advancements in CBR and its replacement of learning rules with Case-Based Heuristic (CBH) network models for adaptation. 
+The paper introduces a novel model with three variations: segmentation of adaptation knowledge based on the classes of the source cases, 
+training a single neural network on differences between problem solutions, and adapting from an ensemble of source cases followed by a majority vote.
+
+This study \cite{ye2021learning} presents the first neural network-based approach to classification, called "C-NN-CDH" or 
+Classification with Neural Network-based Case Difference Heuristic. The approach uses a neural network to learn adaptation knowledge from pairs of cases. 
+According to the paper, this approach outperforms traditional statistical models.
+
+The first approach involves segmenting the dataset by class and training a neural network for all segmented differences set between base cases. 
+This method offers faster training but slightly less accuracy, according to the paper. The use of these CBR methods provides at least two benefits: 
+inertia-free lazy learning and the ability to assess different cases when running classification. Inertial free means that the model does not make 
+assumptions based on the underlying structure of the data, and lazy learning pertains to an algorithm that will postpone generalization until it 
+is certain a new instance needs to be classified. It will only classify as the data comes; it won't try and learn or adapt preemptively.
+
+In the process of CBR, adaptation is often treated as the most difficult. Various methods have been developed by academics over the years to tackle the issue. 
+For example, \cite{leake1996acquiring} extrapolates a method in which the case base adaptation cases are populated from previously successful adaptations. 
+Another approach is to have a stored base case and query and retrieve the case most similar to it, 
+and adapting the retrieved case to the base case \cite{craw2006learning}.
+
+In the paper \cite{ye2021learning}, several design questions had to be addressed. 
+How to calculate problem differences and how to select case pairs for training. The paper in question \cite{ye2021learning} considers standard 
+pair selection methods as well as a new training per selection approach based on class-class classification.
+
+The paper \cite{ye2021learning} addresses the application of (CDH) method for classification. 
+It discusses the value distance metric which is  probabilistic method 
+to measure the similarity that allows the comparison of nominal values in a single dimensional space.
+
+\subsection{An NN-CDH Approach for Classification}
+The "NN-CDH" method learns through pairs of cases. With one being treated as the source and the other as the target. The source is to be adapted to the target. This is often referred to as a case pair.
+With the incorporation of a neural network, the neural network calculates the difference between the source and target pair. 
+The (CBA) case based reasoning system applies predicted result of this is applied to the source solution and that is taken as the result.
+
+
 
 \chapter{Design}
 \label{ch:Design}
 \section{Linger regression model}
 \subsection{Objective}
-The objective of the Linger Regresssion model is to provide a more dynamic and interpretive model for Regression using differences rather. This model hopes to improve 
-and provide better regression models allow a more interpretable learning process.
+The objective of the Linger Regression model is to provide a more dynamic and interpretive model for Regression using differences which implements (CBR) case-based reasoning. 
+This model aims to enhance the interpretability and performance of regression models, facilitating a more transparent learning process \cite{learningFromDifferences2022}. 
+Specifically, the goals are outlined as follows:
+
+The primary aim is to develop a regression model that captures dynamic relationships within the data, leveraging the principles of case-based reasoning. 
+By incorporating differences, the model can adapt to varying contexts and provide nuanced predictions.
+
+The model seeks seamless integration with popular machine learning libraries like Scikit-learn \cite{kramer2016scikit}. 
+By providing a codebase compatible with Scikit-learn's pipeline and hyperparameter testing methods, the model ensures accessibility and ease of implementation for practitioners.
+
+An essential objective is to enable users, including academics, researchers, and industry professionals, to interpret the model's predictions effectively. 
+By elucidating the correlation between input features and predictions, the model facilitates deeper insights into the underlying data patterns.
+
+Another of the core objective involves implementing the learning from differences algorithm \cite{learningFromDifferences2022} in a straightforward and testable manner. 
+This implementation includes various enhancements, such as incorporating original context and introducing additional features like distance metrics between base cases and their nearest neighbors.
+
+The overarching goal is to provide a versatile regression model that not only achieves superior performance than previous (CBR) regression models 
+but also empowers users with insights into the predictive process, 
+fostering trust and understanding in machine learning applications.
+
 
 \subsection{Architecture Overview}
 Provide a concise overview of the architecture of the machine learning device.
+The \texttt{LingerRegressor} is a custom regressor that combines the principles of k-nearest neighbors (KNN) and the \texttt{MLPRegressor} from \texttt{scikit-learn}. 
+It offers flexibility in parameter tuning and incorporates various techniques to enhance prediction accuracy and interpretability.
+
+\subsection{Components}
+
+\begin{itemize}
+    \item \textbf{K-nearest neighbors (KNN)}: The model utilizes KNN for both training and prediction phases. 
+	During training, it computes the nearest neighbors of each data point and extracts the differences between them. 
+	The number of neighbors for training and prediction can be specified independently (\texttt{n\_neighbours\_1} and \texttt{n\_neighbours\_2}).
+    
+    \item \textbf{MLPRegressor}: The core regression model is implemented using the MLPRegressor from scikit-learn. 
+	It consists of multiple layers of neurons and supports various activation functions, solvers, and other hyperparameters. 
+	These parameters can be adjusted to optimize model performance.
+    
+    \item \textbf{Additional Features}:
+    \begin{itemize}
+        \item \textbf{Weighted KNN}: Allows for weighted averaging of neighbor predictions based on distances.
+        \item \textbf{Context Addition}: Enables the addition of base case context to the training data, enhancing the model's ability to capture complex relationships.
+        \item \textbf{Additional Results Column}: Incorporates an additional column with distance values associated with each training instance.
+        \item \textbf{Duplication Based on Distance}: Duplicates training instances based on calculated distances to improve model robustness.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Parameterization}
+
+The \texttt{LingerRegressor} offers extensive parameterization to fine-tune model behavior. Parameters include those for KNN (e.g., number of neighbors), \texttt{MLPRegressor}
+ settings (e.g., activation function, solver), and additional features (e.g., weighted KNN, context addition).
+
+\subsection{Training and Prediction}
+
+During training, the model computes differences between neighboring instances and fits the MLPRegressor to learn the underlying patterns. In prediction, it identifies nearest neighbors for each test instance and generates predictions using the trained MLPRegressor.
+
 
 \subsection{Data Collection and Preprocessing}
 Explain how training and validation datasets were collected and preprocessed.
