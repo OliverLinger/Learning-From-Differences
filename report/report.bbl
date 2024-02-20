@@ -19,14 +19,15 @@ Kathleen Hanney and Mark~T Keane.
 \newblock In {\em European Workshop on Advances in Case-Based Reasoning}, pages
   179--192. Springer, 1996.
 
-\bibitem{kramer2016scikit}
-Oliver Kramer and Oliver Kramer.
-\newblock Scikit-learn.
-\newblock {\em Machine learning for evolution strategies}, pages 45--53, 2016.
+\bibitem{jalali2017learning}
+Vahid Jalali, David Leake, and Najmeh Forouzandehmehr.
+\newblock Learning and applying case adaptation rules for classification: An
+  ensemble approach.
+\newblock In {\em IJCAI}, pages 4874--4878, 2017.
 
 \bibitem{leake1996acquiring}
 David~B Leake and Andrew Kinley.
-\newblock Acquiring case adaptation knowledge: A hy rid approae.
+\newblock Acquiring case adaptation knowledge: A hybrid approach.
 \newblock 1996.
 
 \bibitem{neuralNetForRegression}
