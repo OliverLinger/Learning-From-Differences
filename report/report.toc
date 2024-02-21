@@ -6,36 +6,38 @@
 \contentsline {subsection}{\numberline {2.1.1}Learning From Differences Paper}{8}{subsection.2.1.1}%
 \contentsline {section}{\numberline {2.2}Learning Adaptations for Case-based classification}{11}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}An NN-CDH Approach for Classification}{12}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Variant 0: Non-Network C-CDH}{12}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.2}Variant 0: Non-Network C-CDH}{13}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Variant 1: C-NN-CDH}{13}{subsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.4}Variant 2: C-NN-CDH}{14}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}Variant 3 - 5: C-NN-CDH}{15}{subsection.2.2.5}%
 \contentsline {subsubsection}{Variant 3: Single Adaptation Neural Network}{15}{section*.5}%
 \contentsline {subsubsection}{Variant 4: N Adaptation Neural Network}{16}{section*.6}%
-\contentsline {subsubsection}{Variant 5: N Adaptation Neural Network, taking N neighbors from all classes}{16}{section*.7}%
+\contentsline {subsubsection}{Variant 5: N Adaptation Neural Network, taking N neighbors from all classes}{17}{section*.7}%
 \contentsline {subsection}{\numberline {2.2.6}Evaluation of Learning adaptations for case based classification: A Neural Network approach}{17}{subsection.2.2.6}%
 \contentsline {subsubsection}{Gathering Case Based Pairs}{17}{section*.8}%
-\contentsline {subsubsection}{Evaluation Summary}{17}{section*.9}%
-\contentsline {subsubsection}{Conclusions on Learning adaptations for case based classification: A Neural Network approach}{18}{section*.10}%
-\contentsline {chapter}{\numberline {3}Design}{19}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Linger Regression Model}{19}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Objective}{19}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Architecture Overview}{19}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Components}{20}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Parameterization}{20}{subsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.1.5}Training and Prediction}{20}{subsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.1.6}Data Collection and Preprocessing}{20}{subsection.3.1.6}%
-\contentsline {subsection}{\numberline {3.1.7}Model Evaluation}{20}{subsection.3.1.7}%
-\contentsline {subsection}{\numberline {3.1.8}Infrastructure}{20}{subsection.3.1.8}%
-\contentsline {subsection}{\numberline {3.1.9}Ethical Considerations}{21}{subsection.3.1.9}%
-\contentsline {subsection}{\numberline {3.1.10}Limitations and Future Work}{21}{subsection.3.1.10}%
-\contentsline {chapter}{\numberline {4}Implementation}{22}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Evaluation}{23}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Conclusions}{24}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Experiments}{25}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Experiment 1: Abalone dataset Linger Regression}{25}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Experiment 2: House Prices Dataset Regression}{25}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Experiment 3: Glass Dataset Classification}{25}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Experiment 4: Raisin Dataset Classification}{25}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Experiment 5: Car Safety Dataset Classification}{25}{section.7.5}%
-\contentsline {chapter}{\numberline {8}Results}{26}{chapter.8}%
+\contentsline {subsubsection}{Evaluation Summary}{18}{section*.9}%
+\contentsline {subsubsection}{Conclusions on Learning adaptations for case based classification: A Neural Network approach}{19}{section*.10}%
+\contentsline {section}{\numberline {2.3}Learning and Applying Case Adaptation Rules for Classification: An Ensemble Approach}{19}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Design}{20}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Linger Regression Model}{20}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Objective}{20}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Architecture}{20}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Components}{21}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Parameterization}{21}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}Training and Prediction}{21}{subsection.3.1.5}%
+\contentsline {subsubsection}{Training}{21}{section*.11}%
+\contentsline {subsubsection}{Prediction}{21}{section*.12}%
+\contentsline {subsection}{\numberline {3.1.6}Data Collection and Preprocessing}{22}{subsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.1.7}Infrastructure}{22}{subsection.3.1.7}%
+\contentsline {subsection}{\numberline {3.1.8}Ethical Considerations}{22}{subsection.3.1.8}%
+\contentsline {subsection}{\numberline {3.1.9}Limitations and Future Work}{22}{subsection.3.1.9}%
+\contentsline {chapter}{\numberline {4}Implementation}{23}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Evaluation}{24}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Conclusions}{25}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Experiments}{26}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Experiment 1: Abalone dataset Linger Regression}{26}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Experiment 2: House Prices Dataset Regression}{26}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Experiment 3: Glass Dataset Classification}{26}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Experiment 4: Raisin Dataset Classification}{26}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Experiment 5: Car Safety Dataset Classification}{26}{section.7.5}%
+\contentsline {chapter}{\numberline {8}Results}{27}{chapter.8}%

@@ -112,7 +112,7 @@ Additionally, it aims to provide more transparency within the learning process t
 
 The exploration of alternative methodologies for enhancing the performance of neural networks in regression tasks has attracted considerable attention within the machine
 learning community in recent years. One innovative approach, inspired by the principles of case-based reasoning (CBR),
-involves training neural networks to predict differences between values based on differences between sets of features.
+involves training neural networks to predict differences between problems based on differences between features rather than the features themselves.
 
 This departure from the conventional supervised learning paradigm aims to leverage the inherent advantages of learning from differences, potentially
 leading to more interpretable and efficient models. The study under consideration \cite{learningFromDifferences2022} conducts a
@@ -435,6 +435,9 @@ The conclusion of the paper \cite{ye2021learning} being that (variant (5)) is wo
 As it yielded the most promising results when compared to all the other variants tested in the paper.
 
 
+\section{Learning and Applying Case Adaptation Rules for Classification: An Ensemble Approach}
+The paper \cite{jalali2017learning} introduces the (EAC) ensemble of adaptations for classification. 
+
 \chapter{Design}
 \label{ch:Design}
 
@@ -448,10 +451,11 @@ The Linger Regression model integrates principles of Case-Based Reasoning (CBR) 
     \item Enable effective interpretation of predictions for users.
     \item Implement the learning from differences algorithm with enhancements for improved performance.
 \end{itemize}
+Its intended use case is for regression problems that could benefit from a more transparent learning process. 
 
-\subsection{Architecture Overview}
+\subsection{Architecture}
 The \texttt{LingerRegressor} combines K-nearest neighbors (KNN) and \texttt{MLPRegressor} from Scikit-learn for flexibility and accuracy.
-
+The philosophy behind the regression model is to implement a model that learns from differences between case pairs. 
 \subsection{Components}
 \begin{itemize}
     \item KNN module: Computes nearest neighbors and extracts differences during both training and prediction phases.
@@ -463,17 +467,26 @@ The \texttt{LingerRegressor} combines K-nearest neighbors (KNN) and \texttt{MLPR
 Extensive parameterization allows fine-tuning of KNN, \texttt{MLPRegressor}, and additional features.
 
 \subsection{Training and Prediction}
-The model computes differences during training, fits the \texttt{MLPRegressor}, and identifies nearest neighbors for predictions.
+\subsubsection{Training}
+Consider a dataset $D$. The dataset $D$ will be broken up into $D^{\text{train}}$ and $D^{\text{test}}$ with a $80\%$ $20\%$ split.
+
+During the training, with dataset $D^{\text{train}}$
+Two separate sets $(X_i, Y_i)$ are created, $(X_i)$ contains features, and $(Y_i)$ labels.
+For every source case in $(X_i)$ its corresponding result in $(Y_i)$ this is the \texttt{TrainBaseCase}, it's nearest (K-Neighbors) in $D^{\text{train}}$ are retrieved.
+
+The differences between each \texttt{TrainBaseCase} and their nearest neighbors are calculated by subtracting the retrieved cases, these are then added to the $\Delta D^{\text{train}}$ dataset.
+There will be $M*N$ differences added to the $\Delta D^{\text{train}}$, $M$ being the number of items in $D^{\text{train}}$ and $N$ being the number of Neighbors.
+
+The neural network is then trained on $\Delta D^{\text{train}}$.
+\subsubsection{Prediction}
+After a successful training of the neural network.
+The dataset $D^{\text{test}}$ is used for prediction.
+For every \texttt{TestBaseCase} within $D^{\text{test}}$, its K-nearest neighbors are retrieved from $D^{\text{train}}$. 
+The differences between each \texttt{TestBaseCase} and their nearest neighbors are calculated by subtracting the retrieved cases from the \texttt{TestBaseCase}, 
+these are then added to the $\Delta D^{\text{train}}$ dataset.
 
 \subsection{Data Collection and Preprocessing}
 Details on how training and validation datasets were collected and preprocessed.
-
-\subsection{Model Evaluation}
-\begin{itemize}
-    \item Model Selection: Rationale behind choosing the Linger Regression model.
-    \item Evaluation Metrics: Metrics used to assess model performance.
-    \item Cross-Validation and Testing: Methodology used for validation and testing.
-\end{itemize}
 
 \subsection{Infrastructure}
 Hardware and software specifications for development and deployment.
