@@ -336,6 +336,7 @@ class LingerClassifier(BaseEstimator, ClassifierMixin):
             "weighted_knn": self.weighted_knn,
             "additional_results_column": self.additional_results_column,
             "duplicated_on_distance": self.duplicated_on_distance,
+            "addition_of_context": self.addition_of_context,
         }
 
     def set_params(self, **params):

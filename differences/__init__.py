@@ -1,6 +1,6 @@
 """
 The :mod:`differences` module implements the differences
-algorithm.
+algorithms.
 """
 
 from ._regression import LingerRegressor

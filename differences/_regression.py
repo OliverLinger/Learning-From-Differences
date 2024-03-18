@@ -36,12 +36,12 @@ class LingerRegressor(BaseEstimator, RegressorMixin):
         n_iter_no_change=10,
         max_fun=15000,
         weighted_knn=True,
-        additional_results_column=False,
+        additional_distance_column=False,
         duplicated_on_distance=False,
         addition_of_context=False,
     ):
         """
-        Linger Regressor is a custom regressor based on k-nearest neighbors and MLPRegressor.
+        Linger Regressor is a custom regressor based on k-nearest neighbors and MLPRegressor that implements classification to solve regression tasks.
 
         Parameters:
         - n_neighbours_1: Number of neighbors for the first k-nearest neighbors search during fitting.
@@ -84,7 +84,7 @@ class LingerRegressor(BaseEstimator, RegressorMixin):
         self.train_X = []
         self.train_y = []
         self.weighted_knn = weighted_knn
-        self.additional_results_column = additional_results_column
+        self.additional_distance_column = additional_distance_column
         self.duplicated_on_distance = duplicated_on_distance
         self.addition_of_context = addition_of_context
 
@@ -182,14 +182,14 @@ class LingerRegressor(BaseEstimator, RegressorMixin):
             )
 
         # Addition of column
-        if self.additional_results_column:
+        if self.additional_distance_column:
             print("Addition of column")
             distances_X = []
             for i in distances:
                 diffs = i[1:]
                 for n in diffs:
                     distances_X.append(n)
-            differences_X = self.add_additional_results_column_fit(
+            differences_X = self.add_additional_distance_column(
                 differences_X=differences_X, distances=distances_X
             )
 
@@ -224,16 +224,16 @@ class LingerRegressor(BaseEstimator, RegressorMixin):
 
         """
         This section of code handles the retrieval of the distnaces for the nearest neighbors and appends them to the differences_test_X arrays.
-        If self.additional_results_column is True:
+        If self.additional_distance_column is True:
             Since the regressor expects an additional column for the prediction, we iterate through the indices to perform the following steps:
         """
-        if self.additional_results_column:
+        if self.additional_distance_column:
             print("Additional column implanted")
             distances_X = []
             for diffs in distances:
                 for n in diffs:
                     distances_X.append(n)
-            differences_test_X = self.add_additional_results_column_fit(
+            differences_test_X = self.add_additional_distance_column(
                 differences_X=differences_test_X, distances=distances_X
             )
         """function for addition of base case context to the training data.
@@ -313,8 +313,9 @@ class LingerRegressor(BaseEstimator, RegressorMixin):
             "n_iter_no_change": self.n_iter_no_change,
             "max_fun": self.max_fun,
             "weighted_knn": self.weighted_knn,
-            "additional_results_column": self.additional_results_column,
+            "additional_distance_column": self.additional_distance_column,
             "duplicated_on_distance": self.duplicated_on_distance,
+            "addition_of_context": self.addition_of_context,
         }
 
     def set_params(self, **params):
@@ -341,7 +342,7 @@ class LingerRegressor(BaseEstimator, RegressorMixin):
                     setattr(self.regressor, param, value)
         return self
 
-    def add_additional_results_column_fit(self, differences_X, distances):
+    def add_additional_distance_column_fit(self, differences_X, distances):
         """
         Adds an additional column with distance values associated with each differences_X during fitting.
 
