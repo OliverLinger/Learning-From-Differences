@@ -1,15 +1,15 @@
-from datetime import datetime
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from differences import _regression
+from differences_implicit import _regression
 from differences_implicit import regression_to_class
 from sklearn.neural_network import MLPRegressor
 import pandas as pd
 import numpy as np
+from datetime import datetime
 
 def load_data(file_path):
     df = pd.read_csv(file_path)
@@ -19,8 +19,7 @@ def load_data(file_path):
 
 def preprocess_data(df, features, numeric_features, nominal_features, columns):
     df.columns = columns
-    df.dropna(subset=["flarea", "bdrms", "devment", "price"], inplace=True)
-    df = df[(df["flarea"] >= 40) & (df["flarea"] < 750) & (df["price"] < 2000)].reset_index(drop=True)
+    df.dropna(subset=columns, inplace=True)
     df.reset_index(drop=True, inplace=True)
     
     dev_df, test_df = train_test_split(df, train_size=0.8, random_state=2)
@@ -36,8 +35,8 @@ def preprocess_data(df, features, numeric_features, nominal_features, columns):
     dev_X = dev_df[features]
     test_X = test_df[features]
 
-    dev_y = dev_df["price"].values
-    test_y = test_df["price"].values
+    dev_y = dev_df['price'].values
+    test_y = test_df['price'].values
     
     return dev_X, test_X, dev_y, test_y, preprocessor
 
@@ -61,46 +60,47 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-        "predictor__hidden_layer_sizes": [(256, 128)],
-        "predictor__activation": ['relu', 'tanh', 'logistic'],
+        "predictor__hidden_layer_sizes": [(100,), (200,)],
+        "predictor__activation": ['relu'],
         "predictor__alpha": [0.0001, 0.001, 0.01],
         "predictor__max_iter": [200],
         "predictor__early_stopping": [True],
         "predictor__validation_fraction": [0.1],
     }
 
-    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
     nn_gs.fit(dev_X, dev_y)
 
     return nn_gs
 
 def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
-    LingerRegressor = _regression.LingerRegressor
+    regr_to_class = regression_to_class.RegressionToClassificationConverter(n_segments=4, equal_division=True)
+    dev_y, unique_ranges, min_val, max_val = regr_to_class.transform(y=dev_y)
+    LingerRegressor = _regression.LingerImplicitRegressor
     lfd_pipeline = Pipeline([
         ("preprocessor", preprocessor),
         ("predictor", LingerRegressor())
     ])
-
+    # Convert single values to lists
     lfd_param_grid = {}
+
+    # Add other parameters to lfd_param_grid
     lfd_param_grid.update({
+        "predictor__random_pairs": [True, False],
+        "predictor__single_pair": [True, False],
         "predictor__n_neighbours_1": [2, 5, 7],
         "predictor__n_neighbours_2": [2, 5, 7],
-        "predictor__max_iter": [1000],
-        "predictor__weighted_knn": [False],
-        "predictor__additional_distance_column": [False],
-        "predictor__duplicated_on_distance": [False],
-        "predictor__addition_of_context": [False],
     })
     # Update with best_nn_params
     lfd_param_grid.update(best_nn_params)
     for key, value in lfd_param_grid.items():
         if not isinstance(value, list):
             lfd_param_grid[key] = [value]
-
-    lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+            
+    lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
     lfd_gs.fit(dev_X, dev_y)
 
-    return lfd_gs
+    return lfd_gs, unique_ranges, min_val, max_val
 
 def save_results(file_path, knn_gs, nn_gs, lfd_gs):
     with open(file_path, 'a') as file:
@@ -113,9 +113,12 @@ def save_results(file_path, knn_gs, nn_gs, lfd_gs):
         file.write(f"Best Score Basic Neural Network: {nn_gs.best_score_}\n")
         file.write("--------------------------------------------------------------\n")
 
-def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y):
+def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y, unique_ranges, min_val, max_val):
     knn_test_accuracy = knn_gs.score(test_X, test_y)
     nn_test_accuracy = nn_gs.score(test_X, test_y)
+
+    regr_to_class = regression_to_class.RegressionToClassificationConverter(n_segments=3, equal_division=True)
+    test_y, unique_ranges, min_val, max_val = regr_to_class.transform(y=test_y, unique_ranges=unique_ranges, min_val=min_val, max_val=max_val)
     lfd_classifier_test_accuracy = lfd_gs.score(test_X, test_y)
 
     with open(file_path, 'a') as file:
@@ -127,7 +130,7 @@ def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y):
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\35383\4th_year\fyp\results\HousePricesResults.txt'
+    file_path = r'C:\Users\35383\4th_year\fyp\results\HousePricesImplicitResults.txt'
     df = pd.read_csv("datasets/house_prices/dataset_corkB.csv")
     columns = df.columns
     features = ["flarea", "bdrms", "bthrms", "floors", "type", "devment", "ber", "location"]
@@ -138,10 +141,10 @@ def main():
     knn_gs = train_knn_regressor(dev_X, dev_y, preprocessor)
     nn_gs = train_neural_network(dev_X, dev_y, preprocessor)
     best_nn_params = nn_gs.best_params_
-    lfd_gs = train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params)
+    lfd_gs, unique_ranges, min_val, max_val = train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params)
 
     save_results(file_path, knn_gs, nn_gs, lfd_gs)
-    calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y)
+    calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y, unique_ranges, min_val, max_val)
 
 if __name__ == "__main__":
     main()

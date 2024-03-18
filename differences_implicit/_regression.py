@@ -225,9 +225,6 @@ class LingerImplicitRegressor(BaseEstimator, ClassifierMixin):
                 else:
                     distances, indices = nbrs_by_class[class_label].kneighbors([sample])
                 nearest_neighbors = indices[0]  # Nearest neighbors indices for the current sample
-                
-                print(nearest_neighbors)
-                quit()
                 # Adapt nearest neighbor cases and collect predictions
                 for neighbor_index in nearest_neighbors:
                     neighbor_sample = self.cases_without_concatenation[class_label][neighbor_index]

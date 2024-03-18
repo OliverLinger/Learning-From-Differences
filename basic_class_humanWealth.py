@@ -1,4 +1,3 @@
-
 import datetime
 from sklearn.calibration import LabelEncoder
 from sklearn.neural_network import MLPClassifier
@@ -48,8 +47,8 @@ def preprocess_data(df, features, numeric_features, nominal_features, columns):
     dev_X = dev_df[features]
     test_X = test_df[features]
 
-    dev_y = dev_df['Class'].values
-    test_y = test_df['Class'].values
+    dev_y = dev_df['class'].values
+    test_y = test_df['class'].values
 
     label_encoder = LabelEncoder()
     dev_y = label_encoder.fit_transform(dev_y)
@@ -90,8 +89,8 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-        "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (100,)],
-        "predictor__activation": ["identity", "logistic", "tanh", "relu"],
+        "predictor__hidden_layer_sizes": [(256, 128)],
+        "predictor__activation": ["relu"],
         "predictor__alpha": [0.0001],
         "predictor__max_iter": [200],
         "predictor__early_stopping": [True],
@@ -112,7 +111,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
     lfd_classifier_param_grid.update({
          "predictor__n_neighbours_1": [2, 5, 7],
          "predictor__n_neighbours_2": [2, 5, 7],
-         "predictor__weighted_knn": [True, False],
+         "predictor__weighted_knn": [False],
          "predictor__additional_results_column": [False],
          "predictor__duplicated_on_distance": [False],
         "predictor__addition_of_context": [True],
@@ -152,10 +151,6 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         knn_test_accuracy = knn_classifier_gs.score(test_X, test_y)
         file.write(f"Test Accuracy for KNN classifier: {knn_test_accuracy}\n")
 
-        # Test the weighted kNN classifier
-        knn_weighted_test_accuracy = knn_classifier_gs_weighted.score(test_X, test_y)
-        file.write(f"Test Accuracy for weighted KNN classifier: {knn_weighted_test_accuracy}\n")
-
         # Test the Neural Network classifier
         nn_test_accuracy = nn_gs.score(test_X, test_y)
         file.write(f"Test Accuracy for Neural Network classifier: {nn_test_accuracy}\n")
@@ -166,13 +161,17 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         file.write("--------------------------------------------------------------\n")
 
 def main():
-    file_path = r'C:\Users\35383\4th_year\fyp\results\GlassResults.txt'
-    df = pd.read_csv("datasets/glass/glass.csv",index_col=0)
-    print(df.columns)
-    columns = ['RI', 'Na', 'Mg', 'Al', 'Si', 'K', 'Ca', 'Ba', 'Fe', 'Class']
-    features = ['RI', 'Na', 'Mg', 'Al', 'Si', 'K', 'Ca', 'Ba', 'Fe']
-    numeric_features = ['RI', 'Na', 'Mg', 'Al', 'Si', 'K', 'Ca', 'Ba', 'Fe']
-    nominal_features = []
+    file_path = r'C:\Users\35383\4th_year\fyp\results\HumanWealth.txt'
+    df = pd.read_csv("datasets/adult/adult.csv")
+    columns = ['age', 'workclass', 'fnlwgt', 'education', 'education_num', 'marital-status', 'occupation', 
+               'relationship', 'race', 'sex', 'capital-gain', 'capital-loss', 'hours-per-week', 
+               'native-country', 'class']
+    features = ['age', 'workclass', 'fnlwgt', 'education', 'education_num', 'marital-status', 'occupation', 
+               'relationship', 'race', 'sex', 'capital-gain', 'capital-loss', 'hours-per-week', 
+               'native-country']
+    numeric_features = ['age', 'fnlwgt','education_num', 'capital-gain', 'capital-loss', 'hours-per-week']
+    nominal_features = ['workclass', 'education', 'marital-status', 'occupation', 
+               'relationship', 'race', 'sex', 'native-country']
     dev_X, test_X, dev_y, test_y, preprocessor = preprocess_data(df, features, numeric_features, nominal_features, columns)
 
     knn_classifier_gs = train_knn_classifier(dev_X, dev_y, preprocessor)

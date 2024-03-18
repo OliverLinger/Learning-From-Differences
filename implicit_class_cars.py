@@ -18,7 +18,7 @@ def load_data(file_path):
 
 def preprocess_data(df, features, numeric_features, nominal_features, columns):
     df.columns = columns
-    df.dropna(subset=features, inplace=True)
+    df.dropna(subset=columns, inplace=True)
     df.reset_index(drop=True, inplace=True)
     
     dev_df, test_df = train_test_split(df, train_size=0.8, random_state=2)
@@ -82,6 +82,8 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
 
     lfd_param_grid = {}
     lfd_param_grid.update({
+        "predictor__random_pairs": [True, False],
+        "predictor__single_pair": [True, False],
         "predictor__hidden_layer_sizes": [(256, 128)],
         "predictor__n_neighbours_1": [2],
         "predictor__n_neighbours_2": [5, 10],
