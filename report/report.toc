@@ -1,5 +1,4 @@
 \babel@toc {english}{}\relax 
-\contentsline {section}{\numberline {0.1}Acknowledgements}{1}{section.0.1}%
 \contentsline {chapter}{\numberline {1}Introduction}{8}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Model-Based Learning}{8}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Advantages of Model-Based Learning:}{8}{subsection.1.1.1}%
@@ -27,8 +26,8 @@
 \contentsline {subsection}{\numberline {3.2.3}Components}{26}{subsection.3.2.3}%
 \contentsline {subsection}{\numberline {3.2.4}Parameterization}{27}{subsection.3.2.4}%
 \contentsline {subsection}{\numberline {3.2.5}Training and Prediction}{27}{subsection.3.2.5}%
-\contentsline {subsubsection}{Training}{27}{section*.5}%
-\contentsline {subsubsection}{Prediction}{27}{section*.6}%
+\contentsline {subsubsection}{Training}{27}{section*.6}%
+\contentsline {subsubsection}{Prediction}{27}{section*.7}%
 \contentsline {subsection}{\numberline {3.2.6}Evaluation}{28}{subsection.3.2.6}%
 \contentsline {subsection}{\numberline {3.2.7}Optimization}{28}{subsection.3.2.7}%
 \contentsline {subsection}{\numberline {3.2.8}Limitations and Future Work}{28}{subsection.3.2.8}%
@@ -38,24 +37,24 @@
 \contentsline {subsection}{\numberline {3.3.3}Components}{30}{subsection.3.3.3}%
 \contentsline {subsection}{\numberline {3.3.4}Parameterization}{30}{subsection.3.3.4}%
 \contentsline {subsection}{\numberline {3.3.5}Training and Prediction}{30}{subsection.3.3.5}%
-\contentsline {subsubsection}{Training Algorithm}{30}{section*.7}%
-\contentsline {subsubsection}{Prediction Algorithm}{31}{section*.8}%
+\contentsline {subsubsection}{Training Algorithm}{30}{section*.8}%
+\contentsline {subsubsection}{Prediction Algorithm}{31}{section*.9}%
 \contentsline {subsection}{\numberline {3.3.6}Evaluation}{31}{subsection.3.3.6}%
 \contentsline {subsection}{\numberline {3.3.7}Optimization}{32}{subsection.3.3.7}%
 \contentsline {subsection}{\numberline {3.3.8}Limitations and Future Work}{32}{subsection.3.3.8}%
 \contentsline {subsection}{\numberline {3.3.9}Conclusion}{32}{subsection.3.3.9}%
 \contentsline {section}{\numberline {3.4}Variations}{33}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}Variation 1: Addition of Context}{33}{subsection.3.4.1}%
-\contentsline {subsubsection}{Objective}{33}{section*.9}%
-\contentsline {subsubsection}{Implementation for Training}{33}{section*.10}%
-\contentsline {subsubsection}{Implementation for Predict}{34}{section*.11}%
+\contentsline {subsubsection}{Objective}{33}{section*.10}%
+\contentsline {subsubsection}{Implementation for Training}{33}{section*.11}%
+\contentsline {subsubsection}{Implementation for Predict}{34}{section*.12}%
 \contentsline {subsection}{\numberline {3.4.2}Variation 2: Duplication Based on Distance}{34}{subsection.3.4.2}%
-\contentsline {subsubsection}{Objective}{34}{section*.12}%
-\contentsline {subsubsection}{Implementation for Training}{35}{section*.13}%
+\contentsline {subsubsection}{Objective}{34}{section*.13}%
+\contentsline {subsubsection}{Implementation for Training}{35}{section*.14}%
 \contentsline {subsection}{\numberline {3.4.3}Variation 3: Addition of Distance Column}{35}{subsection.3.4.3}%
-\contentsline {subsubsection}{Objective}{35}{section*.14}%
-\contentsline {subsubsection}{Implementation for Training}{36}{section*.15}%
-\contentsline {subsubsection}{Implementation for Predict}{36}{section*.16}%
+\contentsline {subsubsection}{Objective}{35}{section*.15}%
+\contentsline {subsubsection}{Implementation for Training}{36}{section*.16}%
+\contentsline {subsubsection}{Implementation for Predict}{36}{section*.17}%
 \contentsline {section}{\numberline {3.5}Learning From differences Implicitly}{37}{section.3.5}%
 \contentsline {subsection}{\numberline {3.5.1}Introduction and Motivation}{37}{subsection.3.5.1}%
 \contentsline {section}{\numberline {3.6}Linger Implicit Classification Base Model: \texttt {LingerImplicitClassifier}}{38}{section.3.6}%
@@ -64,8 +63,8 @@
 \contentsline {subsection}{\numberline {3.6.3}Components}{39}{subsection.3.6.3}%
 \contentsline {subsection}{\numberline {3.6.4}Parameterization}{40}{subsection.3.6.4}%
 \contentsline {subsection}{\numberline {3.6.5}Training and Prediction}{40}{subsection.3.6.5}%
-\contentsline {subsubsection}{Training Algorithm}{40}{section*.17}%
-\contentsline {subsubsection}{Prediction Algorithm}{40}{section*.18}%
+\contentsline {subsubsection}{Training Algorithm}{40}{section*.18}%
+\contentsline {subsubsection}{Prediction Algorithm}{40}{section*.19}%
 \contentsline {subsection}{\numberline {3.6.6}Optimization}{41}{subsection.3.6.6}%
 \contentsline {subsection}{\numberline {3.6.7}Limitations and Future Work}{42}{subsection.3.6.7}%
 \contentsline {subsection}{\numberline {3.6.8}Conclusion}{42}{subsection.3.6.8}%
@@ -75,9 +74,9 @@
 \contentsline {subsection}{\numberline {3.7.3}Components}{44}{subsection.3.7.3}%
 \contentsline {subsection}{\numberline {3.7.4}Parameterization}{44}{subsection.3.7.4}%
 \contentsline {subsection}{\numberline {3.7.5}Training and Prediction}{44}{subsection.3.7.5}%
-\contentsline {subsubsection}{Training Algorithm}{45}{section*.19}%
-\contentsline {subsubsection}{Prediction Algorithm}{45}{section*.20}%
-\contentsline {subsubsection}{Regression to Classification converter function}{46}{section*.21}%
+\contentsline {subsubsection}{Training Algorithm}{45}{section*.20}%
+\contentsline {subsubsection}{Prediction Algorithm}{45}{section*.21}%
+\contentsline {subsubsection}{Regression to Classification converter function}{46}{section*.22}%
 \contentsline {subsection}{\numberline {3.7.6}Optimization}{48}{subsection.3.7.6}%
 \contentsline {subsection}{\numberline {3.7.7}Limitations and Future Work}{48}{subsection.3.7.7}%
 \contentsline {subsection}{\numberline {3.7.8}Conclusion}{48}{subsection.3.7.8}%

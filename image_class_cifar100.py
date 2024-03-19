@@ -2,7 +2,8 @@ from keras.datasets import cifar100
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from sklearn.model_selection import train_test_split
 from differences_images import LingerImageClassifier
-
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 # Load CIFAR-100 dataset
 (X_train_cifar, y_train_cifar), (X_test_cifar, y_test_cifar) = cifar100.load_data()
 

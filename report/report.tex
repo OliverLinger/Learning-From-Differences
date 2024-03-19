@@ -74,7 +74,7 @@ and that it has not been submitted partly or wholly for any other educational aw
 	\textit{Date: \today}
 \end{flushright}
 
-\section{Acknowledgements}
+\section*{Acknowledgements}
 
 
 % Table of Contents
@@ -105,35 +105,48 @@ For instance, artificial neural networks (ANNs) exemplify model-based learning b
 	\item \textbf{Generalization:} Well-constructed models have the ability to generalize patterns learned from the training data to unseen instances, thereby making accurate predictions on new data samples.
 	      This generalization capability is essential for robust performance across diverse datasets and real-world scenarios.
 	      For example, a well-trained regression model can accurately predict housing prices in different regions based on historical data.
+          The book \cite{bishop2006pattern} provides insights into the generalization capabilities of model based learning.
 	\item \textbf{Robustness:} Models learn underlying patterns and assumptions within data, making them more robust to noisy outliers.
 	      By capturing trends within data, models can effectively mitigate noise, enhancing their reliability in real-world scenarios.
-	\item \textbf{Efficiency:} Once trained, model-based systems can quickly return predictions, making them suitable for real-time applications where rapid decision-making is essential.
+          The book \cite{bishop2006pattern} also shows the ability of models to learn underlying patterns within data, making them far more robust to noisy data.
+	\item \textbf{Efficiency:} Once trained, model-based systems can quickly return predictions, 
+           making them suitable for real-time applications where rapid decision-making is essential. 
+           The journal \cite{gupta2016scalable} offers an insight how the efficiency of model based learning can be implemented to make predictions on big data.
+
 \end{enumerate}
 
 \subsection{Disadvantages of Model-Based Learning:}
 \begin{enumerate}
-	\item \textbf{Sensitivity to Assumptions:} Models often rely on simplifying assumptions about data distribution and relationships.
-	      Deviations from these assumptions can significantly degrade performance, leading to inaccurate predictions or biased outcomes.
-	      For example a model trained to predict house prices based on 2017 data will incorrectly predict house prices for 2023.
+	\item \textbf{Sensitivity to Assumptions:} Models often rely on simplifying assumptions about data distribution and relationships. 
+          Deviations from these assumptions can significantly degrade performance, leading to inaccurate predictions or biased outcomes. 
+          For example, a model trained to predict house prices based on 2017 data may inaccurately predict house prices for 2023. 
+          The book "Machine Learning: A Bayesian and Optimization Perspective" by Sergios Theodoridis and Konstantinos Koutroumbas 
+          emphasizes the crucial role assumptions play in model sensitivity, stressing their significance in machine 
+          learning applications \cite{theodoridis2015machine}
 	\item \textbf{Interpretability and Decision-Making:} Certain models, like Neural Networks, lack transparency in decision-making despite their high accuracy.
-	      In critical domains like healthcare and finance, interpretability is crucial for validating decisions and ensuring trust in the system.
+	      In critical domains like healthcare and finance, interpretability is crucial for validating decisions and ensuring trust in the system. This disadvantage of lack of transparency
+          is depicted well in the journal \cite{rudin2019stop}.
 	\item \textbf{Limited Flexibility:} Traditional model-based algorithms struggle to capture complex, non-linear relationships in high-dimensional or unstructured data,
-	      limiting their performance in tasks with intricate patterns or diverse feature interactions.
+	      limiting their performance in tasks with intricate patterns or diverse feature interactions. 
 \end{enumerate}
 
 \section{Instance-Based Learning}
 
 Instance-based learning, also known as memory-based learning or lazy learning, eschews explicit model construction in favor of storing and manipulating instances or examples from the training data.
-Instead of deriving general rules or representations, instance-based methods make predictions based on the similarity between new instances and those observed in the training set. A classic example of instance-based learning is the k-nearest neighbors (KNN) algorithm.
+Instead of deriving general rules or representations, instance-based methods make predictions based on the similarity between new instances and those observed in the training set. 
+A classic example of instance-based learning is the k-nearest neighbors (KNN) algorithm. 
+The advantages and disadvantages discussed with instance based learning are seen in the paper \cite{aha1991instance}.
 
 \subsection{Advantages of Instance-Based Learning:}
 \begin{enumerate}
 	\item \textbf{Flexibility:} Instance-based methods adapt to the characteristics of the training data, making them suitable for tasks with complex, non-parametric relationships or evolving patterns.
 	      They can capture nuances and irregularities without imposing rigid assumptions.
-	\item \textbf{Explainability:} The transparency of instance-based learning enables analysts to trace predictions back to specific examples in the training set, facilitating interpretability and trust in the system.
+	\item \textbf{Explainability:} The transparency of instance-based learning enables analysts to trace predictions back to specific examples in the training set, facilitating interpretability and trust in the system. 
+    The journal \cite{rudin2019stop} highlights this issue for black box model based learning such as neural nets.
 \end{enumerate}
 
 \subsection{Disadvantages of Instance-Based Learning:}
+The disadvantages discussed with instance based learning are discussed in the paper \cite{aha1991instance}.
 \begin{enumerate}
 	\item \textbf{Computational Complexity:} Storing and manipulating the entire training dataset can lead to high memory consumption and computational overhead during prediction, limiting scalability.
 	\item \textbf{Susceptibility to Noise and Redundancy:} Instance-based approaches are sensitive to noisy or irrelevant features, which can lead to suboptimal performance or overfitting. Redundant instances or outliers may distort similarity measures, compromising model robustness.
@@ -148,6 +161,8 @@ Instance-based learning offers flexibility and explainability but suffers from c
 The motivation for blended learning arises from leveraging the strengths of both approaches while mitigating their weaknesses.
 Blended methods aim to capitalize on the advantages of model-based and instance-based learning, circumventing their limitations.
 By integrating the interpretability of instance-based learning with the accuracy of model-based systems, blended learning offers a promising solution for critical domains like healthcare and finance.
+The journal \cite{rudin2019stop} provides further evidence that it is important to move towards interpretability for our models going forward, 
+so that critical systems are interpretable and repairable by humans going forward.
 
 In recent years, neural networks have gained significant attention in regression tasks \cite{neuralNetForRegression}.
 Inspired by case-based reasoning principles \cite{riesbeck2013inside}, researchers are exploring predictive ensemble models based on these principles \cite{watsonCaseBasedReasoningReview}.
