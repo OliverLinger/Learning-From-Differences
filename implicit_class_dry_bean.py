@@ -63,8 +63,8 @@ def train_neural_network_classifier(dev_X, dev_y, preprocessor):
         "predictor__activation": ["relu"],
         "predictor__alpha": [0.0001],
         "predictor__max_iter": [200],
-        "predictor__early_stopping": [True],
-        "predictor__validation_fraction": [0.1],
+        # "predictor__early_stopping": [True],
+        # "predictor__validation_fraction": [0.1],
     }
 
     nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
@@ -82,11 +82,11 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
 
     lfd_param_grid = {}
     lfd_param_grid.update({
-        "predictor__random_pairs": [True, False],
-        "predictor__single_pair": [True, False],
+        "predictor__random_pairs": [False],
+        "predictor__single_pair": [False],
         "predictor__hidden_layer_sizes": [(256, 128)],
         "predictor__n_neighbours_1": [2],
-        "predictor__n_neighbours_2": [5, 10],
+        "predictor__n_neighbours_2": [2, 3, 5,7],
         "predictor__max_iter": [1000],
     })
     # Update with best_nn_params

@@ -152,18 +152,25 @@ class LingerImplicitClassifier(BaseEstimator, ClassifierMixin):
         # problem is the base case, solution is the retrieved case.
         
         
-        # Grouping case pairs based on source solutions
-        self.case_pairs_by_class = defaultdict(list)
-        self.cases_without_concatenation = defaultdict(list)
-        self.case_pairs_y = defaultdict(list)
-        for sources, targets in zip(case_pairs_X, case_pairs_y):
-            self.cases_without_concatenation[targets[1]].append(sources[0])
-            # The retrived case is the solution 
-            problem_query = np.array(sources[0])
-            retrieved_problem = np.array(sources[1])
+        # Initialize dictionaries to store case pairs and related data
+        self.case_pairs_by_class = defaultdict(list)  # Store case pairs grouped by class
+        self.cases_without_concatenation = defaultdict(list)  # Store cases without concatenation by class
+        self.case_pairs_y = defaultdict(list)  # Store target labels for case pairs by class
+
+        # Group case pairs based on source solutions
+        for source, target in zip(case_pairs_X, case_pairs_y):
+            # Append the source case to cases_without_concatenation
+            self.cases_without_concatenation[target[1]].append(source[0])
+
+            # Concatenate the source and retrieved problem
+            problem_query = np.array(source[0])
+            retrieved_problem = np.array(source[1])
             case_pair_problem = np.concatenate((problem_query, retrieved_problem))
-            self.case_pairs_by_class[targets[1]].append(case_pair_problem)
-            self.case_pairs_y[targets[1]].append(targets[0])
+
+            # Append case pair and target label to corresponding dictionaries
+            self.case_pairs_by_class[target[1]].append(case_pair_problem)
+            self.case_pairs_y[target[1]].append(target[0])
+
         # Training adaptation neural networks for each clas
         for class_label, cases in self.case_pairs_by_class.items():
             self.adaptation_networks_[class_label] = MLPClassifier(
@@ -194,6 +201,16 @@ class LingerImplicitClassifier(BaseEstimator, ClassifierMixin):
             self.adaptation_networks_[class_label].fit(cases, self.case_pairs_y[class_label])
     
     def predict(self, X):
+        """
+        Predict class labels for the input samples.
+
+        Parameters:
+        - X: Array-like or sparse matrix of shape (n_samples, n_features).
+            The input samples.
+
+        Returns:
+        - predictions: List of predicted class labels.
+        """
         predictions = []
         is_sparse_X = issparse(X)
 
@@ -202,48 +219,79 @@ class LingerImplicitClassifier(BaseEstimator, ClassifierMixin):
             X = X.toarray()
 
         # Create nearest neighbor finders for each class
-        nbrs_by_class = {}
-        for class_label in self.classes_:
-            if self.single_pair:
-                nbrs = NearestNeighbors(n_neighbors=1).fit(self.cases_without_concatenation[class_label])
-            else:
-                nbrs = NearestNeighbors(n_neighbors=self.n_neighbours_2).fit(self.cases_without_concatenation[class_label])
-            nbrs_by_class[class_label] = nbrs
+        nbrs_by_class = self._create_nbrs_by_class()
 
         # Find nearest neighbors and predict for each test sample
-        for i, sample in enumerate(X):
-            # Collect predictions from each class's nearest neighbors
-            class_predictions = {class_label: [] for class_label in self.classes_}
-
-            # Find nearest neighbors for each class
-            for class_label in self.classes_:
-                if self.random_pairs:
-                    indices = random.sample(range(len(self.cases_without_concatenation[class_label])), self.n_neighbours_2)
-                else:
-                    distances, indices = nbrs_by_class[class_label].kneighbors([sample])
-                nearest_neighbors = indices[0]  # Nearest neighbors indices for the current sample
-
-                # Adapt nearest neighbor cases and collect predictions
-                for neighbor_index in nearest_neighbors:
-                    neighbor_sample = self.cases_without_concatenation[class_label][neighbor_index]
-                    # Adapt the nearest neighbor case using the corresponding adaptation network
-                    query = np.array(sample)
-                    retrived = np.array(neighbor_sample)
-                    merged_case_pair = [np.concatenate((retrived, query))]
-                    adapted_prediction = self.adaptation_networks_[class_label].predict(merged_case_pair)
-                    class_predictions[class_label].append(adapted_prediction[0])
-                    
-            # Perform majority voting to decide the final classification
-            all_predictions = [prediction for predictions in class_predictions.values() for prediction in predictions]
-            prediction_counter = Counter(all_predictions)
-            most_common_predictions = [prediction for prediction, count in prediction_counter.items() if count == prediction_counter.most_common(1)[0][1]]
-            # If there is a tie-break, randomly choose one prediction, otherwise choose the most common one
-            if len(most_common_predictions) > 1:
-                most_common_prediction = random.choice(most_common_predictions)
-            else:
-                most_common_prediction = most_common_predictions[0]
-            predictions.append(most_common_prediction)
+        for sample in X:
+            class_predictions = self._predict_class(sample, nbrs_by_class)
+            majority_prediction = self._majority_vote(class_predictions)
+            predictions.append(majority_prediction)
         return predictions
+
+    def _create_nbrs_by_class(self):
+        """
+        Create nearest neighbor finders for each class.
+
+        Returns:
+        - nbrs_by_class: Dictionary of nearest neighbor finders for each class.
+        """
+        nbrs_by_class = {}
+        for class_label in self.classes_:
+            n_neighbors = 1 if self.single_pair else self.n_neighbours_2
+            nbrs = NearestNeighbors(n_neighbors=n_neighbors).fit(self.cases_without_concatenation[class_label])
+            nbrs_by_class[class_label] = nbrs
+
+        return nbrs_by_class
+
+    def _predict_class(self, sample, nbrs_by_class):
+        """
+        Predict class labels for a given sample using nearest neighbors.
+
+        Parameters:
+        - sample: Array-like or sparse matrix.
+                The input sample to predict.
+        - nbrs_by_class: Dictionary of nearest neighbor finders for each class.
+
+        Returns:
+        - class_predictions: Dictionary of predicted class labels for each class.
+        """
+        class_predictions = {class_label: [] for class_label in self.classes_}
+
+        for class_label, nbrs in nbrs_by_class.items():
+            if self.random_pairs:
+                indices = [random.sample(range(len(self.cases_without_concatenation[class_label])), self.n_neighbours_2)]
+            else:
+                distances, indices = nbrs.kneighbors([sample])
+            nearest_neighbors = indices[0]
+
+            for neighbor_index in nearest_neighbors:
+                neighbor_sample = self.cases_without_concatenation[class_label][neighbor_index]
+                merged_case_pair = np.concatenate((neighbor_sample, sample))
+                adapted_prediction = self.adaptation_networks_[class_label].predict([merged_case_pair])
+                class_predictions[class_label].append(adapted_prediction[0])
+        return class_predictions
+
+    def _majority_vote(self, class_predictions):
+        """
+        Perform majority voting to decide the final classification.
+
+        Parameters:
+        - class_predictions: Dictionary of predicted class labels for each class.
+
+        Returns:
+        - majority_prediction: The final majority-voted prediction.
+        """
+        all_predictions = [prediction for predictions in class_predictions.values() for prediction in predictions]
+        prediction_counter = Counter(all_predictions)
+
+        most_common_predictions = prediction_counter.most_common(1)
+        if len(most_common_predictions) > 1:
+            majority_prediction = random.choice(most_common_predictions)
+            print(majority_prediction)
+            majority_prediction[0]
+        else:
+            majority_prediction = most_common_predictions[0][0]
+        return majority_prediction
     
     def get_params(self, deep=True):
         """

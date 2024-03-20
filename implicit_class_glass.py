@@ -59,12 +59,12 @@ def train_neural_network_classifier(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-        "predictor__hidden_layer_sizes": [(200,)],
+        "predictor__hidden_layer_sizes": [(200,), (256, 128)],
         "predictor__activation": ["relu"],
         "predictor__alpha": [0.0001],
-        "predictor__max_iter": [200],
-        "predictor__early_stopping": [True],
-        "predictor__validation_fraction": [0.1],
+        "predictor__max_iter": [1000],
+        # "predictor__early_stopping": [True],
+        # "predictor__validation_fraction": [0.1],
     }
 
     nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
@@ -125,7 +125,7 @@ def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y):
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\35383\4th_year\fyp\results\GlassResults.txt'
+    file_path = r'C:\Users\35383\4th_year\fyp\results\GlassImplicitResults.txt'
     df = pd.read_csv("datasets/glass/glass.csv",index_col=0)
     columns = ['RI', 'Na', 'Mg', 'Al', 'Si', 'K', 'Ca', 'Ba', 'Fe', 'Class']
     features = ['RI', 'Na', 'Mg', 'Al', 'Si', 'K', 'Ca', 'Ba', 'Fe']

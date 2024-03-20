@@ -173,6 +173,28 @@ By adopting a blended approach, machine learning systems can achieve greater int
 % Start your content here
 \chapter{Literature Review}
 \label{ch:Literature Review}
+\section{Introduction}
+
+The exploration of alternative methodologies for enhancing the performance of neural networks in regression tasks 
+has garnered significant attention within the machine learning community in recent years. 
+One innovative approach, inspired by the principles of case-based reasoning (CBR), involves training neural networks to predict 
+differences between problems based on disparities between features rather than the features themselves. 
+This departure from the conventional supervised learning paradigm aims to leverage the inherent advantages of learning from differences, 
+potentially leading to more interpretable and efficient models. 
+
+The study under consideration \cite{learningFromDifferences2022} 
+conducts a systematic factorial study to investigate the efficacy of this approach across various datasets and experimental conditions. 
+The findings suggest that neural networks trained on differences demonstrate comparable or even superior performance to those trained 
+using traditional methods, while requiring significantly fewer epochs for convergence. In this section of the literature review, 
+we consider the utilization of case-based reasoning for regression tasks, with a specific focus on the implementation of KNN (K-Nearest Neighbors) 
+and ANN (Artificial Neural Network) frameworks.
+
+As we delve further into the literature review, we extend our exploration of case-based reasoning beyond regression tasks to include classification challenges. 
+The study by Ye et al. \cite{ye2021learning}, titled "Learning Adaptations for Case-based Classification," 
+offers insights into the application of CBR in classification tasks, shedding light on recent advancements and methodologies. 
+Through a detailed analysis of various adaptation strategies and neural network-based approaches, we aim to uncover the effectiveness 
+of CBR in solving classification problems, thereby providing a comprehensive understanding of its utility across different machine learning tasks.
+
 
 \section{KNN + ANN for Regression, Utilizing CBR}
 
@@ -213,16 +235,21 @@ However, it is crucial to acknowledge the time overhead associated with retrievi
 
 \subsection{Algorithms}
 
-The training algorithm for learning from differences is described in Algorithm \ref{alg:learning_from_differences_train_alg1}, while the prediction algorithm is outlined in Algorithm \ref{alg:learning_from_differences_predict_alg2}.
+The training algorithm for learning from differences is described in Algorithm \ref{alg:learning_from_differences_train_alg1}, 
+while the prediction algorithm is outlined in Algorithm \ref{alg:learning_from_differences_predict_alg2}.
 Additionally, a variant of the training algorithm with context included is presented in Algorithm \ref{alg:learning_from_differences_variant_train_alg3}, and the
 corresponding prediction algorithm is provided in Algorithm \ref{alg:learning_from_differences_varient_predict_alg4}.
+
+Context which is utilized in \ref{alg:learning_from_differences_variant_train_alg3}, and \ref{alg:learning_from_differences_varient_predict_alg4}. 
+Context is the case used to retrieve (Nearest Neighbors). In the training algorithm it is $X^{train}_i$, and in prediction it is $X^{test}_j$. 
+These are included in the training, and prediction in Variant 2.
 \begin{algorithm}
 	\caption{Training Algorithm for Learning from Differences}
 	\label{alg:learning_from_differences_train_alg1}
 
 	\textbf{Input:} Dataset $D$, neural network model, number of neighbors $n$, number of epochs $E$
 	\begin{algorithmic}[1]
-        \State Split $D$ into training set $D^{train}$ and test set $D^{test}$ with an $80\%$-$20\%$ split
+        \State Split $D$ into training set $D^{train}$ and test set $D^{test}$ with a $80\%$-$20\%$ split
         \State Initialize $\Delta D^{train}$ as an empty list
         
         \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
@@ -248,7 +275,7 @@ corresponding prediction algorithm is provided in Algorithm \ref{alg:learning_fr
             \For{each similar case $(X^{train}_i, y^{train}_i) \in D^{train}$}
                 \State Compute the differences: $\Delta X^{test}_{ij} = X^{test}_j - X^{train}_i$
                 \State Use the trained neural network to predict: $Trained NN(\Delta X^{test}_{ij}) = {\Delta X^{pred}_{ij}}$
-                \State Adapt neighbor's $y$ values: $y^{pred}predictions_j = ^{train}_i + \Delta X^{pred}_{ij}$
+                \State Adapt neighbor's $y$ values: $y^{pred}predictions_j = X^{train}_i + \Delta X^{pred}_{ij}$
             \EndFor
             \State Average the adapted $y$ values: $y^{pred}_j = \frac{1}{n} \sum_{i=1}^{n} y^{pred}predictions$
 			\State Compare $y^{pred}_j$ to $y^{test}_j$ to evaluate accuracy
@@ -314,14 +341,16 @@ While the model with contextual inclusion demonstrates slight improvements over 
 further refinement and enhancement.
 
 The paper tested three models using the same factorial methodology: a base version, which is a basic neural network trained
-empirically; a differences model employing the (CBH) Case-based Heuristic for predictions; and a differences model with its base context included.
+empirically; a differences model employing the (CBH) Case-based Heuristic for predictions, (CBH) guides how cases are retrieved with respect to the base case, 
+and how the retrieved cases are adapted to produce a prediction, (CBH) relies on the adaptation of previous problems to solve the current issue; 
+and a differences model with its base context included.
 The results yielded interesting insights, with similar performance for all three models and a slight improvement in the differences $+$ context model.
 Notably, the differences and differences $+$ context models required significantly fewer epochs to achieve accuracy compared to the basic neural network, which achieved similar accuracy after more epochs.
 
 Another consideration in the paper \cite{learningFromDifferences2022} was the number of neighbors for both training and prediction.
 The study revealed no consistent trend across datasets, suggesting dataset-specific requirements.
 
-In conclusion, the learning from differences method achieved equal or higher accuracy compared to the base neural network model
+In conclusion, the learning from differences method achieved equal or higher accuracy compared to the base neural network model.
 
 % End of subsection
 \section{Learning Adaptations for Case-based classification}
@@ -410,7 +439,7 @@ This approach embodies the essence of case-based reasoning, where solutions are 
             \State Retrieve $1$ similar cases from $D^{train}$ using nearest neighbors
             \State Initialize $y^{pred}_j$ as an empty list
             \For{each similar case $(X^{train}_i, y^{train}_i) \in D^{train}$}
-                \State Retrieve $r = 1NearestNeighbor(CasePiars(y^{train}_i), [X^{train}_i:X^{test}_j])$
+                \State Retrieve $r = 1NearestNeighbor(CasePairs(y^{train}_i), [X^{train}_i:X^{test}_j])$
                 \State $y^{pred}_j = r$
             \EndFor
         \EndFor
@@ -550,7 +579,7 @@ This adjustment could potentially lead to improved results, particularly when de
 Variant (5) stands out as the most successful approach in the study, primarily due to its Class-to-Class retrieval of neighbors during the prediction stage. 
 By employing multiple specialized neural networks, the variant reduces training time while effectively leveraging implicit learning through differences for classification tasks.
 This method demonstrates its efficacy in adapting to diverse datasets and achieving robust classification performance.
-\subsection{Evaluation Summary}[b]
+\subsection{Evaluation Summary}
 Within the paper \cite{ye2021learning} the experiments conducted on two different datasets provided answers to several key questions.
 
 The effectiveness of neural network learning adaptation knowledge was demonstrated through consistent performance of one or more C-NN-CDHs,
@@ -588,8 +617,10 @@ Our primary objective is to enhance and expand upon this algorithm to create a m
 Inspired by the modular design philosophy of Scikit-learn's GitHub repository, our aim is to develop a model that not only mirrors the rigorous hyperparameter testing capabilities of Scikit-learn but also extends beyond, 
 offering increased flexibility and functionality.
 
-Following the implementation of the base models, our objectives pivot towards introducing variations to the machine learning model for both the \texttt{LingerRegressor} and \texttt{LingerClassifier}. 
-These variations are designed to optimize training time and accuracy, thus enhancing overall model performance.
+Following the implementation of the base models, our focus shifts to introducing variations to optimize the machine learning models for 
+both the \texttt{LingerRegressor} and \texttt{LingerClassifier}. These variations aim to improve training efficiency and accuracy, 
+thereby enhancing overall model performance. The names chosen for the custom regressor and classifier are \texttt{LingerRegressor} 
+and \texttt{LingerClassifier}, respectively. These models are designed and implemented to utilize the training from differences approach. 
 
 A crucial aspect of this endeavor is to ensure that the introduced variations are easily testable, akin to the comprehensive hyperparameter testing framework already established. 
 This approach enables easy analysis of the models and their variations, facilitating informed decision-making regarding their effectiveness and suitability for specific tasks.
@@ -860,9 +891,14 @@ This may aid in the learning process and improves the model. Its design is the s
 \subsection{Variation 2: Duplication Based on Distance}
 
 \subsubsection{Objective}
-The objective of duplicating differences based on distance is to magnify the influence of neighbors that closely resemble the base case.
-By amplifying the impact of differences that exhibit stronger correlation with the base case, this technique effectively reduces the influence of outliers.
-This process is specifically applied during the fit section of both the \texttt{LingerClassifier} and \texttt{LingerRegressor} models.
+A novel variation introduced in this study involves duplicating differences based on distance, aiming to amplify the influence of neighbors closely resembling the base case. 
+This innovative approach represents a departure from conventional methods in the learning from differences paradigm. 
+By magnifying the impact of differences that exhibit stronger correlation with the base case, this technique effectively mitigates the influence of outliers, 
+leading to more robust model performance.
+
+This novel approach is specifically integrated into the fitting process of both the \texttt{LingerClassifier} and \texttt{LingerRegressor} models. 
+By emphasizing the significance of closely resembling neighbors, this technique enhances the model's ability to discern meaningful patterns in the data, 
+thereby improving its predictive accuracy and generalization capabilities.
 
 \begin{enumerate}
     \item \textbf{Normalize Distances}: Normalize the distances from the base case to its nearest neighbors represented by $Distances_{ij}$. 
@@ -909,9 +945,16 @@ This process is specifically applied during the fit section of both the \texttt{
 \subsection{Variation 3: Addition of Distance Column}
 
 \subsubsection{Objective}
-The objective of Variation 3 is to incorporate the distance between each base case and its nearest neighbor into the training and prediction phases of the neural network.
-By including this information, the neural network can potentially learn associations between differences and their corresponding distances,
-which may improve the accuracy and effectiveness of both training and prediction.
+Variation 3 introduces a novel approach by incorporating the distance between each base case and its nearest neighbor into both the training and prediction 
+phases of the neural network. This innovative method aims to leverage the proximity information to enhance the learning process and predictive performance of the model.
+
+By integrating distance information, the neural network gains insight into the spatial relationships between data points. 
+This allows the model to potentially learn associations between differences and their corresponding distances, 
+leading to improved accuracy and effectiveness in both training and prediction tasks.
+
+The motivation behind this variation lies in its potential to provide the model with a deeper understanding of the underlying data structure. 
+By considering distance as a factor in the learning process, the model can better capture nuanced patterns and relationships, 
+resulting in more robust and reliable predictions.
 
 \subsubsection{Implementation for Training}
 In the fit phase, the distances between each base case $D^{train}_i$ and its nearest neighbor in $D^{train}$ are computed and stored in $Distances_{ij}$.
@@ -942,7 +985,7 @@ This results in a new dataset where each difference is paired with its correspon
 \end{algorithm}
 
 \subsubsection{Implementation for Predict}
-In the prediction phase, distances between each test case $X^{test}_j$ and its nearest neighbors in $D^{train}$ are stored in $Distances{ji}$.
+In the prediction phase, distances between each test case $X^{test}_j$ and its nearest neighbors in $D^{train}$ are stored in $Distances_{ji}$.
 These distances are concatenated with the corresponding differences $\Delta X^{test}$, ensuring a one-to-one ratio between distances and differences in the prediction dataset.
 
 \begin{algorithm}[H]
@@ -1149,13 +1192,13 @@ The process of generating case pairs for predictions involves KNN's functionalit
 These neighbors serve as crucial elements in forming case pairs, enabling the regressor to make informed predictions based on similarities observed within the dataset.
 
 The integration of KNN with the \texttt{MLPClassifier} offers an interesting approach to regression tasks, combining the strengths of both algorithms. 
-It places regression values within specified ranges, offering a new type of solution t classic regression issues.
+It places regression values within specified ranges, offering a new type of solution to classic regression issues.
 While KNN excels in identifying similarities and forming case pairs, the \texttt{MLPClassifier} contributes 
 by providing a powerful neural network-based classification model capable of learning intricate patterns and relationships within the data. Classifying regression values.
 
 By harnessing the complementary capabilities of KNN and the \texttt{MLPClassifier}, the \texttt{LingerImplicitRegressor}
-aims to achieve robust and accurate regression results across diverse datasets while using a classifier, making it a versatile tool for various machine learning applications. A new approach to regression tasks that allows
-for categorization of regression results.
+aims to achieve robust and accurate regression results across diverse datasets while using a classifier, making it a versatile tool for various machine learning applications. 
+This new approach to regression tasks that allows for categorization of regression results.
 It processes a regression task and converts it to a classification task, this could be useful for problems where ranges of values are highly important. 
 This would make certain regression tasks more interpretable.
 \subsection{Components}
@@ -1239,7 +1282,8 @@ During the prediction phase for regression, various methods exist for retrieving
 \end{algorithm}
 
 \subsubsection{Regression to Classification converter function}
-This function serves to categorize regression y target values for training and validation. It returns a human-readable range with their corresponding numeric prediction.
+This function serves to categorize regression y target values for training and validation. 
+It returns a human-readable range with their corresponding numeric prediction.
 This ensures that the results are interpretable to humans at the end of the process.
 \begin{algorithm}[H]
     \caption{Converter algorithm, regression to classification}
