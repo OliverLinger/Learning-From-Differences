@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='differences_images',
+    name='differences_images_conv',
     version='0.1',
     packages=find_packages(),
     install_requires=[

@@ -611,6 +611,8 @@ has its benefits in terms of speedup. However, the retrieval of $N$ cases across
 \chapter{Design}
 \label{ch:Design}
 
+\section*{Overview}
+
 \section{Introduction and Motivation}
 The design process begins with an examination of the paper \cite{learningFromDifferences2022}, which lays out the fundamental algorithm for the learning from differences method. 
 Our primary objective is to enhance and expand upon this algorithm to create a more dynamic and adaptable version. 
@@ -1285,54 +1287,67 @@ During the prediction phase for regression, various methods exist for retrieving
 This function serves to categorize regression y target values for training and validation. 
 It returns a human-readable range with their corresponding numeric prediction.
 This ensures that the results are interpretable to humans at the end of the process.
+The variable $\text{equal division}$ is used to signify whether samples should be equally distributed into $N$ classes.
+If there are $Z$ samples in dataset $D$ then each class should have $\approx \frac{Z}{N}$ per class.
 \begin{algorithm}[H]
     \caption{Converter algorithm, regression to classification}
     \label{alg:LingerImplicitRegressor_regression_values_to_classification_values}
-    \textbf{Input:} Dataset $D$, number of segments $N$ , optional:  $y_{\text{max}}$, $y_{\text{min}}$
-    \begin{algorithmic}
-        \State $(X, y) \in D$
-        \State Get the minimum and maximum values of the labels
-        \State Ensure that the max and min is used from the test set so that, $y$ values are classified the same in both fit and predict.
-        \If{$y_{\text{max}}$, $y_{\text{min}}$ if provided}
-            \State Leave $y_{\text{max}}$, $y_{\text{min}}$ as is
-        \Else
-            \State $y_{\text{max}} = MAX(y)$
-            \State $y_{\text{min}} = MIN(y)$
+    \textbf{Input:} Dataset $D$, number of segments $N$, optional: $y_{\text{max}}$, $y_{\text{min}}, \text{Equal division}$
+    \begin{algorithmic}[1]
+    \State $(X, y) \in D$
+    \State Get the minimum and maximum values of the labels
+    \State Ensure that the max and min are used from the test set so that $y$ values are classified the same in both fit and predict.
+    \If{$\text{Equal division}$}
+        \State Divide the data into $N$ segments based on nearly equal counts
+        \State $quantiles \gets \text{np.linspace}(0, 1, N+1)$
+        \If{unique\_ranges is None}
+            \State $unique\_ranges \gets \text{np.quantile}(y, quantiles)$
         \EndIf
-        \State Calculate the range for each segment, for y values
-        \State $\text{segmentRange} = \frac{y_{\text{max}} - y_{\text{min}}}{N}$
+        \State $categories \gets \text{np.digitize}(y, unique\_ranges[:-1])$
+        \State $category\_counts \gets \text{Counter}(categories)$
+        \State \textbf{Return} $categories$, $unique\_ranges$, $y_{\text{min}}$, $y_{\text{max}}$
+    \Else
+        \If{$y_{\text{max}}$ and $y_{\text{min}}$ are provided}
+            \State Leave $y_{\text{max}}$ and $y_{\text{min}}$ as is
+        \Else
+            \State $y_{\text{max}} \gets \text{MAX}(y)$
+            \State $y_{\text{min}} \gets \text{MIN}(y)$
+        \EndIf
+        \State Calculate the range for each segment for $y$ values
+        \State $\text{segmentRange} \gets \frac{y_{\text{max}} - y_{\text{min}}}{N}$
         \State Initialize an empty list: $categories$
         \State Initialize an empty dictionary: $unique\_ranges$
-        \State $current\_index = 0$
+        \State $current\_index \gets 0$
         \For{each value $val$ in $y$}
             \For{$i$ in range($N$)}
                 \If{$i < N - 1$}
                     \If{$y_{\text{min}} + i \times \text{segmentRange} \leq \text{val} < y_{\text{min}} + (i + 1) \times \text{segmentRange}$}
-                        \State $category = (y_{\text{min}} + i \times \text{segmentRange}) - (y_{\text{min}} + (i + 1) \times \text{segmentRange})$
+                        \State $category \gets (y_{\text{min}} + i \times \text{segmentRange}) - (y_{\text{min}} + (i + 1) \times \text{segmentRange})$
                         \If{category not in $unique\_ranges$}
-                            \State $unique\_ranges[category] = current\_index$
-                            \State $current\_index \mathrel{+}= 1$
+                            \State $unique\_ranges[category] \gets current\_index$
+                            \State $current\_index \gets current\_index + 1$
                         \EndIf
-                        \State append $unique\_ranges[category]$ to $categories$
+                        \State Append $unique\_ranges[category]$ to $categories$
                         \State \textbf{break}
                     \EndIf
                 \Else
                     \If{$y_{\text{min}} + i \times \text{segmentRange} \leq \text{val} \leq y_{\text{max}}$}
-                        \State $category = (y_{\text{min}} + \times \text{segmentRange}) - (y_{\text{max}})$
+                        \State $category \gets (y_{\text{min}} + i \times \text{segmentRange}) - (y_{\text{max}})$
                         \If{category not in $unique\_ranges$}
-                            \State $unique\_ranges[category] = current\_index$
-                            \State $current\_index \mathrel{+}= 1$
+                            \State $unique\_ranges[category] \gets current\_index$
+                            \State $current\_index \gets current\_index + 1$
                         \EndIf
-                        \State append $unique\_ranges[category]$ to $categories$
+                        \State Append $unique\_ranges[category]$ to $categories$
                         \State \textbf{break}
                     \EndIf
                 \EndIf
             \EndFor
         \EndFor
-        \State Converted $y$ values, $y = categories$
-        \State \textbf{Return} $y$, $unique\_ranges$, $y_{\text{max}}$, $y_{\text{min}}$
+        \State Converted $y$ values: $y \gets categories$
+        \State \textbf{Return} $y$, $unique\_ranges$, $y_{\text{min}}$, $y_{\text{max}}$
+    \EndIf
     \end{algorithmic}
-\end{algorithm}
+    \end{algorithm}
 
 \subsection{Optimization}
 To enhance the performance of the \texttt{LingerImplicitRegressor}, several optimization strategies are considered:
@@ -1345,9 +1360,9 @@ To enhance the performance of the \texttt{LingerImplicitRegressor}, several opti
 \end{itemize}
 
 \subsection{Limitations and Future Work}
-The \texttt{LingerImplicitClassifier} including sensitivity to noise.
-Future work may focus on improving noise robustness and enhancing interpretability for complex classification tasks. Because of the range of values being variable, some categories can be sparce and result in a less conclusive answer. It is important to understand 
-what the appropriate range is. Due to its implementation this method could be severely susceptible to noise, outliers may result in a broken range. Data preprocessing is hugely important 
+One of the limitations of the \texttt{LingerImplicitClassifier} is its sensitivity to noise, particularly when labeling values based on the maximum and minimum. 
+However, opting to evenly distribute samples into classes can mitigate this sensitivity. 
+For future research, exploring alternative methods to bucket regression values based on diverse distributions could be an intriguing avenue.
 
 \subsection{Conclusion}
 The \texttt{LingerImplicitClassifier} offers a novel approach to regression tasks by integrating the learning from differences implicitly through case pairs. 

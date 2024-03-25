@@ -46,3 +46,15 @@ Test Accuracy for KNN regressor: -1.566352378271883
 Test Accuracy for Linger Regressor: 0.7045454545454546
 Test Accuracy for Basic Neural Network: -1.4992198198538946
 --------------------------------------------------------------
+Test Time: 13:05:26.181702
+Best Parameters KNN regression: ({'predictor__n_neighbors': 17},)
+Best Score KNN regression: -1.5361394857344135
+Best Parameters Linger regression: ({'predictor__activation': 'relu', 'predictor__alpha': 0.01, 'predictor__hidden_layer_sizes': (200,), 'predictor__max_iter': 200, 'predictor__n_neighbours_1': 7, 'predictor__n_neighbours_2': 5, 'predictor__random_pairs': False, 'predictor__single_pair': False},)
+Best Score Linger Regression: 0.5589820359281437
+Best Parameters Basic Neural Network: ({'predictor__activation': 'relu', 'predictor__alpha': 0.01, 'predictor__hidden_layer_sizes': (200,), 'predictor__max_iter': 200},)
+Best Score Basic Neural Network: -1.486098463798886
+--------------------------------------------------------------
+Test Accuracy for KNN regressor: -1.566352378271883
+Test Accuracy for Linger Regressor: 0.6124401913875598
+Test Accuracy for Basic Neural Network: -1.4628365073068887
+--------------------------------------------------------------

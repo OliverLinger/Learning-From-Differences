@@ -65,8 +65,6 @@ def train_neural_network(dev_X, dev_y, preprocessor):
         "predictor__activation": ['relu'],
         "predictor__alpha": [0.0001, 0.001, 0.01],
         "predictor__max_iter": [200],
-        "predictor__early_stopping": [True],
-        "predictor__validation_fraction": [0.1],
     }
 
     nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
@@ -75,7 +73,7 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     return nn_gs
 
 def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
-    regr_to_class = regression_to_class.RegressionToClassificationConverter(n_segments=3, equal_division=True)
+    regr_to_class = regression_to_class.RegressionToClassificationConverter(n_segments=4, equal_division=True)
     dev_y, unique_ranges, min_val, max_val = regr_to_class.transform(y=dev_y)
     LingerRegressor = _regression.LingerImplicitRegressor
     lfd_pipeline = Pipeline([

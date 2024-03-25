@@ -1,39 +1,44 @@
+from keras.datasets import mnist
 import numpy as np
-from sklearn.datasets import load_digits
-from sklearn.model_selection import train_test_split
-import tensorflow as tf
-from keras.datasets import mnist, cifar10
-from tensorflow.python.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Flatten
-from sklearn.metrics import mean_squared_error, r2_score
-from differences_images import LingerImageRegressor
+from differences_images_conv import LingerImageRegressor  # Import the regressor
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense 
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
-# Load the MNIST dataset
 # Load MNIST dataset
-mnist = load_digits()
+(X_train_mnist, y_train_mnist), (X_test_mnist, y_test_mnist) = mnist.load_data()
 
-X, y = mnist.data, mnist.target
+# Initialize LingerImageRegressor
+regressor_mnist = LingerImageRegressor(n_neighbours_1=5)
 
-# Convert labels to pixel values
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Fit the regressor on MNIST
+differences_X, differences_y = regressor_mnist.fit(X_train_mnist, y_train_mnist)
+differences_X = np.array(differences_X)
 
-# Initialize LingerImageClassifier
-regressor = LingerImageRegressor()
+# Reshape input data for CNN
+differences_X = differences_X.reshape(-1, 28, 28, 1)  # Assuming grayscale images
 
-# Fit the regressor
-regressor.fit(X_train, y_train)
+# Define the CNN architecture for regression
+model = Sequential()
+model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+model.add(MaxPooling2D((2, 2)))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D((2, 2)))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(Flatten())
+model.add(Dense(64, activation='relu'))
+model.add(Dense(1, activation='linear'))  # Output layer with linear activation for regression
 
-# Predict on the test set
-y_pred = regressor.predict(X_test)
+# Compile the model
+model.compile(optimizer='adam',
+              loss='mean_squared_error',  # Use mean squared error loss for regression
+              metrics=['mae'])  # Use mean absolute error as metric
 
-# Evaluate accuracy
-mse = mean_squared_error(y_test, y_pred)
-print("Mean Squared Error:", mse)
+# Train the model
+model.fit(differences_X, differences_y, epochs=3, batch_size=32, validation_split=0.2)
 
-# Calculate precision
-rmse = np.sqrt(mse)
-print("Root Mean Squared Error:", rmse)
+# Use the trained CNN model to make predictions on test data
+predictions = regressor_mnist.predict(X_test_mnist, model=model)
 
-# Calculate recall
-r2 = r2_score(y_test, y_pred)
-print("R² Score:", r2)
+# Perform further evaluation for regression, such as calculating RMSE or plotting actual vs. predicted values.
