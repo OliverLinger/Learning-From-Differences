@@ -1,8 +1,0 @@
-Test Time: 15:54:32.100862
-Best Parameters KNN regression: ({'predictor__n_neighbors': 17},)
-Best Score KNN regression: -1.5361394857344135
-Best Parameters Linger regression: ({'predictor__hidden_layer_sizes': (256, 128), 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 2},)
-Best Score Linger Regression: 0.5479041916167665
-Best Parameters Basic Neural Network: ({'predictor__activation': 'relu', 'predictor__alpha': 0.0001, 'predictor__hidden_layer_sizes': (300,), 'predictor__max_iter': 400},)
-Best Score Basic Neural Network: -1.4797551538033005
---------------------------------------------------------------
