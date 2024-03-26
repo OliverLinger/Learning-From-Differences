@@ -1,0 +1,1399 @@
+\documentclass[a4paper, 12pt]{report}
+
+% Packages
+\usepackage[utf8]{inputenc} % Input encoding
+\usepackage[T1]{fontenc}    % Font encoding
+\usepackage[english]{babel}  % Language setting
+\usepackage{geometry}       % Page layout
+\usepackage{setspace}       % Line spacing
+\usepackage{graphicx}       % For including images
+\usepackage{listings}       % For code listings
+\usepackage{amsmath}        % For mathematical symbols and environments
+\usepackage{hyperref}       % For hyperlinks
+\usepackage{caption}        % For customized captions
+\usepackage{subcaption}     % For subfigures
+\usepackage{xcolor}         % For defining colors
+\usepackage{tabularx}       % For defining tables
+\usepackage{csquotes}       % For defining tables
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+
+% Page layout
+\geometry{margin=1in} % Adjust margins as needed
+\setlength{\parindent}{0pt} % No paragraph indentation
+\setlength{\parskip}{1em}   % Add space between paragraphs
+\onehalfspacing % Adjust line spacing as needed
+
+% Code listing setup
+
+% Title and Author
+\title{Learning From Differences}
+\author{Oliver Linger}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\vspace*{\fill} % Vertical space fill
+
+\centering
+\textbf{Final-Year Project - B.Sc. in Computer Science}
+
+\textbf{Supervisor:} Dr. Derek Bridge
+
+\textbf{Department of Computer Science}
+
+\textbf{University College Cork}
+
+\vspace*{\fill} % Vertical space fill
+
+% Abstract
+\begin{abstract}
+	% Your abstract goes here
+\end{abstract}
+
+
+% Declaration of Originality
+\section*{Declaration of Originality}
+In signing this declaration, you are confirming, in writing that the submitted
+work is entirely your own original work, except where it clearly attributed otherwise,
+and that it has not been submitted partly or wholly for any other educational award.
+\begin{enumerate}
+	\item This body of work is all my own, unless clearly stated otherwise, with the full and proper accreditation;
+	\item With respect to my work: none of it has been submitted to any educational institution contributing in any way to an educational award.
+	\item With respect to anyone else's work: all diagrams, text, code, or ideas have been duly attributed to the source in a scholarly manner,
+	      whether from books, papers, lecture notes or any other student's work, whether published or unpublished, electronically or print.
+\end{enumerate}
+
+\vspace{2em} % Vertical space for the signature
+
+\begin{flushright}
+	\textit{Signed} \\
+	\rule{6cm}{0.4pt} \\
+	\textit{Date: \today}
+\end{flushright}
+
+\section*{Acknowledgements}
+
+
+% Table of Contents
+\tableofcontents
+
+% List of Figures and Tables
+\listoffigures
+
+% List of tables 
+\listoftables
+
+% Main Sections
+\raggedright
+\chapter{Introduction}
+\label{ch:introduction}
+
+Machine learning encompasses various paradigms and methodologies aimed at enabling computational systems to learn from data and make predictions or decisions without explicit programming.
+Among the diverse approaches in machine learning, model-based and instance-based learning represent two fundamental strategies, each with distinct advantages and disadvantages.
+
+\section{Model-Based Learning}
+
+Model-based learning involves the construction of explicit representations of the underlying relationships within the data.
+These representations, often referred to as models, capture the patterns and structures present in the dataset and can be used to make predictions or infer insights from new, unseen data points.
+For instance, artificial neural networks (ANNs) exemplify model-based learning by discerning trends and patterns in data.
+
+\subsection{Advantages of Model-Based Learning:}
+\begin{enumerate}
+	\item \textbf{Generalization:} Well-constructed models have the ability to generalize patterns learned from the training data to unseen instances, thereby making accurate predictions on new data samples.
+	      This generalization capability is essential for robust performance across diverse datasets and real-world scenarios.
+	      For example, a well-trained regression model can accurately predict housing prices in different regions based on historical data.
+          The book \cite{bishop2006pattern} provides insights into the generalization capabilities of model based learning.
+	\item \textbf{Robustness:} Models learn underlying patterns and assumptions within data, making them more robust to noisy outliers.
+	      By capturing trends within data, models can effectively mitigate noise, enhancing their reliability in real-world scenarios.
+          The book \cite{bishop2006pattern} also shows the ability of models to learn underlying patterns within data, making them far more robust to noisy data.
+	\item \textbf{Efficiency:} Once trained, model-based systems can quickly return predictions, 
+           making them suitable for real-time applications where rapid decision-making is essential. 
+           The journal \cite{gupta2016scalable} offers an insight how the efficiency of model based learning can be implemented to make predictions on big data.
+
+\end{enumerate}
+
+\subsection{Disadvantages of Model-Based Learning:}
+\begin{enumerate}
+	\item \textbf{Sensitivity to Assumptions:} Models often rely on simplifying assumptions about data distribution and relationships. 
+          Deviations from these assumptions can significantly degrade performance, leading to inaccurate predictions or biased outcomes. 
+          For example, a model trained to predict house prices based on 2017 data may inaccurately predict house prices for 2023. 
+          The book "Machine Learning: A Bayesian and Optimization Perspective" by Sergios Theodoridis and Konstantinos Koutroumbas 
+          emphasizes the crucial role assumptions play in model sensitivity, stressing their significance in machine 
+          learning applications \cite{theodoridis2015machine}
+	\item \textbf{Interpretability and Decision-Making:} Certain models, like Neural Networks, lack transparency in decision-making despite their high accuracy.
+	      In critical domains like healthcare and finance, interpretability is crucial for validating decisions and ensuring trust in the system. This disadvantage of lack of transparency
+          is depicted well in the journal \cite{rudin2019stop}.
+	\item \textbf{Limited Flexibility:} Traditional model-based algorithms struggle to capture complex, non-linear relationships in high-dimensional or unstructured data,
+	      limiting their performance in tasks with intricate patterns or diverse feature interactions. 
+\end{enumerate}
+
+\section{Instance-Based Learning}
+
+Instance-based learning, also known as memory-based learning or lazy learning, eschews explicit model construction in favor of storing and manipulating instances or examples from the training data.
+Instead of deriving general rules or representations, instance-based methods make predictions based on the similarity between new instances and those observed in the training set. 
+A classic example of instance-based learning is the k-nearest neighbors (KNN) algorithm. 
+The advantages and disadvantages discussed with instance based learning are seen in the paper \cite{aha1991instance}.
+
+\subsection{Advantages of Instance-Based Learning:}
+\begin{enumerate}
+	\item \textbf{Flexibility:} Instance-based methods adapt to the characteristics of the training data, making them suitable for tasks with complex, non-parametric relationships or evolving patterns.
+	      They can capture nuances and irregularities without imposing rigid assumptions.
+	\item \textbf{Explainability:} The transparency of instance-based learning enables analysts to trace predictions back to specific examples in the training set, facilitating interpretability and trust in the system. 
+    The journal \cite{rudin2019stop} highlights this issue for black box model based learning such as neural nets.
+\end{enumerate}
+
+\subsection{Disadvantages of Instance-Based Learning:}
+The disadvantages discussed with instance based learning are discussed in the paper \cite{aha1991instance}.
+\begin{enumerate}
+	\item \textbf{Computational Complexity:} Storing and manipulating the entire training dataset can lead to high memory consumption and computational overhead during prediction, limiting scalability.
+	\item \textbf{Susceptibility to Noise and Redundancy:} Instance-based approaches are sensitive to noisy or irrelevant features, which can lead to suboptimal performance or overfitting. Redundant instances or outliers may distort similarity measures, compromising model robustness.
+\end{enumerate}
+
+\subsection{Motivation for Blended Learning}
+
+The advantages and disadvantages of both model-based and instance-based learning highlight the need for a versatile and robust approach to machine learning.
+While model-based learning excels in generalization and robustness, it lacks transparency and struggles with complex relationships.
+Instance-based learning offers flexibility and explainability but suffers from computational complexity and susceptibility to noise.
+
+The motivation for blended learning arises from leveraging the strengths of both approaches while mitigating their weaknesses.
+Blended methods aim to capitalize on the advantages of model-based and instance-based learning, circumventing their limitations.
+By integrating the interpretability of instance-based learning with the accuracy of model-based systems, blended learning offers a promising solution for critical domains like healthcare and finance.
+The journal \cite{rudin2019stop} provides further evidence that it is important to move towards interpretability for our models going forward, 
+so that critical systems are interpretable and repairable by humans going forward.
+
+In recent years, neural networks have gained significant attention in regression tasks \cite{neuralNetForRegression}.
+Inspired by case-based reasoning principles \cite{riesbeck2013inside}, researchers are exploring predictive ensemble models based on these principles \cite{watsonCaseBasedReasoningReview}.
+Deviating from conventional approaches, some researchers advocate for training neural networks on differences between sets of features to enhance efficiency and transparency \cite{learningFromDifferences2022}.
+
+By adopting a blended approach, machine learning systems can achieve greater interpretability, reliability, and performance across diverse applications.
+
+% Start your content here
+\chapter{Literature Review}
+\label{ch:Literature Review}
+\section{Introduction}
+
+The exploration of alternative methodologies for enhancing the performance of neural networks in regression tasks 
+has garnered significant attention within the machine learning community in recent years. 
+One innovative approach, inspired by the principles of case-based reasoning (CBR), involves training neural networks to predict 
+differences between problems based on disparities between features rather than the features themselves. 
+This departure from the conventional supervised learning paradigm aims to leverage the inherent advantages of learning from differences, 
+potentially leading to more interpretable and efficient models. 
+
+The study under consideration \cite{learningFromDifferences2022} 
+conducts a systematic factorial study to investigate the efficacy of this approach across various datasets and experimental conditions. 
+The findings suggest that neural networks trained on differences demonstrate comparable or even superior performance to those trained 
+using traditional methods, while requiring significantly fewer epochs for convergence. In this section of the literature review, 
+we consider the utilization of case-based reasoning for regression tasks, with a specific focus on the implementation of KNN (K-Nearest Neighbors) 
+and ANN (Artificial Neural Network) frameworks.
+
+As we delve further into the literature review, we extend our exploration of case-based reasoning beyond regression tasks to include classification challenges. 
+The study by Ye et al. \cite{ye2021learning}, titled "Learning Adaptations for Case-based Classification," 
+offers insights into the application of CBR in classification tasks, shedding light on recent advancements and methodologies. 
+Through a detailed analysis of various adaptation strategies and neural network-based approaches, we aim to uncover the effectiveness 
+of CBR in solving classification problems, thereby providing a comprehensive understanding of its utility across different machine learning tasks.
+
+
+\section{KNN + ANN for Regression, Utilizing CBR}
+
+The exploration of alternative methodologies for enhancing the performance of neural networks in regression tasks has attracted considerable attention within the machine learning community in recent years.
+One innovative approach, inspired by the principles of case-based reasoning (CBR),
+involves training neural networks to predict differences between problems based on disparities between features rather than the features themselves.
+This departure from the conventional supervised learning paradigm aims to leverage the inherent advantages of learning from differences, potentially leading to more interpretable and efficient models.
+The study under consideration \cite{learningFromDifferences2022} conducts a systematic factorial study to investigate the efficacy of this approach across various datasets and experimental conditions.
+The findings suggest that neural networks trained on differences demonstrate comparable or even superior performance to those trained using traditional methods,
+while requiring significantly fewer epochs for convergence. In this section of the literature review, we consider the utilization of case-based reasoning for regression tasks,
+with a specific focus on the implementation of KNN (K-Nearest Neighbors) and ANN (Artificial Neural Network) frameworks.
+
+\subsection{Learning From Differences Paper}
+
+The paper by \cite{learningFromDifferences2022} introduces the innovative concept of training a neural network based on the disparities between a case and its closest neighbors.
+Titled "A Factorial Study of Neural Network Learning from Differences for Regression" \cite{learningFromDifferences2022}, the study aims to present novel learning methodologies geared
+towards enhancing performance and fostering a more interpretable learning process. The research evaluates three model variations: a benchmark neural network, a learning from differences model,
+and an augmented learning from differences model incorporating the original context. The context here refers to the base case, from which differences with its nearest neighbors are calculated.
+
+According to \cite{learningFromDifferences2022}, the study's key findings underscore a significant increase in accuracy when incorporating contextual information in the learning process.
+Moreover, comparable or superior results were achieved with fewer training epochs compared to the basic neural network.
+This enhancement is attributed partly to the broader training dataset that encompasses neighbors greater than 1.
+Notably, the paper advocates for a hybrid approach, combining learning from differences with direct feature-based learning, which yields superior results.
+
+The related work for the paper \cite{learningFromDifferences2022} has addressed the use of neural networks in the case-based reasoning process.
+These papers have focused on exploiting the base case using the idea that adaptation of information is acquirable from the differences between pairs \cite{hanney1996learning}.
+Since then, various different approaches have been used. More recently, in relation to using neural networks to predict the differences between problems, a few interesting points have been investigated.
+These points show the ability of a neural network to correct the solution of the most similar retrieved case. These preliminary works expressed in the paper showed that the use of differences plus context
+yielded superior results \cite{craw2006learning}. The previous studies examined in the paper \cite{learningFromDifferences2022} did not examine the impact of different parameters during the CBR (case-based reasoning) experiments.
+The paper \cite{learningFromDifferences2022} made an effort to explore the effect of epochs in the learning process.
+
+The graphical representations in the paper highlight a distinct trend: rapid attainment of high accuracy levels with the learning from differences method,
+particularly when contextual information is included. Conversely, the basic neural network requires a substantially larger number of epochs to achieve comparable accuracy, if not worse.
+This disparity suggests the efficiency of the learning from differences approach.
+
+The paper suggests a marginal performance enhancement and a substantial reduction in training epochs through the adoption of the differences method and inclusion of contextual information.
+However, it is crucial to acknowledge the time overhead associated with retrieving and training using similar cases.
+
+\subsection{Algorithms}
+
+The training algorithm for learning from differences is described in Algorithm \ref{alg:learning_from_differences_train_alg1}, 
+while the prediction algorithm is outlined in Algorithm \ref{alg:learning_from_differences_predict_alg2}.
+Additionally, a variant of the training algorithm with context included is presented in Algorithm \ref{alg:learning_from_differences_variant_train_alg3}, and the
+corresponding prediction algorithm is provided in Algorithm \ref{alg:learning_from_differences_varient_predict_alg4}.
+
+Context which is utilized in \ref{alg:learning_from_differences_variant_train_alg3}, and \ref{alg:learning_from_differences_varient_predict_alg4}. 
+Context is the case used to retrieve (Nearest Neighbors). In the training algorithm it is $X^{train}_i$, and in prediction it is $X^{test}_j$. 
+These are included in the training, and prediction in Variant 2.
+\begin{algorithm}
+	\caption{Training Algorithm for Learning from Differences}
+	\label{alg:learning_from_differences_train_alg1}
+
+	\textbf{Input:} Dataset $D$, neural network model, number of neighbors $n$, number of epochs $E$
+	\begin{algorithmic}[1]
+        \State Split $D$ into training set $D^{train}$ and test set $D^{test}$ with a $80\%$-$20\%$ split
+        \State Initialize $\Delta D^{train}$ as an empty list
+        
+        \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
+            \State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors
+            \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                \State Compute the differences: $\Delta D^{train}_{ij} = (X^{train}_i - X^{train}_j, y^{train}_i - y^{train}_j)$
+            \EndFor
+        \EndFor
+        \State Train the MLPRegressor neural network model using $\Delta D^{train}$ over a few epochs for later predictions.
+        \State \textbf{Return} Trained neural network model $Trained NN()$
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{Prediction Algorithm for Learning from Differences}
+	\label{alg:learning_from_differences_predict_alg2}
+
+	\textbf{Input:} Test dataset $D^{test}$, trained neural network model $Trained NN()$, number of neighbors $n$
+	\begin{algorithmic}
+        \For{each case $X^{test}_j \in D^{test}$}
+            \State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors
+			\State Initialize empty list $y^{pred}predictions$
+            \For{each similar case $(X^{train}_i, y^{train}_i) \in D^{train}$}
+                \State Compute the differences: $\Delta X^{test}_{ij} = X^{test}_j - X^{train}_i$
+                \State Use the trained neural network to predict: $Trained NN(\Delta X^{test}_{ij}) = {\Delta X^{pred}_{ij}}$
+                \State Adapt neighbor's $y$ values: $y^{pred}predictions_j = X^{train}_i + \Delta X^{pred}_{ij}$
+            \EndFor
+            \State Average the adapted $y$ values: $y^{pred}_j = \frac{1}{n} \sum_{i=1}^{n} y^{pred}predictions$
+			\State Compare $y^{pred}_j$ to $y^{test}_j$ to evaluate accuracy
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{Training Algorithm for Learning from Differences with context}
+	\label{alg:learning_from_differences_variant_train_alg3}
+
+	\textbf{Input:} Dataset $D$, neural network model, number of neighbors $n$, number of epochs $E$
+
+	\begin{algorithmic}[1]
+        \State Split the dataset $D$ into training set $D^{train}$ and test set $D^{test}$ using an $80\%$-$20\%$ split.
+        \State Initialize $\Delta D^{train}$ as an empty list.
+        \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
+            \State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors.
+            \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                \State Compute the differences, with concatenated context : $\Delta D^{train}_{ij} = ((X^{train}_i - X^{train}_j):X^{train}_i, y^{train}_i - y^{train}_j)$.
+                \State Append $\Delta D^{train}_{ij}$ to $\Delta D^{train}$.
+            \EndFor
+        \EndFor
+        \State Train the \texttt{MLPRegressor} neural network model using $\Delta D^{train}$.
+        \State \textbf{return} Trained neural network model $Trained NN()$.
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{Prediction Algorithm for Learning from Differences with context}
+	\label{alg:learning_from_differences_varient_predict_alg4}
+
+	\textbf{Input:} Test dataset $D^{test}$, trained neural network model $Trained NN()$, number of neighbors $n$
+	\begin{algorithmic}[h]
+		\For{each case $X^{test}_j \in D^{test}$}
+			\State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors
+			\State Initialize $y^{pred}_j$ as an empty list
+
+			\For{each similar case $(X^{train}_i, y^{train}_i) \in D^{train}$}
+			`	\State Initialize empty list $y^{pred}predictions$
+				\State Compute the differences: $\Delta X^{test}_{ij} = ((X^{test}_j - X^{train}_i):X^{test}_j)$
+				\State Use the trained neural network to predict: ${\Delta X^{pred}_{ij}} = Trained NN(\Delta X^{test}_{ij})$
+				\State Adapt neighbor's $y$ values: $y^{pred}predictions_j = y^{train}_i + \Delta X^{pred}_{ij}$
+			\EndFor
+			
+			\State Average the adapted $y$ values: $y^{pred}_j = \frac{1}{n} \sum_{i=1}^{n} y^{pred}_i$
+			\State Compare $y^{pred}_j$ to $y^{test}_j$ to evaluate accuracy
+		\EndFor
+
+	\end{algorithmic}
+\end{algorithm}
+
+The paper \cite{learningFromDifferences2022} has an associated library where they have implemented a regression-based machine learning model.
+
+The new model proposed in the paper is tested using the factorial study methodology.
+This process involved finding a network structure through experimental means for each dataset.
+It entailed training and testing using a wide range of hyperparameters to determine the optimal settings.
+
+Despite its contributions, the paper falls short by confining its attention to regression tasks and not considering classification tasks and exploring additional
+variations of the learning from differences model beyond context inclusion.
+Incorporating original values for the base case in the generated differences dataset provides a valuable framework for understanding the observed disparities.
+While the model with contextual inclusion demonstrates slight improvements over the base model in learning from differences, a more comprehensive examination of the methodology is warranted for
+further refinement and enhancement.
+
+The paper tested three models using the same factorial methodology: a base version, which is a basic neural network trained
+empirically; a differences model employing the (CBH) Case-based Heuristic for predictions, (CBH) guides how cases are retrieved with respect to the base case, 
+and how the retrieved cases are adapted to produce a prediction, (CBH) relies on the adaptation of previous problems to solve the current issue; 
+and a differences model with its base context included.
+The results yielded interesting insights, with similar performance for all three models and a slight improvement in the differences $+$ context model.
+Notably, the differences and differences $+$ context models required significantly fewer epochs to achieve accuracy compared to the basic neural network, which achieved similar accuracy after more epochs.
+
+Another consideration in the paper \cite{learningFromDifferences2022} was the number of neighbors for both training and prediction.
+The study revealed no consistent trend across datasets, suggesting dataset-specific requirements.
+
+In conclusion, the learning from differences method achieved equal or higher accuracy compared to the base neural network model.
+
+% End of subsection
+\section{Learning Adaptations for Case-based classification}
+
+The paper by Ye et al. \cite{ye2021learning}, titled "Learning Adaptations for Case-based Classification," investigates the application of Case-Based Reasoning (CBR) for classification tasks. 
+It explores recent advancements in CBR, particularly focusing on replacing traditional rule-based learning with Case-Based Heuristic (CBH) network models for adaptation. 
+The study introduces a novel model comprising three variations: segmentation of adaptation knowledge based on the classes of the source cases, training a single neural network on differences between problem solutions,
+and adapting from an ensemble of source cases followed by a majority vote.
+
+The "NN-CDH" method, as proposed in the paper, represents a novel classification approach that operates on pairs of cases, where one serves as the source and the other as the target. 
+These pairs form the basis of adaptation knowledge, which is learned through neural network models. 
+The methodology adopted in \cite{ye2021learning} emphasizes learning adaptation knowledge through case pairs processed by neural networks.
+
+The study introduces the first neural network-based approach to classification, termed "C-NN-CDH" or Classification with Neural Network-based Case Difference Heuristic. 
+This approach employs neural networks to learn adaptation knowledge from pairs of cases. According to the findings, this methodology outperforms traditional statistical models, as evidenced in \cite{jalali2017learning}.
+
+The first approach involves segmenting the dataset by class and training a neural network for all segmented differences set between base cases. 
+This method offers faster training but slightly less accuracy, according to the paper. 
+The use of these CBR methods provides at least two benefits: inertia-free lazy learning and the ability to assess different cases when running classification. 
+Inertial free means that the model does not make assumptions based on the underlying structure of the data, and lazy learning pertains to an algorithm that will postpone generalization 
+until it is certain a new instance needs to be classified. It will only classify as the data comes; it won't try and learn or adapt preemptively.
+
+In the process of CBR, adaptation is often treated as the most difficult. Various methods have been developed by academics over the years to tackle the issue. 
+For example, Leake et al. \cite{leake1996acquiring} extrapolate a method in which the case base adaptation cases are populated from previously successful adaptations. 
+Another approach is to have a stored base case and query and retrieve the case most similar to it, and adapting the retrieved case to the base case \cite{craw2006learning}.
+
+In the paper by Ye et al. \cite{ye2021learning}, several design questions had to be addressed. 
+How to approach case differences and how to select case pairs for training. 
+The paper in question \cite{ye2021learning} considers standard pair selection methods as well as a new training per selection approach based on class-class classification.
+
+The paper \cite{ye2021learning} also addresses the application of (CDH) method for classification. 
+It discusses the value distance metric, which is a probabilistic method to measure the similarity that allows the comparison of nominal values in a single-dimensional space.
+
+\subsection{An NN-CDH Approach for Classification}
+
+To achieve adaptation, a neural network is integrated into the process. The source and target cases become case pairs, and their adaptation is learned through a neural network. 
+The neural network computes the difference between the source and target pairs. 
+This difference calculation is a crucial step in the Case-Based Reasoning (CBR) system. Once the difference is computed, the predicted result obtained from the neural network is applied to the source solution. 
+This adapted solution is then considered as the final result of the classification process.
+
+The NN-CDH approach represents a fusion of neural network techniques with the principles of Case-Based Reasoning, offering a dynamic and adaptable method for classification tasks. 
+When calculating the difference between the problem and the solution values, it is important to implement a difference function. This presents an interesting challenge for nominal values. 
+The method presented in \cite{ye2021learning} uses an implicit calculation through machine learning techniques. This replaces traditional (CDH) case difference heuristic approaches for difference calculations. 
+Through the use of a neural network, the paper's method hopes to include the base context in the differences' calculation. This method for generating differences has been aptly named ("C-CDH") case difference heuristic approach for classification.
+
+When calculating the difference, an issue arrives in that we cannot explicitly calculate differences through subtraction, which was the case in the previous paper by Learning From Differences \cite{learningFromDifferences2022}. 
+An implicit way of learning from differences is required. In the paper by Ye et al. \cite{ye2021learning}, this is called "C-CDH".
+
+This presents an interesting challenge for nominal values. The method presented in \cite{ye2021learning} uses an implicit calculation through machine learning techniques. 
+When discussing the Neural Network-based Case-Driven Hierarchical (NN-CDH) Approach described in \cite{ye2021learning}, notation will be homogenized with the algorithms from the previous paper.
+
+For clarification when going through the algorithms, Retrieved cases = Source Cases, Target case = The case which we are attempting to predict its y label values.
+
+Multiple variants were created with the paper by Ye et al. \cite{ye2021learning}.
+
+\subsection{Variant 0: Non-Network C-CDH}
+
+Variant 0, as described in \cite{ye2021learning}, serves as a foundational test bed implementation for classification tasks. 
+The algorithms presented here outline the process of building and utilizing a dictionary of case pairs, where each pair consists of a source case and its corresponding target case. 
+Through the use of nearest neighbors, the algorithm identifies similar cases within the training dataset and organizes them based on their source solution. Subsequently, during prediction, the algorithm retrieves the nearest similar cases for each test case and utilizes the corresponding target solutions for classification. 
+This approach embodies the essence of case-based reasoning, where solutions are adapted from similar past cases to classify new instances effectively. The following algorithms detail the steps involved in training and predicting using Variant 0's case-based heuristic approach.
+
+\begin{algorithm}
+    \caption{Variant 0, Classification Using Case Based Heuristic, Training}
+    \label{alg:Classification_using_CBH_train_alg5}
+    \textbf{Input:} Dataset $D$, number of neighbors $1$
+    \begin{algorithmic}
+        \State Split $D$ into training set $D^{train}$ and test set $D^{test}$ with an $80\%$-$20\%$ split
+        \State Create $CasePairs()$ dictionary.
+        \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
+            \State Retrieve $1$ similar cases from $D^{train}$ using nearest neighbors.
+            \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                \State $CasePairs(y^{train}_j).append([X^{train}_j:X^{train}_i, y^{train}_i])$
+            \EndFor
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{Variant 0, Classification Using Case Based Heuristic, Prediction}
+    \label{alg:Classification_using_CBH_predict_alg6}
+    \textbf{Input:} Test dataset $D^{test}$, $CasePairs()$
+    \begin{algorithmic}[1]
+        \State Initialize Empty list $y^{pred}$
+        \For{each case $X^{test}_j \in D^{test}$}
+            \State Retrieve $1$ similar cases from $D^{train}$ using nearest neighbors
+            \State Initialize $y^{pred}_j$ as an empty list
+            \For{each similar case $(X^{train}_i, y^{train}_i) \in D^{train}$}
+                \State Retrieve $r = 1NearestNeighbor(CasePairs(y^{train}_i), [X^{train}_i:X^{test}_j])$
+                \State $y^{pred}_j = r$
+            \EndFor
+        \EndFor
+        \State \textbf{return} $y^{pred}$
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Variant 1 - 2: C-NN-CDH}
+
+Variants 1 - 2, known as C-NN-CDH, represent a pivotal advancement in classification methodologies by integrating neural networks into the case-based heuristic framework. 
+In this variant, the traditional case-based heuristic approach is augmented with the power of neural networks to adapt solutions from similar cases. 
+The algorithms presented here delineate the training and prediction processes, where a neural network model learns adaptation knowledge from case pairs derived from the training dataset. 
+Unlike Variant 0, which relies solely on case similarity for adaptation, C-NN-CDH leverages the expressive capacity of neural networks to capture intricate relationships between cases and their solutions. 
+Through the fusion of case-based reasoning principles with neural network techniques, Variant 1 - 2 offers a dynamic and adaptable approach to classification tasks, capable of learning complex adaptation patterns and improving classification accuracy.
+
+\begin{algorithm}
+    \caption{Variant 1 - 2: Classification Using Neural Net Case Based Heuristic (Training)}
+    \label{alg:Classification_Varient1_2_using_CBH_train_alg7}
+    \textbf{Input:} Dataset $D$, neural network model, number of neighbors $n$, number of epochs $E$
+    \begin{algorithmic}
+        \State Split $D$ into training set $D^{train}$ and test set $D^{test}$ with an $80\%$-$20\%$ split
+        \State Create $CasePairs$ list.
+        \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
+            \State Retrieve $1$ similar case from $D^{train}$ using nearest neighbors.
+            \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                \If{Variant 1}
+                    \State $CasePairs$.append$([X^{train}_j:X^{train}_i, y^{train}_i])$
+                \Else
+                    \If{Variant 2}
+                        \State $CasePairs$.append$([X^{train}_j:X^{train}_i:y^{train}_j, y^{train}_i])$
+                    \EndIf
+                \EndIf
+            \EndFor
+        \EndFor
+        \State Train the neural network model using $CasePairs()$
+        \State \textbf{return} Trained neural network model $Trained NN()$.
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{Variant 1 - 2: Classification Using Neural Net Case Based Heuristic (Prediction)}
+    \label{alg:Classification_Varient1_2_using_CBH_predict_alg8}
+    \textbf{Input:} Test dataset $D^{test}$, trained neural network model $Trained NN()$
+    \begin{algorithmic}[1]
+        \State Initialize Empty list $y^{pred}$
+        \For{each case $X^{test}_j \in D^{test}$}
+            \State Retrieve $1$ similar case from $D^{train}$ using nearest neighbors
+            \For{each similar case $(X^{train}_i, y^{train}_i) \in D^{train}$}
+                \State Use the trained neural network to predict: $y^{pred}_j = TrainedNN([X^{train}_i:X^{test}_j:y^{train}_i])$
+            \EndFor
+        \EndFor
+        \State \textbf{return} $y^{pred}$
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Variant 3 - 5: C-NN-CDH}
+Variants 3 - 5 of the classification neural network using case-based heuristics introduce a novel approach to classification by grouping case pairs based on their source solutions. 
+In this framework, multiple specialized adaptation neural networks are employed, each trained to adapt cases of specific solutions to all solutions. 
+Inspired by the ensemble of adaptations for classification approach, these variants share a common grouping and training method but differ in their testing strategies. 
+The algorithms delineate the training process, where case pairs are organized and used to train specialized neural networks for adaptation. 
+The variation arises in the prediction algorithm, where different strategies are employed to classify test instances based on the learned adaptation knowledge. 
+The following section details the nuances of each variant's prediction methodology and discusses their implications for classification accuracy and adaptability.
+
+\begin{algorithm}
+    \caption{Variant 3 - 5: Classification Neural Network Using Case Based Heuristic (Training)}
+    \label{alg:Classification_Varient3_5_using_CBH_train_alg19}
+
+    \textbf{Input:} Dataset $D$, number of neighbors $1$
+    \begin{algorithmic}
+        \State Split $D$ into training set $D^{train}$ and test set $D^{test}$ with an $80\%$-$20\%$ split
+        \State Create $CasePairs()$ dictionary.
+        \State Create $AdaptNN()$, a dictionary to store each Neural Network
+        \State List of unique Classes $UniqueClasses$
+        \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
+            \State Retrieve $1$ similar case from $D^{train}$ using nearest neighbors.
+            \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                \State $CasePairs(y^{train}_j).append([X^{train}_j:X^{train}_i, y^{train}_i])$
+            \EndFor
+        \EndFor
+        \For{each unique $Class$ in $UniqueClasses$}
+            \State Create a new Classification Neural Network, trained on Case Pairs
+            \State $AdaptNN(Class).fit(CasePairs(Class))$
+        \EndFor
+        \State \textbf{return} Trained neural network models dictionary $AdaptNN()$.
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{Variant 3 - 5: Classification Using Neural Net Case-Based Heuristic (Prediction)}
+    \label{alg:Classification_Varient3_5_using_CBH_predict_alg20}
+    \textbf{Input:} $D^{test}$, $AdaptNN()$, $UniqueClasses$, and $CasePairs()$
+    \begin{algorithmic}
+        \State Initialize an empty list $y^{pred}$
+        \For{each case $X^{test}_j \in D^{test}$}
+            \If{Variant 3}
+                \State Retrieve $1$ similar case from $D^{train}$ using nearest neighbors
+                \For{each similar case $(X^{train}_i, y^{train}_i) \in D^{train}$}
+                    \State $y^{pred}_j = AdaptNN(y^{train}_i).predict([X^{train}_i:X^{test}_j])$
+                \EndFor
+            \Else
+                \If{Variant 4}
+                    \State Create an empty list $predictions$
+                    \State Retrieve $N$ similar cases from $D^{train}$ using nearest neighbors
+                    \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                        \State $predictions$.append($Adapt(y^{train}_i).predict([X^{train}_i:X^{test}_j])$)
+                    \EndFor
+                    \State Perform a majority vote on $predictions$
+                    \State $y^{pred}_j = MajorityVote(predictions)$
+                \Else
+                    \If{Variant 5}
+                        \State Create an empty list $preds$
+                        \For{each unique class $Class$ in $UniqueClasses$}
+                            \State Retrieve $1$ similar case from $CasePairs(Class)$
+                            \For{each similar case $(X^{CasePair}_i, y^{CasePair}_i) \in CasePairs(Class)$}
+                                \For{each $(X^{train}_z, X^{train}_q) \in X^{CasePair}_i$}
+                                    \State $preds.append(AdaptNN(Class).predict(X^{train}_z:X^{test}_j))$
+                                \EndFor
+                            \EndFor
+                            \State Perform a majority vote on $preds$
+                            \State $y^{pred}_j = MajorityVote(preds)$
+                        \EndFor
+                    \EndIf
+                \EndIf
+            \EndIf
+        \EndFor
+        \State \textbf{return} $y^{pred}$
+    \end{algorithmic}
+\end{algorithm}
+
+In variant (5), the prediction method utilizes a Class-to-Class approach for retrieving neighbors. 
+This method retrieves the most similar neighbor for each class from the training dataset. Once the nearest neighbors for each class are identified, the corresponding specialized neural networks associated with those classes are employed to generate predictions for the target instance. 
+Subsequently, a majority vote is conducted among the predictions from the specialized neural networks to determine the final classification outcome.
+
+It is worth considering re-implementing the algorithm to allow for the retrieval of multiple neighbors ($N$) from each class during the prediction stage. 
+This adjustment could potentially lead to improved results, particularly when dealing with large and varied datasets.
+
+Variant (5) stands out as the most successful approach in the study, primarily due to its Class-to-Class retrieval of neighbors during the prediction stage. 
+By employing multiple specialized neural networks, the variant reduces training time while effectively leveraging implicit learning through differences for classification tasks.
+This method demonstrates its efficacy in adapting to diverse datasets and achieving robust classification performance.
+\subsection{Evaluation Summary}
+Within the paper \cite{ye2021learning} the experiments conducted on two different datasets provided answers to several key questions.
+
+The effectiveness of neural network learning adaptation knowledge was demonstrated through consistent performance of one or more C-NN-CDHs,
+which often outperformed the neural network classifier. Despite the possibility of neural networks learning to discard the source problem and rely solely on the target problem,
+the non-zero weights associated with the source problem and significant performance differences between C-NN-CDHs and the neural network indicate that C-NN-CDHs effectively learn adaptation knowledge.
+This suggests that if a neural network can handle the classification task directly, it can also learn adaptation knowledge or the relation between pairs of cases in the task domain.
+
+Surprisingly, variant (1) performed almost identically to variant (2),
+which also considers the source solution in adaptation.
+This suggests that the source solution, heavily coupled with the source problem, may not provide additional useful information for adaptation.
+
+In terms of segmenting case pairs by source case solution, variants (1, 2) generally outperformed variants (3, 4) in accuracy on most datasets.
+This could be because a single adaptation neural network in (1, 2) is well-trained with all pairs of cases, while a specialized adaptation neural network in (3, 4) is trained with segmented examples.
+However, variants (3, 4) showed faster convergence during training due to training on segmented examples.
+
+The impact of the ensemble of adaptations was investigated, with EAC-NN-CDH (variant (4)) performing similarly to its counterpart variant (3) without ensemble.
+This suggests that the generalization power of C-NN-CDH produces stable predictions that an ensemble version does not significantly alter.
+
+The usefulness of the class-to-class approach for adaptation was demonstrated by C2C-NN-CDH (variant (5)), which performed differently from and often better than the other C-NN-CDHs.
+C2C-NN-CDH reaches its prediction by collecting evidence from diverse source cases from all classes,
+which can provide more global support, especially when there are multiple classes. Moreover,
+the C2C approach offers the possibility of explanation with contrastive evidence.
+
+\subsection{Conclusions on Learning adaptations for case based classification: A Neural Network approach}
+The conclusion of the paper \cite{ye2021learning} being that (variant (5)) is worth investigating using its C2C-NN-CDH approach to classification.
+As it yielded the most promising results when compared to all the other variants tested in the paper. The grouping of the dataset based on class outcome and training a specialized neural network,
+has its benefits in terms of speedup. However, the retrieval of $N$ cases across all classes during testing, has shown to yield better results, in a way that allows an interpretation of the results.
+
+\chapter{Design}
+\label{ch:Design}
+
+\section*{Overview}
+
+\section{Introduction and Motivation}
+The design process begins with an examination of the paper \cite{learningFromDifferences2022}, which lays out the fundamental algorithm for the learning from differences method. 
+Our primary objective is to enhance and expand upon this algorithm to create a more dynamic and adaptable version. 
+Inspired by the modular design philosophy of Scikit-learn's GitHub repository, our aim is to develop a model that not only mirrors the rigorous hyperparameter testing capabilities of Scikit-learn but also extends beyond, 
+offering increased flexibility and functionality.
+
+Following the implementation of the base models, our focus shifts to introducing variations to optimize the machine learning models for 
+both the \texttt{LingerRegressor} and \texttt{LingerClassifier}. These variations aim to improve training efficiency and accuracy, 
+thereby enhancing overall model performance. The names chosen for the custom regressor and classifier are \texttt{LingerRegressor} 
+and \texttt{LingerClassifier}, respectively. These models are designed and implemented to utilize the training from differences approach. 
+
+A crucial aspect of this endeavor is to ensure that the introduced variations are easily testable, akin to the comprehensive hyperparameter testing framework already established. 
+This approach enables easy analysis of the models and their variations, facilitating informed decision-making regarding their effectiveness and suitability for specific tasks.
+
+\section{Linger Regression Base Model: \texttt{LingerRegressor}}
+
+\subsection{Objective}
+The Linger Regression Base Model integrates principles of Case-Based Reasoning (CBR) into regression analysis to enhance interpretability and create a performative model. The objectives include:
+
+\begin{itemize}
+    \item Developing a dynamic regression model using differences between a case and its nearest neighbors, adapting retrieved solutions to the target solution.
+    \item Ensuring compatibility with Scikit-learn for accessibility, ease of implementation, and extensive hyperparameter testing.
+    \item Enabling effective interpretation of predictions for users.
+    \item Implementing the learning from differences algorithm with enhancements for improved performance.
+    \item Creating an easily extendable code base to allow for variations.
+\end{itemize}
+
+Its intended use case is for regression problems that could benefit from a more transparent learning process.
+
+\subsection{Architecture}
+The \texttt{LingerRegressor} combines K-nearest neighbors (KNN) and \texttt{MLPRegressor} from Scikit-learn for flexibility and accuracy. A K-nearest neighbors (KNN) is used in conjunction with a \texttt{MLPRegressor} in the fit phase of the machine. 
+During the predict phase, a K-nearest neighbors (KNN) is used once again with the now trained \texttt{MLPRegressor} to get the differences' prediction or K neighbors.
+
+\subsection{Components}
+\begin{itemize}
+    \item KNN module: Computes nearest neighbors and extracts differences during both training and prediction phases.
+    \item \texttt{MLPRegressor}: Offers flexibility in activation functions, solvers, and hyperparameters for regression.
+    \item Supplementary Features: Weighted KNN, Context Addition, Additional Results Column, and Duplication Based on Distance.
+     Each supplementary feature can be activated through a hyperparameter.
+\end{itemize}
+
+\subsection{Parameterization}
+Extensive parameterization allows fine-tuning of KNN, \texttt{MLPRegressor}, and additional features. 
+All the same hyperparameters are available as in a conventional (KNN) and neural network, with additional hyperparameters for \texttt{LingerRegressor}.
+
+\subsection{Training and Prediction}
+\subsubsection{Training}
+Given dataset $D$, split it into $D^{train}$ and $D^{test}$ with an $80\%$-$20\%$ split through random selection. 
+For each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$, retrieve $n$ similar cases from $D^{train}$, $(X^{train}_j, y^{train}_j) \in D^{train}$ 
+using Scikit-learn's neighbors module. Compute the differences between $C_i$ and its neighbors and append them to $\Delta D^{train}$ as $(X^{train}_i-X^{train}_j, y^{train}_i-y^{train}_j)$.
+
+\begin{algorithm}
+    \caption{Training Algorithm for Learning from Differences}
+    \label{alg:learning_from_differences_train}
+    \begin{algorithmic}[1]
+        \State Split $D$ into training set $D^{train}$ and test set $D^{test}$ with an $80\%$-$20\%$ split
+        \State Initialize $\Delta D^{train}$ as an empty list
+        
+        \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
+            \State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors
+            \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                \State Compute the differences: $\Delta D^{train}_{ij} = (X^{train}_i - X^{train}_j, y^{train}_i - y^{train}_j)$
+                \State Append $\Delta D^{train}_{ij}$ to $\Delta D^{train}$
+            \EndFor
+        \EndFor
+        \State Train the MLPRegressor neural network model using $\Delta D^{train}$ over a few epochs for later predictions.
+        \State \textbf{Return} Trained neural network model $Trained NN()$
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Prediction}
+During prediction, for each case $X^{test}_j$, retrieve $n$ similar cases from $D^{train}$. Compute the differences $\Delta X^{test}_{ij} = X^{test}_j - X^{train}_i$ for each neighbor. 
+Use the trained neural network to predict $\Delta X^{test}_{ij}$, resulting in $\Delta X^{pred}_{ij}$. 
+For each set of retrieved neighbors from $D^{train}$, calculate $y^{train}_i + \Delta X^{pred}_{ij}$ and add each $n$ neighbors adapted $y$ values. 
+Once summed, divide by $n$ to obtain $y^{pred}_j$. Compare $y^{pred}_j$ to $y^{test}_j$ to evaluate accuracy.
+
+\begin{algorithm}
+    \caption{Prediction Algorithm for Learning from Differences}
+	\textbf{Input:} Test dataset $D^{test}$, trained neural network model $Trained NN()$, number of neighbors $n$
+    \label{alg:learning_from_differences_predict}
+    \begin{algorithmic}
+        \State Initialize empty list $y^{pred}$
+        \For{each case $X^{test}_j \in D^{test}$}
+            \State Initialize empty list $y^{pred}_j$
+            \State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors
+			\State Initialize empty list $y^{pred}predictions$
+            \For{each similar case $(X^{train}_i, y^{train}_i) \in D^{train}$}
+                \State Compute the differences: $\Delta X^{test}_{ji} = X^{test}_j - X^{train}_i$
+                \State Use the trained neural network to predict: $Trained NN(\Delta X^{test}_{ji}) = {\Delta X^{pred}_{ji}}$
+                \State Adapt neighbor's $y$ values: $y^{pred}_{ji} = y^{train}_i + \Delta X^{pred}_{ji}$
+            \EndFor
+            \State Average the adapted $y$ values: $y^{pred}_j = \frac{1}{n} \sum_{i=1}^{n} y^{pred}_{ji}$
+        \EndFor
+		\State Compare $y^{pred}$ to $y^{test}$ to evaluate accuracy
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Evaluation}
+Evaluation metrics include Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared ($R^2$) to assess model accuracy and performance.
+
+\subsection{Optimization}
+To optimize the model, we consider various strategies:
+\begin{itemize}
+    \item Hyperparameter Tuning: Grid search or randomized search cross-validation for optimal hyperparameters.
+    \item Feature Engineering: Experimentation with different feature combinations to improve model performance.
+    \item Regularization Techniques: L1 and L2 regularization to prevent overfitting.
+\end{itemize}
+
+\subsection{Limitations and Future Work}
+The Linger Regression Base Model has several limitations:
+\begin{itemize}
+    \item Sensitivity to Noise: The model may produce inaccurate predictions when faced with noisy or irrelevant data.
+    \item Interpretability: While the model enhances interpretability compared to black-box models, it may still be challenging to interpret in complex scenarios.
+\end{itemize}
+Future work includes:
+\begin{itemize}
+    \item Enhancing Noise Robustness: Investigating methods to improve model performance in the presence of noisy data.
+    \item Interpretability Improvements: Exploring techniques to enhance model interpretability for complex datasets.
+\end{itemize}
+
+\section{Linger Classification Base Model: \texttt{LingerClassifier}}
+
+\subsection{Objective}
+The objective of the Linger Classification Base Model (\texttt{LingerClassifier}) is to extend the learning from differences methodology to classification tasks. The primary goals include:
+
+\begin{itemize}
+    \item Developing a versatile classification model that utilizes differences between cases for prediction.
+    \item Ensuring compatibility with Scikit-learn for seamless integration and extensive hyperparameter testing.
+    \item Providing interpretable predictions to facilitate user understanding.
+    \item Implementing enhancements to the learning from differences algorithm for improved classification performance.
+    \item Designing a modular and extensible codebase to support future variations and enhancements.
+\end{itemize}
+
+The \texttt{LingerClassifier} is tailored for classification problems where interpretability and adaptability are critical.
+
+\subsection{Architecture}
+Similar to the regression counterpart, the \texttt{LingerClassifier} integrates K-nearest neighbors (KNN) and Scikit-learn's \texttt{MLPClassifier} for classification tasks. 
+During training, KNN is used to compute nearest neighbors, and during prediction, the differences are used to adapt the class labels.
+
+\subsection{Components}
+The key components of the \texttt{LingerClassifier} include:
+\begin{itemize}
+    \item KNN Module: Computes nearest neighbors and extracts differences during training and prediction phases.
+    \item \texttt{MLPClassifier}: Offers flexibility in activation functions, solvers, and hyperparameters for classification.
+    \item Additional Features: Similar to the regression model, features like weighted KNN, context addition, additional results' column, and duplication based on distance can be activated through hyperparameters.
+\end{itemize}
+
+\subsection{Parameterization}
+The model provides extensive parameterization options for fine-tuning KNN, \texttt{MLPClassifier}, and additional features. 
+Hyperparameters for the classification model mirror those available in standard KNN and neural networks, with additional parameters specific to \texttt{LingerClassifier}.
+
+\subsection{Training and Prediction}
+The training and prediction algorithms for the \texttt{LingerClassifier} are similar to those of the \texttt{LingerRegressor}, with adjustments made to accommodate classification tasks.
+
+\subsubsection{Training Algorithm}
+During training, the algorithm computes differences between cases and their nearest neighbors, similar to the regression model. 
+However, the adaptation of class labels is based on the majority class among the nearest neighbors.
+
+\begin{algorithm}
+    \caption{Training Algorithm for \texttt{LingerClassifier}}
+    \label{alg:linger_classifier_train}
+    \begin{algorithmic}
+        \State Split the dataset $D$ into training set $D^{train}$ and test set $D^{test}$ using an $80\%$-$20\%$ split.
+        \State Initialize $\Delta D^{train}$ as an empty list.
+        \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
+            \State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors.
+            \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                \State Compute the differences: $\Delta D^{train}_{ij} = (X^{train}_i - X^{train}_j, y^{train}_i - y^{train}_j)$.
+                \State Append $\Delta D^{train}_{ij}$ to $\Delta D^{train}$.
+            \EndFor
+        \EndFor
+        \State Train the \texttt{MLPClassifier} neural network model using $\Delta D^{train}$.
+        \State \textbf{return} Trained neural network model $Trained NN()$.
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Prediction Algorithm}
+During prediction, the algorithm adapts class labels based on the majority class among the nearest neighbors' labels.
+
+\begin{algorithm}
+	\caption{Prediction Algorithm for Learning from Differences for Classification}
+	\label{alg:learning_from_differences_predict_classification}
+	\textbf{Input:} Test dataset $D^{test}$, trained neural network model $Trained NN()$, number of neighbors $n$
+	\begin{algorithmic}[1]
+        \State Initialize empty list $y^{pred}$
+		\For{each case $X^{test}_j \in D^{test}$}
+			\State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors
+			\State Initialize empty list $y^{pred}_j$
+			\For{each similar case $(X^{train}_i, y^{train}_i) \in D^{train}$}
+				\State Compute the differences: $\Delta X^{test}_{ji} = X^{test}_j - X^{train}_i$
+				\State Use the trained neural network to predict: $Trained NN(\Delta X^{test}_{ji}) = \Delta X^{pred}_{ji}$
+				\State Adapt neighbor's $y$ value: $yy^{pred}_{ji} = y^{train}_i + \Delta X^{pred}_{ji}$
+			\EndFor
+			\State Perform majority voting on $y^{pred}predictions$ to obtain $y^{pred}_j$
+		\EndFor
+		\State Compare $y^{pred}$ to $y^{test}$ to evaluate accuracy
+	\end{algorithmic}
+\end{algorithm}
+
+\subsection{Evaluation}
+Evaluation metrics for the \texttt{LingerClassifier} include accuracy, precision, recall, F1-score, and confusion matrix analysis. 
+These metrics provide insights into the model's performance and its ability to classify instances accurately.
+
+\subsection{Optimization}
+To enhance the performance of the \texttt{LingerClassifier}, several optimization strategies are considered:
+\begin{itemize}
+    \item \textbf{Hyperparameter Tuning}: Utilize grid search or randomized search cross-validation to fine-tune the hyperparameters for optimal classifier performance.
+    
+    \item \textbf{Feature Engineering}: Experiment with different feature combinations and transformations to uncover informative patterns in the data and improve classifier accuracy.
+    
+    \item \textbf{Regularization Techniques}: Apply L1 and L2 regularization methods to the classifier to mitigate overfitting and enhance generalization ability.
+\end{itemize}
+
+These optimization strategies aim to maximize the predictive capability of the \texttt{LingerClassifier} model.
+
+\subsection{Limitations and Future Work}
+The \texttt{LingerClassifier} shares similar limitations and avenues for future work as the regression model, including sensitivity to noise and interpretability challenges. 
+Future work may focus on improving noise robustness and enhancing interpretability for complex classification tasks.
+
+\subsection{Conclusion}
+The \texttt{LingerClassifier} offers a novel approach to classification tasks by integrating the learning from differences methodology. 
+Its modular design and extensible architecture make it well-suited for a wide range of classification problems, particularly those where interpretability and adaptability are paramount.
+
+
+\section{Variations}
+\subsection{Variation 1: Addition of Context}
+
+\subsubsection{Objective}
+The objective of adding context is to incorporate the original attribute values of the source cases into the generated differences array. 
+This ensures that the new datasets used for fitting and prediction contain both the original attribute values of the source cases and the differences between them and their nearest neighbors. 
+This may aid in the learning process and improves the model. Its design is the same for both the \texttt{LingerRegressor} and \texttt{LingerClassifier}.
+
+\subsubsection{Implementation for Training}
+\begin{algorithm}[H]
+    \caption{Training Algorithm for Learning from Differences, with context included in \texttt{LingerClassifier} and \texttt{LingerRegressor}}
+    \label{alg:learning_from_differences_variant_1_train}
+    \begin{algorithmic}[1]
+        \State Split the dataset $D$ into training set $D^{train}$ and test set $D^{test}$ using an $80\%$-$20\%$ split.
+        \State Initialize $\Delta D^{train}$ as an empty list.
+        \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
+            \State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors.
+            \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                \State Compute the differences, with concatenated context: $\Delta D^{train}_{ij} = ((X^{train}_i - X^{train}_j):X^{train}_i, y^{train}_i - y^{train}_j)$.
+                \State Append $\Delta D^{train}_{ij}$ to $\Delta D^{train}$.
+            \EndFor
+        \EndFor
+        \State Train the \texttt{MLPClassifier} or \texttt{MLPRegressor} neural network model using $\Delta D^{train}$.
+        \State \textbf{return} Trained neural network model $Trained NN()$.
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Implementation for Predict}
+
+\begin{algorithm}[H]
+	\caption{Prediction Algorithm for Variant 1, context included.}
+	\label{alg:learning_from_differences_variant_1_predict}
+	\textbf{Input:} Test dataset $D^{test}$, trained neural network model $Trained NN()$, number of neighbors $n$
+	\begin{algorithmic}[1]
+        \State Initialize $y^{pred}$ as an empty list.
+		\For{each case $X^{test}_j$ in $D^{test}$}
+			\State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors.
+			\State Initialize $y^{pred}_j$ as an empty list.
+			\For{each similar case $(X^{train}_i, y^{train}_i)$ in $D^{train}$}
+				\State Compute the differences: $\Delta X^{test}_{ji} = ((X^{test}_j - X^{train}_i):X^{test}_j)$.
+				\State Use the trained neural network to predict: $\text{Trained NN}(\Delta X^{test}_{ji}) = \Delta X^{pred}_{ji}$.
+				\State Adapt neighbor's $y$ values: $y^{pred}_{ji} = y^{train}_i + \Delta X^{pred}_{ji}$.
+			\EndFor
+			\If{Regression}
+				\State Average the adapted $y$ values: $y^{pred}_j = \frac{1}{n} \sum_{i=1}^{n} y^{pred}_{j}$.
+			\ElsIf{Classification}
+				\State Perform majority voting on $y^{pred}_j$ to obtain $y^{pred}_j$.
+			\EndIf
+		\EndFor
+		\State Compare $y^{pred}_j$ to $y^{test}_j$ to evaluate accuracy.
+	\end{algorithmic}
+\end{algorithm}
+
+\subsection{Variation 2: Duplication Based on Distance}
+
+\subsubsection{Objective}
+A novel variation introduced in this study involves duplicating differences based on distance, aiming to amplify the influence of neighbors closely resembling the base case. 
+This innovative approach represents a departure from conventional methods in the learning from differences paradigm. 
+By magnifying the impact of differences that exhibit stronger correlation with the base case, this technique effectively mitigates the influence of outliers, 
+leading to more robust model performance.
+
+This novel approach is specifically integrated into the fitting process of both the \texttt{LingerClassifier} and \texttt{LingerRegressor} models. 
+By emphasizing the significance of closely resembling neighbors, this technique enhances the model's ability to discern meaningful patterns in the data, 
+thereby improving its predictive accuracy and generalization capabilities.
+
+\begin{enumerate}
+    \item \textbf{Normalize Distances}: Normalize the distances from the base case to its nearest neighbors represented by $Distances_{ij}$. 
+    We apply a logarithmic transformation to the distances: $Distances_{ij} = \log_e(Distances_{ij} + 1)$, with the addition of 1 to prevent a logarithm of 0.
+    
+    \item \textbf{Determine Maximum and Minimum Distances}: Determine the maximum distance $MaxDistance$ and minimum distance $MinDistance$ in $Distances_{ij}$.
+    
+    \item \textbf{Compress Distances}: Compress the distances within $Distances_{ij}$ to a range between 0 and 10 using the formula:
+    \[
+        Distances_{ij} = \text{round}\left(10 - \frac{(Distances_{ij} - MinDistance)}{(MaxDistance - MinDistance) \times 10}\right)
+    \]
+    
+    \item \textbf{Duplicate Items}: Duplicate each item $\Delta D^{train}_{ij}$ by the corresponding distance in $Distances_{ij}$. 
+    It's important to note that this duplication process can significantly increase the size of the dataset and, consequently, the training time overhead.
+\end{enumerate}
+
+\subsubsection{Implementation for Training}
+\begin{algorithm}[H]
+    \caption{Duplication Based on Distance in \texttt{LingerClassifier} and \texttt{LingerRegressor}}
+    \label{alg:duplication_based_on_distance_train}
+    \textbf{Input:} Distances $Distances_{ij}$, Base dataset $\Delta D^{train}$
+    \begin{algorithmic}[1]
+        \State Normalize Distances:
+        \For{each distance $Distances_{ij}$}
+            \State $Distances_{ij} \gets \log_e(Distances_{ij} + 1)$ \Comment{Apply logarithmic transformation}
+        \EndFor
+
+        \State Determine Maximum and Minimum Distances:
+        \State $MaxDistance \gets \text{maximum value of } Distances_{ij}$
+        \State $MinDistance \gets \text{minimum value of } Distances_{ij}$
+
+        \State Compress Distances:
+        \For{each distance $Distances_{ij}$}
+            \State $Distances_{ij} \gets \text{round}\left(10 - \frac{(Distances_{ij} - MinDistance)}{(MaxDistance - MinDistance) \times 10}\right)$
+        \EndFor
+
+        \State Duplicate Items:
+        \For{each item $\Delta D^{train}_{ij}$ in $\Delta D^{train}$}
+            \State Duplicate $\Delta D^{train}_{ij}$ by the corresponding distance in $Distances_{ij}$
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Variation 3: Addition of Distance Column}
+
+\subsubsection{Objective}
+Variation 3 introduces a novel approach by incorporating the distance between each base case and its nearest neighbor into both the training and prediction 
+phases of the neural network. This innovative method aims to leverage the proximity information to enhance the learning process and predictive performance of the model.
+
+By integrating distance information, the neural network gains insight into the spatial relationships between data points. 
+This allows the model to potentially learn associations between differences and their corresponding distances, 
+leading to improved accuracy and effectiveness in both training and prediction tasks.
+
+The motivation behind this variation lies in its potential to provide the model with a deeper understanding of the underlying data structure. 
+By considering distance as a factor in the learning process, the model can better capture nuanced patterns and relationships, 
+resulting in more robust and reliable predictions.
+
+\subsubsection{Implementation for Training}
+In the fit phase, the distances between each base case $D^{train}_i$ and its nearest neighbor in $D^{train}$ are computed and stored in $Distances_{ij}$.
+To incorporate these distances into the training data, each distance in $Distances_{ij}$ is concatenated with the corresponding difference $\Delta D^{train}$.
+This results in a new dataset where each difference is paired with its corresponding distance, ensuring a one-to-one ratio between distances and differences.
+
+\begin{algorithm}[H]
+    \caption{Training Algorithm for Learning from Differences, with Distance Column}
+    \label{alg:learning_from_differences_variant_3_train}
+    
+    \textbf{Input:} Dataset $D$, Neural network model, Number of neighbors $n$, Number of epochs $E$
+    
+    \begin{algorithmic}[1]
+        \State Split $D$ into training set $D^{train}$ and test set $D^{test}$ with an 80\%-$20\%$ split
+        \State Initialize $\Delta D^{train}$ and $Distances$ as empty lists
+        
+        \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
+            \State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors
+            \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                \State Compute the differences: $\Delta D^{train}_{ij} = (X^{train}_i - X^{train}_j, y^{train}_i - y^{train}_j)$
+                \State Compute the distance: $Distances_{ij} = ||X^{train}_i, X^{train}_j||$ (Euclidean distance)
+                \State Concatenate $Distances_{ij}$ as a new attribute to $\Delta D^{train}_{ij}$
+            \EndFor
+        \EndFor      
+        \State Train the MLPRegressor neural network model using $\Delta D^{train}$ over $E$ epochs  
+        \State \textbf{return} Trained neural network model $Trained NN()$.
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Implementation for Predict}
+In the prediction phase, distances between each test case $X^{test}_j$ and its nearest neighbors in $D^{train}$ are stored in $Distances_{ji}$.
+These distances are concatenated with the corresponding differences $\Delta X^{test}$, ensuring a one-to-one ratio between distances and differences in the prediction dataset.
+
+\begin{algorithm}[H]
+	\caption{Prediction Algorithm for Learning from Differences with Additional Distance Column}
+	\label{alg:learning_from_differences_variant_3_predict}
+
+	\textbf{Input:} Test dataset $D^{test}$, Trained neural network model, Number of neighbors $n$, $Trained NN()$
+
+	\begin{algorithmic}[1]
+		\State Initialize $\Delta D^{train}$ and $Distances$ as empty lists
+		\For{each case $X^{test}_j \in D^{test}$}
+		    \State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors
+		    \For{each similar case $(X^{train}_i, y^{train}_i) \in D^{train}$}
+		        \State Compute the differences: $\Delta X^{test}_{ij} = (X^{test}_j - X^{train}_i)$
+		        \State Compute the distance: $Distances_{ji} = ||X^{test}_j,  X^{train}_i||$ (Euclidean distance)
+		        \State Add $Distances_{ji}$ as a new attribute to $\Delta X^{test}_{ji}$
+		        \State Use the trained neural network to predict: $Trained NN(\Delta X^{test}_{ji}) = \Delta X^{pred}_{ji}$
+		        \State Adapt neighbor's $y$ values: $y^{pred}_j = y^{train}_i + \Delta X^{pred}_{ji}$
+		    \EndFor
+
+		    \If{Regression}
+		        \State Average the adapted $y$ values: $y^{pred}_j = \frac{1}{n} \sum_{i=1}^{n} y^{pred}_j$
+		    \ElsIf{Classification}
+		        \State Perform majority voting on $y^{pred}_j$ to obtain $y^{pred}_j$
+		    \EndIf
+
+		    \State Compare $y^{pred}_j$ to $y^{test}_j$ to evaluate accuracy
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+\section{Learning From differences Implicitly}
+\subsection{Introduction and Motivation}
+This design segment aims to implement and extend the algorithms proposed by Ye et al. \cite{ye2021learning} for both classification and regression tasks. 
+The primary objective is to develop a unified framework where a single set of algorithms can be employed for 
+both classification and regression tasks, leveraging implicit learning from differences within case pairs.
+
+As outlined in the literature review (see Section \ref{ch:Literature Review}), the algorithms (Algorithm \ref{alg:Classification_Varient3_5_using_CBH_train_alg19}, 
+Algorithm \ref{alg:Classification_Varient3_5_using_CBH_predict_alg20}) proposed by Ye et al. were chosen as the basis for our model implementation. Variant 5, 
+as demonstrated in the paper, exhibited superior performance among the variants explored, prompting its adoption in our implementation.
+
+Moreover, while the paper focuses on classification tasks, it overlooks the potential application of implicit difference learning within case pairs for regression tasks. 
+Thus, our secondary motivation is to explore the adaptability of Variant 5 to regression models. We seek to investigate whether the framework outlined in Algorithm \ref{alg:Classification_Varient3_5_using_CBH_train_alg19} and 
+Algorithm \ref{alg:Classification_Varient3_5_using_CBH_predict_alg20} can be extended and optimized for regression tasks effectively.
+
+By extending the application of Variant 5 to regression tasks, we aim to provide a comprehensive and versatile framework for both classification and regression tasks, 
+harnessing the power of implicit learning from differences within case pairs.
+
+\section{Linger Implicit Classification Base Model: \texttt{LingerImplicitClassifier}}
+
+\subsection{Objective}
+The objective of the Linger Implicit Classification Base Model (\texttt{LingerImplicitClassifier}) is to 
+implement the learning from differences methodology seen in \cite{ye2021learning} for classification tasks. The primary goals include:
+
+\begin{itemize}
+    \item Developing a versatile classification model that learns through implicit differences in case pairs.
+    \item Ensuring compatibility with Scikit-learn for seamless integration and extensive hyperparameter testing.
+    \item Providing interpretable predictions to facilitate user understanding, for a variety of tasks.
+    \item Implementing enhancements to the learning from differences algorithm for improved classification performance through hyperparameter testing.
+    \item Designing a modular and extensible codebase to support future variations and enhancements.
+\end{itemize}
+
+The \texttt{LingerImplicitClassifier} is tailored for classification problems where interpretability and adaptability are critical, Where explicit differences may not be easily calculable.
+It adds another layer of interpretability, as both the target case and retrieved case are visible within the case pair which the Neural Nets are trained on.
+
+\subsection{Architecture}
+The \texttt{LingerImplicitClassifier} leverages a hybrid architecture incorporating K-nearest neighbors (KNN) and Scikit-learn's \texttt{MLPClassifier} to tackle classification tasks.
+In the training phase, KNN plays a pivotal role in computing nearest neighbors, thereby facilitating the creation of case pairs.
+During the prediction phase, KNN is again utilized to retrieve the most similar cases from each class.
+
+The process of generating case pairs for predictions involves KNN's functionality to identify the nearest neighbors. 
+These neighbors serve as crucial elements in forming case pairs, enabling the classifier to make informed predictions based on similarities observed within the dataset.
+
+The integration of KNN with the \texttt{MLPClassifier} offers a comprehensive approach to classification tasks, combining the strengths of both algorithms. 
+While KNN excels in identifying similarities and forming case pairs, the \texttt{MLPClassifier} contributes 
+by providing a powerful neural network-based classification model capable of learning intricate patterns and relationships within the data.
+
+By harnessing the complementary capabilities of KNN and the \texttt{MLPClassifier}, 
+the \texttt{LingerImplicitClassifier} aims to achieve robust and accurate classification results across diverse datasets,
+making it a versatile tool for various machine learning applications.
+
+\subsection{Components}
+The key components of the \texttt{LingerClassifier} include:
+\begin{itemize}
+    \item KNN Module: Computes nearest neighbors and extracts differences during training and prediction phases.
+    \item \texttt{MLPClassifier}: Offers flexibility in activation functions, solvers, and hyperparameters for classification.
+    \item Additional Features: Class to class pairs, random N selected neighbors, and N nearest neighbors.
+\end{itemize}
+
+\subsection{Parameterization}
+The model provides extensive parameterization options for fine-tuning KNN, \texttt{MLPClassifier}, and additional features. 
+Hyperparameters for the classification model mirror those available in standard KNN and neural networks, with additional parameters specific to \texttt{LingerClassifier}.
+
+\subsection{Training and Prediction}
+The training and prediction algorithms for the \texttt{LingerImplicitClassifier}.
+
+\subsubsection{Training Algorithm}
+\begin{algorithm}[H]
+    \caption{Training Algorithm for \texttt{LingerImplicitClassifier}}
+    \label{alg:LingerImplicitClassifier_train}
+
+    \textbf{Input:} Dataset $D$, number of neighbors $1$
+    \begin{algorithmic}
+        \State Split $D$ into training set $D^{train}$ and test set $D^{test}$ with an $80\%$-$20\%$ split
+        \State Create $CasePairs()$ dictionary.
+        \State Create $AdaptNN()$, a dictionary to store each Neural Network
+        \State List of unique Classes $UniqueClasses$
+        \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
+            \State Retrieve $1$ similar case from $D^{train}$ using nearest neighbors.
+            \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                \State $CasePairs(y^{train}_j).append([X^{train}_j:X^{train}_i, y^{train}_i])$
+            \EndFor
+        \EndFor
+        \For{each unique $Class$ in $UniqueClasses$}
+            \State Create a new Classification Neural Network, trained on Case Pairs
+            \State $AdaptNN(Class).fit(CasePairs(Class))$
+        \EndFor
+        \State \textbf{return} Trained neural network models dictionary $AdaptNN()$.
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Prediction Algorithm}
+During the prediction phase, various methods exist for retrieving neighbors within each class. These methods can be categorized into three variants:
+
+\begin{enumerate}
+\item \textbf{Variant 1:} Selecting the $N$ nearest neighbors from each class.
+\item \textbf{Variant 2:} Selecting $N$ random items from each class.
+\item \textbf{Variant 3:} Selecting the single nearest neighbor from each class.
+\end{enumerate}
+
+Each variant may be suitable depending on the specific characteristics of the dataset and the objectives of the prediction task.
+\begin{algorithm}[H]
+    \caption{Prediction Algorithm for \texttt{LingerImplicitClassifier}}
+    \label{alg:LingerImplicitClassifier_predict}
+    \textbf{Input:} Dataset $D^{test}$, Dictionary $AdaptNN()$, Set $UniqueClasses$, and Dictionary $CasePairs()$
+    \begin{algorithmic}
+        \State Initialize an empty list $y^{pred}$
+        \For{each case $X^{test}_j \in D^{test}$}
+            \State Create an empty list $preds$
+            \For{each unique class $Class$ in $UniqueClasses$}
+                \If{variant 1}
+                    \State Retrieve $N$ nearest neighbors from $CasePairs(Class)$
+                \ElsIf{variant 2}
+                    \State Select $N$ random items from $CasePairs(Class)$
+                \ElsIf{variant 3}
+                    \State Select the single nearest neighbor from $CasePairs(Class)$
+                \EndIf
+                \For{each selected case $(X^{CasePair}_i, y^{CasePair}_i)$}
+                    \For{each $(X^{train}_z, X^{train}_q) \in X^{CasePair}_i$}
+                        \State $preds.append(AdaptNN(Class).predict(X^{train}_z:X^{test}_j))$
+                    \EndFor
+                \EndFor
+                \State Perform a majority vote on $preds$
+                \State $y^{pred}_j = MajorityVote(preds)$
+            \EndFor
+        \EndFor
+        \State \textbf{return} $y^{pred}$
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Optimization}
+To enhance the performance of the \texttt{LingerImplicitClassifier}, several optimization strategies are considered:
+\begin{itemize}
+    \item \textbf{Hyperparameter Tuning}: Utilize grid search or randomized search cross-validation to fine-tune the hyperparameters for optimal classifier performance.
+    
+    \item \textbf{Feature Engineering}: Experiment with different feature combinations and transformations to uncover informative patterns in the data and improve classifier accuracy.
+    
+    \item \textbf{Regularization Techniques}: Apply Regularization techniques to improve accuracy, and reduce noise.
+\end{itemize}
+
+\subsection{Limitations and Future Work}
+The \texttt{LingerImplicitClassifier} including sensitivity to noise.
+Future work may focus on improving noise robustness and enhancing interpretability for complex classification tasks.
+
+\subsection{Conclusion}
+The \texttt{LingerImplicitClassifier} offers a novel approach to classification tasks by integrating the learning from differences implicitly through case pairs. 
+It performs well for a variety of classification tasks. 
+That could benefit from a more interpretable learning methodology 
+
+\section{Linger Implicit Regression Base Model: \texttt{LingerImplicitRegressor}}
+
+\subsection{Objective}
+The objective of the \texttt{LingerImplicitRegressor} is to pioneer a learning methodology seen in \cite{ye2021learning} tailored specifically for regression tasks, known as Learning from Differences. The primary objectives encompass:
+
+\begin{itemize}
+\item Creation of a flexible regression model capable of learning implicitly from differences observed in pairs of cases.
+\item Adaptation of regression tasks into the Learning from Differences framework to unlock its potential.
+\item Seamless integration with Scikit-learn to ensure compatibility and enable extensive hyperparameter optimization.
+\item Provision of interpretable predictions crucial for user comprehension across a wide spectrum of regression scenarios.
+\item Continuous enhancement of the Learning from Differences algorithm through rigorous hyperparameter testing to achieve superior regression performance.
+\item Designing a modular and extensible codebase to accommodate future variations and improvements.
+\end{itemize}
+
+The \texttt{LingerImplicitRegressor} is designed to address regression challenges where explicit differences may be elusive, prioritizing interpretability and adaptability. 
+It implements the classification methodology described in \cite{ye2021learning} but facilitates its use for regression tasks. This is a novel approach.
+It provides added transparency by exposing both the target case and the retrieved case within the case pair, facilitating a deeper understanding during model training.
+
+\subsection{Architecture}
+The \texttt{LingerImplicitRegressor} utilizes a hybrid architecture integrating K-nearest neighbors (KNN) with Scikit-learn's \texttt{MLPClassifier}. 
+In the training phase, KNN plays a pivotal role in computing nearest neighbors, thereby facilitating the creation of case pairs. 
+During the prediction phase, KNN is again utilized to retrieve the most similar cases from each class.
+
+The process of generating case pairs for predictions involves KNN's functionality to identify the nearest neighbors. 
+These neighbors serve as crucial elements in forming case pairs, enabling the regressor to make informed predictions based on similarities observed within the dataset.
+
+The integration of KNN with the \texttt{MLPClassifier} offers an interesting approach to regression tasks, combining the strengths of both algorithms. 
+It places regression values within specified ranges, offering a new type of solution to classic regression issues.
+While KNN excels in identifying similarities and forming case pairs, the \texttt{MLPClassifier} contributes 
+by providing a powerful neural network-based classification model capable of learning intricate patterns and relationships within the data. Classifying regression values.
+
+By harnessing the complementary capabilities of KNN and the \texttt{MLPClassifier}, the \texttt{LingerImplicitRegressor}
+aims to achieve robust and accurate regression results across diverse datasets while using a classifier, making it a versatile tool for various machine learning applications. 
+This new approach to regression tasks that allows for categorization of regression results.
+It processes a regression task and converts it to a classification task, this could be useful for problems where ranges of values are highly important. 
+This would make certain regression tasks more interpretable.
+\subsection{Components}
+The key components of the \texttt{LingerRegressor} include:
+\begin{itemize}
+\item KNN Module: Computes nearest neighbors and extracts differences during training and prediction phases.
+\item \texttt{MLPClassifier}: Offers flexibility in activation functions, solvers, and hyperparameters for classification.
+\item Additional Features: Class to class pairs, random N selected neighbors, and N nearest neighbors.
+\end{itemize}
+
+\subsection{Parameterization}
+The model provides extensive parameterization options for fine-tuning KNN, \texttt{MLPClassifier}, and additional features. Hyperparameters for the classifier model mirror those available in standard KNN and neural networks, with additional parameters specific to \texttt{LingerRegressor}.
+
+\subsection{Training and Prediction}
+The training and prediction algorithms for the \texttt{LingerImplicitRegressor}.
+
+\subsubsection{Training Algorithm}
+\begin{algorithm}[H]
+    \caption{Training Algorithm for \texttt{LingerImplicitRegressor}}
+    \label{alg:LingerImplicitRegressor_train}
+    \textbf{Input:} Dataset $D$, number of neighbors $1$, $N$ Classes 
+    \begin{algorithmic}
+        \State Split $D$ into training set $D^{train}$ and test set $D^{test}$ with an $80\%$-$20\%$ split
+        \State Create $CasePairs()$ dictionary.
+        \State Create $AdaptNN()$, a dictionary to store each Neural Network
+        \State Convert training data $y$ values into classes, using the algorithm \ref{alg:LingerImplicitRegressor_regression_values_to_classification_values}
+        \State $D^{train}y$, $unique\_ranges$, $y_{\text{train}}^\text{max}$, $y_{\text{train}}^\text{min}$ $= Reg To Class Converter Function(D^{train}, N)$
+        \State Convert test $y$ values based on the train $y$ value range. So that a new range is the same for both.
+        \State $D^{test}y$, $unique\_ranges$, $y_{\text{test}}^\text{max}$, $y_{\text{test}}^\text{min}$ $= Reg To Class Converter Function(D^{train}, N, y_{\text{train}}^\text{max}, y_{\text{train}}^\text{min})$
+        \State List of unique Classes $UniqueClasses$
+        \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
+            \State Retrieve $1$ similar case from $D^{train}$ using nearest neighbors.
+            \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
+                \State $CasePairs(y^{train}_j).append([X^{train}_j:X^{train}_i, y^{train}_i])$
+            \EndFor
+        \EndFor
+        \For{each unique $Class$ in $UniqueClasses$}
+            \State Create a new Classification Neural Network, trained on Case Pairs
+            \State $AdaptNN(Class).fit(CasePairs(Class))$
+        \EndFor
+        \State \textbf{return} Trained neural network models dictionary $AdaptNN()$.
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Prediction Algorithm}
+During the prediction phase for regression, various methods exist for retrieving neighbors within each class. These methods can be categorized into three variants:
+
+\begin{enumerate}
+\item \textbf{Variant 1:} Selecting the $N$ nearest neighbors from each class.
+\item \textbf{Variant 2:} Selecting $N$ random items from each class.
+\item \textbf{Variant 3:} Selecting the single nearest neighbor from each class.
+\end{enumerate}
+
+\begin{algorithm}[H]
+    \caption{Prediction Algorithm for \texttt{LingerImplicitRegressor}}
+    \label{alg:LingerImplicitRegressor_predict}
+    \textbf{Input:} Dataset $D^{test}$, Dictionary $AdaptNN()$, Set $UniqueClasses$, and dictionary $CasePairs()$
+    \begin{algorithmic}
+        \State Initialize an empty list $y^{pred}$
+        \For{each case $X^{test}_j \in D^{test}$}
+            \State Create an empty list $preds$
+            \For{each unique class $Class$ in $UniqueClasses$}
+                \If{variant 1}
+                    \State Retrieve $N$ nearest neighbors from $CasePairs(Class)$
+                \ElsIf{variant 2}
+                    \State Select $N$ random items from $CasePairs(Class)$
+                \ElsIf{variant 3}
+                    \State Select the single nearest neighbor from $CasePairs(Class)$
+                \EndIf
+                \For{each selected case $(X^{CasePair}_i, y^{CasePair}_i)$}
+                    \For{each $(X^{train}_z, X^{train}_q) \in X^{CasePair}_i$}
+                        \State $preds.append(AdaptNN(Class).predict(X^{train}_z:X^{test}_j))$
+                    \EndFor
+                \EndFor
+                \State Perform a majority vote on $preds$
+                \State $y^{pred}_j = MajorityVote(preds)$
+            \EndFor
+        \EndFor
+        \State \textbf{return} $y^{pred}$
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Regression to Classification converter function}
+This function serves to categorize regression y target values for training and validation. 
+It returns a human-readable range with their corresponding numeric prediction.
+This ensures that the results are interpretable to humans at the end of the process.
+The variable $\text{equal division}$ is used to signify whether samples should be equally distributed into $N$ classes.
+If there are $Z$ samples in dataset $D$ then each class should have $\approx \frac{Z}{N}$ per class.
+\begin{algorithm}[H]
+    \caption{Converter algorithm, regression to classification}
+    \label{alg:LingerImplicitRegressor_regression_values_to_classification_values}
+    \textbf{Input:} Dataset $D$, number of segments $N$, optional: $y_{\text{max}}$, $y_{\text{min}}, \text{Equal division}$
+    \begin{algorithmic}[1]
+    \State $(X, y) \in D$
+    \State Get the minimum and maximum values of the labels
+    \State Ensure that the max and min are used from the test set so that $y$ values are classified the same in both fit and predict.
+    \If{$\text{Equal division}$}
+        \State Divide the data into $N$ segments based on nearly equal counts
+        \State $quantiles \gets \text{np.linspace}(0, 1, N+1)$
+        \If{unique\_ranges is None}
+            \State $unique\_ranges \gets \text{np.quantile}(y, quantiles)$
+        \EndIf
+        \State $categories \gets \text{np.digitize}(y, unique\_ranges[:-1])$
+        \State $category\_counts \gets \text{Counter}(categories)$
+        \State \textbf{Return} $categories$, $unique\_ranges$, $y_{\text{min}}$, $y_{\text{max}}$
+    \Else
+        \If{$y_{\text{max}}$ and $y_{\text{min}}$ are provided}
+            \State Leave $y_{\text{max}}$ and $y_{\text{min}}$ as is
+        \Else
+            \State $y_{\text{max}} \gets \text{MAX}(y)$
+            \State $y_{\text{min}} \gets \text{MIN}(y)$
+        \EndIf
+        \State Calculate the range for each segment for $y$ values
+        \State $\text{segmentRange} \gets \frac{y_{\text{max}} - y_{\text{min}}}{N}$
+        \State Initialize an empty list: $categories$
+        \State Initialize an empty dictionary: $unique\_ranges$
+        \State $current\_index \gets 0$
+        \For{each value $val$ in $y$}
+            \For{$i$ in range($N$)}
+                \If{$i < N - 1$}
+                    \If{$y_{\text{min}} + i \times \text{segmentRange} \leq \text{val} < y_{\text{min}} + (i + 1) \times \text{segmentRange}$}
+                        \State $category \gets (y_{\text{min}} + i \times \text{segmentRange}) - (y_{\text{min}} + (i + 1) \times \text{segmentRange})$
+                        \If{category not in $unique\_ranges$}
+                            \State $unique\_ranges[category] \gets current\_index$
+                            \State $current\_index \gets current\_index + 1$
+                        \EndIf
+                        \State Append $unique\_ranges[category]$ to $categories$
+                        \State \textbf{break}
+                    \EndIf
+                \Else
+                    \If{$y_{\text{min}} + i \times \text{segmentRange} \leq \text{val} \leq y_{\text{max}}$}
+                        \State $category \gets (y_{\text{min}} + i \times \text{segmentRange}) - (y_{\text{max}})$
+                        \If{category not in $unique\_ranges$}
+                            \State $unique\_ranges[category] \gets current\_index$
+                            \State $current\_index \gets current\_index + 1$
+                        \EndIf
+                        \State Append $unique\_ranges[category]$ to $categories$
+                        \State \textbf{break}
+                    \EndIf
+                \EndIf
+            \EndFor
+        \EndFor
+        \State Converted $y$ values: $y \gets categories$
+        \State \textbf{Return} $y$, $unique\_ranges$, $y_{\text{min}}$, $y_{\text{max}}$
+    \EndIf
+    \end{algorithmic}
+    \end{algorithm}
+
+\subsection{Optimization}
+To enhance the performance of the \texttt{LingerImplicitRegressor}, several optimization strategies are considered:
+\begin{itemize}
+    \item \textbf{Hyperparameter Tuning}: Utilize grid search or randomized search cross-validation to fine-tune the hyperparameters for optimal model performance.
+    
+    \item \textbf{Feature Engineering}: Experiment with different feature combinations and transformations to uncover informative patterns in the data and improve regressor accuracy.
+    
+    \item \textbf{Regularization Techniques}: Apply regularization techniques to improve accuracy and reduce noise.
+\end{itemize}
+
+\subsection{Limitations and Future Work}
+One of the limitations of the \texttt{LingerImplicitClassifier} is its sensitivity to noise, particularly when labeling values based on the maximum and minimum. 
+However, opting to evenly distribute samples into classes can mitigate this sensitivity. 
+For future research, exploring alternative methods to bucket regression values based on diverse distributions could be an intriguing avenue.
+
+\subsection{Conclusion}
+The \texttt{LingerImplicitClassifier} offers a novel approach to regression tasks by integrating the learning from differences implicitly through case pairs. 
+It performs well for a variety of regression tasks, while utilizing a learning from differences classification model. The number of segments greatly affects the outcome of this model.
+
+
+\chapter{Implementation}
+\label{ch:Implementation}
+
+\chapter{Evaluation}
+\label{ch:Evaluation}
+
+\chapter{Conclusions}
+\label{ch:Conclusions}
+
+\chapter{Experiments}
+\label{ch:Experimnents}
+
+\section{Experiment 1: Abalone dataset Linger Regression}
+
+\section{Experiment 2: House Prices Dataset Regression}
+
+\section{Experiment 3: Glass Dataset Classification}
+
+\section{Experiment 4: Raisin Dataset Classification}
+
+\section{Experiment 5: Car Safety Dataset Classification}
+
+\chapter{Results}
+\label{ch:Results}
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
