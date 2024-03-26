@@ -82,11 +82,11 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
 
     lfd_param_grid = {}
     lfd_param_grid.update({
-        "predictor__random_pairs": [False],
-        "predictor__single_pair": [False],
+        "predictor__random_pairs": [True, False],
+        "predictor__single_pair": [True, False],
         "predictor__hidden_layer_sizes": [(256, 128)],
         "predictor__n_neighbours_1": [2],
-        "predictor__n_neighbours_2": [2, 3, 5,7],
+        "predictor__n_neighbours_2": [5, 10],
         "predictor__max_iter": [1000],
     })
     # Update with best_nn_params
@@ -125,7 +125,7 @@ def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y):
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\35383\4th_year\fyp\results\DryBeanImplicitResults.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\DryBeanImplicitResults.txt'
     df = pd.read_csv("datasets/DryBeanDataset/Dry_Bean_Dataset.csv")
     columns = ['Area', 'Perimeter', 'MajorAxisLength', 'MinorAxisLength',
        'AspectRation', 'Eccentricity', 'ConvexArea', 'EquivDiameter', 'Extent',
