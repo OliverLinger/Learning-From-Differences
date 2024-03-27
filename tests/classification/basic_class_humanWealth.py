@@ -89,15 +89,19 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-        "predictor__hidden_layer_sizes": [(256, 128)],
-        "predictor__activation": ["relu"],
-        "predictor__alpha": [0.0001],
-        "predictor__max_iter": [200],
-        "predictor__early_stopping": [True],
-        "predictor__validation_fraction": [0.1],
+    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (100,), (200, 100), (300, 200, 100)],
+    "predictor__activation": ["identity", "logistic", "tanh", "relu"],
+    "predictor__alpha": [0.0001, 0.001, 0.01, 0.1],
+    "predictor__max_iter": [1000, 1500],
+    "predictor__early_stopping": [True],
+    "predictor__validation_fraction": [0.1, 0.2, 0.3],
+    "predictor__learning_rate_init": [0.001, 0.01, 0.1],
+    "predictor__solver": ['adam', 'sgd'],
+    "predictor__beta_1": [0.9, 0.95, 0.99],
+    "predictor__beta_2": [0.999, 0.995, 0.9]
     }
 
-    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
+    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
     nn_gs.fit(dev_X, dev_y)
 
     return nn_gs
@@ -109,12 +113,12 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
     ])
     lfd_classifier_param_grid  = {}
     lfd_classifier_param_grid.update({
-         "predictor__n_neighbours_1": [2, 5, 7],
-         "predictor__n_neighbours_2": [2, 5, 7],
+         "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 17, 21],
+         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
          "predictor__weighted_knn": [False],
          "predictor__additional_results_column": [False],
          "predictor__duplicated_on_distance": [False],
-        "predictor__addition_of_context": [True],
+        "predictor__addition_of_context": [False],
     })
     # Update with best_nn_params
     lfd_classifier_param_grid.update(best_nn_params)
@@ -123,7 +127,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
             lfd_classifier_param_grid[key] = [value]
 
     lfd_classifier_gs = GridSearchCV(
-        lfd_classifier_pipeline, lfd_classifier_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
+        lfd_classifier_pipeline, lfd_classifier_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
 
     lfd_classifier_gs.fit(dev_X, dev_y)
 
@@ -131,7 +135,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
 
 def save_results(file_path, knn_classifier_gs, knn_classifier_gs_weighted, nn_gs, lfd_classifier_gs):
     with open(file_path, 'a') as file:
-        file.write(f"Test Time: {datetime.datetime.now().time()}\n")
+        file.write(f"Basic classifier, No variations")
         file.write(f"Best Parameters KNN classifier: {knn_classifier_gs.best_params_,}\n")
         file.write(f"Best Score KNN classifier: {knn_classifier_gs.best_score_}\n")
 
@@ -161,7 +165,7 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         file.write("--------------------------------------------------------------\n")
 
 def main():
-    file_path = r'C:\Users\35383\4th_year\fyp\results\HumanWealth.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\HumanWealthBasic.txt'
     df = pd.read_csv("datasets/adult/adult.csv")
     columns = ['age', 'workclass', 'fnlwgt', 'education', 'education_num', 'marital-status', 'occupation', 
                'relationship', 'race', 'sex', 'capital-gain', 'capital-loss', 'hours-per-week', 
@@ -184,4 +188,6 @@ def main():
     calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_weighted, nn_gs, lfd_classifier_gs, test_X, test_y)
 
 if __name__ == "__main__":
-    main()
+    num_times_to_run = 5  # Change this to the desired number of iterations
+    for _ in range(num_times_to_run):
+        main()

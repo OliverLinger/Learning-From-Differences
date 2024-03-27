@@ -6,11 +6,9 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from differences_new_dist import _regression
+from differences import _regression
 from sklearn.neural_network import MLPRegressor
 from datetime import datetime
-
-from differences_new_dist.cvdhm import CVDHMDistanceMetric
 
 def load_data(file_path):
     df = pd.read_csv(file_path)
@@ -36,8 +34,8 @@ def preprocess_data(df, features, numeric_features, nominal_features, columns):
     dev_X = dev_df[features]
     test_X = test_df[features]
 
-    dev_y = dev_df["Rings"].values
-    test_y = test_df["Rings"].values
+    dev_y = dev_df["quality"].values
+    test_y = test_df["quality"].values
     
     return dev_X, test_X, dev_y, test_y, preprocessor
 
@@ -78,8 +76,8 @@ def train_neural_network(dev_X, dev_y, preprocessor):
 
     return nn_gs
 
-def train_linger_regressor(dev_X, dev_y, preprocessor, numeric_features, nominal_features, features):
-    LingerRegressor = _regression.LingerRegressorNewDist
+def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
+    LingerRegressor = _regression.LingerRegressor
     lfd_pipeline = Pipeline([
         ("preprocessor", preprocessor),
         ("predictor", LingerRegressor())
@@ -87,14 +85,18 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, numeric_features, nominal
 
     lfd_param_grid = {}
     lfd_param_grid.update({
-        "predictor__n_neighbours_1": [2],
-        "predictor__n_neighbours_2": [2],
+        "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 17, 21],
+        "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
+        "predictor__weighted_knn": [False],
+         "predictor__additional_results_column": [False],
+         "predictor__duplicated_on_distance": [False],
+        "predictor__addition_of_context": [False],
     })
     # Update with best_nn_params
-    # lfd_param_grid.update(best_nn_params)
-    # for key, value in lfd_param_grid.items():
-    #     if not isinstance(value, list):
-    #         lfd_param_grid[key] = [value]
+    lfd_param_grid.update(best_nn_params)
+    for key, value in lfd_param_grid.items():
+        if not isinstance(value, list):
+            lfd_param_grid[key] = [value]
 
     lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
     lfd_gs.fit(dev_X, dev_y)
@@ -103,14 +105,14 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, numeric_features, nominal
 
 def save_results(file_path, knn_gs, nn_gs, lfd_gs):
     with open(file_path, 'a') as file:
-        # file.write(f"Test Time: {datetime.now().time()}\n")
-        # file.write(f"Best Parameters KNN regression: {knn_gs.best_params_,}\n")
-        # file.write(f"Best Score KNN regression: {knn_gs.best_score_}\n")
-        print(f"Best Parameters Linger regression: {lfd_gs.best_params_,}\n")
-        print(f"Best Score Linger Regression: {lfd_gs.best_score_}\n")
-        # file.write(f"Best Parameters Basic Neural Network: {nn_gs.best_params_,}\n")
-        # file.write(f"Best Score Basic Neural Network: {nn_gs.best_score_}\n")
-        # file.write("--------------------------------------------------------------\n")
+        file.write(f"Basic regression, No variations")
+        file.write(f"Best Parameters KNN regression: {knn_gs.best_params_,}\n")
+        file.write(f"Best Score KNN regression: {knn_gs.best_score_}\n")
+        file.write(f"Best Parameters Linger regression: {lfd_gs.best_params_,}\n")
+        file.write(f"Best Score Linger Regression: {lfd_gs.best_score_}\n")
+        file.write(f"Best Parameters Basic Neural Network: {nn_gs.best_params_,}\n")
+        file.write(f"Best Score Basic Neural Network: {nn_gs.best_score_}\n")
+        file.write("--------------------------------------------------------------\n")
 
 def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y):
     knn_test_accuracy = knn_gs.score(test_X, test_y)
@@ -118,29 +120,32 @@ def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y):
     lfd_classifier_test_accuracy = lfd_gs.score(test_X, test_y)
 
     with open(file_path, 'a') as file:
-        # file.write(f"Test Accuracy for KNN regressor: {knn_test_accuracy}\n")
-        # file.write(f"Test Accuracy for Linger Regressor: {lfd_classifier_test_accuracy}\n")
-        # file.write(f"Test Accuracy for Basic Neural Network: {nn_test_accuracy}\n")
-        # file.write("--------------------------------------------------------------\n")
+        file.write(f"Test Accuracy for KNN regressor: {knn_test_accuracy}\n")
+        file.write(f"Test Accuracy for Linger Regressor: {lfd_classifier_test_accuracy}\n")
+        file.write(f"Test Accuracy for Basic Neural Network: {nn_test_accuracy}\n")
+        file.write("--------------------------------------------------------------\n")
 
-        print(f"Results have been saved to {file_path}")
+    print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\AbaloneResults.txt'
-    df = pd.read_csv("datasets/abalone/abalone.csv")
-    columns = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight', 'Rings']
-    features = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight']
-    numeric_features = ['Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight']
-    nominal_features = ['Sex']
+    file_path = r'C:\Users\USER\final_year\fyp\results\RedWineResultsBasic.txt'
+    df = pd.read_csv("datasets/wineQuality/winequality-Red.csv")
+    columns = ["fixed acidity","volatile acidity","citric acid","residual sugar","chlorides","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol","quality"]
+    features = [
+    "fixed acidity","volatile acidity", "citric acid","residual sugar","chlorides","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol",]
+    numeric_features = ["fixed acidity","volatile acidity", "citric acid","residual sugar","chlorides","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol"]
+    nominal_features = []
     dev_X, test_X, dev_y, test_y, preprocessor = preprocess_data(df, features, numeric_features, nominal_features, columns)
     
     knn_gs = train_knn_regressor(dev_X, dev_y, preprocessor)
-    # nn_gs = train_neural_network(dev_X, dev_y, preprocessor)
-    # best_nn_params = nn_gs.best_params_
-    lfd_gs = train_linger_regressor(dev_X, dev_y, preprocessor, numeric_features, nominal_features, features)
+    nn_gs = train_neural_network(dev_X, dev_y, preprocessor)
+    best_nn_params = nn_gs.best_params_
+    lfd_gs = train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params)
 
-    # save_results(file_path, knn_gs, nn_gs, lfd_gs)
-    # calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y)
+    save_results(file_path, knn_gs, nn_gs, lfd_gs)
+    calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y)
 
 if __name__ == "__main__":
-    main()
+    num_times_to_run = 5  # Change this to the desired number of iterations
+    for _ in range(num_times_to_run):
+        main()

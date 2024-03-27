@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from sklearn.calibration import LabelEncoder
 from sklearn.neural_network import MLPClassifier
 from differences import _classification
@@ -13,11 +13,41 @@ from sklearn.pipeline import Pipeline
 
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
+
 from sklearn.preprocessing import OneHotEncoder
+
 
 from sklearn.neighbors import KNeighborsClassifier
 
 from sklearn.model_selection import GridSearchCV
+
+LingerClassifier = _classification.LingerClassifier
+
+df = pd.read_csv("datasets/raisin_data/Raisin_Dataset.csv")
+from datetime import datetime
+from sklearn.calibration import LabelEncoder
+from sklearn.neural_network import MLPClassifier
+from differences import _classification
+
+import pandas as pd
+import numpy as np
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+
+from sklearn.preprocessing import OneHotEncoder
+
+
+from sklearn.neighbors import KNeighborsClassifier
+
+from sklearn.model_selection import GridSearchCV
+
+LingerClassifier = _classification.LingerClassifier
 
 LingerClassifier = _classification.LingerClassifier
 
@@ -88,14 +118,6 @@ def train_neural_network(dev_X, dev_y, preprocessor):
         ("predictor", MLPClassifier())
     ])
 
-    # nn_param_grid = {
-    #     "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (100,)],
-    #     "predictor__activation": ["identity", "logistic", "tanh", "relu"],
-    #     "predictor__alpha": [0.0001],
-    #     "predictor__max_iter": [200],
-    #     "predictor__early_stopping": [True],
-    #     "predictor__validation_fraction": [0.1],
-    # }
     nn_param_grid = {
     "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (100,), (200, 100), (300, 200, 100)],
     "predictor__activation": ["identity", "logistic", "tanh", "relu"],
@@ -109,7 +131,7 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     "predictor__beta_2": [0.999, 0.995, 0.9]
     }
 
-    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
+    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
     nn_gs.fit(dev_X, dev_y)
 
     return nn_gs
@@ -135,7 +157,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
             lfd_classifier_param_grid[key] = [value]
 
     lfd_classifier_gs = GridSearchCV(
-        lfd_classifier_pipeline, lfd_classifier_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
+        lfd_classifier_pipeline, lfd_classifier_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
 
     lfd_classifier_gs.fit(dev_X, dev_y)
 
@@ -163,10 +185,6 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         knn_test_accuracy = knn_classifier_gs.score(test_X, test_y)
         file.write(f"Test Accuracy for KNN classifier: {knn_test_accuracy}\n")
 
-        # Test the weighted kNN classifier
-        knn_weighted_test_accuracy = knn_classifier_gs_weighted.score(test_X, test_y)
-        file.write(f"Test Accuracy for weighted KNN classifier: {knn_weighted_test_accuracy}\n")
-
         # Test the Neural Network classifier
         nn_test_accuracy = nn_gs.score(test_X, test_y)
         file.write(f"Test Accuracy for Neural Network classifier: {nn_test_accuracy}\n")
@@ -177,20 +195,16 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         file.write("--------------------------------------------------------------\n")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\DryBeanResultsBasic.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\RaisinResultsBasic.txt'
     df = pd.read_csv("datasets/DryBeanDataset/Dry_Bean_Dataset.csv")
-    columns = ['Area', 'Perimeter', 'MajorAxisLength', 'MinorAxisLength',
-       'AspectRation', 'Eccentricity', 'ConvexArea', 'EquivDiameter', 'Extent',
-       'Solidity', 'roundness', 'Compactness', 'ShapeFactor1', 'ShapeFactor2', 
-       'ShapeFactor3', 'ShapeFactor4', 'Class']
-    features = ['Area', 'Perimeter', 'MajorAxisLength', 'MinorAxisLength',
-                'AspectRation', 'Eccentricity', 'ConvexArea', 'EquivDiameter', 'Extent',
-                'Solidity', 'roundness', 'Compactness', 'ShapeFactor1', 'ShapeFactor2',
-                'ShapeFactor3', 'ShapeFactor4']
-    numeric_features = ['Area', 'Perimeter', 'MajorAxisLength', 'MinorAxisLength',
-                        'AspectRation', 'Eccentricity', 'ConvexArea', 'EquivDiameter', 'Extent',
-                        'Solidity', 'roundness', 'Compactness', 'ShapeFactor1', 'ShapeFactor2',
-                        'ShapeFactor3', 'ShapeFactor4']
+    columns = ['Area','Perimeter','MajorAxisLength','MinorAxisLength',
+               'AspectRation','Eccentricity','ConvexArea','EquivDiameter','Extent',
+               'Solidity','roundness','Compactness', 'ShapeFactor1','ShapeFactor2',
+               'ShapeFactor3',  'ShapeFactor4','Class']
+    features = ['Area',  'Perimeter',  'MajorAxisLength',  'MinorAxisLength',  'AspectRation',  'Eccentricity',  'ConvexArea',
+                'EquivDiameter',    'Extent',  'Solidity',  'roundness',  'Compactness',  'ShapeFactor1',  'ShapeFactor2',  'ShapeFactor3',  'ShapeFactor4']
+    numeric_features = ['Area',  'Perimeter',  'MajorAxisLength',  'MinorAxisLength',  'AspectRation',  'Eccentricity',  'ConvexArea',
+                'EquivDiameter',    'Extent',  'Solidity',  'roundness',  'Compactness',  'ShapeFactor1',  'ShapeFactor2',  'ShapeFactor3',  'ShapeFactor4']
     nominal_features = []
     dev_X, test_X, dev_y, test_y, preprocessor = preprocess_data(df, features, numeric_features, nominal_features, columns)
 

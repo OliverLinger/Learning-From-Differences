@@ -6,7 +6,7 @@ from scipy.sparse import issparse
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.neighbors import NearestNeighbors
 from sklearn.neural_network import MLPClassifier
-
+from cvdhm import CVDHMDistanceMetric 
 
 class LingerClassifierNewDist(BaseEstimator, ClassifierMixin):
     def __init__(
@@ -89,6 +89,9 @@ class LingerClassifierNewDist(BaseEstimator, ClassifierMixin):
         self.duplicated_on_distance = duplicated_on_distance
         self.addition_of_context = addition_of_context
 
+        # Initialize the custom distance metric
+        self.distance_metric = CVDHMDistanceMetric(numeric_features=[], categorical_features=[], features=[])
+
         self.classifier = MLPClassifier(
             hidden_layer_sizes=self.hidden_layer_sizes,
             activation=self.activation,
@@ -145,7 +148,7 @@ class LingerClassifierNewDist(BaseEstimator, ClassifierMixin):
         if is_sparse_y:
             y = y.toarray()
 
-        neighbours = NearestNeighbors(n_neighbors=self.n_neighbours_1).fit(X)
+        neighbours = NearestNeighbors(n_neighbors=self.n_neighbours_1, metric=self.distance_metric.case_diff).fit(X)
         distances, indices = neighbours.kneighbors(X)
 
         differences_X = []
