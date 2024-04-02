@@ -17,6 +17,7 @@
 \usepackage{csquotes}       % For defining tables
 \usepackage{algpseudocode}
 \usepackage{algorithm}
+\usepackage{multirow}
 
 % Page layout
 \geometry{margin=1in} % Adjust margins as needed
@@ -608,27 +609,157 @@ The conclusion of the paper \cite{ye2021learning} being that (variant (5)) is wo
 As it yielded the most promising results when compared to all the other variants tested in the paper. The grouping of the dataset based on class outcome and training a specialized neural network,
 has its benefits in terms of speedup. However, the retrieval of $N$ cases across all classes during testing, has shown to yield better results, in a way that allows an interpretation of the results.
 
-\chapter{Design}
+\chapter{Design and Implementation}
 \label{ch:Design}
 
-\section*{Overview}
+\section*{Objectives and Contributions}
 
-\section{Introduction and Motivation}
-The design process begins with an examination of the paper \cite{learningFromDifferences2022}, which lays out the fundamental algorithm for the learning from differences method. 
-Our primary objective is to enhance and expand upon this algorithm to create a more dynamic and adaptable version. 
-Inspired by the modular design philosophy of Scikit-learn's GitHub repository, our aim is to develop a model that not only mirrors the rigorous hyperparameter testing capabilities of Scikit-learn but also extends beyond, 
-offering increased flexibility and functionality.
+The design chapter of this paper serves as a comprehensive guide, presenting various algorithms and their implementations in the context of our novel framework. 
+Our primary objectives are to elucidate the intricacies of these algorithms, introduce innovative variations, and 
+showcase the integration of our framework within the broader machine learning landscape.
 
-Following the implementation of the base models, our focus shifts to introducing variations to optimize the machine learning models for 
-both the \texttt{LingerRegressor} and \texttt{LingerClassifier}. These variations aim to improve training efficiency and accuracy, 
-thereby enhancing overall model performance. The names chosen for the custom regressor and classifier are \texttt{LingerRegressor} 
-and \texttt{LingerClassifier}, respectively. These models are designed and implemented to utilize the training from differences approach. 
+The tables provided below offer a structured roadmap through our design chapter, delineating where and how different algorithms are described. 
+Notably, the algorithms discussed originate from seminal works such as \cite{learningFromDifferences2022} and \cite{ye2021learning}. 
+However, in addition to presenting established methodologies, we introduce novel variations that represent fresh approaches to classification and regression tasks.
 
-A crucial aspect of this endeavor is to ensure that the introduced variations are easily testable, akin to the comprehensive hyperparameter testing framework already established. 
-This approach enables easy analysis of the models and their variations, facilitating informed decision-making regarding their effectiveness and suitability for specific tasks.
+Key innovations include Variant 2, which introduces duplication based on distances, and Variant 3, incorporating a column indicating each neighbor's distance to the base case. 
+Notably, we employ a new type of classifier, distinct from those mentioned in \cite{learningFromDifferences2022}. 
+Variants 1, 2, and 3 exemplify our endeavor to explore uncharted territory within the learning from differences methodology, offering novel perspectives on classification.
 
-\section{Linger Regression Base Model: \texttt{LingerRegressor}}
+Furthermore, our introduction of the \texttt{LingerImplicitRegressor} presents a groundbreaking approach to regression tasks. 
+Leveraging methodologies outlined in \cite{ye2021learning}, this novel regressor extends the learning from differences framework, 
+offering a fresh perspective on regression problems.
 
+By presenting a cohesive framework that integrates established algorithms, innovative variations, and our novel contributions, these tables 
+provide a clear overview of the design landscape. Our aim is to facilitate understanding and navigation through the complexities of machine learning methodologies, 
+empowering researchers and practitioners to leverage our framework effectively in their endeavors.
+
+
+\section{LingerRegressor and LingerClassifier Models Roadmap}
+The following models are based on the algorithms outlined in \cite{learningFromDifferences2022}. 
+Variations such as Variant 2 and Variant 3 introduce innovative adaptations to the base models, 
+providing enhanced functionality and performance.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ |p{6cm}|p{2cm}|p{9cm}| }
+        \hline
+        \multicolumn{3}{|c|}{\texttt{LingerRegressor}} \\
+        \hline
+        Full Name & Acronym & Description \\
+        \hline
+        \texttt{LingerRegressor} Section: \ref{sec:linger_regression_base_model} & LR & Base Linger regressor, no variations \\
+        \hline
+        \texttt{LingerRegressor} Variant 1 Section: \ref{sec:linger_regr_class_variation1_model} & LRV1 & Linger regressor with the addition of context, where context is the original base case. \\
+        \hline
+        \texttt{LingerRegressor} Variant 2 Section: \ref{sec:linger_regr_class_variation2_model} & LRV2 & Linger regressor integrated with duplication based on distance, where differences are duplicated based on the neighbors' proximity to the base case. \\
+        \hline
+        \texttt{LingerRegressor} Variant 3 Section: \ref{sec:linger_regr_class_variation3_model} & LRV3 & Linger regressor integrated with a distance column indicating the distance of each neighbor from the base case. \\
+        \hline
+        \hline
+    \end{tabular}
+    \caption{Regression Models based on the algorithms in \cite{learningFromDifferences2022}}
+    \label{tab:LingerRegressor_models}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ |p{6cm}|p{2cm}|p{9cm}| }
+        \hline
+        \multicolumn{3}{|c|}{\texttt{LingerClassifier}} \\
+        \hline
+        \hline
+        Full Name & Acronym & Description \\
+        \hline
+        \texttt{LingerClassifier}  Section: \ref{sec:linger_classification_base_model} & LC & Base Linger classifier, no variations \\
+        \hline
+        \texttt{LingerClassifier} Variant 1 Section: \ref{sec:linger_regr_class_variation1_model} & LCV1 & Linger classifier with the addition of context, where context is the original base case. \\
+        \hline
+        \texttt{LingerClassifier} Variant 2 Section: \ref{sec:linger_regr_class_variation2_model} & LCV2 & Linger classifier integrated with duplication based on distance, where differences are duplicated based on the neighbors' proximity to the base case. \\
+        \hline
+        \texttt{LingerClassifier} Variant 3 Section: \ref{sec:linger_regr_class_variation3_model} & LCV3 & Linger classifier integrated with a distance column indicating the distance of each neighbor from the base case. \\
+        \hline
+    \end{tabular}
+    \caption{Classifier models based on the algorithms in \cite{learningFromDifferences2022}}
+    \label{tab:LingerClassifier_models}
+\end{table}
+
+\section*{LingerImplicitClassifier and LingerImplicitRegressor Models}
+The classifier models presented here are based on algorithms from \cite{ye2021learning}, with Variations 1 and 2 also originating from the same source.
+
+The regressor models in this section extend the learning from differences framework outlined in \cite{ye2021learning} to regression tasks. 
+This innovative approach maintains the core principles of the methodology while introducing adaptations tailored to address the unique challenges of regression problems.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ |p{6cm}|p{2cm}|p{9cm}| }
+        \hline
+        \multicolumn{3}{|c|}{\texttt{LingerImplicitClassifier}} \\
+        \hline
+        Full Name & Acronym & Description \\
+        \hline
+        \texttt{LingerImplicitClassifier} Section: \ref{sec:lingerImplicit_classification_base_model} & LIC & Base Linger Implicit Classifier selects the $N$ nearest neighbors from each class \\
+        \hline
+        \texttt{LingerImplicitClassifier} Variant 1 Section: \ref{sec:lingerImplicit_classification_baseV1V2_model} & LICV1 & Selects $N$ random items from each class \\
+        \hline
+        \texttt{LingerImplicitClassifier} Variant 2 Section: \ref{sec:lingerImplicit_classification_baseV1V2_model} & LICV2 & Selects the single nearest neighbor from each class \\
+        \hline
+    \end{tabular}
+    \caption{LingerImplicitClassifier models based on the algorithms in \cite{ye2021learning}}
+    \label{tab:LingerImplicitClassifier_models}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ |p{6cm}|p{2cm}|p{9cm}| }
+        \hline
+        \multicolumn{3}{|c|}{\texttt{LingerImplicitRegressor}} \\
+        \hline
+        Full Name & Acronym & Description \\
+        \hline
+        \texttt{LingerImplicitRegressor} Section: \ref{sec:linger_regression_base_model} & LIR & Base Linger Implicit Regressor selects the $N$ nearest neighbors from each class during prediction \\
+        \hline
+        \texttt{LingerImplicitRegressor} Variant 1 Section: \ref{sec:lingerImplicit_regression_baseV1V2_model} & LIRV1 & Selects $N$ random items from each class \\
+        \hline
+        \texttt{LingerImplicitRegressor} Variant 2 Section: \ref{sec:lingerImplicit_regression_baseV1V2_model} & LIRV2 & Selects the single nearest neighbor from each class \\
+        \hline
+        \multicolumn{3}{|c|}{Regression to Classification Converter} \\
+        \hline
+        Full Name & Acronym & Description \\
+        \hline
+        Regression to Classification Converter Section: \ref{sec:regr_to_class_func} & RTCC & Converts regression problems into classification problems \\
+        \hline
+    \end{tabular}
+    \caption{LingerImplicitRegressor models based on the algorithms in \cite{ye2021learning}}
+    \label{tab:ingerImplicitRegressor_models}
+\end{table}
+
+\section{Learning From Differences}
+\subsection{Introduction and Motivation}
+
+Our design process is anchored in the seminal work of \cite{learningFromDifferences2022}, which laid the groundwork for the learning from differences method. 
+Building upon this foundation, our primary objective is to enhance and extend these algorithms, creating a more dynamic and adaptable framework.
+
+Inspired by Scikit-learn's modular design philosophy, we aim to develop models that not only match but surpass its rigorous hyperparameter testing capabilities. 
+Our goal is to introduce multiple new hyperparameters accessible through familiar pipelines, thereby enhancing flexibility and functionality across diverse 
+machine learning tasks and datasets.
+
+As we progress from implementing base models to introducing variations, our focus shifts to optimizing the performance of 
+both the \texttt{LingerRegressor} and \texttt{LingerClassifier}. These variations are meticulously crafted to improve training efficiency and predictive accuracy, 
+ultimately enhancing overall model performance.
+
+Named \texttt{LingerRegressor} and \texttt{LingerClassifier}, our custom models are designed to leverage the training from differences approach, 
+distinguishing them within the machine learning landscape.
+
+Central to our efforts is ensuring the seamless testability of introduced variations, akin to Scikit-learn's comprehensive hyperparameter testing framework. 
+This rigorous analysis empowers stakeholders to make informed decisions about the efficacy and applicability of our models to specific tasks.
+
+However, we encountered the critical challenge of compatibility during model development. Our codebase is structured as a downloadable package, 
+seamlessly integrating with Scikit-learn's ecosystem to ensure interoperability across various datasets and environments. 
+This compatibility enhances accessibility and usability for practitioners in diverse machine learning endeavors.
+
+\section{Linger Regression Base Model: \texttt{LingerRegressor} (LR)}
+\label{sec:linger_regression_base_model}
 \subsection{Objective}
 The Linger Regression Base Model integrates principles of Case-Based Reasoning (CBR) into regression analysis to enhance interpretability and create a performative model. The objectives include:
 
@@ -658,8 +789,8 @@ During the predict phase, a K-nearest neighbors (KNN) is used once again with th
 Extensive parameterization allows fine-tuning of KNN, \texttt{MLPRegressor}, and additional features. 
 All the same hyperparameters are available as in a conventional (KNN) and neural network, with additional hyperparameters for \texttt{LingerRegressor}.
 
-\subsection{Training and Prediction}
-\subsubsection{Training}
+\subsection{Training and Prediction Design}
+\subsubsection{Training Design}
 Given dataset $D$, split it into $D^{train}$ and $D^{test}$ with an $80\%$-$20\%$ split through random selection. 
 For each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$, retrieve $n$ similar cases from $D^{train}$, $(X^{train}_j, y^{train}_j) \in D^{train}$ 
 using Scikit-learn's neighbors module. Compute the differences between $C_i$ and its neighbors and append them to $\Delta D^{train}$ as $(X^{train}_i-X^{train}_j, y^{train}_i-y^{train}_j)$.
@@ -683,7 +814,7 @@ using Scikit-learn's neighbors module. Compute the differences between $C_i$ and
     \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Prediction}
+\subsubsection{Prediction Design}
 During prediction, for each case $X^{test}_j$, retrieve $n$ similar cases from $D^{train}$. Compute the differences $\Delta X^{test}_{ij} = X^{test}_j - X^{train}_i$ for each neighbor. 
 Use the trained neural network to predict $\Delta X^{test}_{ij}$, resulting in $\Delta X^{pred}_{ij}$. 
 For each set of retrieved neighbors from $D^{train}$, calculate $y^{train}_i + \Delta X^{pred}_{ij}$ and add each $n$ neighbors adapted $y$ values. 
@@ -710,6 +841,118 @@ Once summed, divide by $n$ to obtain $y^{pred}_j$. Compare $y^{pred}_j$ to $y^{t
     \end{algorithmic}
 \end{algorithm}
 
+\subsection{Training and Prediction Implementation}
+\subsubsection{Training Implementation}
+During training, the algorithm fits the base Linger Regressor to the input dataset $X$ and the corresponding label vector $y$. 
+It computes the nearest neighbors for each sample in $X$ and constructs the input features and target 
+labels for the regressor by calculating the differences between each sample and its neighbors. 
+These differences are then used to train the regressor, and the trained model along with the 
+training data are stored for later use. It makes use of scikit-learns \cite{scikit-learn} \text{NearestNeighbors}, \text{numpy} and \text{MLPRegressor}.
+
+\begin{algorithm}[H]
+    \caption{Training Implementation Algorithm for Base Linger Regressor}
+    \textbf{Input:} Dataset, $X$, label vector $y$, number of neighbors $n\_neighbors\_1$
+    \label{alg:base_linger_regressor_train_implementation}
+    \begin{algorithmic}[1]
+        \Function{fit}{$X$, $y$}
+            \State Increment $n\_neighbours\_1$
+            \Comment Fit scikit-learns \text{NearestNeighbors} function to $X$
+            \State $neighbors = NearestNeighbors(n\_neighbors=n\_neighbors\_1).fit(X)$
+            \State Compute nearest neighbors for each sample in $X$
+            \State Compute the indexes and distances, of nearest neighbors in $X$
+            \State distances, indices $= neighbors.kneighbors(X)$
+            \State $differences\_X = []$ 
+            \State $differences\_y = []$
+            \If{$variant == 1$ (LRV1)}
+                \State Call $addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
+                \State $differences\_X, differences\_y = addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
+            \ElsIf{$variant == 2$ (LRV2)}
+                \State Call $duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y, distances)$
+                \State $differences\_X, differences\_y = duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y, distances)$
+            \ElsIf{$variant == 3$ (LRV3)}
+                \State Call $add\_additional\_distance\_column(differences\_X, distances)$
+                \State $differences\_X = add\_additional\_distance\_column(differences\_X, distances)$
+            \Else
+                \For{each sample $i$ in nearest neighbors indices}
+                    \State $base \gets$ Index of base case
+                    \For{each neighbor $n$ of $i$}
+                        \State Append $(X[base] - X[n])$ to $differences\_X$
+                        \State Append $(y[base] - y[n])$ to $differences\_y$
+                    \EndFor
+                \EndFor  
+            \EndIf
+            \State Fit \texttt{MLPRegressor} with $differences\_X$ and $differences\_y$
+            \State Set $train\_X = X$
+            \State Set $train\_y = y$
+            \State \textbf{return} Fitted \texttt{LingerRegressor}
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Prediction Implementation}
+During prediction, the algorithm utilizes the fitted Nearest Neighbors model to identify the nearest neighbors for each sample in the input data $X$. 
+It then computes the differences between each sample in $X$ and its corresponding neighbors, 
+preparing the input features for the regressor. After predicting the differences using the trained regressor, 
+the algorithm aggregates the predictions to obtain the final predicted target values for each sample in $X$.
+If weighted KNN is enabled, the predictions are weighted based on the distances to the neighbors, 
+providing more influence to closer neighbors in the prediction process. 
+This offers a different form of nearest neighbors. Where values are weighted based on their proximity to the base case.
+It makes use of scikit-learns \cite{scikit-learn} \text{NearestNeighbors}, and \text{numpy}.
+
+\begin{algorithm}[H]
+    \caption{Prediction Implementation Algorithm for Base Linger Regressor}
+    \textbf{Input:} Input data, $X$, number of neighbors $n\_neighbors\_2$
+    \label{alg:base_linger_regressor_predict}
+    \begin{algorithmic}[1]
+        \Function{predict}{$X$}
+            \State Fit Nearest Neighbors model with $n\_neighbours\_2$ using $train\_X$
+            \State Compute nearest neighbors for each sample in $X$, 
+            \State Compute the indexes and distances, of nearest neighbors in $X$
+            \State Initialize empty list $differences\_test\_X$
+            \State $is\_sparse\_X \gets$ Check if $X$ is sparse
+            \If{$is\_sparse\_X$}
+                \State Convert $X$ to dense array
+            \EndIf
+            \For{each sample $test$ in $X$}
+                \For{each nearest neighbor $nn\_in\_training$ in $indices[test]$}
+                    \State Append $(X[test, :] - train\_X[indices[test][nn\_in\_training], :])$ to $differences\_test\_X$
+                \EndFor
+            \EndFor
+            \If{$variant == 1$ (LRV1)}
+                \State Call $addition\_of\_context\_func\_pred(differences\_test\_X, X)$
+                \State $differences\_test\_X_= addition\_of\_context\_func\_pred(differences\_test\_X, X)$
+            \ElsIf{$variant == 3$ (LRV3)}
+                \State Call $add\_additional\_distance\_column(differences\_test\_X, distances)$
+                \State $differences\_X = add\_additional\_distance\_column(differences\_test\_X, distances)$
+            \EndIf
+            \State $predictions \gets$ Predict using \texttt{LingerRegressor} with $differences\_test\_X$
+            \State Split $predictions$ into batches of size $n\_neighbours\_2$
+            \State Initialise $y\_pred$ as an empty list 
+            \State $y\_pred = []$
+            \If{Weighted KNN is enabled}
+                \For{each $indexes$, $differences$, $dist$ in $zip(indices, predictions, distances)$}
+                    \State Compute weights for each neighbor
+                    \State $weights = 1 \div (dist + 1e-8)$
+                    \State Compute weighted sum of target values
+                    \State $weighted\_sum = sum(w \times (train\_y[i] + d) for \space i, d, w \space \space in \space zip(indexes, differences, weights))$ 
+                    \State Compute weighted average
+                    \State $weighted\_avg = weighted\_sum \div sum(weights)$
+                    \State Append $weighted\_avg$ to $y\_pred$
+                \EndFor
+            \Else
+                \For{each $indexes$, $differences$ in $zip(indices, predictions)$}
+                    \State Compute sum of target values
+                    \State $sum\_result =  sum((train\_y[i] + d) for \space i, d \space \space in \space zip(indexes, differences))$ 
+                    \State Compute average
+                    \State $avg\_res = sum\_result \div n\_neighbours\_2$
+                    \State Append $avg\_res$ to $y\_pred$
+                \EndFor
+            \EndIf
+            \State \textbf{return} $y\_pred$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
 \subsection{Evaluation}
 Evaluation metrics include Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared ($R^2$) to assess model accuracy and performance.
 
@@ -733,7 +976,16 @@ Future work includes:
     \item Interpretability Improvements: Exploring techniques to enhance model interpretability for complex datasets.
 \end{itemize}
 
-\section{Linger Classification Base Model: \texttt{LingerClassifier}}
+\subsection{Conclusion}
+In conclusion, the \texttt{LingerRegressor} model presents a novel approach to regression analysis by integrating principles of Case-Based Reasoning (CBR) and the learning from differences methodology. 
+Through the combination of K-nearest neighbors (KNN) and \texttt{MLPRegressor}, the model offers flexibility, accuracy, and interpretability in regression tasks. 
+The implementation of supplementary features further enhances its adaptability and performance. Despite its limitations, the model shows promise in addressing the challenges 
+of transparent and dynamic regression modeling. Future research can focus on refining the model's robustness to noise and improving its interpretability for complex datasets. 
+Overall, the \texttt{LingerRegressor} model contributes to the advancement of machine learning methodologies, providing a valuable tool for regression analysis in diverse domains where a more interpretable model is needed.
+
+
+\section{Linger Classification Base Model: \texttt{LingerClassifier} (LC)}
+\label{sec:linger_classification_base_model}
 
 \subsection{Objective}
 The objective of the Linger Classification Base Model (\texttt{LingerClassifier}) is to extend the learning from differences methodology to classification tasks. The primary goals include:
@@ -764,10 +1016,10 @@ The key components of the \texttt{LingerClassifier} include:
 The model provides extensive parameterization options for fine-tuning KNN, \texttt{MLPClassifier}, and additional features. 
 Hyperparameters for the classification model mirror those available in standard KNN and neural networks, with additional parameters specific to \texttt{LingerClassifier}.
 
-\subsection{Training and Prediction}
+\subsection{Training and Prediction Design}
 The training and prediction algorithms for the \texttt{LingerClassifier} are similar to those of the \texttt{LingerRegressor}, with adjustments made to accommodate classification tasks.
 
-\subsubsection{Training Algorithm}
+\subsubsection{Training Algorithm Design}
 During training, the algorithm computes differences between cases and their nearest neighbors, similar to the regression model. 
 However, the adaptation of class labels is based on the majority class among the nearest neighbors.
 
@@ -789,7 +1041,7 @@ However, the adaptation of class labels is based on the majority class among the
     \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Prediction Algorithm}
+\subsubsection{Prediction Algorithm Design}
 During prediction, the algorithm adapts class labels based on the majority class among the nearest neighbors' labels.
 
 \begin{algorithm}
@@ -812,6 +1064,122 @@ During prediction, the algorithm adapts class labels based on the majority class
 	\end{algorithmic}
 \end{algorithm}
 
+\subsection{Training and Prediction Implementation}
+\subsubsection{Training Algorithm Implementation}
+The provided algorithm outlines the prediction process for the Linger Classifier implemented in Python. 
+It begins by fitting a Nearest Neighbors model with a specified number of neighbors using the training data. 
+Next, it computes the nearest neighbors for each sample in the input data and initializes an empty list 
+to store the differences between the test samples and their corresponding neighbors. 
+If the input data is sparse, it is converted to a dense array for compatibility. 
+The algorithm then iterates through each test sample and its nearest neighbors to calculate the feature differences. 
+After computing the differences, it proceeds to make predictions using the trained classifier. 
+If weighted KNN is enabled, it calculates the weighted results based on the differences and distances 
+to determine the item with the highest weighted sum as the prediction. 
+Otherwise, it finds the most common item among the predictions. 
+Finally, the predicted target values are aggregated and returned as the output of the algorithm.
+
+\begin{algorithm}[H]
+    \caption{Training Implementation Algorithm for Base Linger Classifier}
+    \textbf{Input:} Dataset, $X$, label vector $y$, number of neighbors $n\_neighbors\_1$
+    \label{alg:base_linger_classifier_train_implementation}
+    \begin{algorithmic}[1]
+        \Function{fit}{$X$, $y$}
+            \State Increment $n\_neighbors\_1$
+            \State $neighbors \gets$ Fit scikit-learn's \texttt{NearestNeighbors} function to $X$
+            \State Compute nearest neighbors for each sample in $X$
+            \State distances, indices $\gets$ neighbors.kneighbors($X$)
+            \State $differences\_X \gets []$
+            \State $differences\_y \gets []$
+            \If{$variant == 1$ (LCV1)}
+                \State Call $addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
+                \State $differences\_X, differences\_y = addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
+            \ElsIf{$variant == 2$ (LCV2)}
+                \State Call $duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y, distances)$
+                \State $differences\_X, differences\_y = duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y, distances)$
+            \ElsIf{$variant == 3$ (LCV3)}
+                \State Call $add\_additional\_distance\_column(differences\_X, distances)$
+                \State $differences\_X = add\_additional\_distance\_column(differences\_X, distances)$
+            \Else
+                \For{each sample $i$ in nearest neighbors indices}
+                    \State $base \gets$ Index of base case
+                    \For{each neighbor $n$ of $i$}
+                        \State Append $(X[base] - X[n])$ to $differences\_X$
+                        \State Append $(y[base] - y[n])$ to $differences\_y$
+                    \EndFor
+                \EndFor  
+            \EndIf
+            \State Fit \texttt{MLPClassifier} with $differences\_X$ and $differences\_y$
+            \State Set $train\_X = X$
+            \State Set $train\_y = y$
+            \State \textbf{return} Fitted \texttt{LingerClassifier}
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Prediction Algorithm Implementation}
+The prediction algorithm for the Linger Classifier, implemented in Python, outlines the process of predicting 
+target values for the input data. Initially, it fits a Nearest Neighbors model with a specified number of 
+neighbors using the training data. Then, it computes the nearest neighbors for each sample in the input 
+data and initializes an empty list to store the feature differences between the test samples and their corresponding neighbors. 
+If the input data is sparse, it is converted to a dense array for compatibility. 
+The algorithm iterates through each test sample and its \texttt{NearestNeighbors} to calculate the feature differences. 
+After computing the differences, it proceeds to make predictions using the trained \texttt{LingerClassifier}. 
+If weighted KNN is enabled, it calculates the weighted sum of target values for each neighbor based on the differences 
+and distances, and selects the item with the highest weighted sum as the prediction. Otherwise, 
+it finds the most common item among the predictions. Finally, the predicted target values are aggregated and returned 
+as the output of the algorithm.
+\begin{algorithm}[H]
+    \caption{Prediction Algorithm for Linger Classifier}
+    \textbf{Input:} Input data, $X$, number of neighbors $n\_neighbours\_2$
+    \label{alg:linger_classifier_predict_implementation}
+    \begin{algorithmic}[1]
+        \Function{predict}{$X$}
+            \State Fit Nearest Neighbors model with $n\_neighbours\_2$ using $train\_X$
+            \State Compute nearest neighbors for each sample in $X$
+            \State Initialize empty list $differences\_test\_X$
+            \State $is\_sparse\_X \gets$ Check if $X$ is sparse
+            \If{$is\_sparse\_X$}
+                \State Convert $X$ to dense array
+            \EndIf
+            \For{each sample $test$ in $X$}
+                \For{each nearest neighbor $nn\_in\_training$ in $indices[test]$}
+                    \State Append $(X[test, :] - \text{train\_X}[indices[test][nn\_in\_training], :])$ to $differences\_test\_X$
+                \EndFor
+            \EndFor
+            \If{$variant == 1$ (LCV1)}
+                \State Call $addition\_of\_context\_func\_pred(differences\_test\_X, X)$
+                \State $differences\_test\_X_= addition\_of\_context\_func\_pred(differences\_test\_X, X)$
+            \ElsIf{$variant == 3$ (LCV3)}
+                \State Call $add\_additional\_distance\_column(differences\_test\_X, distances)$
+                \State $differences\_X = add\_additional\_distance\_column(differences\_test\_X, distances)$
+            \EndIf
+            \State $predictions \gets$ Predict using \texttt{LingerClassifier} with $differences\_test\_X$
+            \State Split $predictions$ into batches of size $n\_neighbours\_2$
+            \State Initialise $y\_pred$ as an empty list 
+            \State $y\_pred = []$
+            \If{Weighted KNN is enabled}
+                \For{each $indexes$, $differences$, $distance$ in $zip(indices, differences\_test\_X, distances)$}
+                    \State Compute weights for each neighbor
+                    \State $weights = 1 \div (dist + 1e-8)$
+                    \State Compute weighted sum of target values,
+                    \State $weighted\_sum = []$
+                    \State $\text{weighted\_sum} = \left[ w \times \left( train\_y[i] + d \right) \right] \text{ for } i, d, w \text{ in } \text{zip(indexes, differences, weights)}$
+                    \State Find the item with the highest weighted sum
+                    \State $max\_sum = max(weighted\_sum)$
+                    \State Append $max\_sum$ to $y\_pred$
+                \EndFor
+            \Else
+                \For{each $indexes$, $differences$ in $zip(indices, predictions)$}
+                    \State $results = [train_y[i] + d for i, d in zip(indexes, differences)]$
+                    \State Find the most common item in $results$
+                    \State $result = most_common(results)$
+                    \State Append the $result$ to $y\_pred$
+                \EndFor
+            \EndIf
+            \State \textbf{return} $y\_pred$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
 \subsection{Evaluation}
 Evaluation metrics for the \texttt{LingerClassifier} include accuracy, precision, recall, F1-score, and confusion matrix analysis. 
 These metrics provide insights into the model's performance and its ability to classify instances accurately.
@@ -836,19 +1204,20 @@ Future work may focus on improving noise robustness and enhancing interpretabili
 The \texttt{LingerClassifier} offers a novel approach to classification tasks by integrating the learning from differences methodology. 
 Its modular design and extensible architecture make it well-suited for a wide range of classification problems, particularly those where interpretability and adaptability are paramount.
 
-
-\section{Variations}
-\subsection{Variation 1: Addition of Context}
+For more details on the \texttt{LingerClassifier}, and \texttt{LingerRegressor} variations, refer to Table \ref{table:linger_regressor_classifier_variations}.
+\section{Variations For \texttt{LingerRegressor} (LR) and \texttt{LingerClassifier} (LC)}
+\subsection{Variation 1: Addition of Context Design and Implementation (LRV1, LCV1)}
+\label{sec:linger_regr_class_variation1_model}
 
 \subsubsection{Objective}
 The objective of adding context is to incorporate the original attribute values of the source cases into the generated differences array. 
 This ensures that the new datasets used for fitting and prediction contain both the original attribute values of the source cases and the differences between them and their nearest neighbors. 
-This may aid in the learning process and improves the model. Its design is the same for both the \texttt{LingerRegressor} and \texttt{LingerClassifier}.
+This may aid in the learning process and improve the model. Its design is the same for both the \texttt{LingerRegressor} and \texttt{LingerClassifier}.
 
-\subsubsection{Implementation for Training}
+\subsubsection{Training Design}
 \begin{algorithm}[H]
     \caption{Training Algorithm for Learning from Differences, with context included in \texttt{LingerClassifier} and \texttt{LingerRegressor}}
-    \label{alg:learning_from_differences_variant_1_train}
+    \label{alg:training_variant_1_linger}
     \begin{algorithmic}[1]
         \State Split the dataset $D$ into training set $D^{train}$ and test set $D^{test}$ using an $80\%$-$20\%$ split.
         \State Initialize $\Delta D^{train}$ as an empty list.
@@ -864,11 +1233,10 @@ This may aid in the learning process and improves the model. Its design is the s
     \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Implementation for Predict}
-
+\subsubsection{Prediction Design}
 \begin{algorithm}[H]
 	\caption{Prediction Algorithm for Variant 1, context included.}
-	\label{alg:learning_from_differences_variant_1_predict}
+	\label{alg:prediction_variant_1}
 	\textbf{Input:} Test dataset $D^{test}$, trained neural network model $Trained NN()$, number of neighbors $n$
 	\begin{algorithmic}[1]
         \State Initialize $y^{pred}$ as an empty list.
@@ -890,7 +1258,65 @@ This may aid in the learning process and improves the model. Its design is the s
 	\end{algorithmic}
 \end{algorithm}
 
-\subsection{Variation 2: Duplication Based on Distance}
+\subsubsection{Training Implementation}
+This algorithm is called during the Fit stage of both the \texttt{LingerClassifier}, and \texttt{LingerRegressor}.
+
+\begin{algorithm}[H]
+    \caption{Context Addition Function for Base Linger Classifier}
+    \textbf{Input:} Dataset $X$, label vector $y$, nearest neighbor indices $indices$, differences in $X$ $differences\_X$, differences in $y$ $differences\_y$
+    \textbf{Output:} Updated differences in $X$ $differences\_X$, updated differences in $y$ $differences\_y$
+    \label{alg:context_addition_fit}
+    \begin{algorithmic}[1]
+        \Function{$addition\_of\_context\_func\_fit$}{$X$, $y$, $indices$, $differences\_X$, $differences\_y$}
+            \For{$i$ in $indices$}
+                \State $base \gets i[0]$
+                \State $neighbors \gets i[1:]$
+                \For{$n$ in $neighbors$}
+                    \State $base\_case \gets X[base]$
+                    \State $diff \gets X[base] - X[n]$
+                    \State $combined\_list \gets []$
+                    \For{$pair$ in $zip(diff, base\_case)$}
+                        \For{$item$ in $pair$}
+                            \State Append $item$ to $combined\_list$
+                        \EndFor
+                    \EndFor
+                    \State Append $\text{np.array}(combined\_list)$ to $differences\_X$
+                    \State Append $y[base] - y[n]$ to $differences\_y$
+                \EndFor
+            \EndFor
+            \State \textbf{return} $differences\_X$, $differences\_y$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Prediction Implementation}
+This algorithm is called during the predict algorithm for both the \texttt{LingerClassifier}, and \texttt{LingerRegressor}.
+\begin{algorithm}[H]
+    \caption{Context Addition Function for Base Linger Classifier during Prediction}
+    \textbf{Input:} Differences in test data $differences\_test\_X$, input data $X$
+    \textbf{Output:} Combined differences in test data $combined\_differences\_test\_X$
+    \label{alg:context_addition_pred}
+    \begin{algorithmic}[1]
+        \Function{$addition\_of\_context\_func\_pred$}{$differences\_test\_X$, $X$}
+            \State $combined\_differences\_test\_X \gets []$
+            \State $duplicated\_test\_data \gets [item \text{ for } item \text{ in } X \text{ for } \_ \text{ in } range(\text{n\_neighbours\_2})]$
+            \State $num\_items \gets \text{length of } duplicated\_test\_data$
+            \For{$item\_pos$ in range($num\_items$)}
+                \State $combined\_list \gets []$
+                \For{$pair$ in $zip(differences\_test\_X[item\_pos], duplicated\_test\_data[item\_pos])$}
+                    \For{$item$ in $pair$}
+                        \State Append $item$ to $combined\_list$
+                    \EndFor
+                \EndFor
+                \State Append $\text{np.array}(combined\_list)$ to $combined\_differences\_test\_X$
+            \EndFor
+            \State \textbf{return} $combined\_differences\_test\_X$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Variation 2: Duplication Based on Distance Design and Implementation (LRV2, LCV2)}
+\label{sec:linger_regr_class_variation2_model}
 
 \subsubsection{Objective}
 A novel variation introduced in this study involves duplicating differences based on distance, aiming to amplify the influence of neighbors closely resembling the base case. 
@@ -915,12 +1341,13 @@ thereby improving its predictive accuracy and generalization capabilities.
     
     \item \textbf{Duplicate Items}: Duplicate each item $\Delta D^{train}_{ij}$ by the corresponding distance in $Distances_{ij}$. 
     It's important to note that this duplication process can significantly increase the size of the dataset and, consequently, the training time overhead.
+    The process of duplication is only used in the training process of the algorithm.
 \end{enumerate}
 
-\subsubsection{Implementation for Training}
+\subsubsection{Training Design}
 \begin{algorithm}[H]
     \caption{Duplication Based on Distance in \texttt{LingerClassifier} and \texttt{LingerRegressor}}
-    \label{alg:duplication_based_on_distance_train}
+    \label{alg:duplication_design_based_on_distance_train}
     \textbf{Input:} Distances $Distances_{ij}$, Base dataset $\Delta D^{train}$
     \begin{algorithmic}[1]
         \State Normalize Distances:
@@ -944,7 +1371,60 @@ thereby improving its predictive accuracy and generalization capabilities.
     \end{algorithmic}
 \end{algorithm}
 
-\subsection{Variation 3: Addition of Distance Column}
+\subsubsection{Training Implementation}
+\begin{algorithm}[H]
+    \caption{Difference Duplication Based on Distance}
+    \label{alg:duplication_Implementation_based_on_distance_train}
+    \begin{algorithmic}[1]
+        \Function{$duplicate\_difference\_based\_on\_distance$}{$differences\_X$, $differences\_y$, $distances$}
+            \State $distances\_X \gets []$
+            \For{$d$ in $distances$}
+                \State $neighbors \gets d[1:]$
+                \For{$n$ in $neighbors$}
+                    \State append $n$ to $distances\_X$
+                \EndFor
+            \EndFor
+            \State $distances\_array \gets np.array(distances\_X)$
+            \State $log\_values \gets np.log(distances\_array + 1)$
+            \State $min\_val \gets np.min(log\_values)$
+            \State $max\_val \gets np.max(log\_values)$
+            \If{$min\_val == max\_val$}
+                \State $scaled\_distances\_rounded \gets np.ones\_like(log\_values).astype(int)$
+            \Else
+                \State $scaled\_distances \gets 10 - ((log\_values - min\_val) / (max\_val - min\_val) \times 10)$
+                \State $scaled\_distances\_rounded \gets np.round(scaled\_distances).astype(int)$
+            \EndIf
+            \State $filtered\_data\_X \gets []$
+            \State $filtered\_data\_y \gets []$
+            \For{each $item, count$ in zip($differences\_X, scaled\_distances\_rounded$)}
+                \If{$count \neq 0$}
+                    \State append $item$ to $filtered\_data\_X$
+                \EndIf
+            \EndFor
+            \For{each $item, count$ in zip($differences\_y, scaled\_distances\_rounded$)}
+                \If{$count \neq 0$}
+                    \State append $item$ to $filtered\_data\_y$
+                \EndIf
+            \EndFor
+            \State $duplicated\_list\_X \gets []$
+            \State $duplicated\_list\_y \gets []$
+            \For{each $item, count$ in zip($filtered\_data\_X, scaled\_distances\_rounded$)}
+                \For{$\_ \gets 1$ to $count$}
+                    \State append $item$ to $duplicated\_list\_X$
+                \EndFor
+            \EndFor
+            \For{each $item, count$ in zip($filtered\_data\_y, scaled\_distances\_rounded$)}
+                \For{$\_ \gets 1$ to $count$}
+                    \State append $item$ to $duplicated\_list\_y$
+                \EndFor
+            \EndFor
+            \State \textbf{return} $duplicated\_list\_X$, $duplicated\_list\_y$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Variation 3: Addition of Distance Column Design and Implementation (LRV3, LCV3)}
+\label{sec:linger_regr_class_variation3_model}
 
 \subsubsection{Objective}
 Variation 3 introduces a novel approach by incorporating the distance between each base case and its nearest neighbor into both the training and prediction 
@@ -958,7 +1438,7 @@ The motivation behind this variation lies in its potential to provide the model 
 By considering distance as a factor in the learning process, the model can better capture nuanced patterns and relationships, 
 resulting in more robust and reliable predictions.
 
-\subsubsection{Implementation for Training}
+\subsubsection{Design for Training}
 In the fit phase, the distances between each base case $D^{train}_i$ and its nearest neighbor in $D^{train}$ are computed and stored in $Distances_{ij}$.
 To incorporate these distances into the training data, each distance in $Distances_{ij}$ is concatenated with the corresponding difference $\Delta D^{train}$.
 This results in a new dataset where each difference is paired with its corresponding distance, ensuring a one-to-one ratio between distances and differences.
@@ -986,14 +1466,13 @@ This results in a new dataset where each difference is paired with its correspon
     \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Implementation for Predict}
+\subsubsection{Design for Predict}
 In the prediction phase, distances between each test case $X^{test}_j$ and its nearest neighbors in $D^{train}$ are stored in $Distances_{ji}$.
 These distances are concatenated with the corresponding differences $\Delta X^{test}$, ensuring a one-to-one ratio between distances and differences in the prediction dataset.
 
 \begin{algorithm}[H]
 	\caption{Prediction Algorithm for Learning from Differences with Additional Distance Column}
 	\label{alg:learning_from_differences_variant_3_predict}
-
 	\textbf{Input:} Test dataset $D^{test}$, Trained neural network model, Number of neighbors $n$, $Trained NN()$
 
 	\begin{algorithmic}[1]
@@ -1019,7 +1498,42 @@ These distances are concatenated with the corresponding differences $\Delta X^{t
 	\end{algorithmic}
 \end{algorithm}
 
+\subsubsection{Implementation for Training, and Prediction}
+The same function is called during both predict and training.
+\begin{algorithm}[H]
+    \caption{Add Additional Distance Column}
+    \textbf{Input:}  Differences dataset $differences\_X$, Distances of the nearest neighbors $distances$
+    \begin{algorithmic}[1]
+        \Function{$add\_additional\_distance\_column$}{$differences\_X, distances$}
+            \State Adds an additional column with distance values associated with each $differences\_X$ during fitting.
+            \State \textbf{Output:} $\text{differences\_X}$ with an additional column.
+            \For{$i$ \textbf{in} range($len(distances)$)}
+                \State $diff\_res \gets$ Convert $distances[i]$ to numpy array
+                \State Append $diff\_res$ to $differences\_X[i]$
+            \EndFor
+            \State \textbf{return} $\text{differences\_X}$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\section{Acronym Guide}
+\begin{table}[ht]
+    \centering
+    \caption{Variations for \texttt{LingerRegressor} and \texttt{LingerClassifier}}
+    \begin{tabular}{ |c|c| }
+        \hline
+        \textbf{Variation} & \textbf{Acronym} \\
+        \hline
+        Addition of Context & LRV1, LCV1 \\
+        Duplication Based on Distance & LRV2, LCV2 \\
+        Addition of Distance Column & LRV3, LCV3 \\
+        \hline
+    \end{tabular}
+    \label{table:linger_regressor_classifier_variations}
+\end{table}
+
 \section{Learning From differences Implicitly}
+
 \subsection{Introduction and Motivation}
 This design segment aims to implement and extend the algorithms proposed by Ye et al. \cite{ye2021learning} for both classification and regression tasks. 
 The primary objective is to develop a unified framework where a single set of algorithms can be employed for 
@@ -1036,7 +1550,8 @@ Algorithm \ref{alg:Classification_Varient3_5_using_CBH_predict_alg20} can be ext
 By extending the application of Variant 5 to regression tasks, we aim to provide a comprehensive and versatile framework for both classification and regression tasks, 
 harnessing the power of implicit learning from differences within case pairs.
 
-\section{Linger Implicit Classification Base Model: \texttt{LingerImplicitClassifier}}
+\section{Linger Implicit Classification Base Model: \texttt{LingerImplicitClassifier} (LIC)}
+\label{sec:lingerImplicit_classification_base_model}
 
 \subsection{Objective}
 The objective of the Linger Implicit Classification Base Model (\texttt{LingerImplicitClassifier}) is to 
@@ -1081,10 +1596,10 @@ The key components of the \texttt{LingerClassifier} include:
 The model provides extensive parameterization options for fine-tuning KNN, \texttt{MLPClassifier}, and additional features. 
 Hyperparameters for the classification model mirror those available in standard KNN and neural networks, with additional parameters specific to \texttt{LingerClassifier}.
 
-\subsection{Training and Prediction}
+\subsection{Training and Prediction Design}
 The training and prediction algorithms for the \texttt{LingerImplicitClassifier}.
 
-\subsubsection{Training Algorithm}
+\subsubsection{Training Algorithm Design}
 \begin{algorithm}[H]
     \caption{Training Algorithm for \texttt{LingerImplicitClassifier}}
     \label{alg:LingerImplicitClassifier_train}
@@ -1109,13 +1624,14 @@ The training and prediction algorithms for the \texttt{LingerImplicitClassifier}
     \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Prediction Algorithm}
+\subsubsection{Prediction Algorithm Design} 
+\label{sec:lingerImplicit_classification_baseV1V2_model}
+
 During the prediction phase, various methods exist for retrieving neighbors within each class. These methods can be categorized into three variants:
 
 \begin{enumerate}
-\item \textbf{Variant 1:} Selecting the $N$ nearest neighbors from each class.
-\item \textbf{Variant 2:} Selecting $N$ random items from each class.
-\item \textbf{Variant 3:} Selecting the single nearest neighbor from each class.
+\item \textbf{Variant 1:} (LICV1) Selecting $N$ random items from each class.
+\item \textbf{Variant 2:} (LICV2) Selecting the single nearest neighbor from each class.
 \end{enumerate}
 
 Each variant may be suitable depending on the specific characteristics of the dataset and the objectives of the prediction task.
@@ -1128,11 +1644,11 @@ Each variant may be suitable depending on the specific characteristics of the da
         \For{each case $X^{test}_j \in D^{test}$}
             \State Create an empty list $preds$
             \For{each unique class $Class$ in $UniqueClasses$}
-                \If{variant 1}
+                \If{Base version: (LIC)}
                     \State Retrieve $N$ nearest neighbors from $CasePairs(Class)$
-                \ElsIf{variant 2}
+                \ElsIf{variant 1: (LICV1)}
                     \State Select $N$ random items from $CasePairs(Class)$
-                \ElsIf{variant 3}
+                \ElsIf{variant 2: (LICV2)}
                     \State Select the single nearest neighbor from $CasePairs(Class)$
                 \EndIf
                 \For{each selected case $(X^{CasePair}_i, y^{CasePair}_i)$}
@@ -1145,6 +1661,154 @@ Each variant may be suitable depending on the specific characteristics of the da
             \EndFor
         \EndFor
         \State \textbf{return} $y^{pred}$
+    \end{algorithmic}
+\end{algorithm}
+\subsection{Training and Prediction Implementation}
+
+\subsubsection{Training Algorithm Implementation}
+\label{sec:training_implementation_LIC}
+The \texttt{fit} function of the \texttt{LingerImplicitClassifier} model trains the classifier using the provided training data $X$ and target labels $y$. 
+It begins by handling input data, converting sparse matrices to dense arrays if necessary. 
+Next, it initializes structures to store trained adaptation neural networks and unique classes. 
+The algorithm then computes the nearest neighbors for each sample in $X$, generates pairs of cases (consisting of base and retrieved cases), 
+and organizes the data based on class labels. Finally, it trains adaptation neural networks for each class label using the generated case pairs and target labels. 
+Overall, this process enables the \texttt{LingerImplicitClassifier} model to adapt to specific instances retrieved during inference, 
+enhancing its performance on the task.
+
+\begin{algorithm}[H]
+    \caption{Fit Function for LingerImplicitClassifier}
+    \textbf{Input:} Training data $X$, target labels $y$
+    \label{alg:linger_implicit_classifier_fit_implementation}
+    \begin{algorithmic}[1]
+        \Function{fit}{$X$, $y$}
+            \State $is\_sparse\_X \gets$ Check if $X$ is sparse
+            \State $is\_sparse\_y \gets$ Check if $y$ is sparse
+            \If{$is\_sparse\_X$}
+                \State Convert $X$ to dense array
+            \EndIf
+            \If{$is\_sparse\_y$}
+                \State Convert $y$ to dense array
+            \EndIf
+            \State $classes\_ \gets$ Get unique classes from $y$
+            \State $adaptation\_networks\_ \gets \{\}$
+            \State $neighbours \gets$ Fit Nearest Neighbors with $X$
+            \State $distances, indices \gets$ Compute nearest neighbors for each sample in $X$
+            \State Initialize $case\_pairs\_X$ and $case\_pairs\_y$
+            \For{each $i$ in $indices$}
+                \State $base \gets i[0]$
+                \State $neighbors \gets i[1:]$
+                \For{each $n$ in $neighbors$}
+                    \State $case\_x \gets [X[base],  X[n]]$
+                    \State $case\_y \gets [y[base], y[n]]$
+                    \State Append $case\_x$ to $case\_pairs\_X$
+                    \State Append $case\_y$ to $case\_pairs\_y$
+                \EndFor
+            \EndFor
+            \State Initialize dictionaries: $case\_pairs\_by\_class$, $cases\_without\_concatenation$, $case\_pairs\_y$
+            \For{each $(source, target)$ in $zip(case\_pairs\_X, case\_pairs\_y)$}
+                \State Append $source[0]$ to $cases\_without\_concatenation[target[1]]$
+                \State $problem\_query \gets$ Concatenate $source[0]$ and $source[1]$
+                \State Append $problem\_query$ to $case\_pairs\_by\_class[target[1]]$
+                \State Append $target[0]$ to $case\_pairs\_y[target[1]]$
+            \EndFor
+            \For{each $class\_label, cases$ in $case\_pairs\_by\_class$}
+                \State Initialize MLPClassifier with parameters
+                \State Fit MLPClassifier with $cases$ and $case\_pairs\_y[class\_label]$
+                \State Store the fitted MLPClassifier in $adaptation\_networks\_[class\_label]$
+            \EndFor
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+\subsubsection{Prediction Algorithm Implementation}
+\label{sec:prediction_implementation_LIC}
+The \texttt{predict} function of the \texttt{LingerImplicitClassifier} model predicts class labels for the input samples. 
+It creates nearest neighbor finders for each class, then iterates through the test samples to predict class labels. 
+Depending on the chosen variant, it either selects nearest neighbors using (LICV1) or a single nearest neighbor using (LICV2). 
+Finally, it performs majority voting to decide the final classification.
+
+\begin{algorithm}[H]
+    \caption{Predict Function for LingerImplicitClassifier}
+    \textbf{Input:} Test data $X$
+    \label{alg:linger_implicit_classifier_predict}
+    \begin{algorithmic}[1]
+        \Function{predict}{$X$}
+            \State $predictions \gets []$
+            \State $is\_sparse\_X \gets$ Check if $X$ is sparse
+            \If{$is\_sparse\_X$}
+                \State Convert $X$ to dense array
+            \EndIf
+            \State $nbrs\_by\_class \gets$ Create nearest neighbor finders for each class
+            \For{each $sample$ in $X$}
+                \If{$variant == 2$ (LICV2)}
+                    \State $class\_predictions \gets$ Predict class labels for $sample$ using $1$ \texttt{NearestNeighbor}
+                \Else
+                    \State $class\_predictions \gets$ Predict class labels for $sample$ using $N$ \texttt{NearestNeighbors}
+                \EndIf
+                \State $majority\_prediction \gets$ Perform majority voting on $class\_predictions$
+                \State Append $majority\_prediction$ to $predictions$
+            \EndFor
+            \State \textbf{return} $predictions$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{Helper: Create Nearest Neighbor Finders}
+    \label{alg:create_nbrs_by_class}
+    \begin{algorithmic}[1]
+        \Function{\_create\_nbrs\_by\_class}{}
+            \State $nbrs\_by\_class \gets \{\}$
+            \For{each $class\_label$ in $classes\_$}
+                \State $n\_neighbors \gets 1$ if $variant == 2$ (LICV2) else $n\_neighbours\_2$
+                \State $nbrs \gets$ $\texttt{NearestNeighbors}(n\_neighbors).fit(cases\_without\_concatenation[class\_label])$
+                \State $nbrs\_by\_class[class\_label] \gets nbrs$
+            \EndFor
+            \State \textbf{return} $nbrs\_by\_class$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{Helper: Predict Class Labels}
+    \label{alg:predict_class}
+    \begin{algorithmic}[1]
+        \Function{$\_predict\_class$}{$sample$, $nbrs\_by\_class$}
+            \State $class\_predictions \gets \{\text{class\_label}: [] \text{ for class\_label in } classes\_\}$
+            \For{each $class\_label$, $nbrs$ in $nbrs\_by\_class.items()$}
+                \If{$variant == 1$ (LICV1)}
+                    \State $indices \gets$ Randomly select $n\_neighbours\_2$ indices from $range(\text{len}(cases\_without\_concatenation[class\_label]))$
+                \Else
+                    \State $distances, indices \gets nbrs.kneighbors([sample])$
+                \EndIf
+                \State $nearest\_neighbors \gets indices[0]$
+                \For{each $neighbor\_index$ in $nearest\_neighbors$}
+                    \State $neighbor\_sample \gets cases\_without\_concatenation[class\_label][neighbor\_index]$
+                    \State $merged\_case\_pair \gets$ Concatenate $neighbor\_sample$ and $sample$
+                    \State $adapted\_prediction \gets$ Predict with $adaptation\_networks\_[class\_label]$ using $merged\_case\_pair$
+                    \State Append $adapted\_prediction[0]$ to $class\_predictions[class\_label]$
+                \EndFor
+            \EndFor
+            \State \textbf{return} $class\_predictions$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{Helper: Perform Majority Voting}
+    \label{alg:majority_vote}
+    \begin{algorithmic}[1]
+        \Function{$\_majority\_vote$}{$class\_predictions$}
+            \State $all\_predictions \gets [prediction \text{ for predictions in } class\_predictions.values() \text{ for prediction in predictions}]$
+            \State $prediction\_counter \gets$ Counter($all\_predictions$)
+            \State $most\_common\_predictions \gets prediction\_counter.most\_common(1)$
+            \State If the case occurs where there is no distinct most common.
+            \If{$\text{len}(most\_common\_predictions) > 1$}
+                \State $majority\_prediction \gets$ Randomly select from $most\_common\_predictions$
+            \Else
+                \State $majority\_prediction \gets most\_common\_predictions$
+            \EndIf
+            \State \textbf{return} $majority\_prediction$
+        \EndFunction
     \end{algorithmic}
 \end{algorithm}
 
@@ -1168,7 +1832,7 @@ It performs well for a variety of classification tasks.
 That could benefit from a more interpretable learning methodology 
 
 \section{Linger Implicit Regression Base Model: \texttt{LingerImplicitRegressor}}
-
+\label{sec:lingerImplicit_regression_base_model}
 \subsection{Objective}
 The objective of the \texttt{LingerImplicitRegressor} is to pioneer a learning methodology seen in \cite{ye2021learning} tailored specifically for regression tasks, known as Learning from Differences. The primary objectives encompass:
 
@@ -1214,10 +1878,10 @@ The key components of the \texttt{LingerRegressor} include:
 \subsection{Parameterization}
 The model provides extensive parameterization options for fine-tuning KNN, \texttt{MLPClassifier}, and additional features. Hyperparameters for the classifier model mirror those available in standard KNN and neural networks, with additional parameters specific to \texttt{LingerRegressor}.
 
-\subsection{Training and Prediction}
+\subsection{Training and Prediction Design}
 The training and prediction algorithms for the \texttt{LingerImplicitRegressor}.
 
-\subsubsection{Training Algorithm}
+\subsubsection{Training Algorithm Design}
 \begin{algorithm}[H]
     \caption{Training Algorithm for \texttt{LingerImplicitRegressor}}
     \label{alg:LingerImplicitRegressor_train}
@@ -1245,50 +1909,51 @@ The training and prediction algorithms for the \texttt{LingerImplicitRegressor}.
     \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Prediction Algorithm}
-During the prediction phase for regression, various methods exist for retrieving neighbors within each class. These methods can be categorized into three variants:
+\subsubsection{Prediction Algorithm Design}
+\label{sec:lingerImplicit_regression_baseV1V2_model}
+
+In the prediction phase for regression, several methods exist for retrieving neighbors within each class. These methods can be categorized into three variants:
 
 \begin{enumerate}
-\item \textbf{Variant 1:} Selecting the $N$ nearest neighbors from each class.
-\item \textbf{Variant 2:} Selecting $N$ random items from each class.
-\item \textbf{Variant 3:} Selecting the single nearest neighbor from each class.
+\item \textbf{Variant 1:} (LIRV1) Selecting $N$ random items from each class.
+\item \textbf{Variant 2:} (LIRV2) Selecting the single nearest neighbor from each class.
 \end{enumerate}
 
-\begin{algorithm}[H]
-    \caption{Prediction Algorithm for \texttt{LingerImplicitRegressor}}
-    \label{alg:LingerImplicitRegressor_predict}
-    \textbf{Input:} Dataset $D^{test}$, Dictionary $AdaptNN()$, Set $UniqueClasses$, and dictionary $CasePairs()$
-    \begin{algorithmic}
-        \State Initialize an empty list $y^{pred}$
-        \For{each case $X^{test}_j \in D^{test}$}
-            \State Create an empty list $preds$
-            \For{each unique class $Class$ in $UniqueClasses$}
-                \If{variant 1}
-                    \State Retrieve $N$ nearest neighbors from $CasePairs(Class)$
-                \ElsIf{variant 2}
-                    \State Select $N$ random items from $CasePairs(Class)$
-                \ElsIf{variant 3}
-                    \State Select the single nearest neighbor from $CasePairs(Class)$
-                \EndIf
-                \For{each selected case $(X^{CasePair}_i, y^{CasePair}_i)$}
-                    \For{each $(X^{train}_z, X^{train}_q) \in X^{CasePair}_i$}
-                        \State $preds.append(AdaptNN(Class).predict(X^{train}_z:X^{test}_j))$
-                    \EndFor
-                \EndFor
-                \State Perform a majority vote on $preds$
-                \State $y^{pred}_j = MajorityVote(preds)$
-            \EndFor
-        \EndFor
-        \State \textbf{return} $y^{pred}$
-    \end{algorithmic}
-\end{algorithm}
+The prediction algorithm mirrors Algorithm \ref{alg:LingerImplicitClassifier_predict}. 
+The key distinction lies in the preprocessing step, where continuous $y$ values are 
+converted into classes to enable accuracy testing.
 
-\subsubsection{Regression to Classification converter function}
-This function serves to categorize regression y target values for training and validation. 
+\subsection{Training and Prediction Implementation}
+Both the LingerImplicitClassifier and LingerImplicitRegressor share the same training and prediction implementations. 
+This shared functionality is encapsulated in a base class, allowing for code reuse and maintenance. The algorithm \ref{alg:LingerImplicitRegressor_regression_values_to_classification_values} found in the 
+\ref{sec:regr_to_class_func} section is used during the data preprocessing stage in the same way as \texttt{sklearn} \texttt{LabelEncoder}. 
+To convert the regression problem into a classification problem.
+
+\subsubsection{Training Implementation}
+The training algorithm for \texttt{LingerImplicitRegressor} is outlined in \ref{sec:training_implementation_LIC}.
+The function \ref{sec:regr_to_class_func} is called before training to convert $y$ values into class labels. For both training and test datasets
+
+\subsubsection{Prediction Implementation}
+The prediction algorithm for \texttt{LingerImplicitRegressor} is outlined in \ref{sec:prediction_implementation_LIC}.
+
+\subsection{Regression to Classification Converter Design and Implementation} (RTCC)
+\label{sec:regr_to_class_func}
+This function serves to categorize continuous $y$ target values for training, validation, and testing. 
 It returns a human-readable range with their corresponding numeric prediction.
 This ensures that the results are interpretable to humans at the end of the process.
-The variable $\text{equal division}$ is used to signify whether samples should be equally distributed into $N$ classes.
-If there are $Z$ samples in dataset $D$ then each class should have $\approx \frac{Z}{N}$ per class.
+Central to its operation is the parameter $\text{equal division}$, which indicates whether samples should be equally distributed into $N$ 
+classes. This feature enables uniform representation across different segments of the target variable, promoting fairness and consistency 
+in the categorization process.
+
+\subsubsection{Regression to Classification Converter Design}
+The "Regression to Classification Converter" algorithm (Algorithm \ref{alg:LingerImplicitRegressor_regression_values_to_classification_values}) is designed to transform 
+continuous regression target values into categorical classes. It takes as input a dataset $D$, the desired number of segments $N$, and optional parameters such as $y_{\text{max}}$, $y_{\text{min}}$, 
+and $\text{Equal division}$.
+
+If $\text{Equal division}$ is set, the algorithm divides the data into $N$ segments based on nearly equal counts. Otherwise, it calculates the range for each segment based on the 
+provided or inferred maximum and minimum values of $y$. It then iterates through each value in $y$, determining the corresponding category based on the segment ranges. 
+The algorithm returns the transformed $y$ values, along with the unique ranges, minimum and maximum values of $y$, providing a categorical representation suitable for classification tasks.
+
 \begin{algorithm}[H]
     \caption{Converter algorithm, regression to classification}
     \label{alg:LingerImplicitRegressor_regression_values_to_classification_values}
@@ -1300,7 +1965,7 @@ If there are $Z$ samples in dataset $D$ then each class should have $\approx \fr
     \If{$\text{Equal division}$}
         \State Divide the data into $N$ segments based on nearly equal counts
         \State $quantiles \gets \text{np.linspace}(0, 1, N+1)$
-        \If{unique\_ranges is None}
+        \If{$unique\_ranges$ is None}
             \State $unique\_ranges \gets \text{np.quantile}(y, quantiles)$
         \EndIf
         \State $categories \gets \text{np.digitize}(y, unique\_ranges[:-1])$
@@ -1349,6 +2014,75 @@ If there are $Z$ samples in dataset $D$ then each class should have $\approx \fr
     \end{algorithmic}
     \end{algorithm}
 
+\subsubsection{Regression to Classification Converter Implementation}
+This function is encapsulated within a class called \texttt{RegressionToClassificationConverter}. 
+The \texttt{transform} function carries out the conversion of regression values to classification values.
+
+\begin{algorithm}
+    \caption{Transform function}
+    \begin{algorithmic}[1]
+    \Function{transform}{$y$, $min\_val=None$, $max\_val=None$, $unique\_ranges=None$}
+        \State \textbf{Input:} 
+        \State $y$ (list or array-like): The continuous target variable.
+        \State $min\_val$ (float): Minimum value of the target variable.
+        \State $max\_val$ (float): Maximum value of the target variable.
+        \State $unique\_ranges$ (array-like): Predefined unique ranges for segments.
+        \State \textbf{Output:}
+        \State $categories$ (list): A list of categories (segment indices) corresponding to each value in $y$.
+        \State $unique\_ranges$ (dict or array-like): Unique ranges for segments.
+        \State $min\_val$ (float): Minimum value of the target variable.
+        \State $max\_val$ (float): Maximum value of the target variable.
+        
+        \If{$min\_val$ is None and $max\_val$ is None}
+            \State $min\_val \gets \text{min}(y)$
+            \State $max\_val \gets \text{max}(y)$
+        \EndIf
+        
+        \If{$\text{equal\_division}$ is None}
+            \State $segment\_range \gets (max\_val - min\_val) / n\_segments$
+            \State $categories \gets []$
+            \State $unique\_ranges \gets \{\}$
+            \State $current\_index \gets 0$
+            \For{$val$ in $y$}
+                \For{$i$ in range($n\_segments$)}
+                    \If{$i < \text{n\_segments} - 1$}
+                        \If{$min\_val + i \times segment\_range \leq val < min\_val + (i + 1) \times segment\_range$}
+                            \State $category \gets \text{{int}}(min\_val + i \times segment\_range)$
+                            \State $int((min\_val + (i + 1)) \times segment\_range)$
+                            \If{$\text{category}$ not in $unique\_ranges$}
+                                \State $unique\_ranges[\text{category}] \gets current\_index$
+                                \State $current\_index \gets current\_index + 1$
+                            \EndIf
+                            \State $categories.\text{append}(unique\_ranges[\text{category}])$
+                            \State \textbf{break}
+                        \EndIf
+                    \Else
+                        \If{$min\_val + i \times segment\_range \leq val \leq max\_val$}
+                            \State $category \gets \text{{int}}(min\_val + i \times segment\_range)$
+                            \State $int(max\_val)$
+                            \If{$\text{category}$ not in $unique\_ranges$}
+                                \State $unique\_ranges[\text{category}] \gets current\_index$
+                                \State $current\_index \gets current\_index + 1$
+                            \EndIf
+                            \State $categories.\text{append}(unique\_ranges[\text{category}])$
+                            \State \textbf{break}
+                        \EndIf
+                    \EndIf
+                \EndFor
+            \EndFor
+            \State \textbf{return} $categories$, $unique\_ranges$, $min\_val$, $max\_val$
+        \Else
+            \State $quantiles \gets \text{np.linspace}(0, 1, \text{n\_segments} + 1)$
+            \If{$unique\_ranges$ is None}
+                \State $unique\_ranges \gets \text{np.quantile}(y, \text{quantiles})$
+            \EndIf
+            \State $categories \gets \text{np.digitize}(y, unique\_ranges[:-1])$
+            \State \textbf{return} $categories$, $unique\_ranges$, $min\_val$, $max\_val$
+        \EndIf
+    \EndFunction
+    \end{algorithmic}
+    \end{algorithm}
+
 \subsection{Optimization}
 To enhance the performance of the \texttt{LingerImplicitRegressor}, several optimization strategies are considered:
 \begin{itemize}
@@ -1368,28 +2102,170 @@ For future research, exploring alternative methods to bucket regression values b
 The \texttt{LingerImplicitClassifier} offers a novel approach to regression tasks by integrating the learning from differences implicitly through case pairs. 
 It performs well for a variety of regression tasks, while utilizing a learning from differences classification model. The number of segments greatly affects the outcome of this model.
 
-
-\chapter{Implementation}
-\label{ch:Implementation}
-
-\chapter{Evaluation}
-\label{ch:Evaluation}
-
-\chapter{Conclusions}
-\label{ch:Conclusions}
-
 \chapter{Experiments}
-\label{ch:Experimnents}
+\label{ch:Experiments}
 
-\section{Experiment 1: Abalone dataset Linger Regression}
+\section{Methodology}
 
-\section{Experiment 2: House Prices Dataset Regression}
+\section{Research Objective}
 
-\section{Experiment 3: Glass Dataset Classification}
+The overarching objective of this study is to investigate the efficacy of blended learning approaches in machine learning tasks, 
+particularly focusing on regression and classification problems. Blended learning, which integrates the strengths of model-based and instance-based learning while mitigating their respective weaknesses, 
+offers a promising avenue for enhancing the interpretability, reliability, and performance of machine learning systems.
 
-\section{Experiment 4: Raisin Dataset Classification}
+Specifically, this research aims to achieve the following objectives:
 
-\section{Experiment 5: Car Safety Dataset Classification}
+\begin{enumerate}
+    \item \textbf{Evaluate Blended Learning Methods}: 
+    The first objective is to evaluate the performance of blended learning methodologies in contrast to traditional 
+    model-based and instance-based approaches across various regression and classification tasks. 
+    This assessment will encompass key metrics including accuracy, interpretability, computational efficiency, and robustness. 
+    By comparing the effectiveness of blended learning methods, we aim to determine their potential to enhance the overall performance of machine learning systems.
+    
+    \item \textbf{Investigate Model Interpretability}: 
+    The second objective is to explore the interpretability of blended learning models compared to traditional black-box models, such as neural networks. 
+    Understanding the interpretability of these models is crucial for enhancing trust and usability in critical domains. 
+    By investigating how blended learning methods provide insights into model decisions, we aim to demonstrate their potential to address the interpretability challenges associated with traditional machine learning approaches.
+    
+    \item \textbf{Examine Efficiency and Scalability}: 
+    The third objective is to investigate the computational efficiency and scalability of blended learning methods, particularly in scenarios with large datasets. 
+    This examination will involve analyzing the memory and computational overhead of blended learning models compared to traditional approaches. 
+    By assessing the efficiency and scalability of blended learning methods, we aim to identify their suitability for practical deployment in real-world applications.
+    
+    \item \textbf{Explore Novel Architectures}: 
+    The fourth objective is to explore novel architectures and techniques for implementing blended learning, including ensemble models, case-based reasoning principles, and approaches that leverage differences between sets of features. By exploring innovative approaches, we aim to further enhance the performance and interpretability of blended learning methods, thereby advancing the state-of-the-art in machine learning.
+    
+    \item \textbf{Provide Insights for Practical Applications}: 
+    The fifth objective is to provide insights and recommendations for the practical application of blended learning methods in real-world scenarios, with a particular focus on critical domains such as healthcare, 
+    finance, and decision support systems. By discussing the implications of the findings for stakeholders and suggesting best practices for deploying blended learning models effectively, 
+    we aim to facilitate the adoption of these methods in critical domains.
+
+    \item \textbf{Develop Python Package for Seamless Integration}: 
+    The final objective is to develop a Python package that seamlessly integrates with scikit-learn, allowing users to incorporate blended learning methods into their machine learning pipelines and workflows effortlessly. 
+    This package should provide compatibility with scikit-learn's APIs, enabling users to import it like any other scikit-learn package and use it seamlessly within their existing workflows. 
+    By developing such a package, we aim to enhance the accessibility and usability of blended learning methods for the broader machine learning community.
+\end{enumerate}
+
+By addressing these objectives, this research seeks to advance our understanding of blended learning approaches and their potential to address the challenges faced by 
+traditional model-based and instance-based methods. Ultimately, the goal is to contribute to the development of more interpretable, reliable, and efficient machine learning 
+systems with broader applicability across various domains.
+
+\subsection{Data Collection and Preprocessing}
+All datasets used in this study were collected from the UCI Machine Learning Repository \cite{uciRepository}, a widely recognized and reliable source of machine learning datasets. 
+These datasets cover various domains and have been extensively studied in the machine learning community.
+
+\subsubsection{Preprocessing For Labelled Datasets}
+The preprocessing procedure involves several steps to ensure the quality and suitability of the data for machine learning tasks. These steps are applied uniformly across all labeled datasets.
+
+1. \textbf{Column Naming}: The columns of the dataset are assigned appropriate names for clarity and consistency throughout the analysis.
+
+2. \textbf{Handling Missing Values}: Rows containing missing values in specified features are removed from the dataset. 
+This ensures that the dataset used for training and testing is complete and does not contain any incomplete or unreliable data points.
+
+3. \textbf{Index Resetting}: After removing rows with missing values, the index of the dataset is reset to maintain a continuous and consistent index structure.
+
+4. \textbf{Data Splitting}: The dataset is split into two subsets: a development set and a test set. 
+This splitting is performed using a train-test split ratio of 80:20 to ensure a sufficient amount of data for training while also reserving a portion for evaluating the model's performance.
+
+5. \textbf{Development Set Copying}: A copy of the development set is created to preserve the original dataset for future reference or comparison.
+
+6. \textbf{Feature Transformation}: Numeric features undergo feature scaling using the \texttt{StandardScaler} to ensure that they are on a similar scale, 
+which aids in model convergence and performance. Nominal features are transformed using one-hot encoding to convert categorical variables into a numerical format 
+suitable for machine learning algorithms.
+
+These preprocessing steps collectively prepare the data for subsequent modeling and analysis, ensuring that it is clean, complete, and 
+appropriately formatted for use in machine learning tasks.
+
+\subsection{Model Selection For Labelled Datasets}
+Discuss the criteria for selecting the machine learning models used in the experiments.
+
+\subsection{Training Procedure}
+Explain the training procedure for the selected models, including optimization algorithms and hyperparameters.
+
+\section{Experimental Setup}
+
+Describe the hardware and software setup used for conducting the experiments, including computational resources and programming languages/libraries.
+
+\section{Results and Analysis}
+
+\subsection{Experiment 1: Abalone Dataset Linear Regression}
+\subsubsection{(LR)}
+\subsubsection{(LRV1)}
+\subsubsection{(LRV2)}
+\subsubsection{(LRV3)}
+\subsubsection{(LIR)}
+\subsubsection{(LIRV1)}
+\subsubsection{(LIRV2)}
+
+\subsection{Experiment 2: House Prices Dataset Regression}
+\subsubsection{(LR)}
+\subsubsection{(LRV1)}
+\subsubsection{(LRV2)}
+\subsubsection{(LRV3)}
+\subsubsection{(LIR)}
+\subsubsection{(LIRV1)}
+\subsubsection{(LIRV2)}
+
+\subsection{Experiment 3: White Wine Dataset Regression}
+\subsubsection{(LR)}
+\subsubsection{(LRV1)}
+\subsubsection{(LRV2)}
+\subsubsection{(LRV3)}
+\subsubsection{(LIR)}
+\subsubsection{(LIRV1)}
+\subsubsection{(LIRV2)}
+
+\subsection{Experiment 4: Red Wine Dataset Regression}
+\subsubsection{(LR)}
+\subsubsection{(LRV1)}
+\subsubsection{(LRV2)}
+\subsubsection{(LRV3)}
+\subsubsection{(LIR)}
+\subsubsection{(LIRV1)}
+\subsubsection{(LIRV2)}
+
+\subsection{Experiment 5: Glass Dataset Classification}
+\subsubsection{(LC)}
+\subsubsection{(LCV1)}
+\subsubsection{(LCV2)}
+\subsubsection{(LCV3)}
+\subsubsection{(LIC)}
+\subsubsection{(LICV1)}
+\subsubsection{(LICV2)}
+
+\subsection{Experiment 6: Raisin Dataset Classification}
+\subsubsection{(LC)}
+\subsubsection{(LCV1)}
+\subsubsection{(LCV2)}
+\subsubsection{(LCV3)}
+\subsubsection{(LIC)}
+\subsubsection{(LICV1)}
+\subsubsection{(LICV2)}
+
+\subsection{Experiment 7: Car Safety Dataset Classification}
+\subsubsection{(LC)}
+\subsubsection{(LCV1)}
+\subsubsection{(LCV2)}
+\subsubsection{(LCV3)}
+\subsubsection{(LIC)}
+\subsubsection{(LICV1)}
+\subsubsection{(LICV2)}
+
+\subsection{Experiment 8: Human Wealth Dataset Classification}
+\subsubsection{(LC)}
+\subsubsection{(LCV1)}
+\subsubsection{(LCV2)}
+\subsubsection{(LCV3)}
+\subsubsection{(LIC)}
+\subsubsection{(LICV1)}
+\subsubsection{(LICV2)}
+
+\section{Discussion}
+
+Summarize the key findings from the experiments and discuss their implications. Compare the performance of different models and datasets, and highlight any insights gained from the analysis.
+
+\chapter{Conclusions and Future Work}
+\label{ch:Conclusions and Future Work}
 
 \chapter{Results}
 \label{ch:Results}

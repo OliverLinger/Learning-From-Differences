@@ -2,8 +2,11 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Regression Models based on the algorithms in \cite {learningFromDifferences2022}}}{28}{table.caption.7}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Classifier models based on the algorithms in \cite {learningFromDifferences2022}}}{29}{table.caption.8}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces LingerImplicitClassifier models based on the algorithms in \cite {ye2021learning}}}{29}{table.caption.10}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces LingerImplicitRegressor models based on the algorithms in \cite {ye2021learning}}}{30}{table.caption.11}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces Variations for \texttt {LingerRegressor} and \texttt {LingerClassifier}}}{56}{table.caption.32}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
