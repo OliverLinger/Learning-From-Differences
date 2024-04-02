@@ -97,7 +97,7 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     #     "predictor__validation_fraction": [0.1],
     # }
     nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (100,), (200, 100), (300, 200, 100)],
+    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), (300, 200, 100), (400, 300, 200, 100)],
     "predictor__activation": ["identity", "logistic", "tanh", "relu"],
     "predictor__alpha": [0.0001, 0.001, 0.01, 0.1],
     "predictor__max_iter": [1000, 1500],
@@ -178,7 +178,7 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
 
 def main():
     file_path = r'C:\Users\USER\final_year\fyp\results\DryBeanResultsBasic.txt'
-    df = pd.read_csv("datasets/DryBeanDataset/Dry_Bean_Dataset.csv")
+    df = pd.read_csv("datasets/DryBeanDataset/Dry_Bean_Dataset_reduced.csv")
     columns = ['Area', 'Perimeter', 'MajorAxisLength', 'MinorAxisLength',
        'AspectRation', 'Eccentricity', 'ConvexArea', 'EquivDiameter', 'Extent',
        'Solidity', 'roundness', 'Compactness', 'ShapeFactor1', 'ShapeFactor2', 

@@ -130,7 +130,7 @@ def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y, 
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\35383\4th_year\fyp\results\HousePricesImplicitResults.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\regressionImplicit\HousePricesImplicitResultsBasic.txt'
     df = pd.read_csv("datasets/house_prices/dataset_corkB.csv")
     columns = df.columns
     features = ["flarea", "bdrms", "bthrms", "floors", "type", "devment", "ber", "location"]

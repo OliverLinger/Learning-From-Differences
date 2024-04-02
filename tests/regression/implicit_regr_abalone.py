@@ -129,7 +129,7 @@ def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y, 
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\35383\4th_year\fyp\results\AbaloneImplicitResults.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\regressionImplicit\AbaloneImplicitResultsBasic.txt'
     df = load_data("datasets/abalone/abalone.csv")
     columns = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight',
                 'Shucked weight', 'Viscera weight', 'Shell weight', 'Rings']
