@@ -136,7 +136,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
 
 def save_results(file_path, knn_classifier_gs, knn_classifier_gs_weighted, nn_gs, lfd_classifier_gs):
     with open(file_path, 'a') as file:
-        file.write(f"Basic classifier, Variation 2, Duplication based on distance")
+        file.write(f"Basic classifier, Variation 3, Distance Column ")
         file.write(f"Best Parameters KNN classifier: {knn_classifier_gs.best_params_,}\n")
         file.write(f"Best Score KNN classifier: {knn_classifier_gs.best_score_}\n")
 
@@ -170,7 +170,7 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         file.write("--------------------------------------------------------------\n")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\GlassResultsVar2.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\GlassResultsVar3.txt'
     df = pd.read_csv("datasets/glass/glass.csv",index_col=0)
     print(df.columns)
     columns = ['RI', 'Na', 'Mg', 'Al', 'Si', 'K', 'Ca', 'Ba', 'Fe', 'Class']

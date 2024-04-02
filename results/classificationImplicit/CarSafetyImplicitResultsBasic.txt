@@ -1,0 +1,12 @@
+Test Time: 16:38:02.962513
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 10},)
+Best Score KNN classifier: 0.9649358974358974
+Best Parameters Linger classifier: ({'predictor__activation': 'relu', 'predictor__alpha': 0.0001, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.999, 'predictor__hidden_layer_sizes': (256, 128), 'predictor__learning_rate_init': 0.001, 'predictor__max_iter': 2000, 'predictor__n_neighbours_1': 10, 'predictor__n_neighbours_2': 13, 'predictor__random_pairs': False, 'predictor__single_pair': False, 'predictor__solver': 'adam'},)
+Best Score Linger Classifier: 0.9397435897435897
+Best Parameters Basic Neural Network: ({'predictor__activation': 'relu', 'predictor__alpha': 0.0001, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.999, 'predictor__hidden_layer_sizes': (256, 128), 'predictor__learning_rate_init': 0.001, 'predictor__max_iter': 2000, 'predictor__solver': 'adam'},)
+Best Score Basic Neural Network: 0.9974999999999999
+--------------------------------------------------------------
+Test Accuracy for KNN classifier: 0.99
+Test Accuracy for Linger Classifier: 0.91
+Test Accuracy for Basic Neural Network: 1.0
+--------------------------------------------------------------
