@@ -13,33 +13,7 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
         self,
         n_neighbours_1=5,
         n_neighbours_2=5,
-        hidden_layer_sizes=(100,),
-        activation="relu",
-        solver="adam",
-        alpha=0.0001,
-        batch_size="auto",
-        learning_rate="constant",
-        learning_rate_init=0.001,
-        power_t=0.5,
-        max_iter=200,
-        shuffle=True,
-        random_state=None,
-        tol=1e-4,
-        verbose=False,
-        warm_start=False,
-        momentum=0.9,
-        nesterovs_momentum=True,
-        early_stopping=False,
-        validation_fraction=0.1,
-        beta_1=0.9,
-        beta_2=0.999,
-        epsilon=1e-8,
-        n_iter_no_change=10,
-        max_fun=15000,
-        weighted_knn=True,
-        additional_distance_column=False,
-        duplicated_on_distance=False,
-        addition_of_context=False,
+
     ):
         """
         Linger Regressor is a custom regressor based on k-nearest neighbors and MLPRegressor that implements classification to solve regression tasks.
@@ -59,146 +33,51 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
         """
         self.n_neighbours_1 = n_neighbours_1
         self.n_neighbours_2 = n_neighbours_2
-        self.hidden_layer_sizes = hidden_layer_sizes
-        self.activation = activation
-        self.solver = solver
-        self.alpha = alpha
-        self.batch_size = batch_size
-        self.learning_rate = learning_rate
-        self.learning_rate_init = learning_rate_init
-        self.power_t = power_t
-        self.max_iter = max_iter
-        self.shuffle = shuffle
-        self.random_state = random_state
-        self.tol = tol
-        self.verbose = verbose
-        self.warm_start = warm_start
-        self.momentum = momentum
-        self.nesterovs_momentum = nesterovs_momentum
-        self.early_stopping = early_stopping
-        self.validation_fraction = validation_fraction
-        self.beta_1 = beta_1
-        self.beta_2 = beta_2
-        self.epsilon = epsilon
-        self.n_iter_no_change = n_iter_no_change
-        self.max_fun = max_fun
-        self.train_X = []
-        self.train_y = []
-        self.weighted_knn = weighted_knn
-        self.additional_distance_column = additional_distance_column
-        self.duplicated_on_distance = duplicated_on_distance
-        self.addition_of_context = addition_of_context
-
-        self.regressor = MLPRegressor(
-            hidden_layer_sizes=self.hidden_layer_sizes,
-            activation=self.activation,
-            solver=self.solver,
-            alpha=self.alpha,
-            batch_size=self.batch_size,
-            learning_rate=self.learning_rate,
-            learning_rate_init=self.learning_rate_init,
-            power_t=self.power_t,
-            max_iter=self.max_iter,
-            shuffle=self.shuffle,
-            random_state=self.random_state,
-            tol=self.tol,
-            verbose=self.verbose,
-            warm_start=self.warm_start,
-            momentum=self.momentum,
-            nesterovs_momentum=self.nesterovs_momentum,
-            early_stopping=self.early_stopping,
-            validation_fraction=self.validation_fraction,
-            beta_1=self.beta_1,
-            beta_2=self.beta_2,
-            epsilon=self.epsilon,
-            n_iter_no_change=self.n_iter_no_change,
-            max_fun=self.max_fun,
-        )
 
     def fit(self, X, y):
-        """Fit the k-nearest neighbors regressor from the training dataset.
+        if len(X.shape) == 4:
+            X = X.reshape(len(X), -1)
+        self.n_neighbours_1 += 1  # Adjust for zero indexing
 
-        Parameters
-        ----------
-        X : {array-like, sparse matrix} of shape (n_samples, n_features) or \
-            (n_samples, n_samples) if metric='precomputed'
-                Training data.
+        self.neighbours = NearestNeighbors(n_neighbors=self.n_neighbours_1).fit(X)
+        _, indices = self.neighbours.kneighbors(X)
 
-        y : {array-like, sparse matrix} of shape (n_samples,) or \
-                (n_samples, n_outputs)
-                Target values.
-
-        Returns
-        -------
-        self : LingerRegressor
-        The fitted Linger regressor.
-
-        """
-
-        self.train_X = X
-        self.train_y = y
-        
-        # Increment n_neighbors
-        self.n_neighbours_1 += 1  
-
-        ## Flatten images into vectors
-        X_flat = np.reshape(X, (X.shape[0], -1))
-
-        neighbours = NearestNeighbors(n_neighbors=self.n_neighbours_1).fit(X_flat)
-        distances, indices = neighbours.kneighbors(X)
-
-        differences_X = []
-        differences_y = []
-
-        for i in indices:
-            base = i[0]
-            neighbors = i[1:]
-            for n in neighbors:
-                # Compute pixel-wise differences between images
-                diff = self.compute_pixelwise_difference(X[base], X[n])
+        differences_X, differences_y = [], []
+        for i, indice in enumerate(indices):
+            for neighbor_index in indice[1:]:  # Skip the first one (itself)
+                diff = np.abs(X[i] - X[neighbor_index])
                 differences_X.append(diff)
-                differences_y.append(np.abs(y[base] - y[n]))
-        self.regressor.fit(np.array(differences_X), np.array(differences_y))
+                differences_y.append(y[i] - y[neighbor_index])
 
         self.train_X = X
         self.train_y = y
+        self.classes_ = np.unique(y)
 
-    def predict(self, X):
+    def predict(self, X, model, dataset, input_shape):
+        print("Before reshaping in fit, X shape:", X.shape) 
         """
-        Predict target values for the input data.
+        Predict target values for the input data using non-weighted k-nearest neighbors (KNN).
 
         Parameters:
         - X: Input data for prediction.
 
         Returns:
         - y_pred: Predicted target values.
-
         """
-        nbrs = NearestNeighbors(n_neighbors=self.n_neighbours_2).fit(self.train_X)
-        distances, indices = nbrs.kneighbors(X)
-
-        is_sparse_X = issparse(X)
-        if is_sparse_X:
-            X = X.toarray()
+        # Fit nearest neighbors to the training data
+        nbrs = NearestNeighbors(n_neighbors=self.n_neighbours_2).fit(self.train_X.reshape(len(self.train_X), -1))
+        _, indices = nbrs.kneighbors(X.reshape(len(X), -1))
 
         differences_test_X = [
-            self.compute_pixelwise_difference(X[test], self.train_X[indices[test][i]])
-            for test in range(len(X))
-            for i in range(len(indices[0]))
+        np.abs(X[test].flatten() - self.train_X[indices[test][nn_in_training]].flatten())
+        for test in range(len(X))
+        for nn_in_training in range(len(indices[0]))
         ]
-
-        """
-        This section of code handles the retrieval of the distnaces for the nearest neighbors and appends them to the differences_test_X arrays.
-        If self.additional_distance_column is True:
-            Since the regressor expects an additional column for the prediction, we iterate through the indices to perform the following steps:
-        """
-        predictions = self.regressor.predict(differences_test_X)
-
-        predictions = [
-            predictions[i : i + self.n_neighbours_2]
-            for i in range(0, len(predictions), self.n_neighbours_2)
-        ]
-
+        diff_X = np.array(differences_test_X)
+        differences_test_X = diff_X.reshape(-1, *input_shape)
+        # Make a prediction based on the differences in the test set X
+        predictions = model.predict(differences_test_X)
+        
         y_pred = []
 
         for indexes, differences in zip(indices, predictions):
@@ -224,33 +103,6 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
         return {
             "n_neighbours_1": self.n_neighbours_1,
             "n_neighbours_2": self.n_neighbours_2,
-            "hidden_layer_sizes": self.hidden_layer_sizes,
-            "activation": self.activation,
-            "solver": self.solver,
-            "alpha": self.alpha,
-            "batch_size": self.batch_size,
-            "learning_rate": self.learning_rate,
-            "learning_rate_init": self.learning_rate_init,
-            "power_t": self.power_t,
-            "max_iter": self.max_iter,
-            "shuffle": self.shuffle,
-            "random_state": self.random_state,
-            "tol": self.tol,
-            "verbose": self.verbose,
-            "warm_start": self.warm_start,
-            "momentum": self.momentum,
-            "nesterovs_momentum": self.nesterovs_momentum,
-            "early_stopping": self.early_stopping,
-            "validation_fraction": self.validation_fraction,
-            "beta_1": self.beta_1,
-            "beta_2": self.beta_2,
-            "epsilon": self.epsilon,
-            "n_iter_no_change": self.n_iter_no_change,
-            "max_fun": self.max_fun,
-            "weighted_knn": self.weighted_knn,
-            "additional_distance_column": self.additional_distance_column,
-            "duplicated_on_distance": self.duplicated_on_distance,
-            "addition_of_context": self.addition_of_context,
         }
 
     def set_params(self, **params):

@@ -72,7 +72,7 @@
 \contentsline {section}{\numberline {3.6}Acronym Guide}{56}{section.3.6}%
 \contentsline {section}{\numberline {3.7}Learning From differences Implicitly}{56}{section.3.7}%
 \contentsline {subsection}{\numberline {3.7.1}Introduction and Motivation}{56}{subsection.3.7.1}%
-\contentsline {section}{\numberline {3.8}Linger Implicit Classification Base Model: \texttt {LingerImplicitClassifier} (LIC)}{57}{section.3.8}%
+\contentsline {section}{\numberline {3.8}Linger Implicit Classification Model: \texttt {LingerImplicitClassifier} (LIC)}{57}{section.3.8}%
 \contentsline {subsection}{\numberline {3.8.1}Objective}{57}{subsection.3.8.1}%
 \contentsline {subsection}{\numberline {3.8.2}Architecture}{57}{subsection.3.8.2}%
 \contentsline {subsection}{\numberline {3.8.3}Components}{58}{subsection.3.8.3}%
@@ -86,7 +86,7 @@
 \contentsline {subsection}{\numberline {3.8.7}Optimization}{65}{subsection.3.8.7}%
 \contentsline {subsection}{\numberline {3.8.8}Limitations and Future Work}{65}{subsection.3.8.8}%
 \contentsline {subsection}{\numberline {3.8.9}Conclusion}{66}{subsection.3.8.9}%
-\contentsline {section}{\numberline {3.9}Linger Implicit Regression Base Model: \texttt {LingerImplicitRegressor}}{66}{section.3.9}%
+\contentsline {section}{\numberline {3.9}Linger Implicit Regression Model: \texttt {LingerImplicitRegressor}}{66}{section.3.9}%
 \contentsline {subsection}{\numberline {3.9.1}Objective}{66}{subsection.3.9.1}%
 \contentsline {subsection}{\numberline {3.9.2}Architecture}{67}{subsection.3.9.2}%
 \contentsline {subsection}{\numberline {3.9.3}Components}{67}{subsection.3.9.3}%
@@ -103,79 +103,64 @@
 \contentsline {subsection}{\numberline {3.9.8}Optimization}{73}{subsection.3.9.8}%
 \contentsline {subsection}{\numberline {3.9.9}Limitations and Future Work}{73}{subsection.3.9.9}%
 \contentsline {subsection}{\numberline {3.9.10}Conclusion}{73}{subsection.3.9.10}%
-\contentsline {chapter}{\numberline {4}Experiments}{75}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Methodology}{75}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Research Objective}{75}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Data Collection and Preprocessing}{77}{subsection.4.2.1}%
-\contentsline {subsubsection}{Preprocessing For Labelled Datasets}{77}{section*.43}%
-\contentsline {subsection}{\numberline {4.2.2}Model Selection For Labelled Datasets}{78}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Training Procedure}{78}{subsection.4.2.3}%
-\contentsline {section}{\numberline {4.3}Experimental Setup}{78}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Results and Analysis}{80}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Experiment 1: Abalone Dataset Linear Regression}{80}{subsection.4.4.1}%
-\contentsline {subsubsection}{(LR)}{80}{section*.44}%
-\contentsline {subsubsection}{(LRV1)}{80}{section*.45}%
-\contentsline {subsubsection}{(LRV2)}{80}{section*.46}%
-\contentsline {subsubsection}{(LRV3)}{80}{section*.47}%
-\contentsline {subsubsection}{(LIR)}{80}{section*.48}%
-\contentsline {subsubsection}{(LIRV1)}{80}{section*.49}%
-\contentsline {subsubsection}{(LIRV2)}{80}{section*.50}%
-\contentsline {subsection}{\numberline {4.4.2}Experiment 2: House Prices Dataset Regression}{80}{subsection.4.4.2}%
-\contentsline {subsubsection}{(LR)}{80}{section*.51}%
-\contentsline {subsubsection}{(LRV1)}{80}{section*.52}%
-\contentsline {subsubsection}{(LRV2)}{80}{section*.53}%
-\contentsline {subsubsection}{(LRV3)}{80}{section*.54}%
-\contentsline {subsubsection}{(LIR)}{80}{section*.55}%
-\contentsline {subsubsection}{(LIRV1)}{80}{section*.56}%
-\contentsline {subsubsection}{(LIRV2)}{80}{section*.57}%
-\contentsline {subsection}{\numberline {4.4.3}Experiment 3: White Wine Dataset Regression}{80}{subsection.4.4.3}%
-\contentsline {subsubsection}{(LR)}{80}{section*.58}%
-\contentsline {subsubsection}{(LRV1)}{80}{section*.59}%
-\contentsline {subsubsection}{(LRV2)}{80}{section*.60}%
-\contentsline {subsubsection}{(LRV3)}{80}{section*.61}%
-\contentsline {subsubsection}{(LIR)}{80}{section*.62}%
-\contentsline {subsubsection}{(LIRV1)}{80}{section*.63}%
-\contentsline {subsubsection}{(LIRV2)}{80}{section*.64}%
-\contentsline {subsection}{\numberline {4.4.4}Experiment 4: Red Wine Dataset Regression}{80}{subsection.4.4.4}%
-\contentsline {subsubsection}{(LR)}{80}{section*.65}%
-\contentsline {subsubsection}{(LRV1)}{80}{section*.66}%
-\contentsline {subsubsection}{(LRV2)}{80}{section*.67}%
-\contentsline {subsubsection}{(LRV3)}{80}{section*.68}%
-\contentsline {subsubsection}{(LIR)}{80}{section*.69}%
-\contentsline {subsubsection}{(LIRV1)}{80}{section*.70}%
-\contentsline {subsubsection}{(LIRV2)}{80}{section*.71}%
-\contentsline {subsection}{\numberline {4.4.5}Experiment 5: Glass Dataset Classification}{80}{subsection.4.4.5}%
-\contentsline {subsubsection}{(LC)}{80}{section*.72}%
-\contentsline {subsubsection}{(LCV1)}{80}{section*.73}%
-\contentsline {subsubsection}{(LCV2)}{80}{section*.74}%
-\contentsline {subsubsection}{(LCV3)}{80}{section*.75}%
-\contentsline {subsubsection}{(LIC)}{80}{section*.76}%
-\contentsline {subsubsection}{(LICV1)}{80}{section*.77}%
-\contentsline {subsubsection}{(LICV2)}{80}{section*.78}%
-\contentsline {subsection}{\numberline {4.4.6}Experiment 6: Raisin Dataset Classification}{80}{subsection.4.4.6}%
-\contentsline {subsubsection}{(LC)}{80}{section*.79}%
-\contentsline {subsubsection}{(LCV1)}{80}{section*.80}%
-\contentsline {subsubsection}{(LCV2)}{80}{section*.81}%
-\contentsline {subsubsection}{(LCV3)}{80}{section*.82}%
-\contentsline {subsubsection}{(LIC)}{80}{section*.83}%
-\contentsline {subsubsection}{(LICV1)}{80}{section*.84}%
-\contentsline {subsubsection}{(LICV2)}{80}{section*.85}%
-\contentsline {subsection}{\numberline {4.4.7}Experiment 7: Car Safety Dataset Classification}{80}{subsection.4.4.7}%
-\contentsline {subsubsection}{(LC)}{80}{section*.86}%
-\contentsline {subsubsection}{(LCV1)}{80}{section*.87}%
-\contentsline {subsubsection}{(LCV2)}{80}{section*.88}%
-\contentsline {subsubsection}{(LCV3)}{80}{section*.89}%
-\contentsline {subsubsection}{(LIC)}{80}{section*.90}%
-\contentsline {subsubsection}{(LICV1)}{80}{section*.91}%
-\contentsline {subsubsection}{(LICV2)}{80}{section*.92}%
-\contentsline {subsection}{\numberline {4.4.8}Experiment 8: Human Wealth Dataset Classification}{80}{subsection.4.4.8}%
-\contentsline {subsubsection}{(LC)}{80}{section*.93}%
-\contentsline {subsubsection}{(LCV1)}{80}{section*.94}%
-\contentsline {subsubsection}{(LCV2)}{80}{section*.95}%
-\contentsline {subsubsection}{(LCV3)}{80}{section*.96}%
-\contentsline {subsubsection}{(LIC)}{80}{section*.97}%
-\contentsline {subsubsection}{(LICV1)}{80}{section*.98}%
-\contentsline {subsubsection}{(LICV2)}{80}{section*.99}%
-\contentsline {section}{\numberline {4.5}Discussion}{80}{section.4.5}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{82}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Results}{83}{chapter.6}%
+\contentsline {section}{\numberline {3.10}Learning from Differences For Images}{76}{section.3.10}%
+\contentsline {subsection}{\numberline {3.10.1}Introduction and Motivation}{76}{subsection.3.10.1}%
+\contentsline {section}{\numberline {3.11}Linger Image Classification Model \texttt {LingerImageClassifier} (LIMC)}{76}{section.3.11}%
+\contentsline {subsection}{\numberline {3.11.1}Objective}{76}{subsection.3.11.1}%
+\contentsline {subsection}{\numberline {3.11.2}Architecture}{76}{subsection.3.11.2}%
+\contentsline {subsection}{\numberline {3.11.3}Components}{76}{subsection.3.11.3}%
+\contentsline {subsection}{\numberline {3.11.4}Parameterization}{76}{subsection.3.11.4}%
+\contentsline {subsection}{\numberline {3.11.5}Training and Prediction Design}{76}{subsection.3.11.5}%
+\contentsline {subsection}{\numberline {3.11.6}Training and Prediction Implementation}{76}{subsection.3.11.6}%
+\contentsline {subsection}{\numberline {3.11.7}Optimization}{76}{subsection.3.11.7}%
+\contentsline {subsection}{\numberline {3.11.8}Limitations and Future Work}{76}{subsection.3.11.8}%
+\contentsline {section}{\numberline {3.12}Linger Image Regressor Model \texttt {LingerImageRegressor} (LIMR)}{76}{section.3.12}%
+\contentsline {subsection}{\numberline {3.12.1}Objective}{76}{subsection.3.12.1}%
+\contentsline {subsection}{\numberline {3.12.2}Architecture}{76}{subsection.3.12.2}%
+\contentsline {subsection}{\numberline {3.12.3}Components}{76}{subsection.3.12.3}%
+\contentsline {subsection}{\numberline {3.12.4}Parameterization}{76}{subsection.3.12.4}%
+\contentsline {subsection}{\numberline {3.12.5}Training and Prediction Design}{76}{subsection.3.12.5}%
+\contentsline {subsection}{\numberline {3.12.6}Training and Prediction Implementation}{76}{subsection.3.12.6}%
+\contentsline {subsection}{\numberline {3.12.7}Optimization}{76}{subsection.3.12.7}%
+\contentsline {subsection}{\numberline {3.12.8}Limitations and Future Work}{76}{subsection.3.12.8}%
+\contentsline {chapter}{\numberline {4}Experiments}{77}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Research Objective}{77}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Data Collection and Preprocessing}{79}{subsection.4.1.1}%
+\contentsline {subsubsection}{Preprocessing For Labelled Datasets}{79}{section*.43}%
+\contentsline {section}{\numberline {4.2}Results and Analysis}{80}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Experiment 1: Glass Dataset Classification}{80}{subsection.4.2.1}%
+\contentsline {subsubsection}{Methodology}{80}{section*.44}%
+\contentsline {subsubsection}{(LC) Results}{81}{section*.46}%
+\contentsline {subsubsection}{(LCV1)}{84}{section*.53}%
+\contentsline {subsubsection}{(LCV2)}{84}{section*.54}%
+\contentsline {subsubsection}{(LCV3)}{84}{section*.55}%
+\contentsline {subsubsection}{(LIC)}{84}{section*.56}%
+\contentsline {subsubsection}{(LICV1)}{84}{section*.57}%
+\contentsline {subsubsection}{(LICV2)}{84}{section*.58}%
+\contentsline {subsection}{\numberline {4.2.2}Experiment 6: Raisin Dataset Classification}{84}{subsection.4.2.2}%
+\contentsline {subsubsection}{(LC)}{84}{section*.59}%
+\contentsline {subsubsection}{(LCV1)}{84}{section*.60}%
+\contentsline {subsubsection}{(LCV2)}{84}{section*.61}%
+\contentsline {subsubsection}{(LCV3)}{84}{section*.62}%
+\contentsline {subsubsection}{(LIC)}{84}{section*.63}%
+\contentsline {subsubsection}{(LICV1)}{84}{section*.64}%
+\contentsline {subsubsection}{(LICV2)}{84}{section*.65}%
+\contentsline {subsection}{\numberline {4.2.3}Experiment 7: Car Safety Dataset Classification}{84}{subsection.4.2.3}%
+\contentsline {subsubsection}{(LC)}{84}{section*.66}%
+\contentsline {subsubsection}{(LCV1)}{84}{section*.67}%
+\contentsline {subsubsection}{(LCV2)}{84}{section*.68}%
+\contentsline {subsubsection}{(LCV3)}{84}{section*.69}%
+\contentsline {subsubsection}{(LIC)}{84}{section*.70}%
+\contentsline {subsubsection}{(LICV1)}{84}{section*.71}%
+\contentsline {subsubsection}{(LICV2)}{84}{section*.72}%
+\contentsline {subsection}{\numberline {4.2.4}Experiment 8: Human Wealth Dataset Classification}{84}{subsection.4.2.4}%
+\contentsline {subsubsection}{(LC)}{84}{section*.73}%
+\contentsline {subsubsection}{(LCV1)}{84}{section*.74}%
+\contentsline {subsubsection}{(LCV2)}{84}{section*.75}%
+\contentsline {subsubsection}{(LCV3)}{84}{section*.76}%
+\contentsline {subsubsection}{(LIC)}{84}{section*.77}%
+\contentsline {subsubsection}{(LICV1)}{84}{section*.78}%
+\contentsline {subsubsection}{(LICV2)}{84}{section*.79}%
+\contentsline {section}{\numberline {4.3}Discussion}{84}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{86}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Results}{87}{chapter.6}%

@@ -10,8 +10,6 @@ class CVDHMDistanceMetric:
         self.vdm_values = defaultdict(dict)
 
     def case_diff(self, C1, C2, y):
-        print(C1)
-        quit()
         total_dist_sq = 0.0
         for feature1, feature2, f in zip(C1, C2, self.features):
             dist_sq = self.CaseVDHMi(feature1, feature2, self.numeric_features, self.categorical_features, f, y) ** 2
@@ -64,9 +62,3 @@ class CVDHMDistanceMetric:
                     for val2 in set(X[:, i]):
                         if val1 != val2:
                             self.vdm_values[i][val1][val2] = self.vdmf(X[:, i], y, val1, val2)
-
-    def get_params(self):
-        pass
-
-    def set_params(self, **params):
-        pass

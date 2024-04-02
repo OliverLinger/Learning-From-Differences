@@ -67,28 +67,50 @@ def hvdm(a, b, numeric_indices, categorical_indices, class_labels, data, scaler)
     # Return the square root of the total distance as the final HVDM distance
     return np.sqrt(distance)
 
-# def compute_distance_matrix(X, hvdm_metric):
-#     """Computes the HVDM distance matrix for a dataset.
+def compute_distance_matrix(X, hvdm_metric):
+    """Computes the HVDM distance matrix for a dataset.
     
-#     Parameters:
-#     - X: DataFrame, the dataset for which to compute the distance matrix.
-#     - hvdm_metric: callable, the HVDM metric function that computes the distance between two instances.
+    Parameters:
+    - X: DataFrame, the dataset for which to compute the distance matrix.
+    - hvdm_metric: callable, the HVDM metric function that computes the distance between two instances.
 
-#     Returns:
-#     - A NumPy array representing the distance matrix.
-#     """
-#     num_samples = len(X)
-#     distance_matrix = np.zeros((num_samples, num_samples))
+    Returns:
+    - A NumPy array representing the distance matrix.
+    """
+    num_samples = len(X)
+    distance_matrix = np.zeros((num_samples, num_samples))
     
-#     # Fetch necessary data for the HVDM calculation
-#     data = X.to_numpy()
-#     class_labels = np.unique(data[:, -1])  # Assuming the last column is the class label
-#     scaler = StandardScaler().fit(X[numeric_features].to_numpy())  # Re-fit scaler for numeric features
+    # Fetch necessary data for the HVDM calculation
+    data = X.to_numpy()
+    class_labels = np.unique(data[:, -1])  # Assuming the last column is the class label
+    scaler = StandardScaler().fit(X[numeric_features].to_numpy())  # Re-fit scaler for numeric features
     
-#     for i in range(num_samples):
-#         for j in range(i + 1, num_samples):  # Matrix is symmetric
-#             distance = hvdm(data[i], data[j], numeric_indices, categorical_indices, class_labels, data, scaler)
-#             distance_matrix[i, j] = distance
-#             distance_matrix[j, i] = distance
+    for i in range(num_samples):
+        for j in range(i + 1, num_samples):  # Matrix is symmetric
+            distance = hvdm(data[i], data[j], numeric_indices, categorical_indices, class_labels, data, scaler)
+            distance_matrix[i, j] = distance
+            distance_matrix[j, i] = distance
             
-#     return distance_matrix
+    return distance_matrix
+
+df = pd.read_csv("datasets/abalone/abalone.csv")
+columns = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight',
+           'Rings']
+features = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight']
+numeric_features = ['Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight']
+nominal_features = ['Sex']
+
+df.columns = columns
+dev_X = df[features]
+dev_y = df["Rings"]
+
+numeric_indices = [features.index(feature) for feature in numeric_features]
+categorical_indices = [features.index(feature) for feature in nominal_features]
+
+# Assuming your class labels are in a separate variable `y` and part of the DataFrame `X`
+class_labels = dev_y.unique()
+
+# StandardScaler should be fit on numeric features of your training data
+
+# Now, you can compute the distance matrix
+distance_matrix = compute_distance_matrix(dev_X, hvdm)

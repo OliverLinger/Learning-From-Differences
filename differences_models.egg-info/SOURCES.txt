@@ -3,9 +3,10 @@ setup.py
 differences/__init__.py
 differences/_classification.py
 differences/_regression.py
-differences/customDistMetric.py
+differences/custom_hvdm_metric.py
 differences/cvdhm.py
 differences/setup.py
+differences/updated_custom_hvdm_metric.py
 differences_images/__init__.py
 differences_images/_classification.py
 differences_images/_regression.py

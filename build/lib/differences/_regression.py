@@ -233,7 +233,7 @@ class LingerRegressor(BaseEstimator, RegressorMixin):
             for diffs in distances:
                 for n in diffs:
                     distances_X.append(n)
-            differences_test_X = self.add_additional_distance_column(
+            differences_test_X = self.add_additional_distance_column_fit(
                 differences_X=differences_test_X, distances=distances_X
             )
         """function for addition of base case context to the training data.
@@ -342,7 +342,8 @@ class LingerRegressor(BaseEstimator, RegressorMixin):
                     setattr(self.regressor, param, value)
         return self
 
-    def add_additional_distance_column_fit(self, differences_X, distances):
+    # Variant 3
+    def add_additional_distance_column(self, differences_X, distances):
         """
         Adds an additional column with distance values associated with each differences_X during fitting.
 
@@ -357,7 +358,7 @@ class LingerRegressor(BaseEstimator, RegressorMixin):
             diff_res = np.array([diff_res])
             differences_X[i] = np.concatenate((differences_X[i], diff_res))
         return differences_X
-
+    # Variant 2
     def duplicate_difference_based_on_distance(
         self, differences_X, differences_y, distances
     ):
@@ -422,7 +423,7 @@ class LingerRegressor(BaseEstimator, RegressorMixin):
         ]
         # Retrun the duplicated lists
         return duplicated_list_X, duplicated_list_y
-
+    # Variant 1
     def addition_of_context_func_fit(self, X, y, indices, differences_X, differences_y):
         for i in indices:
             base = i[0]
