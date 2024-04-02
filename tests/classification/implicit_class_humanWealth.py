@@ -1,7 +1,7 @@
-from datetime import datetime
+import datetime
 from sklearn.calibration import LabelEncoder
 from sklearn.neural_network import MLPClassifier
-from differences import _classification
+from differences_implicit import _classification
 
 import pandas as pd
 import numpy as np
@@ -13,43 +13,13 @@ from sklearn.pipeline import Pipeline
 
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
-
 from sklearn.preprocessing import OneHotEncoder
-
 
 from sklearn.neighbors import KNeighborsClassifier
 
 from sklearn.model_selection import GridSearchCV
 
-LingerClassifier = _classification.LingerClassifier
-
-df = pd.read_csv("datasets/raisin_data/Raisin_Dataset.csv")
-from datetime import datetime
-from sklearn.calibration import LabelEncoder
-from sklearn.neural_network import MLPClassifier
-from differences import _classification
-
-import pandas as pd
-import numpy as np
-
-from sklearn.model_selection import train_test_split
-
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler
-
-from sklearn.preprocessing import OneHotEncoder
-
-
-from sklearn.neighbors import KNeighborsClassifier
-
-from sklearn.model_selection import GridSearchCV
-
-LingerClassifier = _classification.LingerClassifier
-
-LingerClassifier = _classification.LingerClassifier
+LingerClassifier = _classification.LingerImplicitClassifier
 
 def load_data(file_path):
     df = pd.read_csv(file_path)
@@ -77,8 +47,8 @@ def preprocess_data(df, features, numeric_features, nominal_features, columns):
     dev_X = dev_df[features]
     test_X = test_df[features]
 
-    dev_y = dev_df['Class'].values
-    test_y = test_df['Class'].values
+    dev_y = dev_df['class'].values
+    test_y = test_df['class'].values
 
     label_encoder = LabelEncoder()
     dev_y = label_encoder.fit_transform(dev_y)
@@ -131,7 +101,7 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     "predictor__beta_2": [0.999, 0.995, 0.9]
     }
 
-    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
+    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
     nn_gs.fit(dev_X, dev_y)
 
     return nn_gs
@@ -157,7 +127,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
             lfd_classifier_param_grid[key] = [value]
 
     lfd_classifier_gs = GridSearchCV(
-        lfd_classifier_pipeline, lfd_classifier_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
+        lfd_classifier_pipeline, lfd_classifier_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
 
     lfd_classifier_gs.fit(dev_X, dev_y)
 
@@ -195,15 +165,17 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         file.write("--------------------------------------------------------------\n")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\RaisinResultsBasic.txt'
-    df = pd.read_csv(r"C:\Users\USER\final_year\fyp\datasets\raisin_data\Raisin_Dataset_reduced.csv")
-    columns = ['Area', 'MajorAxisLength', 'MinorAxisLength', 'Eccentricity',
-       'ConvexArea', 'Extent', 'Perimeter', 'Class']
-    features = ['Area', 'MajorAxisLength', 'MinorAxisLength', 'Eccentricity',
-       'ConvexArea', 'Extent', 'Perimeter']
-    numeric_features = ['Area', 'MajorAxisLength', 'MinorAxisLength', 'Eccentricity',
-       'ConvexArea', 'Extent', 'Perimeter']
-    nominal_features = []
+    file_path = r'C:\Users\USER\final_year\fyp\results\classificationImplicit\HumanWealthImplicitBasic.txt'
+    df = pd.read_csv("datasets/adult/adult_reduced.csv")
+    columns = ['age', 'workclass', 'fnlwgt', 'education', 'education_num', 'marital-status', 'occupation', 
+               'relationship', 'race', 'sex', 'capital-gain', 'capital-loss', 'hours-per-week', 
+               'native-country', 'class']
+    features = ['age', 'workclass', 'fnlwgt', 'education', 'education_num', 'marital-status', 'occupation', 
+               'relationship', 'race', 'sex', 'capital-gain', 'capital-loss', 'hours-per-week', 
+               'native-country']
+    numeric_features = ['age', 'fnlwgt','education_num', 'capital-gain', 'capital-loss', 'hours-per-week']
+    nominal_features = ['workclass', 'education', 'marital-status', 'occupation', 
+               'relationship', 'race', 'sex', 'native-country']
     dev_X, test_X, dev_y, test_y, preprocessor = preprocess_data(df, features, numeric_features, nominal_features, columns)
 
     knn_classifier_gs = train_knn_classifier(dev_X, dev_y, preprocessor)
@@ -214,7 +186,6 @@ def main():
 
     save_results(file_path, knn_classifier_gs, knn_classifier_gs_weighted, nn_gs, lfd_classifier_gs)
     calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_weighted, nn_gs, lfd_classifier_gs, test_X, test_y)
-    print("Run complete")
 
 if __name__ == "__main__":
     num_times_to_run = 5  # Change this to the desired number of iterations

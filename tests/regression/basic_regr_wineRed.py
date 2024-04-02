@@ -59,10 +59,10 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (100,), (200, 100), (300, 200, 100)],
+    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), (300, 200, 100), (400, 300, 200, 100)],
     "predictor__activation": ["identity", "logistic", "tanh", "relu"],
     "predictor__alpha": [0.0001, 0.001, 0.01, 0.1],
-    "predictor__max_iter": [1000, 1500],
+    "predictor__max_iter": [1500, 2000],
     "predictor__early_stopping": [True],
     "predictor__validation_fraction": [0.1, 0.2, 0.3],
     "predictor__learning_rate_init": [0.001, 0.01, 0.1],
@@ -129,7 +129,7 @@ def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y):
 
 def main():
     file_path = r'C:\Users\USER\final_year\fyp\results\RedWineResultsBasic.txt'
-    df = pd.read_csv("datasets/wineQuality/winequality-Red.csv")
+    df = pd.read_csv("datasets/wineQuality/winequality-Red_Reduced.csv")
     columns = ["fixed acidity","volatile acidity","citric acid","residual sugar","chlorides","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol","quality"]
     features = [
     "fixed acidity","volatile acidity", "citric acid","residual sugar","chlorides","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol",]
