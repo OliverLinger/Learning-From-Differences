@@ -2286,7 +2286,7 @@ The following sections summarize the results obtained from Experiment 1, present
     \begin{tabular}{|l|l|}
     \hline
     \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    predictor\_\_activation & relu \\ \hline
+    activation & relu \\ \hline
     alpha & 0.0001 \\ \hline
     beta\_1 & 0.9 \\ \hline
     beta\_2 & 0.995 \\ \hline
@@ -2328,37 +2328,562 @@ The following sections summarize the results obtained from Experiment 1, present
 \begin{table}[H]
     \centering
     \caption{Average Training Accuracy Results}
-    \label{tab:average_results_train}
+    \label{tab:average_results_train_Glass}
     \begin{tabular}{|l|l|}
     \hline
     \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} \\ \hline
-    KNN Classifier & 68.2\% \\ \hline
-    Weighted KNN Classifier & 70.0\% \\ \hline
-    Neural Net Classifier & 73.1\% \\ \hline
-    Linger Classifier & 70.04\% \\ \hline
+    KNN Classifier & $68.2\%$ \\ \hline
+    Weighted KNN Classifier & $70.0\%$ \\ \hline
+    Neural Net Classifier & $73.1\%$ \\ \hline
+    Linger Classifier & $70.04\%$ \\ \hline
     \end{tabular}
 \end{table}
 
 \begin{table}[H]
     \centering
     \caption{Average Test Accuracy Results}
-    \label{tab:average_results_test}
+    \label{tab:average_results_test_Glass}
     \begin{tabular}{|l|l|}
     \hline
     \textbf{Classifier} & \textbf{Average Test Accuracy (\%)} \\ \hline
-    KNN Classifier & 60.46\% \\ \hline
-    Weighted KNN Classifier & 62.8\% \\ \hline
-    Neural Net Classifier & 61.4\% \\ \hline
-    Linger Classifier & 60.46\% \\ \hline
+    KNN Classifier & $60.46\%$ \\ \hline
+    Weighted KNN Classifier & $62.8\%$ \\ \hline
+    Neural Net Classifier & $61.4\%$ \\ \hline
+    Linger Classifier & $60.46\%$ \\ \hline
     \end{tabular}
 \end{table}
 
-\subsubsection{(LCV1)}
-\subsubsection{(LCV2)}
-\subsubsection{(LCV3)}
+\subsubsection{(LCV1) Results}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for KNN Classifier}
+    \label{tab:best_parameters_knn_LCV1_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    n\_neighbors & 2 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Weighted KNN Classifier}
+    \label{tab:best_parameters_weighted_knn_LCV1_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    n\_neighbors & 7 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Neural Net}
+    \label{tab:best_parameters_neural_net_LCV1_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    activation & relu \\ \hline
+    alpha & 0.1 \\ \hline
+    beta\_1 & 0.9 \\ \hline
+    beta\_2 & 0.999 \\ \hline
+    early\_stopping & True \\ \hline
+    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
+    learning\_rate\_init & 0.01 \\ \hline
+    max\_iter & 1500 \\ \hline
+    solver & adam \\ \hline
+    validation\_fraction & 0.3 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Linger Classifier with Context (Variation 1)}
+    \label{tab:best_parameters_linger_classifier_LCV1_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    activation & relu \\ \hline
+    addition\_of\_context & True \\ \hline
+    additional\_results\_column & False \\ \hline
+    alpha & 0.1 \\ \hline
+    beta\_1 & 0.9 \\ \hline
+    beta\_2 & 0.999 \\ \hline
+    duplicated\_on\_distance & False \\ \hline
+    early\_stopping & True \\ \hline
+    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
+    learning\_rate\_init & 0.01 \\ \hline
+    max\_iter & 1500 \\ \hline
+    n\_neighbours\_1 & 17 \\ \hline
+    n\_neighbours\_2 & 17 \\ \hline
+    solver & adam \\ \hline
+    validation\_fraction & 0.3 \\ \hline
+    weighted\_knn & False \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Average Training Accuracy Results for Classifiers}
+    \label{tab:average_results_train_LCV1_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} \\ \hline
+    KNN Classifier & $68.24\%$ \\ \hline
+    Weighted KNN Classifier & $70.00\%$ \\ \hline
+    Neural Network Classifier & $72.79\%$ \\ \hline
+    Linger Classifier & $69.41\%$ \\ \hline
+    \end{tabular}
+    \end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Average Test Accuracy Results for Classifiers}
+    \label{tab:average_results_test_LCV1_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Classifier} & \textbf{Average Test Accuracy (\%)} \\ \hline
+    KNN Classifier & $60.47\%$ \\ \hline
+    Weighted KNN Classifier & $62.79\%$ \\ \hline
+    Neural Network Classifier & $64.53\%$ \\ \hline
+    Linger Classifier & $65.70\%$ \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{(LCV2) Results}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for KNN Classifier}
+    \label{tab:best_parameters_knn_LCV2_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    n\_neighbors & 2 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Weighted KNN Classifier}
+    \label{tab:best_parameters_weighted_knn_LCV2_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    n\_neighbors & 7 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Neural Net}
+    \label{tab:best_parameters_neural_net_LCV2_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    activation & relu \\ \hline
+    alpha & 0.1 \\ \hline
+    beta\_1 & 0.9 \\ \hline
+    beta\_2 & 0.995 \\ \hline
+    early\_stopping & True \\ \hline
+    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
+    learning\_rate\_init & 0.01 \\ \hline
+    max\_iter & 1000 \\ \hline
+    solver & adam \\ \hline
+    validation\_fraction & 0.3 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Linger Classifier, Duplication using Distance (Variation 2)}
+    \label{tab:best_parameters_linger_classifier_LCV2_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    activation & relu \\ \hline
+    addition\_of\_context & False \\ \hline
+    additional\_results\_column & False \\ \hline
+    alpha & 0.1 \\ \hline
+    beta\_1 & 0.9 \\ \hline
+    beta\_2 & 0.995 \\ \hline
+    duplicated\_on\_distance & True \\ \hline
+    early\_stopping & True \\ \hline
+    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
+    learning\_rate\_init & 0.01 \\ \hline
+    max\_iter & 1000 \\ \hline
+    n\_neighbours\_1 & 21 \\ \hline
+    n\_neighbours\_2 & 13 \\ \hline
+    solver & adam \\ \hline
+    validation\_fraction & 0.3 \\ \hline
+    weighted\_knn & False \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Average Training Accuracy Results for Classifiers (Variation 2)}
+    \label{tab:average_results_train_LCV2_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} \\ \hline
+    KNN Classifier & $68.24\%$ \\ \hline
+    Weighted KNN Classifier & $70.00\%$ \\ \hline
+    Neural Network Classifier & $71.29\%$ \\ \hline
+    Linger Classifier & $67.29\%$ \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Average Test Accuracy Results for Classifiers (Variation 2)}
+    \label{tab:average_results_test_LCV2_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Classifier} & \textbf{Average Test Accuracy (\%)} \\ \hline
+    KNN Classifier & $60.47\%$ \\ \hline
+    Weighted KNN Classifier & $62.79\%$ \\ \hline
+    Neural Network Classifier & $67.91\%$ \\ \hline
+    Linger Classifier & $69.30\%$ \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{(LCV3) Results}
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for KNN Classifier}
+    \label{tab:best_parameters_knn_LCV3_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    n\_neighbors & 2 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Weighted KNN Classifier}
+    \label{tab:best_parameters_weighted_knn_LCV3_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    n\_neighbors & 7 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Neural Net}
+    \label{tab:best_parameters_neural_net_LCV3_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    activation & relu \\ \hline
+    alpha & 0.001 \\ \hline
+    beta\_1 & 0.99 \\ \hline
+    beta\_2 & 0.999 \\ \hline
+    early\_stopping & True \\ \hline
+    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
+    learning\_rate\_init & 0.01 \\ \hline
+    max\_iter & 1000 \\ \hline
+    solver & adam \\ \hline
+    validation\_fraction & 0.3 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Linger Classifier with Additional Distance Column (Variation 3)}
+    \label{tab:best_parameters_linger_classifier_LCV3_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    activation & relu \\ \hline
+    addition\_of\_context & False \\ \hline
+    additional\_results\_column & True \\ \hline
+    alpha & 0.001 \\ \hline
+    beta\_1 & 0.99 \\ \hline
+    beta\_2 & 0.999 \\ \hline
+    duplicated\_on\_distance & False \\ \hline
+    early\_stopping & True \\ \hline
+    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
+    learning\_rate\_init & 0.01 \\ \hline
+    max\_iter & 1000 \\ \hline
+    n\_neighbours\_1 & 21 \\ \hline
+    n\_neighbours\_2 & 13 \\ \hline
+    solver & adam \\ \hline
+    validation\_fraction & 0.3 \\ \hline
+    weighted\_knn & False \\ \hline
+    \end{tabular}, 
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Average Training Accuracy Results for Classifiers (Variation 3)}
+    \label{tab:average_results_train_LCV3_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} \\ \hline
+    KNN Classifier & $68.24\%$ \\ \hline
+    Weighted KNN Classifier & $70.00\%$ \\ \hline
+    Neural Network Classifier & $71.06\%$ \\ \hline
+    Linger Classifier & $67.65\%$ \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Average Test Accuracy Results for Classifiers (Variation 3)}
+    \label{tab:average_results_test_LCV3_Glass}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Classifier} & \textbf{Average Test Accuracy (\%)} \\ \hline
+    KNN Classifier & $60.47\%$ \\ \hline
+    Weighted KNN Classifier & $62.79\%$ \\ \hline
+    Neural Network Classifier & $67.44\%$ \\ \hline
+    Linger Classifier & $60.93\%$ \\ \hline
+    \end{tabular}
+\end{table}
 \subsubsection{(LIC)}
 \subsubsection{(LICV1)}
 \subsubsection{(LICV2)}
+
+\subsection{Experiment 2: Abalone Dataset Regression}
+\subsubsection{Methodology}
+For Experiment 2, we focused on regression tasks using the Abalone dataset. 
+The approach involved a two-step process. Initially, we trained a neural network (NN) regressor using grid search with 
+cross-validation to explore various hyperparameter combinations. Following this, we utilized the best hyperparameters from the NN training 
+to train a \texttt{LingerRegressor} (LR) and its variants, aiming for enhanced robustness. 
+The LR models were then tested for their performance by conducting 4 runs to improve robustness.
+
+For comparison, a KNN, weighted KNN, and Neural Network were run on the same data, 
+to gauge the relative performance of the \texttt{LingerRegressor}.
+
+The following sections summarize the results obtained from Experiment 2, presenting the hyperparameters used and the corresponding performance metrics achieved.
+
+\subsection{Tested Hyperparameters}
+
+\begin{table}[H]
+    \centering
+    \caption{Tested Hyperparameters for Neural Network and Linger Regressor}
+    \label{tab:hyperparameters_abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Values} \\ \hline
+    \multicolumn{2}{|c|}{\textbf{Neural Network}} \\ \hline
+    Hidden Layer Sizes & (256, 128), (128, 64), (200, 100), (300, 200, 100) \\ \hline
+    Activation & relu \\ \hline
+    Alpha & 0.0001, 0.001, 0.01, 0.1 \\ \hline
+    Max Iterations & 2000 \\ \hline
+    Early Stopping & True \\ \hline
+    Validation Fraction & 0.1 \\ \hline
+    Learning Rate Init & 0.001, 0.01, 0.1 \\ \hline
+    Solver & adam, sgd \\ \hline
+    Beta 1 & 0.9, 0.95, 0.99 \\ \hline
+    Beta 2 & 0.999, 0.995, 0.9 \\ \hline
+    \multicolumn{2}{|c|}{\textbf{Linger Regressor}} \\ \hline
+    N Neighbours 1 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
+    N Neighbours 2 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
+    Weighted KNN & False \\ \hline
+    Additional Results Column & False \\ \hline
+    Duplicated on Distance & False \\ \hline
+    Addition of Context & False \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{(LR) Results}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for KNN Regressor}
+    \label{tab:best_parameters_knn_LR_Abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    n\_neighbors & 17 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Weighted KNN Regressor}
+    \label{tab:best_parameters_weighted_knn_LR_Abalone}
+    % Since weighted KNN was not directly mentioned with results, you might want to adjust or omit this table.
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Neural Net Regressor}
+    \label{tab:best_parameters_neural_net_LR_Abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    Activation & relu \\ \hline
+    Alpha & 0.01 \\ \hline
+    Beta 1 & 0.95 \\ \hline
+    Beta 2 & 0.9 \\ \hline
+    Early Stopping & True \\ \hline
+    Hidden Layer Sizes & (200, 100) \\ \hline
+    Learning Rate Init & 0.01 \\ \hline
+    Max Iter & 2000 \\ \hline
+    Solver & sgd \\ \hline
+    Validation Fraction & 0.1 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Linger Regressor}
+    \label{tab:best_parameters_linger_regressor_LR_Abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    Activation & relu \\ \hline
+    Addition of Context & False \\ \hline
+    Additional Results Column & False \\ \hline
+    Alpha & 0.01 \\ \hline
+    Beta 1 & 0.95 \\ \hline
+    Beta 2 & 0.9 \\ \hline
+    Duplicated on Distance & False \\ \hline
+    Early Stopping & True \\ \hline
+    Hidden Layer Sizes & (200, 100) \\ \hline
+    Learning Rate Init & 0.01 \\ \hline
+    Max Iter & 2000 \\ \hline
+    n\_Neighbours\_1 & 5 \\ \hline
+    n\_Neighbours\_2 & 21 \\ \hline
+    Solver & sgd \\ \hline
+    Validation Fraction & 0.1 \\ \hline
+    Weighted KNN & False \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Average Training Negative Mean Squared Error Results}
+    \label{tab:average_results_train_Abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Regressor} & \textbf{Average Training Negative Mean Squared Error} \\ \hline
+    KNN Regressor &  $-1.95857$\\ \hline
+    Weighted KNN Regressor &  ??\\ \hline
+    Neural Net Regressor & $-1.92956$\\ \hline
+    Linger Regressor & $-1.89797$\\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Average Test Negative Mean Squared Error Results}
+    \label{tab:average_results_test_Abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Regressor} & \textbf{Average Test Negative Mean Squared Error} \\ \hline
+    KNN Regressor & $-1.92999$ \\ \hline
+    Weighted KNN Regressor & ?? \\ \hline
+    Neural Net Regressor & $-1.89454$ \\ \hline
+    Linger Regressor & $-1.83486$ \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{(LRV1) Results}
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for KNN Regressor}
+    \label{tab:best_parameters_knn_LRV1_Abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    n\_neighbors & 17 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Weighted KNN Regressor}
+    \label{tab:best_parameters_weighted_knn_LRV1_Abalone}
+    % Since weighted KNN was not directly mentioned with results, you might want to adjust or omit this table.
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Neural Net Regressor}
+    \label{tab:best_parameters_neural_net_LRV1_Abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    activation & relu \\ \hline
+    alpha & 0.1 \\ \hline
+    beta\_1 & 0.99 \\ \hline
+    beta\_2 & 0.9 \\ \hline
+    early\_stopping & True \\ \hline
+    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
+    learning\_rate\_init & 0.01 \\ \hline
+    max\_iter & 2000 \\ \hline
+    solver & sgd \\ \hline
+    validation\_fraction & 0.1 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Linger Regressor}
+    \label{tab:best_parameters_linger_regressor_LRV1_Abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    activation & relu \\ \hline
+    addition\_of\_context & True \\ \hline
+    additional\_results\_column & False \\ \hline
+    alpha & 0.1 \\ \hline
+    beta\_1 & 0.99 \\ \hline
+    beta\_2 & 0.9 \\ \hline
+    duplicated\_on\_distance & False \\ \hline
+    early\_stopping & True \\ \hline
+    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
+    learning\_rate\_init & 0.01 \\ \hline
+    max\_iter & 2000 \\ \hline
+    n\_neighbours\_1 & 2 \\ \hline
+    n\_neighbours\_2 & 21 \\ \hline
+    solver & sgd \\ \hline
+    validation\_fraction & 0.1 \\ \hline
+    weighted\_knn & False \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Average Training Negative Mean Squared Error Results}
+    \label{tab:average_results_train_LRV1_Abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Regressor} & \textbf{Average Training Negative Mean Squared Error} \\ \hline
+    KNN Regressor &  $-1.9586$\\ \hline
+    Weighted KNN Regressor &  ??\\ \hline
+    Neural Net Regressor & $-1.8848$\\ \hline
+    Linger Regressor & $-1.9420$\\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Average Test Negative Mean Squared Error Results}
+    \label{tab:average_results_test_LRV1_Abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Regressor} & \textbf{Average Test Negative Mean Squared Error} \\ \hline
+    KNN Regressor & $-1.9300$ \\ \hline
+    Weighted KNN Regressor & ?? \\ \hline
+    Neural Net Regressor & $-1.8234$ \\ \hline
+    Linger Regressor & $-1.8697$ \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{(LRV2)}
+\subsubsection{(LRV3)}
+\subsubsection{(LIR)}
+\subsubsection{(LIRV1)}
+\subsubsection{(LIRV2)}
 
 \subsection{Experiment 6: Raisin Dataset Classification}
 \subsubsection{(LC)}
