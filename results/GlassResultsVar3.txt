@@ -1,0 +1,60 @@
+Basic classifier, Variation 3, Distance Column Best Parameters KNN classifier: ({'predictor__n_neighbors': 2},)
+Best Score KNN classifier: 0.6823529411764706
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 7}Best score for distance weighted KNN: 0.7Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.9, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3},)
+Best Score Neural net classifier: 0.7176470588235294
+Best Parameters Linger classifier: ({'predictor__activation': 'relu', 'predictor__addition_of_context': False, 'predictor__additional_results_column': True, 'predictor__alpha': 0.001, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.9, 'predictor__duplicated_on_distance': False, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 21, 'predictor__n_neighbours_2': 15, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3, 'predictor__weighted_knn': False},)
+Best Score Linger classifier: 0.6705882352941177
+--------------------------------------------------------------
+Test Accuracy for KNN classifier: 0.6046511627906976
+Test Accuracy for weighted KNN classifier: 0.627906976744186
+Test Accuracy for Neural Network classifier: 0.627906976744186
+Test Accuracy for Linger Classifier: 0.6046511627906976
+--------------------------------------------------------------
+Basic classifier, Variation 3, Distance Column Best Parameters KNN classifier: ({'predictor__n_neighbors': 2},)
+Best Score KNN classifier: 0.6823529411764706
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 7}Best score for distance weighted KNN: 0.7Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.99, 'predictor__beta_2': 0.995, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (400, 300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3},)
+Best Score Neural net classifier: 0.7
+Best Parameters Linger classifier: ({'predictor__activation': 'relu', 'predictor__addition_of_context': False, 'predictor__additional_results_column': True, 'predictor__alpha': 0.001, 'predictor__beta_1': 0.99, 'predictor__beta_2': 0.995, 'predictor__duplicated_on_distance': False, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (400, 300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 21, 'predictor__n_neighbours_2': 15, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3, 'predictor__weighted_knn': False},)
+Best Score Linger classifier: 0.6764705882352942
+--------------------------------------------------------------
+Test Accuracy for KNN classifier: 0.6046511627906976
+Test Accuracy for weighted KNN classifier: 0.627906976744186
+Test Accuracy for Neural Network classifier: 0.6744186046511628
+Test Accuracy for Linger Classifier: 0.5348837209302325
+--------------------------------------------------------------
+Basic classifier, Variation 3, Distance Column Best Parameters KNN classifier: ({'predictor__n_neighbors': 2},)
+Best Score KNN classifier: 0.6823529411764706
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 7}Best score for distance weighted KNN: 0.7Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.99, 'predictor__beta_2': 0.999, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3},)
+Best Score Neural net classifier: 0.7058823529411765
+Best Parameters Linger classifier: ({'predictor__activation': 'relu', 'predictor__addition_of_context': False, 'predictor__additional_results_column': True, 'predictor__alpha': 0.001, 'predictor__beta_1': 0.99, 'predictor__beta_2': 0.999, 'predictor__duplicated_on_distance': False, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 21, 'predictor__n_neighbours_2': 13, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3, 'predictor__weighted_knn': False},)
+Best Score Linger classifier: 0.6764705882352942
+--------------------------------------------------------------
+Test Accuracy for KNN classifier: 0.6046511627906976
+Test Accuracy for weighted KNN classifier: 0.627906976744186
+Test Accuracy for Neural Network classifier: 0.627906976744186
+Test Accuracy for Linger Classifier: 0.6046511627906976
+--------------------------------------------------------------
+Basic classifier, Variation 3, Distance Column Best Parameters KNN classifier: ({'predictor__n_neighbors': 2},)
+Best Score KNN classifier: 0.6823529411764706
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 7}Best score for distance weighted KNN: 0.7Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__alpha': 0.1, 'predictor__beta_1': 0.99, 'predictor__beta_2': 0.995, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (400, 300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3},)
+Best Score Neural net classifier: 0.7176470588235294
+Best Parameters Linger classifier: ({'predictor__activation': 'relu', 'predictor__addition_of_context': False, 'predictor__additional_results_column': True, 'predictor__alpha': 0.1, 'predictor__beta_1': 0.99, 'predictor__beta_2': 0.995, 'predictor__duplicated_on_distance': False, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (400, 300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 21, 'predictor__n_neighbours_2': 13, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3, 'predictor__weighted_knn': False},)
+Best Score Linger classifier: 0.6764705882352942
+--------------------------------------------------------------
+Test Accuracy for KNN classifier: 0.6046511627906976
+Test Accuracy for weighted KNN classifier: 0.627906976744186
+Test Accuracy for Neural Network classifier: 0.6976744186046512
+Test Accuracy for Linger Classifier: 0.627906976744186
+--------------------------------------------------------------
+Basic classifier, Variation 3, Distance Column Best Parameters KNN classifier: ({'predictor__n_neighbors': 2},)
+Best Score KNN classifier: 0.6823529411764706
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 7}Best score for distance weighted KNN: 0.7Best Parameters Neural net classifier: ({'predictor__activation': 'relu', 'predictor__alpha': 0.01, 'predictor__beta_1': 0.95, 'predictor__beta_2': 0.9, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (400, 300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3},)
+Best Score Neural net classifier: 0.711764705882353
+Best Parameters Linger classifier: ({'predictor__activation': 'relu', 'predictor__addition_of_context': False, 'predictor__additional_results_column': True, 'predictor__alpha': 0.01, 'predictor__beta_1': 0.95, 'predictor__beta_2': 0.9, 'predictor__duplicated_on_distance': False, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (400, 300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 21, 'predictor__n_neighbours_2': 13, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3, 'predictor__weighted_knn': False},)
+Best Score Linger classifier: 0.6823529411764706
+--------------------------------------------------------------
+Test Accuracy for KNN classifier: 0.6046511627906976
+Test Accuracy for weighted KNN classifier: 0.627906976744186
+Test Accuracy for Neural Network classifier: 0.7441860465116279
+Test Accuracy for Linger Classifier: 0.6744186046511628
+--------------------------------------------------------------

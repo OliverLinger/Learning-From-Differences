@@ -52,6 +52,19 @@ def train_knn_regressor(dev_X, dev_y, preprocessor):
 
     return knn_gs
 
+def train_weighted_knn_regressor(dev_X, dev_y, preprocessor):
+    knn_pipeline = Pipeline([
+        ("preprocessor", preprocessor),
+        ("predictor", KNeighborsRegressor(weights=True))
+    ])
+
+    knn_param_grid = {"predictor__n_neighbors": [2, 5, 7, 10, 13, 15, 17, 21]}
+
+    knn_gs = GridSearchCV(knn_pipeline, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+    knn_gs.fit(dev_X, dev_y)
+
+    return knn_gs
+
 def train_neural_network(dev_X, dev_y, preprocessor):
     nn_pipeline = Pipeline([
         ("preprocessor", preprocessor),
@@ -89,8 +102,8 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__weighted_knn": [False],
          "predictor__additional_results_column": [False],
-         "predictor__duplicated_on_distance": [False],
-        "predictor__addition_of_context": [True],
+         "predictor__duplicated_on_distance": [True],
+        "predictor__addition_of_context": [False],
     })
     # Update with best_nn_params
     lfd_param_grid.update(best_nn_params)
@@ -105,7 +118,7 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
 
 def save_results(file_path, knn_gs, nn_gs, lfd_gs):
     with open(file_path, 'a') as file:
-        file.write(f"Basic regression, No variations")
+        file.write(f"Basic regression, Duplication on Distance")
         file.write(f"Best Parameters KNN regression: {knn_gs.best_params_,}\n")
         file.write(f"Best Score KNN regression: {knn_gs.best_score_}\n")
         file.write(f"Best Parameters Linger regression: {lfd_gs.best_params_,}\n")
@@ -128,7 +141,7 @@ def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y):
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\AbaloneResultsVar1.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\AbaloneResultsVar2.txt'
     df = pd.read_csv("datasets/abalone/abalone_reduced.csv")
     columns = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight', 'Rings']
     features = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight']

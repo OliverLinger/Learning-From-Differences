@@ -1,4 +1,4 @@
-Basic regression, No variationsBest Parameters KNN regression: ({'predictor__n_neighbors': 17},)
+Basic regression, Context added Best Parameters KNN regression: ({'predictor__n_neighbors': 17},)
 Best Score KNN regression: -1.958570889894419
 Best Parameters Linger regression: ({'predictor__activation': 'relu', 'predictor__addition_of_context': True, 'predictor__additional_results_column': False, 'predictor__alpha': 0.1, 'predictor__beta_1': 0.99, 'predictor__beta_2': 0.9, 'predictor__duplicated_on_distance': False, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 2000, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 21, 'predictor__solver': 'sgd', 'predictor__validation_fraction': 0.1, 'predictor__weighted_knn': False},)
 Best Score Linger Regression: -1.9604185077509104
