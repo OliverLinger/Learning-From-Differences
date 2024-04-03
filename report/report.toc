@@ -1,176 +1,176 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {1}Introduction}{10}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Model-Based Learning}{10}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}Advantages of Model-Based Learning:}{10}{subsection.1.1.1}%
-\contentsline {subsection}{\numberline {1.1.2}Disadvantages of Model-Based Learning:}{11}{subsection.1.1.2}%
-\contentsline {section}{\numberline {1.2}Instance-Based Learning}{11}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Advantages of Instance-Based Learning:}{12}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Disadvantages of Instance-Based Learning:}{12}{subsection.1.2.2}%
-\contentsline {subsection}{\numberline {1.2.3}Motivation for Blended Learning}{12}{subsection.1.2.3}%
-\contentsline {chapter}{\numberline {2}Literature Review}{14}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Introduction}{14}{section.2.1}%
-\contentsline {section}{\numberline {2.2}KNN + ANN for Regression, Utilizing CBR}{15}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Learning From Differences Paper}{15}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Algorithms}{16}{subsection.2.2.2}%
-\contentsline {section}{\numberline {2.3}Learning Adaptations for Case-based classification}{19}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}An NN-CDH Approach for Classification}{20}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Variant 0: Non-Network C-CDH}{21}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Variant 1 - 2: C-NN-CDH}{22}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Variant 3 - 5: C-NN-CDH}{22}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}Evaluation Summary}{26}{subsection.2.3.5}%
-\contentsline {subsection}{\numberline {2.3.6}Conclusions on Learning adaptations for case based classification: A Neural Network approach}{27}{subsection.2.3.6}%
-\contentsline {chapter}{\numberline {3}Design and Implementation}{28}{chapter.3}%
-\contentsline {section}{\numberline {3.1}LingerRegressor and LingerClassifier Models Roadmap}{29}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Learning From Differences}{31}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Introduction and Motivation}{31}{subsection.3.2.1}%
-\contentsline {section}{\numberline {3.3}Linger Regression Base Model: \texttt {LingerRegressor} (LR)}{32}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Objective}{32}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Architecture}{33}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Components}{33}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Parameterization}{33}{subsection.3.3.4}%
-\contentsline {subsection}{\numberline {3.3.5}Training and Prediction Design}{33}{subsection.3.3.5}%
-\contentsline {subsubsection}{Training Design}{33}{section*.12}%
-\contentsline {subsubsection}{Prediction Design}{34}{section*.13}%
-\contentsline {subsection}{\numberline {3.3.6}Training and Prediction Implementation}{35}{subsection.3.3.6}%
-\contentsline {subsubsection}{Training Implementation}{35}{section*.14}%
-\contentsline {subsubsection}{Prediction Implementation}{36}{section*.15}%
-\contentsline {subsection}{\numberline {3.3.7}Evaluation}{39}{subsection.3.3.7}%
-\contentsline {subsection}{\numberline {3.3.8}Optimization}{39}{subsection.3.3.8}%
-\contentsline {subsection}{\numberline {3.3.9}Limitations and Future Work}{39}{subsection.3.3.9}%
-\contentsline {subsection}{\numberline {3.3.10}Conclusion}{39}{subsection.3.3.10}%
-\contentsline {section}{\numberline {3.4}Linger Classification Base Model: \texttt {LingerClassifier} (LC)}{40}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Objective}{40}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Architecture}{41}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Components}{41}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Parameterization}{41}{subsection.3.4.4}%
-\contentsline {subsection}{\numberline {3.4.5}Training and Prediction Design}{41}{subsection.3.4.5}%
-\contentsline {subsubsection}{Training Algorithm Design}{41}{section*.16}%
-\contentsline {subsubsection}{Prediction Algorithm Design}{42}{section*.17}%
-\contentsline {subsection}{\numberline {3.4.6}Training and Prediction Implementation}{42}{subsection.3.4.6}%
-\contentsline {subsubsection}{Training Algorithm Implementation}{42}{section*.18}%
-\contentsline {subsubsection}{Prediction Algorithm Implementation}{44}{section*.19}%
-\contentsline {subsection}{\numberline {3.4.7}Evaluation}{47}{subsection.3.4.7}%
-\contentsline {subsection}{\numberline {3.4.8}Optimization}{47}{subsection.3.4.8}%
-\contentsline {subsection}{\numberline {3.4.9}Limitations and Future Work}{47}{subsection.3.4.9}%
-\contentsline {subsection}{\numberline {3.4.10}Conclusion}{47}{subsection.3.4.10}%
-\contentsline {section}{\numberline {3.5}Variations For \texttt {LingerRegressor} (LR) and \texttt {LingerClassifier} (LC)}{48}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Variation 1: Addition of Context Design and Implementation (LRV1, LCV1)}{48}{subsection.3.5.1}%
-\contentsline {subsubsection}{Objective}{48}{section*.20}%
-\contentsline {subsubsection}{Training Design}{49}{section*.21}%
-\contentsline {subsubsection}{Prediction Design}{49}{section*.22}%
-\contentsline {subsubsection}{Training Implementation}{50}{section*.23}%
-\contentsline {subsubsection}{Prediction Implementation}{50}{section*.24}%
-\contentsline {subsection}{\numberline {3.5.2}Variation 2: Duplication Based on Distance Design and Implementation (LRV2, LCV2)}{51}{subsection.3.5.2}%
-\contentsline {subsubsection}{Objective}{51}{section*.25}%
-\contentsline {subsubsection}{Training Design}{52}{section*.26}%
-\contentsline {subsubsection}{Training Implementation}{53}{section*.27}%
-\contentsline {subsection}{\numberline {3.5.3}Variation 3: Addition of Distance Column Design and Implementation (LRV3, LCV3)}{54}{subsection.3.5.3}%
-\contentsline {subsubsection}{Objective}{54}{section*.28}%
-\contentsline {subsubsection}{Design for Training}{54}{section*.29}%
-\contentsline {subsubsection}{Design for Predict}{55}{section*.30}%
-\contentsline {subsubsection}{Implementation for Training, and Prediction}{56}{section*.31}%
-\contentsline {section}{\numberline {3.6}Acronym Guide}{57}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Learning From differences Implicitly}{57}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Introduction and Motivation}{57}{subsection.3.7.1}%
-\contentsline {section}{\numberline {3.8}Linger Implicit Classification Model: \texttt {LingerImplicitClassifier} (LIC)}{58}{section.3.8}%
-\contentsline {subsection}{\numberline {3.8.1}Objective}{58}{subsection.3.8.1}%
-\contentsline {subsection}{\numberline {3.8.2}Architecture}{58}{subsection.3.8.2}%
-\contentsline {subsection}{\numberline {3.8.3}Components}{59}{subsection.3.8.3}%
-\contentsline {subsection}{\numberline {3.8.4}Parameterization}{59}{subsection.3.8.4}%
-\contentsline {subsection}{\numberline {3.8.5}Training and Prediction Design}{59}{subsection.3.8.5}%
-\contentsline {subsubsection}{Training Algorithm Design}{60}{section*.33}%
-\contentsline {subsubsection}{Prediction Algorithm Design}{60}{section*.34}%
-\contentsline {subsection}{\numberline {3.8.6}Training and Prediction Implementation}{61}{subsection.3.8.6}%
-\contentsline {subsubsection}{Training Algorithm Implementation}{61}{section*.35}%
-\contentsline {subsubsection}{Prediction Algorithm Implementation}{64}{section*.36}%
-\contentsline {subsection}{\numberline {3.8.7}Optimization}{66}{subsection.3.8.7}%
-\contentsline {subsection}{\numberline {3.8.8}Limitations and Future Work}{66}{subsection.3.8.8}%
-\contentsline {subsection}{\numberline {3.8.9}Conclusion}{67}{subsection.3.8.9}%
-\contentsline {section}{\numberline {3.9}Linger Implicit Regression Model: \texttt {LingerImplicitRegressor}}{67}{section.3.9}%
-\contentsline {subsection}{\numberline {3.9.1}Objective}{67}{subsection.3.9.1}%
-\contentsline {subsection}{\numberline {3.9.2}Architecture}{68}{subsection.3.9.2}%
-\contentsline {subsection}{\numberline {3.9.3}Components}{68}{subsection.3.9.3}%
-\contentsline {subsection}{\numberline {3.9.4}Parameterization}{69}{subsection.3.9.4}%
-\contentsline {subsection}{\numberline {3.9.5}Training and Prediction Design}{69}{subsection.3.9.5}%
-\contentsline {subsubsection}{Training Algorithm Design}{70}{section*.37}%
-\contentsline {subsubsection}{Prediction Algorithm Design}{70}{section*.38}%
-\contentsline {subsection}{\numberline {3.9.6}Training and Prediction Implementation}{71}{subsection.3.9.6}%
-\contentsline {subsubsection}{Training Implementation}{71}{section*.39}%
-\contentsline {subsubsection}{Prediction Implementation}{71}{section*.40}%
-\contentsline {subsection}{\numberline {3.9.7}Regression to Classification Converter Design and Implementation}{71}{subsection.3.9.7}%
-\contentsline {subsubsection}{Regression to Classification Converter Design}{71}{section*.41}%
-\contentsline {subsubsection}{Regression to Classification Converter Implementation}{74}{section*.42}%
-\contentsline {subsection}{\numberline {3.9.8}Optimization}{74}{subsection.3.9.8}%
-\contentsline {subsection}{\numberline {3.9.9}Limitations and Future Work}{74}{subsection.3.9.9}%
-\contentsline {subsection}{\numberline {3.9.10}Conclusion}{74}{subsection.3.9.10}%
-\contentsline {section}{\numberline {3.10}Learning from Differences For Images}{77}{section.3.10}%
-\contentsline {subsection}{\numberline {3.10.1}Introduction and Motivation}{77}{subsection.3.10.1}%
-\contentsline {section}{\numberline {3.11}Linger Image Classification Model \texttt {LingerImageClassifier} (LIMC)}{77}{section.3.11}%
-\contentsline {subsection}{\numberline {3.11.1}Objective}{77}{subsection.3.11.1}%
-\contentsline {subsection}{\numberline {3.11.2}Architecture}{77}{subsection.3.11.2}%
-\contentsline {subsection}{\numberline {3.11.3}Components}{77}{subsection.3.11.3}%
-\contentsline {subsection}{\numberline {3.11.4}Parameterization}{77}{subsection.3.11.4}%
-\contentsline {subsection}{\numberline {3.11.5}Training and Prediction Design}{77}{subsection.3.11.5}%
-\contentsline {subsection}{\numberline {3.11.6}Training and Prediction Implementation}{77}{subsection.3.11.6}%
-\contentsline {subsection}{\numberline {3.11.7}Optimization}{77}{subsection.3.11.7}%
-\contentsline {subsection}{\numberline {3.11.8}Limitations and Future Work}{77}{subsection.3.11.8}%
-\contentsline {section}{\numberline {3.12}Linger Image Regressor Model \texttt {LingerImageRegressor} (LIMR)}{77}{section.3.12}%
-\contentsline {subsection}{\numberline {3.12.1}Objective}{77}{subsection.3.12.1}%
-\contentsline {subsection}{\numberline {3.12.2}Architecture}{77}{subsection.3.12.2}%
-\contentsline {subsection}{\numberline {3.12.3}Components}{77}{subsection.3.12.3}%
-\contentsline {subsection}{\numberline {3.12.4}Parameterization}{77}{subsection.3.12.4}%
-\contentsline {subsection}{\numberline {3.12.5}Training and Prediction Design}{77}{subsection.3.12.5}%
-\contentsline {subsection}{\numberline {3.12.6}Training and Prediction Implementation}{77}{subsection.3.12.6}%
-\contentsline {subsection}{\numberline {3.12.7}Optimization}{77}{subsection.3.12.7}%
-\contentsline {subsection}{\numberline {3.12.8}Limitations and Future Work}{77}{subsection.3.12.8}%
-\contentsline {chapter}{\numberline {4}Experiments}{78}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Research Objective}{78}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Data Collection and Preprocessing}{80}{subsection.4.1.1}%
-\contentsline {subsubsection}{Preprocessing For Labelled Datasets}{80}{section*.43}%
-\contentsline {section}{\numberline {4.2}Results and Analysis}{81}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Experiment 1: Glass Dataset Classification}{81}{subsection.4.2.1}%
-\contentsline {subsubsection}{Methodology}{81}{section*.44}%
-\contentsline {subsubsection}{(LC) Results}{82}{section*.46}%
-\contentsline {subsubsection}{(LCV1)}{84}{section*.53}%
-\contentsline {subsubsection}{(LCV2)}{84}{section*.54}%
-\contentsline {subsubsection}{(LCV3)}{84}{section*.55}%
-\contentsline {subsubsection}{(LIC)}{84}{section*.56}%
-\contentsline {subsubsection}{(LICV1)}{84}{section*.57}%
-\contentsline {subsubsection}{(LICV2)}{84}{section*.58}%
-\contentsline {subsection}{\numberline {4.2.2}Experiment 2: Abalone Dataset Regression}{84}{subsection.4.2.2}%
-\contentsline {subsubsection}{Methodology}{84}{section*.59}%
-\contentsline {subsection}{\numberline {4.2.3}Tested Hyperparameters}{85}{subsection.4.2.3}%
-\contentsline {subsubsection}{(LR) Results}{85}{section*.61}%
-\contentsline {subsubsection}{(LRV1)}{88}{section*.68}%
-\contentsline {subsubsection}{(LRV2)}{88}{section*.69}%
-\contentsline {subsubsection}{(LRV3)}{88}{section*.70}%
-\contentsline {subsubsection}{(LIR)}{88}{section*.71}%
-\contentsline {subsubsection}{(LIRV1)}{88}{section*.72}%
-\contentsline {subsubsection}{(LIRV2)}{88}{section*.73}%
-\contentsline {subsection}{\numberline {4.2.4}Experiment 6: Raisin Dataset Classification}{88}{subsection.4.2.4}%
-\contentsline {subsubsection}{(LC)}{88}{section*.74}%
-\contentsline {subsubsection}{(LCV1)}{88}{section*.75}%
-\contentsline {subsubsection}{(LCV2)}{88}{section*.76}%
-\contentsline {subsubsection}{(LCV3)}{88}{section*.77}%
-\contentsline {subsubsection}{(LIC)}{88}{section*.78}%
-\contentsline {subsubsection}{(LICV1)}{88}{section*.79}%
-\contentsline {subsubsection}{(LICV2)}{88}{section*.80}%
-\contentsline {subsection}{\numberline {4.2.5}Experiment 7: Car Safety Dataset Classification}{88}{subsection.4.2.5}%
-\contentsline {subsubsection}{(LC)}{88}{section*.81}%
-\contentsline {subsubsection}{(LCV1)}{88}{section*.82}%
-\contentsline {subsubsection}{(LCV2)}{88}{section*.83}%
-\contentsline {subsubsection}{(LCV3)}{88}{section*.84}%
-\contentsline {subsubsection}{(LIC)}{88}{section*.85}%
-\contentsline {subsubsection}{(LICV1)}{88}{section*.86}%
-\contentsline {subsubsection}{(LICV2)}{88}{section*.87}%
-\contentsline {subsection}{\numberline {4.2.6}Experiment 8: Human Wealth Dataset Classification}{88}{subsection.4.2.6}%
-\contentsline {subsubsection}{(LC)}{88}{section*.88}%
-\contentsline {subsubsection}{(LCV1)}{88}{section*.89}%
-\contentsline {subsubsection}{(LCV2)}{88}{section*.90}%
-\contentsline {subsubsection}{(LCV3)}{88}{section*.91}%
-\contentsline {subsubsection}{(LIC)}{88}{section*.92}%
-\contentsline {subsubsection}{(LICV1)}{88}{section*.93}%
-\contentsline {subsubsection}{(LICV2)}{88}{section*.94}%
-\contentsline {section}{\numberline {4.3}Discussion}{88}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{90}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Results}{91}{chapter.6}%
+\contentsline {chapter}{\numberline {1}Introduction}{11}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Model-Based Learning}{11}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Advantages of Model-Based Learning:}{11}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Disadvantages of Model-Based Learning:}{12}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Instance-Based Learning}{12}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Advantages of Instance-Based Learning:}{13}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Disadvantages of Instance-Based Learning:}{13}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Motivation for Blended Learning}{13}{subsection.1.2.3}%
+\contentsline {chapter}{\numberline {2}Literature Review}{15}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introduction}{15}{section.2.1}%
+\contentsline {section}{\numberline {2.2}KNN + ANN for Regression, Utilizing CBR}{16}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Learning From Differences Paper}{16}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Algorithms}{17}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Learning Adaptations for Case-based classification}{20}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}An NN-CDH Approach for Classification}{21}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Variant 0: Non-Network C-CDH}{22}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Variant 1 - 2: C-NN-CDH}{23}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Variant 3 - 5: C-NN-CDH}{23}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Evaluation Summary}{27}{subsection.2.3.5}%
+\contentsline {subsection}{\numberline {2.3.6}Conclusions on Learning adaptations for case based classification: A Neural Network approach}{28}{subsection.2.3.6}%
+\contentsline {chapter}{\numberline {3}Design and Implementation}{29}{chapter.3}%
+\contentsline {section}{\numberline {3.1}LingerRegressor and LingerClassifier Models Roadmap}{30}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Learning From Differences}{32}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Introduction and Motivation}{32}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Linger Regression Base Model: \texttt {LingerRegressor} (LR)}{33}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Objective}{33}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Architecture}{34}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Components}{34}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Parameterization}{34}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.5}Training and Prediction Design}{34}{subsection.3.3.5}%
+\contentsline {subsubsection}{Training Design}{34}{section*.12}%
+\contentsline {subsubsection}{Prediction Design}{35}{section*.13}%
+\contentsline {subsection}{\numberline {3.3.6}Training and Prediction Implementation}{36}{subsection.3.3.6}%
+\contentsline {subsubsection}{Training Implementation}{36}{section*.14}%
+\contentsline {subsubsection}{Prediction Implementation}{37}{section*.15}%
+\contentsline {subsection}{\numberline {3.3.7}Evaluation}{40}{subsection.3.3.7}%
+\contentsline {subsection}{\numberline {3.3.8}Optimization}{40}{subsection.3.3.8}%
+\contentsline {subsection}{\numberline {3.3.9}Limitations and Future Work}{40}{subsection.3.3.9}%
+\contentsline {subsection}{\numberline {3.3.10}Conclusion}{40}{subsection.3.3.10}%
+\contentsline {section}{\numberline {3.4}Linger Classification Base Model: \texttt {LingerClassifier} (LC)}{41}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Objective}{41}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Architecture}{42}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Components}{42}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Parameterization}{42}{subsection.3.4.4}%
+\contentsline {subsection}{\numberline {3.4.5}Training and Prediction Design}{42}{subsection.3.4.5}%
+\contentsline {subsubsection}{Training Algorithm Design}{42}{section*.16}%
+\contentsline {subsubsection}{Prediction Algorithm Design}{43}{section*.17}%
+\contentsline {subsection}{\numberline {3.4.6}Training and Prediction Implementation}{43}{subsection.3.4.6}%
+\contentsline {subsubsection}{Training Algorithm Implementation}{43}{section*.18}%
+\contentsline {subsubsection}{Prediction Algorithm Implementation}{45}{section*.19}%
+\contentsline {subsection}{\numberline {3.4.7}Evaluation}{48}{subsection.3.4.7}%
+\contentsline {subsection}{\numberline {3.4.8}Optimization}{48}{subsection.3.4.8}%
+\contentsline {subsection}{\numberline {3.4.9}Limitations and Future Work}{48}{subsection.3.4.9}%
+\contentsline {subsection}{\numberline {3.4.10}Conclusion}{48}{subsection.3.4.10}%
+\contentsline {section}{\numberline {3.5}Variations For \texttt {LingerRegressor} (LR) and \texttt {LingerClassifier} (LC)}{49}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Variation 1: Addition of Context Design and Implementation (LRV1, LCV1)}{49}{subsection.3.5.1}%
+\contentsline {subsubsection}{Objective}{49}{section*.20}%
+\contentsline {subsubsection}{Training Design}{50}{section*.21}%
+\contentsline {subsubsection}{Prediction Design}{50}{section*.22}%
+\contentsline {subsubsection}{Training Implementation}{51}{section*.23}%
+\contentsline {subsubsection}{Prediction Implementation}{51}{section*.24}%
+\contentsline {subsection}{\numberline {3.5.2}Variation 2: Duplication Based on Distance Design and Implementation (LRV2, LCV2)}{52}{subsection.3.5.2}%
+\contentsline {subsubsection}{Objective}{52}{section*.25}%
+\contentsline {subsubsection}{Training Design}{53}{section*.26}%
+\contentsline {subsubsection}{Training Implementation}{54}{section*.27}%
+\contentsline {subsection}{\numberline {3.5.3}Variation 3: Addition of Distance Column Design and Implementation (LRV3, LCV3)}{55}{subsection.3.5.3}%
+\contentsline {subsubsection}{Objective}{55}{section*.28}%
+\contentsline {subsubsection}{Design for Training}{55}{section*.29}%
+\contentsline {subsubsection}{Design for Predict}{56}{section*.30}%
+\contentsline {subsubsection}{Implementation for Training, and Prediction}{57}{section*.31}%
+\contentsline {section}{\numberline {3.6}Acronym Guide}{58}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Learning From differences Implicitly}{58}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Introduction and Motivation}{58}{subsection.3.7.1}%
+\contentsline {section}{\numberline {3.8}Linger Implicit Classification Model: \texttt {LingerImplicitClassifier} (LIC)}{59}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Objective}{59}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Architecture}{59}{subsection.3.8.2}%
+\contentsline {subsection}{\numberline {3.8.3}Components}{60}{subsection.3.8.3}%
+\contentsline {subsection}{\numberline {3.8.4}Parameterization}{60}{subsection.3.8.4}%
+\contentsline {subsection}{\numberline {3.8.5}Training and Prediction Design}{60}{subsection.3.8.5}%
+\contentsline {subsubsection}{Training Algorithm Design}{61}{section*.33}%
+\contentsline {subsubsection}{Prediction Algorithm Design}{61}{section*.34}%
+\contentsline {subsection}{\numberline {3.8.6}Training and Prediction Implementation}{62}{subsection.3.8.6}%
+\contentsline {subsubsection}{Training Algorithm Implementation}{62}{section*.35}%
+\contentsline {subsubsection}{Prediction Algorithm Implementation}{65}{section*.36}%
+\contentsline {subsection}{\numberline {3.8.7}Optimization}{67}{subsection.3.8.7}%
+\contentsline {subsection}{\numberline {3.8.8}Limitations and Future Work}{67}{subsection.3.8.8}%
+\contentsline {subsection}{\numberline {3.8.9}Conclusion}{68}{subsection.3.8.9}%
+\contentsline {section}{\numberline {3.9}Linger Implicit Regression Model: \texttt {LingerImplicitRegressor}}{68}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Objective}{68}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Architecture}{69}{subsection.3.9.2}%
+\contentsline {subsection}{\numberline {3.9.3}Components}{69}{subsection.3.9.3}%
+\contentsline {subsection}{\numberline {3.9.4}Parameterization}{70}{subsection.3.9.4}%
+\contentsline {subsection}{\numberline {3.9.5}Training and Prediction Design}{70}{subsection.3.9.5}%
+\contentsline {subsubsection}{Training Algorithm Design}{71}{section*.37}%
+\contentsline {subsubsection}{Prediction Algorithm Design}{71}{section*.38}%
+\contentsline {subsection}{\numberline {3.9.6}Training and Prediction Implementation}{72}{subsection.3.9.6}%
+\contentsline {subsubsection}{Training Implementation}{72}{section*.39}%
+\contentsline {subsubsection}{Prediction Implementation}{72}{section*.40}%
+\contentsline {subsection}{\numberline {3.9.7}Regression to Classification Converter Design and Implementation}{72}{subsection.3.9.7}%
+\contentsline {subsubsection}{Regression to Classification Converter Design}{72}{section*.41}%
+\contentsline {subsubsection}{Regression to Classification Converter Implementation}{75}{section*.42}%
+\contentsline {subsection}{\numberline {3.9.8}Optimization}{75}{subsection.3.9.8}%
+\contentsline {subsection}{\numberline {3.9.9}Limitations and Future Work}{75}{subsection.3.9.9}%
+\contentsline {subsection}{\numberline {3.9.10}Conclusion}{75}{subsection.3.9.10}%
+\contentsline {section}{\numberline {3.10}Learning from Differences For Images}{78}{section.3.10}%
+\contentsline {subsection}{\numberline {3.10.1}Introduction and Motivation}{78}{subsection.3.10.1}%
+\contentsline {section}{\numberline {3.11}Linger Image Classification Model \texttt {LingerImageClassifier} (LIMC)}{78}{section.3.11}%
+\contentsline {subsection}{\numberline {3.11.1}Objective}{78}{subsection.3.11.1}%
+\contentsline {subsection}{\numberline {3.11.2}Architecture}{78}{subsection.3.11.2}%
+\contentsline {subsection}{\numberline {3.11.3}Components}{78}{subsection.3.11.3}%
+\contentsline {subsection}{\numberline {3.11.4}Parameterization}{78}{subsection.3.11.4}%
+\contentsline {subsection}{\numberline {3.11.5}Training and Prediction Design}{78}{subsection.3.11.5}%
+\contentsline {subsection}{\numberline {3.11.6}Training and Prediction Implementation}{78}{subsection.3.11.6}%
+\contentsline {subsection}{\numberline {3.11.7}Optimization}{78}{subsection.3.11.7}%
+\contentsline {subsection}{\numberline {3.11.8}Limitations and Future Work}{78}{subsection.3.11.8}%
+\contentsline {section}{\numberline {3.12}Linger Image Regressor Model \texttt {LingerImageRegressor} (LIMR)}{78}{section.3.12}%
+\contentsline {subsection}{\numberline {3.12.1}Objective}{78}{subsection.3.12.1}%
+\contentsline {subsection}{\numberline {3.12.2}Architecture}{78}{subsection.3.12.2}%
+\contentsline {subsection}{\numberline {3.12.3}Components}{78}{subsection.3.12.3}%
+\contentsline {subsection}{\numberline {3.12.4}Parameterization}{78}{subsection.3.12.4}%
+\contentsline {subsection}{\numberline {3.12.5}Training and Prediction Design}{78}{subsection.3.12.5}%
+\contentsline {subsection}{\numberline {3.12.6}Training and Prediction Implementation}{78}{subsection.3.12.6}%
+\contentsline {subsection}{\numberline {3.12.7}Optimization}{78}{subsection.3.12.7}%
+\contentsline {subsection}{\numberline {3.12.8}Limitations and Future Work}{78}{subsection.3.12.8}%
+\contentsline {chapter}{\numberline {4}Experiments}{79}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Research Objective}{79}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Data Collection and Preprocessing}{81}{subsection.4.1.1}%
+\contentsline {subsubsection}{Preprocessing For Labelled Datasets}{81}{section*.43}%
+\contentsline {section}{\numberline {4.2}Results and Analysis}{82}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Experiment 1: Glass Dataset Classification}{82}{subsection.4.2.1}%
+\contentsline {subsubsection}{Methodology}{82}{section*.44}%
+\contentsline {subsubsection}{(LC) Results}{83}{section*.46}%
+\contentsline {subsubsection}{(LCV1) Results}{85}{section*.53}%
+\contentsline {subsubsection}{(LCV2) Results}{87}{section*.60}%
+\contentsline {subsubsection}{(LCV3) Results}{89}{section*.67}%
+\contentsline {subsubsection}{(LIC)}{91}{section*.74}%
+\contentsline {subsubsection}{(LICV1)}{91}{section*.75}%
+\contentsline {subsubsection}{(LICV2)}{91}{section*.76}%
+\contentsline {subsection}{\numberline {4.2.2}Experiment 2: Abalone Dataset Regression}{91}{subsection.4.2.2}%
+\contentsline {subsubsection}{Methodology}{91}{section*.77}%
+\contentsline {subsection}{\numberline {4.2.3}Tested Hyperparameters}{92}{subsection.4.2.3}%
+\contentsline {subsubsection}{(LR) Results}{92}{section*.79}%
+\contentsline {subsubsection}{(LRV1) Results}{94}{section*.86}%
+\contentsline {subsubsection}{(LRV2)}{96}{section*.93}%
+\contentsline {subsubsection}{(LRV3)}{96}{section*.94}%
+\contentsline {subsubsection}{(LIR)}{96}{section*.95}%
+\contentsline {subsubsection}{(LIRV1)}{96}{section*.96}%
+\contentsline {subsubsection}{(LIRV2)}{96}{section*.97}%
+\contentsline {subsection}{\numberline {4.2.4}Experiment 6: Raisin Dataset Classification}{96}{subsection.4.2.4}%
+\contentsline {subsubsection}{(LC)}{96}{section*.98}%
+\contentsline {subsubsection}{(LCV1)}{96}{section*.99}%
+\contentsline {subsubsection}{(LCV2)}{96}{section*.100}%
+\contentsline {subsubsection}{(LCV3)}{96}{section*.101}%
+\contentsline {subsubsection}{(LIC)}{96}{section*.102}%
+\contentsline {subsubsection}{(LICV1)}{96}{section*.103}%
+\contentsline {subsubsection}{(LICV2)}{96}{section*.104}%
+\contentsline {subsection}{\numberline {4.2.5}Experiment 7: Car Safety Dataset Classification}{96}{subsection.4.2.5}%
+\contentsline {subsubsection}{(LC)}{96}{section*.105}%
+\contentsline {subsubsection}{(LCV1)}{96}{section*.106}%
+\contentsline {subsubsection}{(LCV2)}{96}{section*.107}%
+\contentsline {subsubsection}{(LCV3)}{96}{section*.108}%
+\contentsline {subsubsection}{(LIC)}{96}{section*.109}%
+\contentsline {subsubsection}{(LICV1)}{96}{section*.110}%
+\contentsline {subsubsection}{(LICV2)}{96}{section*.111}%
+\contentsline {subsection}{\numberline {4.2.6}Experiment 8: Human Wealth Dataset Classification}{96}{subsection.4.2.6}%
+\contentsline {subsubsection}{(LC)}{96}{section*.112}%
+\contentsline {subsubsection}{(LCV1)}{96}{section*.113}%
+\contentsline {subsubsection}{(LCV2)}{96}{section*.114}%
+\contentsline {subsubsection}{(LCV3)}{96}{section*.115}%
+\contentsline {subsubsection}{(LIC)}{96}{section*.116}%
+\contentsline {subsubsection}{(LICV1)}{96}{section*.117}%
+\contentsline {subsubsection}{(LICV2)}{96}{section*.118}%
+\contentsline {section}{\numberline {4.3}Discussion}{96}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{98}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Results}{99}{chapter.6}%

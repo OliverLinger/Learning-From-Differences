@@ -53,15 +53,15 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
             Target differences.
         """
         # Reshape X if necessary
-        if len(X.shape) == 4:
+        # Ensure X is reshaped correctly
+        if len(X.shape) > 2:
+            # Flatten the array if it's 3D or 4D (e.g., images with channels)
             X = X.reshape(len(X), -1)
-        elif len(X.shape) == 3:
-            X = X.reshape(len(X), -1)
+        
+            print(f"Reshaped X to: {X.shape}")  # Debug print to confirm reshaping
         else:
             X = X
         self.n_neighbours_1 += 1  # Increment n_neighbours
-        print(X.shape)
-        quit()
         # Fit nearest neighbors to find the indices of nearest neighbors
         neighbours = NearestNeighbors(n_neighbors=self.n_neighbours_1).fit(X)
         _, indices = neighbours.kneighbors(X.reshape(len(X), -1))
@@ -84,7 +84,9 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
         self.train_X = X
         self.train_y = y
         self.classes_ = np.unique(y)
-
+        print("differences")
+        print(differences_X)
+        print(differences_y)
         return differences_X, differences_y
 
     def predict(self, X, model, dataset, input_shape):
@@ -98,6 +100,11 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
         Returns:
         - y_pred: Predicted target values.
         """
+        if len(X.shape) > 2:
+            # Flatten the array if it's 3D or 4D (e.g., images with channels)
+            X = X.reshape(len(X), -1)
+        
+            print(f"Reshaped X to: {X.shape}")  # Debug print to confirm reshaping
         # Fit nearest neighbors to the training data
         nbrs = NearestNeighbors(n_neighbors=self.n_neighbours_2).fit(self.train_X.reshape(len(self.train_X), -1))
         _, indices = nbrs.kneighbors(X.reshape(len(X), -1))
@@ -163,17 +170,17 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
                     setattr(self.regressor, param, value)
         return self
     
-    def compute_pixelwise_difference(self, image1, image2):
-        # Compute structural similarity index between the images
-        ssim_index = structural_similarity(image1, image2, multichannel=True, win_size=3, data_range=image1.max() - image1.min())
+    # def compute_pixelwise_difference(self, image1, image2):
+    #     # Compute structural similarity index between the images
+    #     ssim_index = structural_similarity(image1, image2, multichannel=True, win_size=3, data_range=image1.max() - image1.min())
 
-        # Normalize SSIM index to [0, 1] range
-        ssim_index_normalized = (ssim_index + 1) / 2
+    #     # Normalize SSIM index to [0, 1] range
+    #     ssim_index_normalized = (ssim_index + 1) / 2
 
-        # Compute pixel-wise difference as absolute difference between images
-        difference = np.abs(image1 - image2)
+    #     # Compute pixel-wise difference as absolute difference between images
+    #     difference = np.abs(image1 - image2)
 
-        # Add normalized SSIM index as an additional feature
-        difference = np.append(difference.flatten(), ssim_index_normalized)
+    #     # Add normalized SSIM index as an additional feature
+    #     difference = np.append(difference.flatten(), ssim_index_normalized)
 
-        return difference
+    #     return difference
