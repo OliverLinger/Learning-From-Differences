@@ -14,6 +14,9 @@ ssl._create_default_https_context = ssl._create_unverified_context
 Linger_image_classifier = _classification.LingerImageClassifier(n_neighbours_1=5, n_neighbours_2=5)
 
 # Fit the k-nearest neighbors model on the dataset
+print(X_train_cifar.shape)
+print(y_train_cifar.shape)
+quit()
 diff_X, diff_y = Linger_image_classifier.fit(X_train_cifar, y_train_cifar)
 diff_X = np.array(diff_X)
 diff_y = np.array(diff_y)

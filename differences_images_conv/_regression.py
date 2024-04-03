@@ -35,23 +35,57 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
         self.n_neighbours_2 = n_neighbours_2
 
     def fit(self, X, y):
+        """Fit the k-nearest neighbors regressor from the training dataset.
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, height, width, channels)
+            Training images.
+
+        y : array-like, shape (n_samples,)
+            Target values.
+
+        Returns
+        -------
+        differences_X : list
+            List of arrays representing differences between nearest neighbor images.
+        differences_y : list
+            Target differences.
+        """
+        # Reshape X if necessary
         if len(X.shape) == 4:
             X = X.reshape(len(X), -1)
-        self.n_neighbours_1 += 1  # Adjust for zero indexing
+        elif len(X.shape) == 3:
+            X = X.reshape(len(X), -1)
+        else:
+            X = X
+        self.n_neighbours_1 += 1  # Increment n_neighbours
+        print(X.shape)
+        quit()
+        # Fit nearest neighbors to find the indices of nearest neighbors
+        neighbours = NearestNeighbors(n_neighbors=self.n_neighbours_1).fit(X)
+        _, indices = neighbours.kneighbors(X.reshape(len(X), -1))
 
-        self.neighbours = NearestNeighbors(n_neighbors=self.n_neighbours_1).fit(X)
-        _, indices = self.neighbours.kneighbors(X)
 
-        differences_X, differences_y = [], []
+        differences_X = []
+        differences_y = []
         for i, indice in enumerate(indices):
-            for neighbor_index in indice[1:]:  # Skip the first one (itself)
-                diff = np.abs(X[i] - X[neighbor_index])
+            base_image = indice[0]
+            neighbors = indice[1:]
+            for neighbor_index in neighbors:
+                neighbor_image = X[neighbor_index]
+                neighbor_target = y[neighbor_index]
+
+                # Calculate the absolute difference between images
+                diff = np.abs(X[base_image] - neighbor_image)
                 differences_X.append(diff)
-                differences_y.append(y[i] - y[neighbor_index])
+                differences_y.append(y[base_image] - neighbor_target)
 
         self.train_X = X
         self.train_y = y
         self.classes_ = np.unique(y)
+
+        return differences_X, differences_y
 
     def predict(self, X, model, dataset, input_shape):
         print("Before reshaping in fit, X shape:", X.shape) 

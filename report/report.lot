@@ -2,18 +2,25 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Regression Models based on the algorithms in \cite {learningFromDifferences2022}}}{28}{table.caption.7}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces Classifier models based on the algorithms in \cite {learningFromDifferences2022}}}{29}{table.caption.8}%
-\contentsline {table}{\numberline {3.3}{\ignorespaces LingerImplicitClassifier models based on the algorithms in \cite {ye2021learning}}}{29}{table.caption.10}%
-\contentsline {table}{\numberline {3.4}{\ignorespaces LingerImplicitRegressor models based on the algorithms in \cite {ye2021learning}}}{30}{table.caption.11}%
-\contentsline {table}{\numberline {3.5}{\ignorespaces Variations for \texttt {LingerRegressor} and \texttt {LingerClassifier}}}{56}{table.caption.32}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces Regression Models based on the algorithms in \cite {learningFromDifferences2022}}}{29}{table.caption.7}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Classifier models based on the algorithms in \cite {learningFromDifferences2022}}}{30}{table.caption.8}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces LingerImplicitClassifier models based on the algorithms in \cite {ye2021learning}}}{30}{table.caption.10}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces LingerImplicitRegressor models based on the algorithms in \cite {ye2021learning}}}{31}{table.caption.11}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces Variations for \texttt {LingerRegressor} and \texttt {LingerClassifier}}}{57}{table.caption.32}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Classifier}}{81}{table.caption.45}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Best Parameters for KNN Classifier}}{81}{table.caption.47}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Best Parameters for Weighted KNN Classifier}}{81}{table.caption.48}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces Best Parameters for Neural Net Classifier}}{82}{table.caption.49}%
-\contentsline {table}{\numberline {4.5}{\ignorespaces Best Parameters for Linger Classifier}}{82}{table.caption.50}%
-\contentsline {table}{\numberline {4.6}{\ignorespaces Average Training Accuracy Results}}{83}{table.caption.51}%
-\contentsline {table}{\numberline {4.7}{\ignorespaces Average Test Accuracy Results}}{83}{table.caption.52}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Classifier}}{82}{table.caption.45}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Best Parameters for KNN Classifier}}{82}{table.caption.47}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Best Parameters for Weighted KNN Classifier}}{82}{table.caption.48}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Best Parameters for Neural Net Classifier}}{83}{table.caption.49}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Best Parameters for Linger Classifier}}{83}{table.caption.50}%
+\contentsline {table}{\numberline {4.6}{\ignorespaces Average Training Accuracy Results}}{84}{table.caption.51}%
+\contentsline {table}{\numberline {4.7}{\ignorespaces Average Test Accuracy Results}}{84}{table.caption.52}%
+\contentsline {table}{\numberline {4.8}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Regressor}}{85}{table.caption.60}%
+\contentsline {table}{\numberline {4.9}{\ignorespaces Best Parameters for KNN Regressor}}{85}{table.caption.62}%
+\contentsline {table}{\numberline {4.10}{\ignorespaces Best Parameters for Weighted KNN Regressor}}{86}{table.caption.63}%
+\contentsline {table}{\numberline {4.11}{\ignorespaces Best Parameters for Neural Net Regressor}}{86}{table.caption.64}%
+\contentsline {table}{\numberline {4.12}{\ignorespaces Best Parameters for Linger Regressor}}{86}{table.caption.65}%
+\contentsline {table}{\numberline {4.13}{\ignorespaces Average Training Negative Mean Squared Error Results}}{87}{table.caption.66}%
+\contentsline {table}{\numberline {4.14}{\ignorespaces Average Test Negative Mean Squared Error Results}}{87}{table.caption.67}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

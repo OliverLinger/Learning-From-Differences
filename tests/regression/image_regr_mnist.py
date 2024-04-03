@@ -18,12 +18,14 @@ regressor_mnist = _regression.LingerImageRegressor(n_neighbours_1=5)
 # Convert y to float for regression
 y_train_mnist = y_train_mnist.astype('float32')
 y_test_mnist = y_test_mnist.astype('float32')
+y_train_mnist = y_train_mnist.reshape(-1, 1)
+y_test_mnist = y_test_mnist.reshape(-1, 1)
 
 # Fit the regressor (Assuming fit method is adjusted correctly)
 
-print(X_test_mnist.shape)
-X_test_mnist = X_test_mnist.reshape(X_test_mnist.shape[0], -1)
-X_train_mnist = X_train_mnist.reshape(X_train_mnist.shape[0], -1)
+# X_test_mnist = X_test_mnist.reshape(X_test_mnist.shape[0], -1)
+# X_train_mnist = X_train_mnist.reshape(X_train_mnist.shape[0], -1)
+print(len(X_train_mnist.shape))
 diff_X, diff_y = regressor_mnist.fit(X_train_mnist, y_train_mnist)
 diff_X = np.array(diff_X)
 diff_y = np.array(diff_y)
