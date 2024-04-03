@@ -117,8 +117,8 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
          "predictor__n_neighbours_1": [21],
          "predictor__n_neighbours_2": [13, 15, 17, 21],
          "predictor__weighted_knn": [False],
-         "predictor__additional_results_column": [False],
-         "predictor__duplicated_on_distance": [True],
+         "predictor__additional_results_column": [True],
+         "predictor__duplicated_on_distance": [False],
         "predictor__addition_of_context": [False],
     })
     # Update with best_nn_params
