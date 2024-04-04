@@ -2117,13 +2117,199 @@ It performs well for a variety of regression tasks, while utilizing a learning f
 \section{Learning from Differences For Images}
 \label{sec:lingerImage_models}
 \subsection{Introduction and Motivation}
+The introduction of the \texttt{LingerImageClassifier} and \texttt{LingerImageRegressor} represents a novel approach 
+to image classification and regression tasks. Motivated by the innovative methodology outlined in "Learning from Differences 2022," 
+these tools are specifically designed to enhance interpretability and explainability in processing image data. 
+The aim was to ensure these models not only integrate smoothly into the existing software framework but also support the customization of Keras 
+convolutional neural networks. This strategy diverges from traditional methods, such as those employed by Scikit-learn's \texttt{MLPClassifier} and 
+\texttt{MLPRegressor}, offering a fresh perspective on addressing image-centric challenges.
+
 \section{Linger Image Classification Model \texttt{LingerImageClassifier} (LIMC)}
 \label{sec:lingerImage_Classifier_model}
 \subsection{Objective}
+The motivation behind the development of LIMC stems from the growing demand for more sophisticated image classification tools capable of handling 
+the complexities and nuances of real-world data. Traditional models often fall short in terms of explainability, and transparency. 
+(LIMC) aims to address these gaps by:
+
+\begin{itemize}
+    \item Incorporating state-of-the-art convolutional neural network (CNN) designs that improve upon the limitations of existing models in capturing intricate patterns in image data.
+    \item Utilizing a novel training methodology seen in \cite{learningFromDifferences2022} that enhances model learning from image differences, inspired by recent research findings.
+    \item Aiming to demystify the black-box nature of deep neural networks by providing insights into the decision-making process, making the model more trustworthy and applicable in sensitive 
+    areas such as medical diagnosis and autonomous driving.
+\end{itemize}
 \subsection{Architecture}
+The \texttt{LingerImageClassifier} employs a sophisticated, modular architecture designed to leverage the nuances of image data, 
+enhancing both predictive accuracy and interpretability. 
+This architecture comprises of three integral components:
+
+\begin{itemize}
+    \item \textbf{Custom Fit Method:} Developed to gracefully integrate with the scikit-learn \cite{scikit} ecosystem, this innovative Fit method is central to the classifier's functionality. 
+    It generates a unique dataset of image differences, effectively capturing variations between image pairs. This method not only emphasizes the importance of contrastive learning but also enriches the model's understanding of nuanced features within the data, 
+    such as changes in texture, lighting, and spatial relationships. The process involves computing the differential aspects of images, focusing on attributes that significantly influence the $y$ label values, thereby enabling a more focused and effective learning strategy.
+    It also guarantees that we know what it is precisely learning from, its visual difference to its neighbor.
+
+    \item \textbf{Convolutional Neural Network (CNN):} At the heart of the classifier lies a customizable Convolutional Neural Network, tailored from Keras's comprehensive library. 
+    This CNN is specifically designed to process and predict the differences highlighted by the custom Fit method. The architecture features a combination of convolutional layers, activation functions, 
+    and pooling layers, strategically organized to maximize feature extraction and minimize information loss. Special attention is given to the network's depth, filter sizes, 
+    and the incorporation of advanced techniques such as batch normalization and dropout for regularization. 
+    This careful construction ensures optimal performance in discerning subtle differences in image data, thus significantly contributing to the precision of subsequent predictions.
+    
+    \item \textbf{Custom Predict Method:} Complementing the custom Fit method, 
+    the Predict function stands as a testament to the model's innovative approach to classification. 
+    This component takes the CNN's predictions on image differences and synthesizes them with the original data to formulate the final classification outcomes. 
+    The method employs a algorithm that accurately applies predicted differences to their corresponding instance, accounting for the model's understanding of contrastive features within the dataset. 
+    This not only enhances the model's accuracy but also its adaptability to various image classification scenarios, ensuring that the final predictions are both precise and contextually grounded.
+\end{itemize}
+
+\textbf{Integration and Workflow:}
+The synergy between these components forms the cornerstone of the \texttt{LingerImageClassifier}'s architecture. Initially, the custom Fit method preprocesses the input images to create a differential dataset, which is then fed into the CNN for feature extraction and difference prediction. The custom Predict method subsequently interprets these predictions, applying them to derive the final classification results. This integrated workflow ensures a coherent and efficient processing pipeline, from initial data preparation to final outcome generation.
+
+\textbf{Innovations and Contributions:}
+The architecture of the \texttt{LingerImageClassifier} introduces several key innovations to the field of image classification. 
+By focusing on image differences, the model uncovers deeper insights into the data, facilitating a more nuanced understanding and interpretation 
+of the factors driving classification decisions. This approach not only improves model performance across diverse datasets but also enhances the 
+explainability of its predictions, addressing a critical need within the domain of deep learning. 
+Visually we could Identify exactly what the image is learning from based on the difference image generated.
+
 \subsection{Components}
+The key components of the \texttt{LingerImageClassifier} include:
+\begin{itemize}
+\item KNN Module: Computes nearest neighbors used to extract differences during training phase andprediction phase.
+\item 
+\item \textbf{Convolutional Neural Network (CNN):} The heart of the classification process is a Convolutional Neural Network (CNN), 
+    meticulously designed to analyze and interpret the differences identified by the KNN module. This CNN is notable for its flexibility, 
+    allowing for the customization of activation functions, solvers, and an extensive range of hyperparameters to optimize classification performance. 
+    The adaptability of the CNN component ensures that the model can be fine-tuned to suit various datasets and classification challenges. 
+    It excels in processing the contrastive features extracted by the KNN module, effectively learning from these differences to make accurate predictions. 
+    The CNN's architecture, which can include layers specifically tailored to enhance feature extraction and reduce overfitting, such as dropout 
+    and batch normalization layers, is instrumental in capturing the complex patterns inherent in image data.
+\end{itemize}
+
 \subsection{Parameterization}
+The \texttt{LingerImageClassifier} is designed with flexibility and adaptability at its core, offering a comprehensive suite of parameters that can be fine-tuned to optimize performance across a wide range of image classification tasks. 
+The use can vary the design of the (CNN) convolutional Neural Network, as well as vary the number of neighbors used in the fit and prediction methods.
 \subsection{Training and Prediction Design}
+\subsubsection{Training Design}
+
+The Image Classification Training Algorithm outlines the steps involved in training a convolutional neural network (CNN) for image 
+classification using the differences between nearest neighbor images.
+
+\begin{algorithm}
+    \caption{Image Classification Training Algorithm}
+    \label{alg:image_classification_training}
+    \begin{algorithmic}
+        \Function{TrainImageClassifier}{$X$, $y$}
+            \State \textbf{Input:} Dataset of images $X$, Target labels $y$
+            \State \textbf{Output:} Trained CNN model
+            \State Generate the image difference datasets.
+            \State $differences\_X, differences\_y \gets$ \ref{alg:generate_image_differences}GenerateDifferences($X$, $y$) 
+            \State Initialize (CNN) model. 
+            \State Train CNN model using $differences\_X$ and $differences\_y$
+            \State \textbf{return} Trained CNN model
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+The `generateDifferences` algorithm encapsulates the process of computing differences between nearest neighbor images and their base image, 
+preparing the data for training the k-nearest neighbors classifier. It iterates through each image in the training dataset, identifies its nearest neighbors, 
+and calculates the absolute differences between their pixel values. These differences, along with the target value differences, are stored in lists 
+for subsequent use in the training process.
+\begin{algorithm}
+    \caption{Generate Differences Algorithm}
+    \label{alg:generate_image_differences}
+    \begin{algorithmic}
+        \Function{generateDifferences}{$X$, $y$}
+            \State \textbf{Input:} Training images $X$, Target values $y$
+            \State \textbf{Output:} List of arrays representing differences $differences_X$, List of target differences $differences_y$
+            \If{Shape of $X$ is More than 2-dimensional}
+                \State Reshape $X$ to 2-dimensional array
+            \Else
+                \State Keep $X$ as it is
+            \EndIf
+            \State Increment $n\_neighbours\_1$ by 1 \Comment{Increment $n\_neighbours$}
+            \State Initialize empty list $differences\_X$
+            \State Initialize empty list $differences\_y$
+            \State Fit nearest neighbors to find indices of nearest neighbors
+            \State Compute nearest neighbor indices for each image in $X$
+            \For{each image $I$ in $X$}
+                \State Get nearest neighbors indices for $I$
+                \For{each neighbor index $N$}
+                    \State Get neighbor image and target value
+                    \State Compute absolute difference between $I$ and neighbor image
+                    \State Append difference to $differences\_X$
+                    \State Append target value difference to $differences\_y$
+                \EndFor
+            \EndFor
+            \State \textbf{return} $differences\_X$, $differences\_y$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Prediction Design}
+
+
+This algorithm, named "Image Classification Prediction Algorithm," takes a dataset of images $X$ and a trained convolutional neural network 
+(CNN) model $trainedCNN$ as input. It utilizes the trained CNN model to predict the differences between images in the dataset. 
+The predicted differences are then processed further using the FinalPrediction algorithm (referenced as Algorithm \ref{alg:image_classification_final_prediction}) 
+to compute the final predictions for the images. Finally, the algorithm returns the predicted target values $y_predictions$.
+\begin{algorithm}
+    \caption{Image Classification Prediction Algorithm}
+    \label{alg:image_classification_prediction}
+    \begin{algorithmic}[1]
+        \Function{PredictImageClassifier}{$X$, $trainedCNN$}
+            \State \textbf{Input:} Dataset of images $X$, Trained CNN model $trainedCNN$
+            \State \textbf{Output:} Predictions 
+            \State Use trained CNN on $X$ to predict differences: $difference\_pred \gets trainedCNN(X)$
+            \State Compute final predictions using Algorithm \ref{alg:image_classification_final_prediction}: $y\_predictions \gets \text{FinalPrediction}(difference\_pred)$ 
+            \State \textbf{return} $y\_predictions$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+
+This algorithm, titled "FinalPrediction," takes input data $X$, a trained CNN model $model$, and the input shape $input_shape$. 
+It computes the predicted target values $y_pred$ based on the differences between the input data and the training images using the trained CNN model.
+
+First, it fits nearest neighbors to the training data and then computes the absolute differences between each test image 
+and its nearest neighbors from the training set. These differences are reshaped to match the input shape and used to make predictions using the trained CNN model.
+
+Finally, it computes the predicted results for each nearest neighbor and determines the most common item among them to form the 
+final prediction $y_pred$. If no items are found, it handles this case by appending "None" to $y_pred$.
+
+\begin{algorithm}
+    \caption{Image Classification Prediction Algorithm}
+    \label{alg:image_classification_final_prediction}
+    \begin{algorithmic}[1]
+        \Function{\text{FinalPrediction}}{$X$, $model$, $input\_shape$}
+            \State \textbf{Input:} Input data $X$, Trained CNN model $model$, Input shape $input\_shape$
+            \State \textbf{Output:} Predicted target values $y\_pred$
+            \State Fit nearest neighbors to the training data
+            \State Initialize empty list $differences\_test\_X$
+            \For{$test$ in range(length of $X$)} \Comment{Compute differences between test and training images}
+                \For{$nn\_in\_training$ in range(length of nearest neighbors)}
+                    \State Compute difference between test and nearest neighbor: 
+                    \State \quad $diff \gets$ absolute difference between $X[test]$ and $self.train\_X[indices[test][nn\_in\_training]]$
+                    \State Append $diff$ to $differences\_test\_X$
+                \EndFor
+            \EndFor
+            \State Reshape $differences\_test\_X$ to match input shape
+            \State Make predictions using the trained CNN model: $predictions \gets model.predict(differences\_test\_X)$
+            \State Initialize empty list $y\_pred$
+            \For{$indexes$, $differences$ in zip($indices$, $predictions$)}
+                \State Compute predicted results for each nearest neighbor:
+                \State \quad $results \gets [\text{self.train\_y}[i][0] + d$ for $i$, $d$ in zip($indexes$, $differences)$]
+                \State Compute counts of each result: $counts \gets$ count of each value in $results$
+                \State Retrieve most common item: $most\_common\_item \gets$ most common value in $results$
+                \If{$most\_common\_item$ exists}
+                    \State Append $most\_common\_item$ to $y\_pred$
+                \Else
+                    \State Append $None$ to $y\_pred$ \Comment{Handle cases with no items}
+                \EndIf
+            \EndFor
+            \State \textbf{return} $y\_pred$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
 \subsection{Training and Prediction Implementation}
 \subsection{Optimization}
 \subsection{Limitations and Future Work}
@@ -2137,6 +2323,7 @@ It performs well for a variety of regression tasks, while utilizing a learning f
 \subsection{Training and Prediction Implementation}
 \subsection{Optimization}
 \subsection{Limitations and Future Work}
+
 \chapter{Experiments}
 \label{ch:Experiments}
 
@@ -2709,7 +2896,11 @@ The following sections summarize the results obtained from Experiment 2, present
     \centering
     \caption{Best Parameters for Weighted KNN Regressor}
     \label{tab:best_parameters_weighted_knn_LR_Abalone}
-    % Since weighted KNN was not directly mentioned with results, you might want to adjust or omit this table.
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    n\_neighbors & 21 \\ \hline
+    \end{tabular}
 \end{table}
 
 \begin{table}[H]
@@ -2766,7 +2957,7 @@ The following sections summarize the results obtained from Experiment 2, present
     \hline
     \textbf{Regressor} & \textbf{Average Training Negative Mean Squared Error} \\ \hline
     KNN Regressor &  $-1.95857$\\ \hline
-    Weighted KNN Regressor &  ??\\ \hline
+    Weighted KNN Regressor &  $-1.9567$\\ \hline
     Neural Net Regressor & $-1.92956$\\ \hline
     Linger Regressor & $-1.89797$\\ \hline
     \end{tabular}
@@ -2780,7 +2971,7 @@ The following sections summarize the results obtained from Experiment 2, present
     \hline
     \textbf{Regressor} & \textbf{Average Test Negative Mean Squared Error} \\ \hline
     KNN Regressor & $-1.92999$ \\ \hline
-    Weighted KNN Regressor & ?? \\ \hline
+    Weighted KNN Regressor & $-1.8717$ \\ \hline
     Neural Net Regressor & $-1.89454$ \\ \hline
     Linger Regressor & $-1.83486$ \\ \hline
     \end{tabular}
@@ -2802,7 +2993,11 @@ The following sections summarize the results obtained from Experiment 2, present
     \centering
     \caption{Best Parameters for Weighted KNN Regressor}
     \label{tab:best_parameters_weighted_knn_LRV1_Abalone}
-    % Since weighted KNN was not directly mentioned with results, you might want to adjust or omit this table.
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
+    n\_neighbors & 21 \\ \hline
+    \end{tabular}
 \end{table}
 
 \begin{table}[H]
@@ -2859,7 +3054,7 @@ The following sections summarize the results obtained from Experiment 2, present
     \hline
     \textbf{Regressor} & \textbf{Average Training Negative Mean Squared Error} \\ \hline
     KNN Regressor &  $-1.9586$\\ \hline
-    Weighted KNN Regressor &  ??\\ \hline
+    Weighted KNN Regressor &  $-1.9567$\\ \hline
     Neural Net Regressor & $-1.8848$\\ \hline
     Linger Regressor & $-1.9420$\\ \hline
     \end{tabular}
@@ -2873,7 +3068,7 @@ The following sections summarize the results obtained from Experiment 2, present
     \hline
     \textbf{Regressor} & \textbf{Average Test Negative Mean Squared Error} \\ \hline
     KNN Regressor & $-1.9300$ \\ \hline
-    Weighted KNN Regressor & ?? \\ \hline
+    Weighted KNN Regressor & $-1.8717$ \\ \hline
     Neural Net Regressor & $-1.8234$ \\ \hline
     Linger Regressor & $-1.8697$ \\ \hline
     \end{tabular}
