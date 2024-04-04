@@ -8,43 +8,43 @@
 \contentsline {table}{\numberline {3.4}{\ignorespaces LingerImplicitRegressor models based on the algorithms in \cite {ye2021learning}}}{32}{table.caption.11}%
 \contentsline {table}{\numberline {3.5}{\ignorespaces Variations for \texttt {LingerRegressor} and \texttt {LingerClassifier}}}{58}{table.caption.32}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Classifier}}{83}{table.caption.45}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Best Parameters for KNN Classifier}}{83}{table.caption.47}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Best Parameters for Weighted KNN Classifier}}{83}{table.caption.48}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces Best Parameters for Neural Net Classifier}}{84}{table.caption.49}%
-\contentsline {table}{\numberline {4.5}{\ignorespaces Best Parameters for Linger Classifier}}{84}{table.caption.50}%
-\contentsline {table}{\numberline {4.6}{\ignorespaces Average Training Accuracy Results}}{85}{table.caption.51}%
-\contentsline {table}{\numberline {4.7}{\ignorespaces Average Test Accuracy Results}}{85}{table.caption.52}%
-\contentsline {table}{\numberline {4.8}{\ignorespaces Best Parameters for KNN Classifier}}{85}{table.caption.54}%
-\contentsline {table}{\numberline {4.9}{\ignorespaces Best Parameters for Weighted KNN Classifier}}{85}{table.caption.55}%
-\contentsline {table}{\numberline {4.10}{\ignorespaces Best Parameters for Neural Net}}{86}{table.caption.56}%
-\contentsline {table}{\numberline {4.11}{\ignorespaces Best Parameters for Linger Classifier with Context (Variation 1)}}{86}{table.caption.57}%
-\contentsline {table}{\numberline {4.12}{\ignorespaces Average Training Accuracy Results for Classifiers}}{87}{table.caption.58}%
-\contentsline {table}{\numberline {4.13}{\ignorespaces Average Test Accuracy Results for Classifiers}}{87}{table.caption.59}%
-\contentsline {table}{\numberline {4.14}{\ignorespaces Best Parameters for KNN Classifier}}{87}{table.caption.61}%
-\contentsline {table}{\numberline {4.15}{\ignorespaces Best Parameters for Weighted KNN Classifier}}{87}{table.caption.62}%
-\contentsline {table}{\numberline {4.16}{\ignorespaces Best Parameters for Neural Net}}{88}{table.caption.63}%
-\contentsline {table}{\numberline {4.17}{\ignorespaces Best Parameters for Linger Classifier, Duplication using Distance (Variation 2)}}{88}{table.caption.64}%
-\contentsline {table}{\numberline {4.18}{\ignorespaces Average Training Accuracy Results for Classifiers (Variation 2)}}{89}{table.caption.65}%
-\contentsline {table}{\numberline {4.19}{\ignorespaces Average Test Accuracy Results for Classifiers (Variation 2)}}{89}{table.caption.66}%
-\contentsline {table}{\numberline {4.20}{\ignorespaces Best Parameters for KNN Classifier}}{89}{table.caption.68}%
-\contentsline {table}{\numberline {4.21}{\ignorespaces Best Parameters for Weighted KNN Classifier}}{89}{table.caption.69}%
-\contentsline {table}{\numberline {4.22}{\ignorespaces Best Parameters for Neural Net}}{90}{table.caption.70}%
-\contentsline {table}{\numberline {4.23}{\ignorespaces Best Parameters for Linger Classifier with Additional Distance Column (Variation 3)}}{90}{table.caption.71}%
-\contentsline {table}{\numberline {4.24}{\ignorespaces Average Training Accuracy Results for Classifiers (Variation 3)}}{91}{table.caption.72}%
-\contentsline {table}{\numberline {4.25}{\ignorespaces Average Test Accuracy Results for Classifiers (Variation 3)}}{91}{table.caption.73}%
-\contentsline {table}{\numberline {4.26}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Regressor}}{92}{table.caption.78}%
-\contentsline {table}{\numberline {4.27}{\ignorespaces Best Parameters for KNN Regressor}}{92}{table.caption.80}%
-\contentsline {table}{\numberline {4.28}{\ignorespaces Best Parameters for Weighted KNN Regressor}}{92}{table.caption.81}%
-\contentsline {table}{\numberline {4.29}{\ignorespaces Best Parameters for Neural Net Regressor}}{93}{table.caption.82}%
-\contentsline {table}{\numberline {4.30}{\ignorespaces Best Parameters for Linger Regressor}}{93}{table.caption.83}%
-\contentsline {table}{\numberline {4.31}{\ignorespaces Average Training Negative Mean Squared Error Results}}{94}{table.caption.84}%
-\contentsline {table}{\numberline {4.32}{\ignorespaces Average Test Negative Mean Squared Error Results}}{94}{table.caption.85}%
-\contentsline {table}{\numberline {4.33}{\ignorespaces Best Parameters for KNN Regressor}}{94}{table.caption.87}%
-\contentsline {table}{\numberline {4.34}{\ignorespaces Best Parameters for Weighted KNN Regressor}}{94}{table.caption.88}%
-\contentsline {table}{\numberline {4.35}{\ignorespaces Best Parameters for Neural Net Regressor}}{94}{table.caption.89}%
-\contentsline {table}{\numberline {4.36}{\ignorespaces Best Parameters for Linger Regressor}}{95}{table.caption.90}%
-\contentsline {table}{\numberline {4.37}{\ignorespaces Average Training Negative Mean Squared Error Results}}{95}{table.caption.91}%
-\contentsline {table}{\numberline {4.38}{\ignorespaces Average Test Negative Mean Squared Error Results}}{95}{table.caption.92}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Classifier}}{89}{table.caption.47}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Best Parameters for KNN Classifier}}{89}{table.caption.49}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Best Parameters for Weighted KNN Classifier}}{89}{table.caption.50}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Best Parameters for Neural Net Classifier}}{90}{table.caption.51}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Best Parameters for Linger Classifier}}{90}{table.caption.52}%
+\contentsline {table}{\numberline {4.6}{\ignorespaces Average Training Accuracy Results}}{91}{table.caption.53}%
+\contentsline {table}{\numberline {4.7}{\ignorespaces Average Test Accuracy Results}}{91}{table.caption.54}%
+\contentsline {table}{\numberline {4.8}{\ignorespaces Best Parameters for KNN Classifier}}{91}{table.caption.56}%
+\contentsline {table}{\numberline {4.9}{\ignorespaces Best Parameters for Weighted KNN Classifier}}{91}{table.caption.57}%
+\contentsline {table}{\numberline {4.10}{\ignorespaces Best Parameters for Neural Net}}{92}{table.caption.58}%
+\contentsline {table}{\numberline {4.11}{\ignorespaces Best Parameters for Linger Classifier with Context (Variation 1)}}{92}{table.caption.59}%
+\contentsline {table}{\numberline {4.12}{\ignorespaces Average Training Accuracy Results for Classifiers}}{93}{table.caption.60}%
+\contentsline {table}{\numberline {4.13}{\ignorespaces Average Test Accuracy Results for Classifiers}}{93}{table.caption.61}%
+\contentsline {table}{\numberline {4.14}{\ignorespaces Best Parameters for KNN Classifier}}{93}{table.caption.63}%
+\contentsline {table}{\numberline {4.15}{\ignorespaces Best Parameters for Weighted KNN Classifier}}{93}{table.caption.64}%
+\contentsline {table}{\numberline {4.16}{\ignorespaces Best Parameters for Neural Net}}{94}{table.caption.65}%
+\contentsline {table}{\numberline {4.17}{\ignorespaces Best Parameters for Linger Classifier, Duplication using Distance (Variation 2)}}{94}{table.caption.66}%
+\contentsline {table}{\numberline {4.18}{\ignorespaces Average Training Accuracy Results for Classifiers (Variation 2)}}{95}{table.caption.67}%
+\contentsline {table}{\numberline {4.19}{\ignorespaces Average Test Accuracy Results for Classifiers (Variation 2)}}{95}{table.caption.68}%
+\contentsline {table}{\numberline {4.20}{\ignorespaces Best Parameters for KNN Classifier}}{95}{table.caption.70}%
+\contentsline {table}{\numberline {4.21}{\ignorespaces Best Parameters for Weighted KNN Classifier}}{95}{table.caption.71}%
+\contentsline {table}{\numberline {4.22}{\ignorespaces Best Parameters for Neural Net}}{96}{table.caption.72}%
+\contentsline {table}{\numberline {4.23}{\ignorespaces Best Parameters for Linger Classifier with Additional Distance Column (Variation 3)}}{96}{table.caption.73}%
+\contentsline {table}{\numberline {4.24}{\ignorespaces Average Training Accuracy Results for Classifiers (Variation 3)}}{97}{table.caption.74}%
+\contentsline {table}{\numberline {4.25}{\ignorespaces Average Test Accuracy Results for Classifiers (Variation 3)}}{97}{table.caption.75}%
+\contentsline {table}{\numberline {4.26}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Regressor}}{98}{table.caption.80}%
+\contentsline {table}{\numberline {4.27}{\ignorespaces Best Parameters for KNN Regressor}}{98}{table.caption.82}%
+\contentsline {table}{\numberline {4.28}{\ignorespaces Best Parameters for Weighted KNN Regressor}}{98}{table.caption.83}%
+\contentsline {table}{\numberline {4.29}{\ignorespaces Best Parameters for Neural Net Regressor}}{99}{table.caption.84}%
+\contentsline {table}{\numberline {4.30}{\ignorespaces Best Parameters for Linger Regressor}}{99}{table.caption.85}%
+\contentsline {table}{\numberline {4.31}{\ignorespaces Average Training Negative Mean Squared Error Results}}{100}{table.caption.86}%
+\contentsline {table}{\numberline {4.32}{\ignorespaces Average Test Negative Mean Squared Error Results}}{100}{table.caption.87}%
+\contentsline {table}{\numberline {4.33}{\ignorespaces Best Parameters for KNN Regressor}}{100}{table.caption.89}%
+\contentsline {table}{\numberline {4.34}{\ignorespaces Best Parameters for Weighted KNN Regressor}}{100}{table.caption.90}%
+\contentsline {table}{\numberline {4.35}{\ignorespaces Best Parameters for Neural Net Regressor}}{101}{table.caption.91}%
+\contentsline {table}{\numberline {4.36}{\ignorespaces Best Parameters for Linger Regressor}}{101}{table.caption.92}%
+\contentsline {table}{\numberline {4.37}{\ignorespaces Average Training Negative Mean Squared Error Results}}{102}{table.caption.93}%
+\contentsline {table}{\numberline {4.38}{\ignorespaces Average Test Negative Mean Squared Error Results}}{102}{table.caption.94}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
