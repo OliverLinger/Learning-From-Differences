@@ -59,16 +59,16 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), (300, 200, 100), (400, 300, 200, 100)],
-    "predictor__activation": ["identity", "logistic", "tanh", "relu"],
-    "predictor__alpha": [0.0001, 0.001, 0.01, 0.1],
-    "predictor__max_iter": [1500, 2000],
+    "predictor__hidden_layer_sizes": [(300, 200, 100), (400, 300, 200, 100)],
+    "predictor__activation": ["relu"],
+    "predictor__alpha": [0.001, 0.01, 0.1],
+    "predictor__max_iter": [2000],
     "predictor__early_stopping": [True],
-    "predictor__validation_fraction": [0.1, 0.2, 0.3],
+    "predictor__validation_fraction": [0.1],
     "predictor__learning_rate_init": [0.001, 0.01, 0.1],
     "predictor__solver": ['adam', 'sgd'],
-    "predictor__beta_1": [0.9, 0.95, 0.99],
-    "predictor__beta_2": [0.999, 0.995, 0.9]
+    "predictor__beta_1": [0.9, 0.99],
+    "predictor__beta_2": [0.999, 0.9]
     }
 
     nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
