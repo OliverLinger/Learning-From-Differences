@@ -105,7 +105,7 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
         "predictor__weighted_knn": [False],
         "predictor__additional_distance_column": [False],
         "predictor__duplicated_on_distance": [False],
-        "predictor__addition_of_context": [False],
+        "predictor__addition_of_context": [True],
     })
     # Update with best_nn_params
     lfd_param_grid.update(best_nn_params)
@@ -120,7 +120,7 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
 
 def save_results(file_path, knn_gs, knn_weighted_gs, nn_gs, lfd_gs):
     with open(file_path, 'a') as file:
-        file.write(f"Basic regression, No variations")
+        file.write(f"Basic regression, Variation 1")
         file.write(f"Best Parameters KNN regression: {knn_gs.best_params_,}\n")
         file.write(f"Best Score KNN regression: {knn_gs.best_score_}\n")
         file.write(f"Best Parameters weighted KNN regression: {knn_weighted_gs.best_params_,}\n")
@@ -147,7 +147,7 @@ def calculate_test_accuracies(file_path, knn_gs, knn_weighted_gs, lfd_gs, nn_gs,
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\HousePricesResults.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\HousePricesResultsVar1.txt'
     df = pd.read_csv("datasets/house_prices/dataset_corkB_reduced.csv")
     columns = df.columns
     features = ["flarea", "bdrms", "bthrms", "floors", "type", "devment", "ber", "location"]
@@ -162,7 +162,7 @@ def main():
     lfd_gs = train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params)
 
     save_results(file_path, knn_gs, knn_weighted_gs, nn_gs, lfd_gs)
-    calculate_test_accuracies(file_path, knn_gs,knn_weighted_gs, lfd_gs, nn_gs, test_X, test_y)
+    calculate_test_accuracies(file_path, knn_gs, knn_weighted_gs, lfd_gs, nn_gs, test_X, test_y)
 
 if __name__ == "__main__":
     num_times_to_run = 5  # Change this to the desired number of iterations
