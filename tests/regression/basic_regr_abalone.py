@@ -55,7 +55,7 @@ def train_knn_regressor(dev_X, dev_y, preprocessor):
 def train_weighted_knn_regressor(dev_X, dev_y, preprocessor):
     knn_pipeline = Pipeline([
         ("preprocessor", preprocessor),
-        ("predictor", KNeighborsRegressor(weights=True))
+        ("predictor", KNeighborsRegressor(weights='distance'))
     ])
 
     knn_param_grid = {"predictor__n_neighbors": [2, 5, 7, 10, 13, 15, 17, 21]}
@@ -116,24 +116,28 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
 
     return lfd_gs
 
-def save_results(file_path, knn_gs, nn_gs, lfd_gs):
+def save_results(file_path, knn_gs,weighted_knn_gs, nn_gs, lfd_gs):
     with open(file_path, 'a') as file:
         file.write(f"Basic regression, Duplication on Distance")
         file.write(f"Best Parameters KNN regression: {knn_gs.best_params_,}\n")
         file.write(f"Best Score KNN regression: {knn_gs.best_score_}\n")
+        file.write(f"Best Parameters weighted KNN regression: {weighted_knn_gs.best_params_,}\n")
+        file.write(f"Best Score weighted KNN regression: {weighted_knn_gs.best_score_}\n")
         file.write(f"Best Parameters Linger regression: {lfd_gs.best_params_,}\n")
         file.write(f"Best Score Linger Regression: {lfd_gs.best_score_}\n")
         file.write(f"Best Parameters Basic Neural Network: {nn_gs.best_params_,}\n")
         file.write(f"Best Score Basic Neural Network: {nn_gs.best_score_}\n")
         file.write("--------------------------------------------------------------\n")
 
-def calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y):
+def calculate_test_accuracies(file_path, knn_gs,weighted_knn_gs, lfd_gs, nn_gs, test_X, test_y):
     knn_test_accuracy = knn_gs.score(test_X, test_y)
+    weighted_knn_test_accuracy = weighted_knn_gs.score(test_X, test_y)
     nn_test_accuracy = nn_gs.score(test_X, test_y)
     lfd_classifier_test_accuracy = lfd_gs.score(test_X, test_y)
 
     with open(file_path, 'a') as file:
         file.write(f"Test Accuracy for KNN regressor: {knn_test_accuracy}\n")
+        file.write(f"Test Accuracy for weighted KNN regressor: {weighted_knn_test_accuracy}\n")
         file.write(f"Test Accuracy for Linger Regressor: {lfd_classifier_test_accuracy}\n")
         file.write(f"Test Accuracy for Basic Neural Network: {nn_test_accuracy}\n")
         file.write("--------------------------------------------------------------\n")
@@ -150,12 +154,13 @@ def main():
     dev_X, test_X, dev_y, test_y, preprocessor = preprocess_data(df, features, numeric_features, nominal_features, columns)
     
     knn_gs = train_knn_regressor(dev_X, dev_y, preprocessor)
+    weighted_knn_gs = train_weighted_knn_regressor(dev_X, dev_y, preprocessor)
     nn_gs = train_neural_network(dev_X, dev_y, preprocessor)
     best_nn_params = nn_gs.best_params_
     lfd_gs = train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params)
 
-    save_results(file_path, knn_gs, nn_gs, lfd_gs)
-    calculate_test_accuracies(file_path, knn_gs, lfd_gs, nn_gs, test_X, test_y)
+    save_results(file_path, knn_gs, weighted_knn_gs, nn_gs, lfd_gs)
+    calculate_test_accuracies(file_path, knn_gs, weighted_knn_gs, lfd_gs, nn_gs, test_X, test_y)
     print("Run Complete")
 
 if __name__ == "__main__":

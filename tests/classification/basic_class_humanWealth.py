@@ -118,7 +118,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
          "predictor__weighted_knn": [False],
          "predictor__additional_results_column": [False],
          "predictor__duplicated_on_distance": [False],
-        "predictor__addition_of_context": [False],
+        "predictor__addition_of_context": [True],
     })
     # Update with best_nn_params
     lfd_classifier_param_grid.update(best_nn_params)
@@ -135,7 +135,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
 
 def save_results(file_path, knn_classifier_gs, knn_classifier_gs_weighted, nn_gs, lfd_classifier_gs):
     with open(file_path, 'a') as file:
-        file.write(f"Basic classifier, No variations")
+        file.write(f"Basic classifier, Variation 1")
         file.write(f"Best Parameters KNN classifier: {knn_classifier_gs.best_params_,}\n")
         file.write(f"Best Score KNN classifier: {knn_classifier_gs.best_score_}\n")
 
@@ -155,6 +155,9 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         knn_test_accuracy = knn_classifier_gs.score(test_X, test_y)
         file.write(f"Test Accuracy for KNN classifier: {knn_test_accuracy}\n")
 
+        weighted_knn_test_accuracy = knn_classifier_gs_weighted.score(test_X, test_y)
+        file.write(f"Test Accuracy for weighted KNN classifier: {weighted_knn_test_accuracy}\n")
+
         # Test the Neural Network classifier
         nn_test_accuracy = nn_gs.score(test_X, test_y)
         file.write(f"Test Accuracy for Neural Network classifier: {nn_test_accuracy}\n")
@@ -165,7 +168,7 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         file.write("--------------------------------------------------------------\n")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\HumanWealthBasic.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\HumanWealthVar1.txt'
     df = pd.read_csv("datasets/adult/adult_reduced.csv")
     columns = ['age', 'workclass', 'fnlwgt', 'education', 'education_num', 'marital-status', 'occupation', 
                'relationship', 'race', 'sex', 'capital-gain', 'capital-loss', 'hours-per-week', 
