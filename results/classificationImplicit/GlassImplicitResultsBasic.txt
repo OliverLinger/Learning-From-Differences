@@ -1,0 +1,13 @@
+Test Time: 05:09:33.770828
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 2},)
+Best Score KNN classifier: 0.6823529411764706
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 7}Best score for distance weighted KNN: 0.7Best Parameters Linger classifier: ({'predictor__activation': 'tanh', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.9, 'predictor__hidden_layer_sizes': (128, 64), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1500, 'predictor__n_neighbours_1': 21, 'predictor__n_neighbours_2': 2, 'predictor__random_pairs': False, 'predictor__single_pair': False, 'predictor__solver': 'sgd'},)
+Best Score Linger Classifier: 0.4647058823529412
+Best Parameters Basic Neural Network: ({'predictor__activation': 'tanh', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.9, 'predictor__hidden_layer_sizes': (128, 64), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1500, 'predictor__solver': 'sgd'},)
+Best Score Basic Neural Network: 0.7411764705882353
+--------------------------------------------------------------
+Test Accuracy for KNN classifier: 0.6046511627906976
+Test Accuracy for weighted KNN classifier: 0.627906976744186
+Test Accuracy for Linger Classifier: 0.5581395348837209
+Test Accuracy for Basic Neural Network: 0.6744186046511628
+--------------------------------------------------------------
