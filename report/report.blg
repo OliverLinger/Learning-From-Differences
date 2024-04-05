@@ -9,45 +9,45 @@ Warning--entry type for "uciRepository" isn't style-file defined
 --line 309 of file references.bib
 Warning--I didn't find a database entry for "scikit"
 Warning--empty journal in leake1996acquiring
-You've used 16 entries,
+You've used 18 entries,
             2118 wiz_defined-function locations,
-            599 strings with 6858 characters,
-and the built_in function-call counts, 5853 in all, are:
-= -- 598
-> -- 237
+            611 strings with 7106 characters,
+and the built_in function-call counts, 6370 in all, are:
+= -- 645
+> -- 268
 < -- 8
-+ -- 93
-- -- 76
-* -- 356
-:= -- 906
-add.period$ -- 51
-call.type$ -- 16
-change.case$ -- 82
++ -- 105
+- -- 86
+* -- 381
+:= -- 993
+add.period$ -- 57
+call.type$ -- 18
+change.case$ -- 93
 chr.to.int$ -- 0
-cite$ -- 17
-duplicate$ -- 254
-empty$ -- 474
-format.name$ -- 76
-if$ -- 1288
+cite$ -- 19
+duplicate$ -- 268
+empty$ -- 518
+format.name$ -- 86
+if$ -- 1398
 int.to.chr$ -- 0
-int.to.str$ -- 16
+int.to.str$ -- 18
 missing$ -- 17
-newline$ -- 82
-num.names$ -- 34
-pop$ -- 110
+newline$ -- 92
+num.names$ -- 38
+pop$ -- 130
 preamble$ -- 1
-purify$ -- 69
+purify$ -- 78
 quote$ -- 0
-skip$ -- 211
+skip$ -- 226
 stack$ -- 0
-substring$ -- 372
-swap$ -- 92
+substring$ -- 382
+swap$ -- 94
 text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 58
+type$ -- 66
 warning$ -- 1
-while$ -- 56
-width$ -- 18
-write$ -- 176
+while$ -- 60
+width$ -- 20
+write$ -- 196
 (There were 3 warnings)

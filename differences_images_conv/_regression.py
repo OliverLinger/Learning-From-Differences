@@ -89,7 +89,7 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
         print(differences_y)
         return differences_X, differences_y
 
-    def predict(self, X, model, dataset, input_shape):
+    def predict(self, X, model, input_shape):
         print("Before reshaping in fit, X shape:", X.shape) 
         """
         Predict target values for the input data using non-weighted k-nearest neighbors (KNN).

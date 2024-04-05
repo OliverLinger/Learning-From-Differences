@@ -8,6 +8,7 @@ Best Score Linger classifier: 0.9171794871794873
 Test Accuracy for KNN classifier: 0.91
 Test Accuracy for Neural Network classifier: 0.85
 Test Accuracy for Linger Classifier: 0.89
+
 --------------------------------------------------------------
 Basic classifier, Addition of context Var1Best Parameters KNN classifier: ({'predictor__n_neighbors': 13},)
 Best Score KNN classifier: 0.9171794871794873

@@ -20,7 +20,8 @@ nn_param_grid = {
     })
 Basic classifier, No variationsBest Parameters KNN classifier: ({'predictor__n_neighbors': 13},)
 Best Score KNN classifier: 0.9171794871794873
-Best parameters for distance weighted KNN: {'predictor__n_neighbors': 13}Best score for distance weighted KNN: 0.9121794871794873Best Parameters Neural net classifier: ({'predictor__activation': 'identity', 'predictor__alpha': 0.1, 'predictor__beta_1': 0.95, 'predictor__beta_2': 0.999, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 2000, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.2},)
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 13}Best score for distance weighted KNN: 0.9121794871794873
+Best Parameters Neural net classifier: ({'predictor__activation': 'identity', 'predictor__alpha': 0.1, 'predictor__beta_1': 0.95, 'predictor__beta_2': 0.999, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 2000, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.2},)
 Best Score Neural net classifier: 0.9397435897435897
 Best Parameters Linger classifier: ({'predictor__activation': 'identity', 'predictor__addition_of_context': False, 'predictor__additional_results_column': False, 'predictor__alpha': 0.1, 'predictor__beta_1': 0.95, 'predictor__beta_2': 0.999, 'predictor__duplicated_on_distance': False, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 2000, 'predictor__n_neighbours_1': 5, 'predictor__n_neighbours_2': 13, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.2, 'predictor__weighted_knn': False},)
 Best Score Linger classifier: 0.9171794871794873
@@ -50,6 +51,7 @@ Best Score Linger classifier: 0.9146794871794872
 Test Accuracy for KNN classifier: 0.91
 Test Accuracy for Neural Network classifier: 0.91
 Test Accuracy for Linger Classifier: 0.9
+
 --------------------------------------------------------------
 Basic classifier, No variationsBest Parameters KNN classifier: ({'predictor__n_neighbors': 13},)
 Best Score KNN classifier: 0.9171794871794873

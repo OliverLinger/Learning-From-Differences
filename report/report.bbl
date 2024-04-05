@@ -9,10 +9,20 @@ David~W Aha, Dennis Kibler, and Marc~K Albert.
 \newblock Instance-based learning algorithms.
 \newblock {\em Machine learning}, 6:37--66, 1991.
 
+\bibitem{uciDatasets}
+Arthur Asuncion and David Newman.
+\newblock Uci machine learning repository, 2007.
+
 \bibitem{bishop2006pattern}
 Christopher~M Bishop and Nasser~M Nasrabadi.
 \newblock {\em Pattern recognition and machine learning}, volume~4.
 \newblock Springer, 2006.
+
+\bibitem{misc_raisin_850}
+Illkay Cinar, Murat Koklu, and Sakir Tasdemir.
+\newblock Raisin.
+\newblock UCI Machine Learning Repository, 2023.
+\newblock DOI: https://doi.org/10.24432/C5660T.
 
 \bibitem{craw2006learning}
 Susan Craw, Nirmalie Wiratunga, and Ray~C Rowe.
