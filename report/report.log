@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.12) (preloaded format=pdflatex 2024.1.7)  5 APR 2024 18:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.12) (preloaded format=pdflatex 2024.1.7)  6 APR 2024 12:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -678,319 +678,332 @@ Overfull \hbox (57.86981pt too wide) in paragraph at lines 971--972
 [] $\OML/cmm/m/it/12 differences[]X \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 add[]additional[]distance[]column\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 differences[]test[]X; distances\OT1/cmr/m/n/12 )$ 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 982--983
-[] $\OML/cmm/m/it/12 weighted[]sum \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 sum\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 w \OMS/cmsy/m/n/12 ^^B \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 train[]y\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 i\OT1/cmr/m/n/12 ] +
- []
-
 [37]
 Overfull \vbox (196.4734pt too high) has occurred while \output is active []
 
- [38] [39] [40] [41] [42]
-Overfull \hbox (43.48257pt too wide) in paragraph at lines 1139--1140
+ [38] [39
+
+] [40] [41] [42]
+Overfull \hbox (43.48257pt too wide) in paragraph at lines 1141--1142
 [] \T1/cmr/m/n/12 Call $\OML/cmm/m/it/12 addition[]of[]context[]func[]fit\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 X; y; indices; differences[]X; differences[]y\OT1/cmr/m/n/12 )$ 
  []
 
 
-Overfull \hbox (203.18037pt too wide) in paragraph at lines 1140--1141
+Overfull \hbox (203.18037pt too wide) in paragraph at lines 1142--1143
 [] $\OML/cmm/m/it/12 differences[]X; differences[]y \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 addition[]of[]context[]func[]fit\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 X; y; indices; differences[]X; differences[]y\OT1/cmr/m/n/12 )$ 
  []
 
 
-Overfull \hbox (83.33769pt too wide) in paragraph at lines 1142--1143
+Overfull \hbox (83.33769pt too wide) in paragraph at lines 1144--1145
 [] \T1/cmr/m/n/12 Call $\OML/cmm/m/it/12 duplicate[]difference[]based[]on[]distance\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 differences[]X; differences[]y; distances\OT1/cmr/m/n/12 )$ 
  []
 
 
-Overfull \hbox (243.03549pt too wide) in paragraph at lines 1143--1144
+Overfull \hbox (243.03549pt too wide) in paragraph at lines 1145--1146
 [] $\OML/cmm/m/it/12 differences[]X; differences[]y \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 duplicate[]difference[]based[]on[]distance\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 differences[]X; differences[]y; distances\OT1/cmr/m/n/12 )$ 
  []
 
 
-Overfull \hbox (29.26668pt too wide) in paragraph at lines 1146--1147
+Overfull \hbox (29.26668pt too wide) in paragraph at lines 1148--1149
 [] $\OML/cmm/m/it/12 differences[]X \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 add[]additional[]distance[]column\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 differences[]X; distances\OT1/cmr/m/n/12 )$ 
  []
 
-[43]
-Underfull \hbox (badness 10000) in paragraph at lines 1191--1192
+[43
+
+] [44]
+Underfull \hbox (badness 10000) in paragraph at lines 1194--1195
 [] \T1/cmr/m/n/12 Ap-pend $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 test; \OT1/cmr/m/n/12 :] \OMS/cmsy/m/n/12 ^^@ []\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 indices\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 test\OT1/cmr/m/n/12 ][\OML/cmm/m/it/12 nn[]in[]training\OT1/cmr/m/n/12 ]\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 :])$ \T1/cmr/m/n/12 to
  []
 
 
-Overfull \hbox (37.17163pt too wide) in paragraph at lines 1196--1197
+Overfull \hbox (37.17163pt too wide) in paragraph at lines 1199--1200
 [] $\OML/cmm/m/it/12 differences[]test[]X[]addition[]of[]context[]func[]pred\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 differences[]test[]X; X\OT1/cmr/m/n/12 )$ 
  []
 
 
-Overfull \hbox (57.86981pt too wide) in paragraph at lines 1199--1200
+Overfull \hbox (57.86981pt too wide) in paragraph at lines 1202--1203
 [] $\OML/cmm/m/it/12 differences[]X \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 add[]additional[]distance[]column\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 differences[]test[]X; distances\OT1/cmr/m/n/12 )$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1206--1207
+Underfull \hbox (badness 10000) in paragraph at lines 1209--1210
 [] \T1/cmr/bx/n/12 for \T1/cmr/m/n/12 each $\OML/cmm/m/it/12 indexes$\T1/cmr/m/n/12 , $\OML/cmm/m/it/12 differences$\T1/cmr/m/n/12 , $\OML/cmm/m/it/12 distance$ \T1/cmr/m/n/12 in
  []
 
 
-Overfull \hbox (61.41893pt too wide) in paragraph at lines 1211--1212
+Overfull \hbox (61.41893pt too wide) in paragraph at lines 1214--1215
 [] $[] \OT1/cmr/m/n/12 = [] []\OML/cmm/m/it/12 i; d; w[][]$ 
  []
 
-[44] [45]
+[45
+
+]
 Overfull \vbox (178.47894pt too high) has occurred while \output is active []
 
- [46] [47] [48]
-Underfull \hbox (badness 7326) in paragraph at lines 1315--1316
+ [46] [47] [48] [49] [50
+
+]
+Underfull \hbox (badness 7326) in paragraph at lines 1320--1321
 []\T1/cmr/bx/n/12 func-tion $\OML/cmm/m/it/12 addition[]of[]context[]func[]fit$\T1/cmr/m/n/12 ($\OML/cmm/m/it/12 X$\T1/cmr/m/n/12 , $\OML/cmm/m/it/12 y$\T1/cmr/m/n/12 , $\OML/cmm/m/it/12 indices$\T1/cmr/m/n/12 , $\OML/cmm/m/it/12 differences[]X$\T1/cmr/m/n/12 ,
  []
 
-[49]
-Overfull \hbox (27.84904pt too wide) in paragraph at lines 1351--1352
+
+Overfull \hbox (27.84904pt too wide) in paragraph at lines 1356--1357
 [] \T1/cmr/bx/n/12 for $\OML/cmm/m/it/12 pair$ \T1/cmr/m/n/12 in $\OML/cmm/m/it/12 zip\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 differences[]test[]X\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 item[]pos\OT1/cmr/m/n/12 ]\OML/cmm/m/it/12 ; duplicated[]test[]data\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 item[]pos\OT1/cmr/m/n/12 ])$
  []
 
-[50] [51]
-Underfull \hbox (badness 10000) in paragraph at lines 1394--1394
+[51
+
+] [52]
+Underfull \hbox (badness 10000) in paragraph at lines 1399--1399
 []\T1/cmr/bx/n/12 Algorithm 23 \T1/cmr/m/n/12 Du-pli-ca-tion Based on Dis-tance in \T1/cmtt/m/n/12 LingerClassifier \T1/cmr/m/n/12 and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1424--1425
+Underfull \hbox (badness 10000) in paragraph at lines 1429--1430
 []\T1/cmr/bx/n/12 func-tion $\OML/cmm/m/it/12 duplicate[]difference[]based[]on[]distance$\T1/cmr/m/n/12 ($\OML/cmm/m/it/12 differences[]X$\T1/cmr/m/n/12 ,
  []
 
-[52]
+[53]
 Overfull \vbox (176.23538pt too high) has occurred while \output is active []
 
- [53] [54] [55]
-Underfull \hbox (badness 3884) in paragraph at lines 1553--1554
+ [54] [55
+
+] [56] [57]
+Underfull \hbox (badness 3884) in paragraph at lines 1559--1560
 [] \T1/cmr/m/n/12 Adds an ad-di-tional col-umn with dis-tance val-ues as-so-ci-ated with each
  []
 
-[56] [57] [58] [59] [60] [61] [62]
+[58
+
+] [59] [60] [61] [62] [63
+
+]
 Overfull \vbox (16.47679pt too high) has occurred while \output is active []
 
- [63]
-Underfull \hbox (badness 6842) in paragraph at lines 1788--1789
+ [64]
+Underfull \hbox (badness 6842) in paragraph at lines 1795--1796
 [] $\OML/cmm/m/it/12 class[]predictions \OMS/cmsy/m/n/12  $ \T1/cmr/m/n/12 Pre-dict class la-bels for $\OML/cmm/m/it/12 sample$ \T1/cmr/m/n/12 us-ing $\OT1/cmr/m/n/12 1$
  []
 
 
-Underfull \hbox (badness 5519) in paragraph at lines 1790--1791
+Underfull \hbox (badness 5519) in paragraph at lines 1797--1798
 [] $\OML/cmm/m/it/12 class[]predictions \OMS/cmsy/m/n/12  $ \T1/cmr/m/n/12 Pre-dict class la-bels for $\OML/cmm/m/it/12 sample$ \T1/cmr/m/n/12 us-ing $\OML/cmm/m/it/12 N$
  []
 
 
-Overfull \hbox (71.15205pt too wide) in paragraph at lines 1808--1809
+Overfull \hbox (71.15205pt too wide) in paragraph at lines 1815--1816
 [] $\OML/cmm/m/it/12 nbrs \OMS/cmsy/m/n/12  $ $[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 n[]neighbors\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 :fit\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 cases[]without[]concatenation\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 class[]label\OT1/cmr/m/n/12 ])$ 
  []
 
-[64]
-Underfull \hbox (badness 10000) in paragraph at lines 1824--1825
+[65] [66]
+Underfull \hbox (badness 10000) in paragraph at lines 1831--1832
 [] $\OML/cmm/m/it/12 indices \OMS/cmsy/m/n/12  $ \T1/cmr/m/n/12 Ran-domly se-lect $\OML/cmm/m/it/12 n[]neighbours[]\OT1/cmr/m/n/12 2$ \T1/cmr/m/n/12 in-dices from
  []
 
 
-Overfull \hbox (45.69624pt too wide) in paragraph at lines 1830--1831
+Overfull \hbox (45.69624pt too wide) in paragraph at lines 1837--1838
 [] $\OML/cmm/m/it/12 neighbor[]sample \OMS/cmsy/m/n/12   \OML/cmm/m/it/12 cases[]without[]concatenation\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 class[]label\OT1/cmr/m/n/12 ][\OML/cmm/m/it/12 neighbor[]index\OT1/cmr/m/n/12 ]$ 
  []
 
 
-Overfull \hbox (127.0784pt too wide) in paragraph at lines 1846--1847
+Overfull \hbox (127.0784pt too wide) in paragraph at lines 1853--1854
 [] $\OML/cmm/m/it/12 all[]predictions \OMS/cmsy/m/n/12   \OT1/cmr/m/n/12 [\OML/cmm/m/it/12 prediction[]class[]predictions:values\OT1/cmr/m/n/12 ()[]]$ 
  []
 
-[65] [66] [67] [68]
-Overfull \hbox (28.67119pt too wide) in paragraph at lines 1941--1942
+[67
+
+] [68] [69] [70]
+Overfull \hbox (28.67119pt too wide) in paragraph at lines 1948--1949
 []$\OML/cmm/m/it/12 D[]y$\T1/cmr/m/n/12 , $\OML/cmm/m/it/12 unique[]ranges$\T1/cmr/m/n/12 , $\OML/cmm/m/it/12 y[]$\T1/cmr/m/n/12 , $\OML/cmm/m/it/12 y[]$ $\OT1/cmr/m/n/12 = \OML/cmm/m/it/12 RegToClassConverterFunction\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 D[]; N; y[]; y[]\OT1/cmr/m/n/12 )$ 
  []
 
-[69] [70] [71
+[71] [72
 
-] [72]
+] [73]
 Overfull \vbox (304.38817pt too high) has occurred while \output is active []
 
- [73]
+ [74]
 
-LaTeX Warning: Float too large for page by 188.90376pt on input line 2131.
+LaTeX Warning: Float too large for page by 188.90376pt on input line 2138.
 
-[74
+[75
 
-] [75] [76
-
-]
-
-LaTeX Warning: Citation `scikit' on page 77 undefined on input line 2184.
-
-[77] [78] [79] [80] [81
+] [76] [77
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 2304--2305
+
+LaTeX Warning: Citation `scikit' on page 78 undefined on input line 2191.
+
+[78] [79] [80] [81] [82
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 2311--2312
 [] \T1/cmr/m/n/12 Com-pute fi-nal pre-dic-tions us-ing Al-go-rithm: $\OML/cmm/m/it/12 y[]predictions \OMS/cmsy/m/n/12  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2331--2332
+Underfull \hbox (badness 10000) in paragraph at lines 2338--2339
 []  $\OML/cmm/m/it/12 diff \OMS/cmsy/m/n/12  $ \T1/cmr/m/n/12 ab-so-lute dif-fer-ence be-tween $\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 test\OT1/cmr/m/n/12 ]$ \T1/cmr/m/n/12 and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2336--2337
+Underfull \hbox (badness 10000) in paragraph at lines 2343--2344
 [] \T1/cmr/m/n/12 Make pre-dic-tions us-ing the trained CNN model: $\OML/cmm/m/it/12 predictions \OMS/cmsy/m/n/12  
  []
 
-[82
+[83
 
-] [83] [84
-
-] [85
+] [84] [85
 
 ] [86
 
 ] [87
 
+] [88
+
 ]
-Overfull \hbox (184.7182pt too wide) in paragraph at lines 2437--2438
+Overfull \hbox (184.7182pt too wide) in paragraph at lines 2444--2445
 [] $\OML/cmm/m/it/12 nbrs \OMS/cmsy/m/n/12  $ []\T1/cmr/m/n/12 ($\OML/cmm/m/it/12 n[]neighbors \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 self:n[]neighbours[]\OT1/cmr/m/n/12 2$\T1/cmr/m/n/12 ).fit($\OML/cmm/m/it/12 self:train[]X$\T1/cmr/m/n/12 .reshape($\OML/cmm/m/it/12 len\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 self:train[]X\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 1$\T1/cmr/m/n/12 )) 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2440--2441
+Underfull \hbox (badness 10000) in paragraph at lines 2447--2448
 [] $\OML/cmm/m/it/12 differences[]test[]X \OMS/cmsy/m/n/12   \OT1/cmr/m/n/12 [$\T1/cmr/m/n/12 np.abs($\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 test\OT1/cmr/m/n/12 ]\OML/cmm/m/it/12 :flatten\OT1/cmr/m/n/12 () \OMS/cmsy/m/n/12 ^^@
  []
 
 
-Underfull \hbox (badness 1622) in paragraph at lines 2440--2441
+Underfull \hbox (badness 1622) in paragraph at lines 2447--2448
 \OML/cmm/m/it/12 self:train[]X\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 indices\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 test\OT1/cmr/m/n/12 ][\OML/cmm/m/it/12 nn\OT1/cmr/m/n/12 ]]\OML/cmm/m/it/12 :flatten\OT1/cmr/m/n/12 ())$ \T1/cmr/m/n/12 for $\OML/cmm/m/it/12 test$ \T1/cmr/m/n/12 in range($\OML/cmm/m/it/12 len\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 )$\T1/cmr/m/n/12 ) for $\OML/cmm/m/it/12 nn$ \T1/cmr/m/n/12 in
  []
 
 
-Overfull \hbox (29.40639pt too wide) in paragraph at lines 2441--2442
+Overfull \hbox (29.40639pt too wide) in paragraph at lines 2448--2449
 [] $\OML/cmm/m/it/12 differences[]test[]X \OMS/cmsy/m/n/12   \OML/cmm/m/it/12 np:array\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 differences[]test[]X\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 :reshape\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 ^^C\OML/cmm/m/it/12 input[]shape\OT1/cmr/m/n/12 )$ 
  []
 
-[88
+[89
 
-] [89]
+] [90]
 
-LaTeX Warning: Reference `alg:alg:generate_image_differences' on page 90 undefined on input line 2501.
+LaTeX Warning: Reference `alg:alg:generate_image_differences' on page 91 undefined on input line 2508.
 
 
-Underfull \hbox (badness 3668) in paragraph at lines 2528--2529
+Underfull \hbox (badness 3668) in paragraph at lines 2535--2536
 [] \T1/cmr/m/n/12 Use trained CNN on $\OML/cmm/m/it/12 X$ \T1/cmr/m/n/12 to pre-dict dif-fer-ences: $\OML/cmm/m/it/12 difference[]pred \OMS/cmsy/m/n/12  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2529--2530
+Underfull \hbox (badness 10000) in paragraph at lines 2536--2537
 [] \T1/cmr/m/n/12 Com-pute fi-nal pre-dic-tions us-ing Al-go-rithm: $\OML/cmm/m/it/12 y[]predictions \OMS/cmsy/m/n/12  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2554--2555
+Underfull \hbox (badness 10000) in paragraph at lines 2561--2562
 []  $\OML/cmm/m/it/12 diff \OMS/cmsy/m/n/12  $ \T1/cmr/m/n/12 ab-so-lute dif-fer-ence be-tween $\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 test\OT1/cmr/m/n/12 ]$ \T1/cmr/m/n/12 and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2559--2560
+Underfull \hbox (badness 10000) in paragraph at lines 2566--2567
 [] \T1/cmr/m/n/12 Make pre-dic-tions us-ing the trained CNN model: $\OML/cmm/m/it/12 predictions \OMS/cmsy/m/n/12  
  []
 
-[90] [91] [92] [93
+[91] [92] [93] [94
 
 ]
-Overfull \hbox (219.53606pt too wide) in paragraph at lines 2637--2638
+Overfull \hbox (219.53606pt too wide) in paragraph at lines 2644--2645
 [] $\OML/cmm/m/it/12 nbrs \OMS/cmsy/m/n/12  $ \T1/cmr/m/n/12 NearestNeighbors($\OML/cmm/m/it/12 n[]neighbors \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 self:n[]neighbours[]\OT1/cmr/m/n/12 2$\T1/cmr/m/n/12 ).fit($\OML/cmm/m/it/12 dataset:train[]X:reshape\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 len\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 dataset:train[]X\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 1)$\T1/cmr/m/n/12 ) 
  []
 
-[94
+[95
 
-] [95]
+] [96]
 Chapter 4.
-[96
+[97
 
-] [97] [98]
-Overfull \hbox (2.85588pt too wide) in paragraph at lines 2768--2790
+] [98] [99]
+Overfull \hbox (2.85588pt too wide) in paragraph at lines 2775--2797
  [][] 
  []
 
-[99] [100] [101
+[100] [101] [102
 
-] [102
+] [103
 
 ]
-Overfull \hbox (0.91443pt too wide) in paragraph at lines 2857--2892
+Overfull \hbox (0.91443pt too wide) in paragraph at lines 2864--2899
  [][] 
  []
 
-[103
+[104
 
-] [104
+] [105
 
 ]
-Overfull \hbox (77.11804pt too wide) in paragraph at lines 2918--2953
+Overfull \hbox (77.11804pt too wide) in paragraph at lines 2925--2960
  [][] 
  []
 
-[105
+[106
 
-] [106
+] [107
 
 ]
-Overfull \hbox (84.47734pt too wide) in paragraph at lines 2979--3014
+Overfull \hbox (84.47734pt too wide) in paragraph at lines 2986--3021
  [][] 
  []
 
-[107
-
-] [108
+[108
 
 ] [109
 
-] [110] [111
+] [110
 
-] [112
+] [111] [112
 
 ] [113
 
 ] [114
 
-]
-Overfull \hbox (73.99126pt too wide) in paragraph at lines 3220--3242
- [][] 
- []
-
-[115
-
-] [116] [117
+] [115
 
 ]
-Overfull \hbox (59.26422pt too wide) in paragraph at lines 3293--3303
+Overfull \hbox (73.99126pt too wide) in paragraph at lines 3226--3248
+ [][] 
+ []
+
+[116
+
+] [117] [118
+
+]
+Overfull \hbox (59.26422pt too wide) in paragraph at lines 3299--3309
  [][] 
  []
 
 
-Overfull \hbox (43.27234pt too wide) in paragraph at lines 3312--3347
+Overfull \hbox (43.27234pt too wide) in paragraph at lines 3318--3353
  [][] 
  []
 
-[118
+[119
 
-] [119]
-Overfull \hbox (59.26422pt too wide) in paragraph at lines 3354--3364
+] [120]
+Overfull \hbox (59.26422pt too wide) in paragraph at lines 3360--3370
  [][] 
  []
 
-[120
+[121
 
-] [121
+] [122
 
 ]
 Chapter 5.
-(report.bbl [122
+(report.bbl [123
 
-] [123
+] [124
 
-]) [124] (report.aux)
+]) [125] (report.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-11>
@@ -1003,17 +1016,17 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 986E0E9D7E79A9EE9C5A4F8BC165922E;21703.
  ) 
 Here is how much of TeX's memory you used:
- 16411 strings out of 474494
- 263926 string characters out of 5743915
- 1952460 words of memory out of 5000000
+ 16412 strings out of 474494
+ 263934 string characters out of 5743915
+ 1949460 words of memory out of 5000000
  38032 multiletter control sequences out of 15000+600000
  577623 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,79p,638b,636s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectc1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1728.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2074.pk><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on report.pdf (127 pages, 668113 bytes).
+Output written on report.pdf (128 pages, 669652 bytes).
 PDF statistics:
- 2133 PDF objects out of 2487 (max. 8388607)
- 427 named destinations out of 1000 (max. 500000)
+ 2136 PDF objects out of 2487 (max. 8388607)
+ 428 named destinations out of 1000 (max. 500000)
  841 words of extra memory for PDF output out of 10000 (max. 10000000)
 

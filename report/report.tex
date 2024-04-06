@@ -979,7 +979,7 @@ It makes use of scikit-learns \cite{scikit-learn} \text{NearestNeighbors}, and \
                     \State Compute weights for each neighbor
                     \State $weights = 1 \div (dist + 1e-8)$
                     \State Compute weighted sum of target values
-                    \State $weighted\_sum = sum(w \times (train\_y[i] + d) for \space i, d, w \space \space in \space zip(indexes, differences, weights))$ 
+                    \State $weighted\_sum = sum(w \times (train\_y[i] + d)$ for i, d, w in zip($indexes$, $differences$, $weights$))
                     \State Compute weighted average
                     \State $weighted\_avg = weighted\_sum \div sum(weights)$
                     \State Append $weighted\_avg$ to $y\_pred$
@@ -997,6 +997,7 @@ It makes use of scikit-learns \cite{scikit-learn} \text{NearestNeighbors}, and \
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
+\clearpage
 
 \subsection{Evaluation}
 Evaluation metrics include Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared ($R^2$) to assess model accuracy and performance.
@@ -1068,7 +1069,7 @@ The training and prediction algorithms for the \texttt{LingerClassifier} are sim
 During training, the algorithm computes differences between cases and their nearest neighbors, similar to the regression model. 
 However, the adaptation of class labels is based on the majority class among the nearest neighbors.
 
-\begin{algorithm}
+\begin{algorithm}[H]
     \caption{Training Algorithm for \texttt{LingerClassifier}}
     \label{alg:linger_classifier_train}
     \begin{algorithmic}
@@ -1085,6 +1086,7 @@ However, the adaptation of class labels is based on the majority class among the
         \State \textbf{return} Trained neural network model $Trained NN()$.
     \end{algorithmic}
 \end{algorithm}
+\clearpage
 
 \subsubsection{Prediction Algorithm Design}
 During prediction, the algorithm adapts class labels based on the majority class among the nearest neighbors' labels.
@@ -1160,6 +1162,7 @@ Finally, the predicted target values are aggregated and returned as the output o
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
+\clearpage
 
 \subsubsection{Prediction Algorithm Implementation}
 The prediction algorithm for the Linger Classifier, implemented in Python, outlines the process of predicting 
@@ -1277,6 +1280,7 @@ This may aid in the learning process and improve the model. Its design is the sa
         \State \textbf{return} Trained neural network model $Trained NN()$.
     \end{algorithmic}
 \end{algorithm}
+\clearpage
 
 \subsubsection{Prediction Design}
 \begin{algorithm}[H]
@@ -1302,6 +1306,7 @@ This may aid in the learning process and improve the model. Its design is the sa
 		\State Compare $y^{pred}_j$ to $y^{test}_j$ to evaluate accuracy.
 	\end{algorithmic}
 \end{algorithm}
+\clearpage
 
 \subsubsection{Training Implementation}
 This algorithm is called during the Fit stage of both the \texttt{LingerClassifier}, and \texttt{LingerRegressor}.
@@ -1467,6 +1472,7 @@ thereby improving its predictive accuracy and generalization capabilities.
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
+\clearpage
 
 \subsection{Variation 3: Addition of Distance Column Design and Implementation (LRV3, LCV3)}
 \label{sec:linger_regr_class_variation3_model}
@@ -1542,7 +1548,7 @@ These distances are concatenated with the corresponding differences $\Delta X^{t
 		\EndFor
 	\end{algorithmic}
 \end{algorithm}
-
+\clearpage
 \subsubsection{Implementation for Training, and Prediction}
 The same function is called during both predict and training.
 \begin{algorithm}[H]
@@ -1708,6 +1714,7 @@ Each variant may be suitable depending on the specific characteristics of the da
         \State \textbf{return} $y^{pred}$
     \end{algorithmic}
 \end{algorithm}
+\clearpage
 \subsection{Training and Prediction Implementation}
 
 \subsubsection{Training Algorithm Implementation}
@@ -1812,7 +1819,7 @@ Finally, it performs majority voting to decide the final classification.
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
-
+\clearpage
 \begin{algorithm}[H]
     \caption{Helper: Predict Class Labels}
     \label{alg:predict_class}
@@ -3196,7 +3203,6 @@ weighted KNN, and NN models were similarly assessed on the dataset. The results 
     \end{tabular}
 \end{table}
 \clearpage
-
 \subsubsection{(LRV2)}
 \subsubsection{(LRV3)}
 \subsubsection{(LIR)}
