@@ -20,12 +20,14 @@
 \usepackage{multirow}
 \usepackage{float}
 \usepackage{booktabs} 
+\usepackage{pgfplots}
 
 % Page layout
 \geometry{margin=1in} % Adjust margins as needed
 \setlength{\parindent}{0pt} % No paragraph indentation
 \setlength{\parskip}{1em}   % Add space between paragraphs
 \onehalfspacing % Adjust line spacing as needed
+\pgfplotsset{width=10cm,compat=1.9}
 
 % Code listing setup
 
@@ -2854,6 +2856,30 @@ tuning.
     \end{tabular}
 \end{table}
 \clearpage
+\subsubsection{(LC) Analysis}
+The initial setup without any specific variation (LC) demonstrates that the Neural Net Classifier achieves the highest training accuracy but does not significantly outperform other models in test accuracy. 
+This could suggest a tendency towards overfitting within the (NN) model. The \texttt{LingerClassifier}, even in its base form, shows competitive test accuracy, emphasizing its potential robustness. 
+Interestingly, the addition of context and other specific features in the \texttt{LingerClassifier}'s variations aims to address this balance between training performance and generalization to unseen data.
+
+\begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        enlargelimits=0.15,
+        legend style={at={(0.5,-0.35)},
+          anchor=north,legend columns=-1},
+        ylabel={Accuracy (\%)},
+        symbolic x coords={KNN,Weighted KNN,Neural Net,Linger Classifier},
+        xtick=data,
+        nodes near coords,
+        nodes near coords align={vertical},
+        x tick label style={rotate=45,anchor=east},
+        title={LC: Base Variation Accuracies}
+        ]
+    \addplot coordinates {(KNN,68.2) (Weighted KNN,70.0) (Neural Net,73.1) (Linger Classifier,70.04)};
+    \addplot coordinates {(KNN,60.46) (Weighted KNN,62.8) (Neural Net,61.4) (Linger Classifier,60.46)};
+    \legend{Training Accuracy,Test Accuracy}
+    \end{axis}
+\end{tikzpicture}
 
 \subsubsection{(LCV1) Results}
 
@@ -2916,6 +2942,31 @@ tuning.
 \end{table}
 \clearpage
 
+\subsubsection{(LCV1) Analysis}
+In LCV1, the inclusion of context, (setting $addition_of_context == \text{True}$) for the \texttt{LingerClassifier} led to a noticeable improvement in test accuracy for the Linger Classifier, 
+outperforming the NN in test accuracy while maintaining competitive training accuracy. 
+This improvement underscores the value of incorporating contextual information into the model, potentially enhancing its ability to generalize from training to test data.
+
+\begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        enlargelimits=0.25,
+        legend style={at={(0.5,-0.35)},
+          anchor=north,legend columns=-1},
+        ylabel={Accuracy (\%)},
+        symbolic x coords={KNN, Weighted KNN, Neural Network, Linger Classifier},
+        xtick=data,
+        nodes near coords,
+        nodes near coords align={vertical},
+        x tick label style={rotate=45,anchor=east},
+        title={LCV1: Average Training and Test Accuracy Results for Classifiers}
+        ]
+    \addplot coordinates {(KNN,68.24) (Weighted KNN,70.00) (Neural Network,72.79) (Linger Classifier,69.41)};
+    \addplot coordinates {(KNN,60.47) (Weighted KNN,62.79) (Neural Network,64.53) (Linger Classifier,65.70)};
+    \legend{Training Accuracy,Test Accuracy}
+    \end{axis}
+\end{tikzpicture}
+
 \subsubsection{(LCV2) Results}
 
 \begin{table}[H]
@@ -2977,6 +3028,32 @@ tuning.
 \end{table}
 \clearpage
 
+\subsubsection{(LCV2) Analysis}
+Variation 2, focusing on duplicating data based on distance ($duplicated_on_distance == \text{True}$), yielded the most significant test accuracy increase for the \texttt{LingerClassifier}, 
+surpassing even the Neural Network. This strategy might have provided a more nuanced understanding of the dataset's structure, aiding the model in better capturing the underlying patterns. 
+This result suggests that data duplication based on distance could be a powerful method for improving model performance, especially in classification tasks where spatial relationships within the 
+data are informative.
+
+\begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        enlargelimits=0.25,
+        legend style={at={(0.5,-0.35)},
+          anchor=north,legend columns=-1},
+        ylabel={Accuracy (\%)},
+        symbolic x coords={KNN, Weighted KNN, Neural Network, Linger Classifier},
+        xtick=data,
+        nodes near coords,
+        nodes near coords align={vertical},
+        x tick label style={rotate=45,anchor=east},
+        title={LCV2: Average Training and Test Accuracy Results for Classifiers}
+        ]
+    \addplot coordinates {(KNN,68.24) (Weighted KNN,70.00) (Neural Network,71.29) (Linger Classifier,67.29)};
+    \addplot coordinates {(KNN,60.47) (Weighted KNN,62.79) (Neural Network,67.91) (Linger Classifier,69.30)};
+    \legend{Training Accuracy,Test Accuracy}
+    \end{axis}
+\end{tikzpicture}
+
 \subsubsection{(LCV3) Results}
 
 \begin{table}[H]
@@ -3037,9 +3114,36 @@ tuning.
     \end{tabular}
 \end{table}
 \clearpage
+\subsubsection{(LCV3) Analysis}
+The third variation, which introduced an additional distance column ($additional_distance_column == \text{True}$), did not lead to 
+improvement in test accuracy for the \texttt{LingerClassifier} compared to LCV2 but maintained a competitive edge against the base NN model. 
+This indicates that while adding distance-based features can be beneficial, there may be diminishing returns to complexity, or specific dataset characteristics 
+may not fully leverage this type of information.
+
+\begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        enlargelimits=0.25,
+        legend style={at={(0.5,-0.35)},
+          anchor=north,legend columns=-1},
+        ylabel={Accuracy (\%)},
+        symbolic x coords={KNN, Weighted KNN, Neural Network, Linger Classifier},
+        xtick=data,
+        nodes near coords,
+        nodes near coords align={vertical},
+        x tick label style={rotate=45,anchor=east},
+        title={LCV3: Average Training and Test Accuracy Results for Classifiers}
+        ]
+    \addplot coordinates {(KNN,68.24) (Weighted KNN,70.00) (Neural Network,71.06) (Linger Classifier,67.65)};
+    \addplot coordinates {(KNN,60.47) (Weighted KNN,62.79) (Neural Network,67.44) (Linger Classifier,60.93)};
+    \legend{Training Accuracy,Test Accuracy}
+    \end{axis}
+\end{tikzpicture}
+
 \subsubsection{(LIC)}
 \subsubsection{(LICV1)}
 \subsubsection{(LICV2)}
+
 \subsubsection{Concluding Remarks}
 
 \subsection{Experiment 2: Abalone Dataset Regression}
@@ -3142,7 +3246,35 @@ weighted KNN, and NN models were similarly assessed on the dataset. The results 
     \end{tabular}
 \end{table}
 \clearpage
+\subsubsection{(LR) Analysis}
 
+In an examination of the \texttt{LingerRegressor}'s performance across five iterations, it became evident that this model, even in its unvaried form, consistently outshined its counterparts during both the training and testing phases. 
+This superior performance underscores the efficacy of its unique "learning from differences" approach, adeptly uncovering and leveraging the dataset's underlying patterns. 
+Notably, while extensive hyperparameter optimization was applied to the Neural Network models, the \texttt{LingerRegressor} has yet to
+ undergo a similar level of fine-tuning due to resource limitiations. 
+ This observation hints at the untapped potential of the \texttt{LingerRegressor}, suggesting that with targeted hyperparameter 
+ adjustments and the exploration of variations, there could be a significant opportunity to further enhance its performance.
+
+\begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        enlargelimits=0.15,
+        legend style={at={(0.5,-0.35)},
+          anchor=north,legend columns=-1},
+        ylabel={NMSE},
+        ymin=1.5, ymax=2, % Setting the y-axis limits
+        symbolic x coords={KNN, Weighted KNN, Neural Network, Linger Regressor},
+        xtick=data,
+        nodes near coords,
+        nodes near coords align={vertical},
+        x tick label style={rotate=45,anchor=east},
+        title={Average Training and Test NMSE for Regressors (LR)}
+        ]
+    \addplot coordinates {(KNN,1.95857) (Weighted KNN,1.9567) (Neural Network,1.92956) (Linger Regressor,1.89797)};
+    \addplot coordinates {(KNN,1.92999) (Weighted KNN,1.8717) (Neural Network,1.89454) (Linger Regressor,1.83486)};
+    \legend{Training NMSE,Test NMSE}
+    \end{axis}
+\end{tikzpicture}
 \subsubsection{(LRV1) Results}
 
 \begin{table}[H]
@@ -3203,7 +3335,39 @@ weighted KNN, and NN models were similarly assessed on the dataset. The results 
     \end{tabular}
 \end{table}
 \clearpage
-\subsubsection{(LRV2)}
+\subsubsection{(LRV1) Analysis}
+The exploration of the \texttt{LingerRegressor} in its variation one (LRV1) configuration, incorporating the addition of context as a new parameter,
+has yielded intriguing insights. This variation maintained the \texttt{LingerRegressor}'s competitive edge, particularly in the testing phase, 
+where it achieved a lower Negative Mean Squared Error (NMSE) compared to its baseline and even outperformed the Neural Net Regressors training results. 
+The selected hyperparameters for LRV1—emphasizing a higher alpha and a shift in beta values—suggest an optimized balance between model complexity and regularization, 
+contributing to its enhanced performance. Remarkably, the Linger Regressor’s capacity to integrate context into its predictive process appears not especially benefit its ability to generalize, 
+as evidenced by its test (NMSE) scores, as they are very similar and slightly worse than the base version.
+
+This phase of experimentation underscores the substantial impact that tailored hyperparameter adjustments and strategic feature incorporation can have on model performance. 
+Despite the Neural Net Regressor undergoing extensive hyperparameter optimization, the Linger Regressor, with its focused enhancements in LRV1, demonstrates that thoughtful model refinement alter performance gains.
+The results from LRV1 not only reaffirm the \texttt{LingerRegressor}'s potential in leveraging complex patterns within the data but also spotlight the promising avenue that lies in further exploring and fine-tuning this model’s capabilities.
+
+\begin{tikzpicture}
+    \begin{axis}[
+        ybar,
+        enlargelimits=0.15,
+        legend style={at={(0.5,-0.35)},
+          anchor=north,legend columns=-1},
+        ylabel={NMSE},
+        ymin=1.5, ymax=2, % Setting the y-axis limits
+        symbolic x coords={KNN, Weighted KNN, Neural Network, Linger Regressor},
+        xtick=data,
+        nodes near coords,
+        nodes near coords align={vertical},
+        x tick label style={rotate=45,anchor=east},
+        title={Average Training and Test NMSE for Regressors (LR)}
+        ]
+    \addplot coordinates {(KNN,1.9586) (Weighted KNN,1.9567) (Neural Network,1.8848) (Linger Regressor,1.9420)};
+    \addplot coordinates {(KNN,1.9300) (Weighted KNN,1.8717) (Neural Network,1.8234) (Linger Regressor,1.8697)};
+    \legend{Training NMSE,Test NMSE}
+    \end{axis}
+\end{tikzpicture}
+\subsubsection{(LRV2) Results}
 \subsubsection{(LRV3)}
 \subsubsection{(LIR)}
 \subsubsection{(LIRV1)}
@@ -3307,6 +3471,9 @@ weighted (KNN), and (NN) on the same dataset. The sections below detail the hype
     \bottomrule
     \end{tabular}
 \end{table}
+
+\subsubsection{(LC) Analysis}
+
 
 \subsubsection{(LCV1) Results}
 This was only run twice as there were constraints on resources during testing that resulted in less robust trials.

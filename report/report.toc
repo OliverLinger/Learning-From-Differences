@@ -141,32 +141,39 @@
 \contentsline {subsubsection}{Methodology}{100}{section*.52}%
 \contentsline {subsubsection}{Hyperparameter Optimization}{100}{section*.53}%
 \contentsline {subsubsection}{(LC) Results}{102}{section*.55}%
-\contentsline {subsubsection}{(LCV1) Results}{104}{section*.58}%
-\contentsline {subsubsection}{(LCV2) Results}{106}{section*.61}%
-\contentsline {subsubsection}{(LCV3) Results}{108}{section*.64}%
-\contentsline {subsubsection}{(LIC)}{110}{section*.67}%
-\contentsline {subsubsection}{(LICV1)}{110}{section*.68}%
-\contentsline {subsubsection}{(LICV2)}{110}{section*.69}%
-\contentsline {subsubsection}{Concluding Remarks}{110}{section*.70}%
-\contentsline {subsection}{\numberline {4.2.2}Experiment 2: Abalone Dataset Regression}{110}{subsection.4.2.2}%
-\contentsline {subsubsection}{Methodology}{110}{section*.71}%
-\contentsline {subsubsection}{Tested Hyperparameters}{111}{section*.72}%
-\contentsline {subsubsection}{(LR) Results}{112}{section*.74}%
-\contentsline {subsubsection}{(LRV1) Results}{114}{section*.77}%
-\contentsline {subsubsection}{(LRV2)}{116}{section*.80}%
-\contentsline {subsubsection}{(LRV3)}{116}{section*.81}%
-\contentsline {subsubsection}{(LIR)}{116}{section*.82}%
-\contentsline {subsubsection}{(LIRV1)}{116}{section*.83}%
-\contentsline {subsubsection}{(LIRV2)}{116}{section*.84}%
-\contentsline {subsection}{\numberline {4.2.3}Experiment 3: Raisin Dataset Classification}{116}{subsection.4.2.3}%
-\contentsline {subsubsection}{Methodology}{116}{section*.85}%
-\contentsline {subsubsection}{Tested Hyperparameters}{117}{section*.86}%
-\contentsline {subsubsection}{(LC) Results}{118}{section*.88}%
-\contentsline {subsubsection}{(LCV1) Results}{119}{section*.91}%
-\contentsline {subsubsection}{(LCV2)}{122}{section*.94}%
-\contentsline {subsubsection}{(LCV3)}{122}{section*.95}%
-\contentsline {subsubsection}{(LIC)}{122}{section*.96}%
-\contentsline {subsubsection}{(LICV1)}{122}{section*.97}%
-\contentsline {subsubsection}{(LICV2)}{122}{section*.98}%
-\contentsline {section}{\numberline {4.3}Discussion}{122}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{123}{chapter.5}%
+\contentsline {subsubsection}{(LC) Analysis}{104}{section*.58}%
+\contentsline {subsubsection}{(LCV1) Results}{105}{section*.59}%
+\contentsline {subsubsection}{(LCV1) Analysis}{107}{section*.62}%
+\contentsline {subsubsection}{(LCV2) Results}{108}{section*.63}%
+\contentsline {subsubsection}{(LCV2) Analysis}{110}{section*.66}%
+\contentsline {subsubsection}{(LCV3) Results}{111}{section*.67}%
+\contentsline {subsubsection}{(LCV3) Analysis}{113}{section*.70}%
+\contentsline {subsubsection}{(LIC)}{114}{section*.71}%
+\contentsline {subsubsection}{(LICV1)}{114}{section*.72}%
+\contentsline {subsubsection}{(LICV2)}{114}{section*.73}%
+\contentsline {subsubsection}{Concluding Remarks}{114}{section*.74}%
+\contentsline {subsection}{\numberline {4.2.2}Experiment 2: Abalone Dataset Regression}{114}{subsection.4.2.2}%
+\contentsline {subsubsection}{Methodology}{114}{section*.75}%
+\contentsline {subsubsection}{Tested Hyperparameters}{115}{section*.76}%
+\contentsline {subsubsection}{(LR) Results}{116}{section*.78}%
+\contentsline {subsubsection}{(LR) Analysis}{118}{section*.81}%
+\contentsline {subsubsection}{(LRV1) Results}{119}{section*.82}%
+\contentsline {subsubsection}{(LRV1) Analysis}{121}{section*.85}%
+\contentsline {subsubsection}{(LRV2) Results}{122}{section*.86}%
+\contentsline {subsubsection}{(LRV3)}{122}{section*.87}%
+\contentsline {subsubsection}{(LIR)}{122}{section*.88}%
+\contentsline {subsubsection}{(LIRV1)}{122}{section*.89}%
+\contentsline {subsubsection}{(LIRV2)}{122}{section*.90}%
+\contentsline {subsection}{\numberline {4.2.3}Experiment 3: Raisin Dataset Classification}{122}{subsection.4.2.3}%
+\contentsline {subsubsection}{Methodology}{122}{section*.91}%
+\contentsline {subsubsection}{Tested Hyperparameters}{123}{section*.92}%
+\contentsline {subsubsection}{(LC) Results}{124}{section*.94}%
+\contentsline {subsubsection}{(LC) Analysis}{125}{section*.97}%
+\contentsline {subsubsection}{(LCV1) Results}{125}{section*.98}%
+\contentsline {subsubsection}{(LCV2)}{128}{section*.101}%
+\contentsline {subsubsection}{(LCV3)}{128}{section*.102}%
+\contentsline {subsubsection}{(LIC)}{128}{section*.103}%
+\contentsline {subsubsection}{(LICV1)}{128}{section*.104}%
+\contentsline {subsubsection}{(LICV2)}{128}{section*.105}%
+\contentsline {section}{\numberline {4.3}Discussion}{128}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{129}{chapter.5}%
