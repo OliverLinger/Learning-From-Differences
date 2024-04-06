@@ -155,6 +155,8 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         knn_test_accuracy = knn_classifier_gs.score(test_X, test_y)
         file.write(f"Test Accuracy for KNN classifier: {knn_test_accuracy}\n")
 
+        weighted_knn_test_accuracy = knn_classifier_gs_weighted.score(test_X, test_y)
+        file.write(f"Test Accuracy for weighted KNN classifier: {weighted_knn_test_accuracy}\n")
         # Test the Neural Network classifier
         nn_test_accuracy = nn_gs.score(test_X, test_y)
         file.write(f"Test Accuracy for Neural Network classifier: {nn_test_accuracy}\n")
