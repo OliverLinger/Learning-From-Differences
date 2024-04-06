@@ -101,8 +101,8 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
         "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__weighted_knn": [False],
-         "predictor__additional_results_column": [False],
-         "predictor__duplicated_on_distance": [True],
+         "predictor__additional_results_column": [True],
+         "predictor__duplicated_on_distance": [False],
         "predictor__addition_of_context": [False],
     })
     # Update with best_nn_params
@@ -118,7 +118,7 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
 
 def save_results(file_path, knn_gs,weighted_knn_gs, nn_gs, lfd_gs):
     with open(file_path, 'a') as file:
-        file.write(f"Basic regression, Duplication on Distance")
+        file.write(f"Basic regression, Addition of dist column")
         file.write(f"Best Parameters KNN regression: {knn_gs.best_params_,}\n")
         file.write(f"Best Score KNN regression: {knn_gs.best_score_}\n")
         file.write(f"Best Parameters weighted KNN regression: {weighted_knn_gs.best_params_,}\n")
@@ -145,7 +145,7 @@ def calculate_test_accuracies(file_path, knn_gs,weighted_knn_gs, lfd_gs, nn_gs, 
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\AbaloneResultsVar2.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\AbaloneResultsVar3.txt'
     df = pd.read_csv("datasets/abalone/abalone_reduced.csv")
     columns = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight', 'Rings']
     features = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight']
