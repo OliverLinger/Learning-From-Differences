@@ -18,6 +18,8 @@
 \usepackage{algpseudocode}
 \usepackage{algorithm}
 \usepackage{multirow}
+\usepackage{float}
+\usepackage{booktabs} 
 
 % Page layout
 \geometry{margin=1in} % Adjust margins as needed
@@ -53,7 +55,7 @@
 \begin{abstract}
     This study presents an innovative exploration into the realm of machine learning, specifically focusing on enhancing model interpretability and 
     performance through a novel ensemble of model-based and instance-based learning approaches. Grounded in the principles of Case-Based Reasoning (CBR) 
-    and the Learning From Differences methodology, we introduce the LingerRegressor and LingerClassifier models. These models aim to leverage the strengths 
+    and the Learning From Differences methodology, we introduce the \texttt{LingerRegressor} and \texttt{LingerClassifier} models. These models aim to leverage the strengths 
     of both learning approaches to address the limitations present in traditional machine learning algorithms, particularly in the contexts of regression and classification tasks.
 
     Our methodology involves a detailed examination of the algorithms' design and implementation, highlighting the integration of novel variations such as context inclusion, 
@@ -66,8 +68,6 @@
     This study contributes to the ongoing dialogue on improving machine learning methodologies and paves the way for further innovation in the field.
 \end{abstract}
 
-
-% Declaration of Originality
 \section*{Declaration of Originality}
 In signing this declaration, you are confirming, in writing that the submitted
 work is entirely your own original work, except where it clearly attributed otherwise,
@@ -105,7 +105,7 @@ and that it has not been submitted partly or wholly for any other educational aw
 \label{ch:introduction}
 
 Machine learning encompasses various paradigms and methodologies aimed at enabling computational systems to learn from data and make predictions or decisions without explicit programming.
-Among the diverse approaches in machine learning, model-based and instance-based learning represent two fundamental strategies, each with distinct advantages and disadvantages.
+Among the diverse approaches in machine learning, model-based and instance-based learning represents two fundamental strategies, each with distinct advantages and disadvantages.
 
 \section{Model-Based Learning}
 
@@ -135,7 +135,7 @@ For instance, artificial neural networks (ANNs) exemplify model-based learning b
           For example, a model trained to predict house prices based on 2017 data may inaccurately predict house prices for 2023. 
           The book "Machine Learning: A Bayesian and Optimization Perspective" by Sergios Theodoridis and Konstantinos Koutroumbas 
           emphasizes the crucial role assumptions play in model sensitivity, stressing their significance in machine 
-          learning applications \cite{theodoridis2015machine}
+          learning applications \cite{theodoridis2015machine}.
 	\item \textbf{Interpretability and Decision-Making:} Certain models, like Neural Networks, lack transparency in decision-making despite their high accuracy.
 	      In critical domains like healthcare and finance, interpretability is crucial for validating decisions and ensuring trust in the system. This disadvantage of lack of transparency
           is depicted well in the journal \cite{rudin2019stop}.
@@ -696,7 +696,8 @@ providing enhanced functionality and performance.
     \label{tab:LingerClassifier_models}
 \end{table}
 
-\section*{LingerImplicitClassifier and LingerImplicitRegressor Models}
+
+\section{\texttt{LingerImplicitClassifier} and \texttt{LingerImplicitRegressor} Models}
 The classifier models presented here are based on algorithms from \cite{ye2021learning}, with Variations 1 and 2 also originating from the same source.
 
 The regressor models in this section extend the learning from differences framework outlined in \cite{ye2021learning} to regression tasks. 
@@ -717,7 +718,7 @@ This innovative approach maintains the core principles of the methodology while 
         \texttt{LingerImplicitClassifier} Variant 2 Section: \ref{sec:lingerImplicit_classification_baseV1V2_model} & LICV2 & Selects the single nearest neighbor from each class \\
         \hline
     \end{tabular}
-    \caption{LingerImplicitClassifier models based on the algorithms in \cite{ye2021learning}}
+    \caption{LingerImplicitClassifier models based on the algorithms in \cite{ye2021learning}}. 
     \label{tab:LingerImplicitClassifier_models}
 \end{table}
 
@@ -744,6 +745,38 @@ This innovative approach maintains the core principles of the methodology while 
     \end{tabular}
     \caption{LingerImplicitRegressor models based on the algorithms in \cite{ye2021learning}}
     \label{tab:ingerImplicitRegressor_models}
+\end{table}
+\section{\texttt{LingerImageClassifier} and \texttt{LingerImageRegressor}}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ |p{6cm}|p{2cm}|p{9cm}| }
+        \hline
+        \multicolumn{3}{|c|}{\texttt{LingerImageClassifier}} \\
+        \hline
+        \hline
+        Full Name & Acronym & Description \\
+        \hline
+        \texttt{LingerImageClassifier}  Section: \ref{sec:lingerImage_Classifier_model} & (LIMC) & Image Classifier that learns from differences \\
+        \hline
+    \end{tabular}
+    \caption{Image Classifier Using learning from difference methodologies seen in \cite{learningFromDifferences2022}. Innovative in its application to classification image data sets.}
+    \label{tab:LingerImageClassifier}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ |p{6cm}|p{2cm}|p{9cm}| }
+        \hline
+        \multicolumn{3}{|c|}{\texttt{LingerImageRegressor}} \\
+        \hline
+        \hline
+        Full Name & Acronym & Description \\
+        \hline
+        \texttt{LingerImageRegressor}  Section: \ref{sec:lingerImage_Regressor_model} & (LIMR) & Image Regressor that learns from differences \\
+        \hline
+    \end{tabular}
+    \caption{Image Regressor Using learning from difference methodologies seen in \cite{learningFromDifferences2022}. Innovative in its application to classification image data sets.}
+    \label{tab:LingerImageRegressor}
 \end{table}
 
 \section{Learning From Differences}
@@ -793,7 +826,7 @@ During the predict phase, a K-nearest neighbors (KNN) is used once again with th
 \begin{itemize}
     \item KNN module: Computes nearest neighbors and extracts differences during both training and prediction phases.
     \item \texttt{MLPRegressor}: Offers flexibility in activation functions, solvers, and hyperparameters for regression.
-    \item Supplementary Features: Weighted KNN, Context Addition, Additional Results Column, and Duplication Based on Distance.
+    \item Supplementary Features: Weighted KNN, Context Addition, Additional Distance Column, and Duplication Based on Distance.
      Each supplementary feature can be activated through a hyperparameter.
 \end{itemize}
 
@@ -1920,6 +1953,7 @@ The training and prediction algorithms for the \texttt{LingerImplicitRegressor}.
         \State \textbf{return} Trained neural network models dictionary $AdaptNN()$.
     \end{algorithmic}
 \end{algorithm}
+\clearpage
 
 \subsubsection{Prediction Algorithm Design}
 \label{sec:lingerImplicit_regression_baseV1V2_model}
@@ -2024,7 +2058,8 @@ The algorithm returns the transformed $y$ values, along with the unique ranges, 
         \State \textbf{Return} $y$, $unique\_ranges$, $y_{\text{min}}$, $y_{\text{max}}$
     \EndIf
     \end{algorithmic}
-    \end{algorithm}
+\end{algorithm}
+\clearpage
 
 \subsubsection{Regression to Classification Converter Implementation}
 This function is encapsulated within a class called \texttt{RegressionToClassificationConverter}. 
@@ -2093,7 +2128,8 @@ The \texttt{transform} function carries out the conversion of regression values 
         \EndIf
     \EndFunction
     \end{algorithmic}
-    \end{algorithm}
+\end{algorithm}
+\clearpage
 
 \subsection{Optimization}
 To enhance the performance of the \texttt{LingerImplicitRegressor}, several optimization strategies are considered:
@@ -2127,7 +2163,7 @@ convolutional neural networks. This strategy diverges from traditional methods, 
 \section{Linger Image Classification Model \texttt{LingerImageClassifier} (LIMC)}
 \label{sec:lingerImage_Classifier_model}
 \subsection{Objective}
-The motivation behind the development of LIMC stems from the growing demand for more sophisticated image classification tools capable of handling 
+The motivation behind the development of (LIMC) stems from the growing demand for more sophisticated image classification tools capable of handling 
 the complexities and nuances of real-world data. Traditional models often fall short in terms of explainability, and transparency. 
 (LIMC) aims to address these gaps by:
 
@@ -2137,13 +2173,15 @@ the complexities and nuances of real-world data. Traditional models often fall s
     \item Aiming to demystify the black-box nature of deep neural networks by providing insights into the decision-making process, making the model more trustworthy and applicable in sensitive 
     areas such as medical diagnosis and autonomous driving.
 \end{itemize}
+
 \subsection{Architecture}
+\label{sec:image_class_reg_architecture}
 The \texttt{LingerImageClassifier} employs a sophisticated, modular architecture designed to leverage the nuances of image data, 
 enhancing both predictive accuracy and interpretability. 
-This architecture comprises of three integral components:
+This architecture consists of three integral components:
 
 \begin{itemize}
-    \item \textbf{Custom Fit Method:} Developed to gracefully integrate with the scikit-learn \cite{scikit} ecosystem, this innovative Fit method is central to the classifier's functionality. 
+    \item \textbf{Custom Fit Method:} Developed to integrate with the scikit-learn \cite{scikit} ecosystem, this Fit method is central to the classifier's functionality. 
     It generates a unique dataset of image differences, effectively capturing variations between image pairs. This method not only emphasizes the importance of contrastive learning but also enriches the model's understanding of nuanced features within the data, 
     such as changes in texture, lighting, and spatial relationships. The process involves computing the differential aspects of images, focusing on attributes that significantly influence the $y$ label values, thereby enabling a more focused and effective learning strategy.
     It also guarantees that we know what it is precisely learning from, its visual difference to its neighbor.
@@ -2157,7 +2195,7 @@ This architecture comprises of three integral components:
     \item \textbf{Custom Predict Method:} Complementing the custom Fit method, 
     the Predict function stands as a testament to the model's innovative approach to classification. 
     This component takes the CNN's predictions on image differences and synthesizes them with the original data to formulate the final classification outcomes. 
-    The method employs a algorithm that accurately applies predicted differences to their corresponding instance, accounting for the model's understanding of contrastive features within the dataset. 
+    The method employs an algorithm that accurately applies predicted differences to their corresponding instance, accounting for the model's understanding of contrastive features within the dataset. 
     This not only enhances the model's accuracy but also its adaptability to various image classification scenarios, ensuring that the final predictions are both precise and contextually grounded.
 \end{itemize}
 
@@ -2172,9 +2210,10 @@ explainability of its predictions, addressing a critical need within the domain 
 Visually we could Identify exactly what the image is learning from based on the difference image generated.
 
 \subsection{Components}
+\label{sec:image_class_reg_components}
 The key components of the \texttt{LingerImageClassifier} include:
 \begin{itemize}
-\item KNN Module: Computes nearest neighbors used to extract differences during training phase andprediction phase.
+\item KNN Module: Computes nearest neighbors used to extract differences during training phase and prediction phase.
 \item 
 \item \textbf{Convolutional Neural Network (CNN):} The heart of the classification process is a Convolutional Neural Network (CNN), 
     meticulously designed to analyze and interpret the differences identified by the KNN module. This CNN is notable for its flexibility, 
@@ -2192,7 +2231,7 @@ The use can vary the design of the (CNN) convolutional Neural Network, as well a
 \subsubsection{Training Design}
 
 The Image Classification Training Algorithm outlines the steps involved in training a convolutional neural network (CNN) for image 
-classification using the differences between nearest neighbor images.
+classification tasks using the differences between nearest neighbor images. 
 
 \begin{algorithm}
     \caption{Image Classification Training Algorithm}
@@ -2202,15 +2241,16 @@ classification using the differences between nearest neighbor images.
             \State \textbf{Input:} Dataset of images $X$, Target labels $y$
             \State \textbf{Output:} Trained CNN model
             \State Generate the image difference datasets.
-            \State $differences\_X, differences\_y \gets$ \ref{alg:generate_image_differences}GenerateDifferences($X$, $y$) 
+            \State $differences\_X, differences\_y \gets$ \text{GenerateDifferences}($X$, $y$) 
             \State Initialize (CNN) model. 
             \State Train CNN model using $differences\_X$ and $differences\_y$
             \State \textbf{return} Trained CNN model
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
+\clearpage
 
-The `generateDifferences` algorithm encapsulates the process of computing differences between nearest neighbor images and their base image, 
+The `GenerateDifferences` \ref{alg:generate_image_differences} algorithm encapsulates the process of computing differences between nearest neighbor images and their base image, 
 preparing the data for training the k-nearest neighbors classifier. It iterates through each image in the training dataset, identifies its nearest neighbors, 
 and calculates the absolute differences between their pixel values. These differences, along with the target value differences, are stored in lists 
 for subsequent use in the training process.
@@ -2226,7 +2266,7 @@ for subsequent use in the training process.
             \Else
                 \State Keep $X$ as it is
             \EndIf
-            \State Increment $n\_neighbours\_1$ by 1 \Comment{Increment $n\_neighbours$}
+            \State Increment $n\_neighbours\_1$ by 1 
             \State Initialize empty list $differences\_X$
             \State Initialize empty list $differences\_y$
             \State Fit nearest neighbors to find indices of nearest neighbors
@@ -2244,9 +2284,9 @@ for subsequent use in the training process.
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
+\clearpage
 
 \subsubsection{Prediction Design}
-
 
 This algorithm, named "Image Classification Prediction Algorithm," takes a dataset of images $X$ and a trained convolutional neural network 
 (CNN) model $trainedCNN$ as input. It utilizes the trained CNN model to predict the differences between images in the dataset. 
@@ -2259,13 +2299,13 @@ to compute the final predictions for the images. Finally, the algorithm returns 
         \Function{PredictImageClassifier}{$X$, $trainedCNN$}
             \State \textbf{Input:} Dataset of images $X$, Trained CNN model $trainedCNN$
             \State \textbf{Output:} Predictions 
-            \State Use trained CNN on $X$ to predict differences: $difference\_pred \gets trainedCNN(X)$
-            \State Compute final predictions using Algorithm \ref{alg:image_classification_final_prediction}: $y\_predictions \gets \text{FinalPrediction}(difference\_pred)$ 
+            \State Use trained CNN on $X$ to predict differences
+            \State $difference\_pred \gets trainedCNN(X)$
+            \State Compute final predictions using Algorithm: $y\_predictions \gets \text{FinalPrediction}(difference\_pred)$ 
             \State \textbf{return} $y\_predictions$
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
-
 
 This algorithm, titled "FinalPrediction," takes input data $X$, a trained CNN model $model$, and the input shape $input_shape$. 
 It computes the predicted target values $y_pred$ based on the differences between the input data and the training images using the trained CNN model.
@@ -2280,7 +2320,7 @@ final prediction $y_pred$. If no items are found, it handles this case by append
     \caption{Image Classification Prediction Algorithm}
     \label{alg:image_classification_final_prediction}
     \begin{algorithmic}[1]
-        \Function{\text{FinalPrediction}}{$X$, $model$, $input\_shape$}
+        \Function{\text{FinalPredictionClassification}}{$X$, $model$, $input\_shape$}
             \State \textbf{Input:} Input data $X$, Trained CNN model $model$, Input shape $input\_shape$
             \State \textbf{Output:} Predicted target values $y\_pred$
             \State Fit nearest neighbors to the training data
@@ -2310,23 +2350,328 @@ final prediction $y_pred$. If no items are found, it handles this case by append
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
+\clearpage
+
 \subsection{Training and Prediction Implementation}
+\subsubsection{Training Implementation}
+\begin{algorithm}
+    \caption{Initialize \texttt{LingerImageClassifier}}
+    \label{alg:initialize_classifier}
+    \begin{algorithmic}[1]
+    \State Number of nearest neighbors for difference computation
+    \State \textbf{Input:} $n\_neighbours\_1, n\_neighbours\_2$ 
+    \Procedure{InitializeClassifier}{$n\_neighbours\_1, n\_neighbours\_2$}
+        \State $self.n\_neighbours\_1 \gets n\_neighbours\_1$
+        \State $self.n\_neighbours\_2 \gets n\_neighbours\_2$
+        \State \textbf{return} self
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+\clearpage
+
+\begin{algorithm}
+    \caption{Generate Differences}
+    \label{alg:generate_image_differences_implementation}
+    \begin{algorithmic}[1]
+    \Procedure{GenerateDifferences}{$X, y, n\_neighbours$}
+        \State \textbf{Input:} $X$ - dataset of images, $y$ - target labels, $n\_neighbours$ - number of neighbors
+        \State Differences in images and labels
+        \State \textbf{Output:} $differences\_X$, $differences\_y$ 
+        \State Initialize $differences\_X$ and $differences\_y$ as empty lists
+        \State $neigh \gets$ Fit NearestNeighbors on $X$ with $n\_neighbours$
+        \For{each image $I$ in $X$}
+            \State Find $n\_neighbours$ nearest neighbors for $I$
+            \For{each neighbor $N$}
+                \State Compute absolute difference between $I$ and $N$
+                \State Append difference to $differences\_X$
+                \State Compute difference in target values and append to $differences\_y$
+            \EndFor
+        \EndFor
+        \State \textbf{return} $differences\_X, differences\_y$
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+\clearpage
+
+\begin{algorithm}
+    \caption{Train with \texttt{LingerImageClassifier}}
+    \label{alg:train_image_class_train_implementation}
+    \begin{algorithmic}[1]
+    \Procedure{Train \texttt{LingerImageClassifier}}{$X_{train}, y_{train}, X_{test}$}
+        \State Load dataset into $X_{train}, y_{train}, X_{test}, y_{test}$
+        \State Initialize \texttt{LingerImageClassifier} with $n\_neighbours\_1$ and $n\_neighbours\_2$
+        \State $differences\_X, differences\_y \gets$ \text{GenerateDifferences}($X_{train}, y_{train}$)
+        \State Train CNN model on $differences\_X, differences\_y$
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+\clearpage
+
+\subsubsection{Prediction Implementation}
+
+\begin{algorithm}
+    \caption{Prediction Process with \texttt{LingerImageClassifier}}
+    \label{alg:predict_class_overview}
+    \begin{algorithmic}[1]
+    \Procedure{Predict}{$X_{test}, y_{test}$}
+        \State For making predictions and evaluating performance
+        \State \textbf{Input:} $X_{test}$ - Test images, $y_{test}$ - True labels for evaluation
+        \State Predict target values for $X_{test}$ using the \Call{Predict}{} procedure.
+        \State Compute final predictions and compare against $y_{test}$ to evaluate accuracy.
+        \State Calculate and report model performance metrics (e.g., accuracy, precision, recall).
+        \State \textbf{return} Model performance metrics.
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+\clearpage
+
+\begin{algorithm}
+    \caption{Prediction Implementation with LingerImageClassifier}
+    \label{alg:prediction_implementation_with_lingerImageClassifier}
+    \begin{algorithmic}[1]
+    \Procedure{Predict}{$X, model, input\_shape$}
+        \Comment{Pythonic steps for predicting target values using image differences.}
+        \State \textbf{Input:} $X$ - Input data, $model$ - Trained CNN, $input\_shape$ - Shape for CNN input.
+        \State \textbf{Output:} $y\_pred$ - Predicted targets.
+        
+        \State $nbrs \gets$ \text{NearestNeighbors}($n\_neighbors=self.n\_neighbours\_2$).fit($self.train\_X$.reshape($len(self.train\_X), -1$))
+        \State $indices \gets nbrs.kneighbors(X.reshape(len(X), -1), return\_distance=False)$
+        
+        \State $differences\_test\_X \gets [$np.abs($X[test].flatten() - self.train\_X[indices[test][nn]].flatten())$ for $test$ in range($len(X)$) for $nn$ in range($len(indices[0]))]$
+        \State $differences\_test\_X \gets np.array(differences\_test\_X).reshape(-1, *input\_shape)$
+        
+        \State $predictions \gets model.predict(differences\_test\_X)$
+        
+        \State $y\_pred \gets []$
+        \For{$indexes, differences$ in zip($indices, predictions$)}
+            \State $results \gets [self.train\_y[i][0] + d$ for $i, d$ in zip($indexes, differences)$]
+            \State $counts \gets$ Counter($results$)
+            \State $most\_common \gets counts.most\_common(1)$
+            \If{$most\_common$}
+                \State $y\_pred.append(most\_common[0][0])$
+            \Else
+                \State $y\_pred.append(None)$
+            \EndIf
+        \EndFor
+        \State \textbf{return} $y\_pred$
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
 \subsection{Optimization}
+To enhance the performance of the \texttt{LingerImageClassifier}, several optimization strategies are considered:
+\begin{itemize}
+    \item \textbf{Hyperparameter Tuning}: Utilize grid search to test multiple values for the integrated knn for both fit and predict.
+
+    \item \textbf{Convolutional Network}: Vary the structure of the convolutional neural network. To suit different datasets
+
+\end{itemize}
 \subsection{Limitations and Future Work}
+The main limitation with this model is its resource intensity, and testing with only one classification image dataset.
+In the future a GPU could be used to attain results faster on a wide range of image datasets. The inclusion of the original image could be useful when training the Convolutional network.
+
 \section{Linger Image Regressor Model \texttt{LingerImageRegressor} (LIMR)}
 \label{sec:lingerImage_Regressor_model}
 \subsection{Objective}
-\subsection{Architecture}
-\subsection{Components}
-\subsection{Parameterization}
-\subsection{Training and Prediction Design}
-\subsection{Training and Prediction Implementation}
-\subsection{Optimization}
-\subsection{Limitations and Future Work}
+The motivation behind the development of (LIMR) stems from the growing demand for more sophisticated image regression tools capable of image data and solving regression issues. 
+Traditional models often fall short in terms of explainability, and transparency. 
+(LIMR) aims to address these gaps by:
 
+\begin{itemize}
+    \item Incorporating state-of-the-art convolutional neural network (CNN) designs that improve upon the limitations of existing models in capturing intricate patterns in image data.
+    \item Utilizing a novel training methodology seen in \cite{learningFromDifferences2022} that enhances model learning from image differences, inspired by recent research findings.
+    \item Aiming to demystify the black-box nature of deep neural networks by providing insights into the decision-making process, making the model more trustworthy and applicable in sensitive 
+    areas such as medical diagnosis and autonomous driving.
+\end{itemize}
+\subsection{Architecture}
+Its architecture is similar to the classifier, only that it uses a convolutional neural net to predict continuous values rather than classes. The method of applying the generated differences to the data during prediction varies slightly.
+The structure of the \texttt{LingerImageClassifier}, and \texttt{LingerImageRegressor} is identical, the functionality of thier predict methods vary.
+See section \ref{sec:image_class_reg_architecture} for a more indepth analysis.
+\subsection{Components}
+The key component within the \texttt{LingerImageRegressor} are identical to those in the \texttt{LingerImageClassifier}.
+For more details see section \ref{sec:image_class_reg_components}.
+\subsection{Parameterization}
+The \texttt{LingerImageRegressor} is designed with flexibility and adaptability at its core, offering a comprehensive suite of parameters that can be fine-tuned to optimize performance across a wide range of image classification tasks. 
+The use can vary the design of the (CNN) convolutional Neural Network, as well as vary the number of neighbors used in the fit and prediction methods.
+\subsection{Training and Prediction Design}
+\subsubsection{Training Design}
+
+The Image Regression Training Algorithm outlines the steps involved in training a convolutional neural network (CNN) for image 
+regression tasks using the differences between nearest neighbor images.
+For regression, it uses the same algorithm \ref{alg:alg:generate_image_differences} to generate the image differences datasets as \texttt{LingerImageClassifier}.
+\begin{algorithm}
+    \caption{Image Regression Training Algorithm}
+    \label{alg:image_regression_training}
+    \begin{algorithmic}
+        \Function{TrainImageRegressor}{$X$, $y$}
+            \State \textbf{Input:} Dataset of images $X$, Target labels $y$
+            \State \textbf{Output:} Trained CNN model
+            \State Generate the image difference datasets.
+            \State $differences\_X, differences\_y \gets$ GenerateDifferences($X$, $y$) 
+            \State Initialize (CNN) model. 
+            \State Train CNN model using $differences\_X$ and $differences\_y$
+            \State \textbf{return} Trained CNN model
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+The predict method varies as it no longer takes a majority vote. 
+To finalize its prediction but takes an average of nearest neighbors with their
+predicted differences added to them.
+\begin{algorithm}
+    \caption{ImageRegression Prediction Algorithm}
+    \label{alg:image_regression_prediction}
+    \begin{algorithmic}[1]
+        \Function{PredictImageClassifier}{$X$, $trainedCNN$}
+            \State \textbf{Input:} Dataset of images $X$, Trained CNN model $trainedCNN$
+            \State \textbf{Output:} Predictions 
+            \State Use trained CNN on $X$ to predict differences: $difference\_pred \gets trainedCNN(X)$
+            \State Compute final predictions using Algorithm: $y\_predictions \gets \text{FinalPrediction}(difference\_pred)$ 
+            \State \textbf{return} $y\_predictions$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+This algorithm outlines a method for image regression prediction using a Convolutional Neural Network (CNN). 
+It involves fitting nearest neighbors to training data, calculating differences between test images and 
+their nearest training images using, and using these differences as inputs to a pre-trained CNN model to predict 
+target values. The algorithm computes predictions by averaging adjustments made to the nearest neighbors' 
+target values based on the CNN's output \ref{alg:image_regression_final_prediction}, thereby producing a final prediction for each input image. 
+This approach combines instance-based learning with deep learning to enhance prediction accuracy 
+for image-based regression tasks. The method of learning from differences is based on the algorithms in the paper \cite{learningFromDifferences2022},
+\begin{algorithm}[H]
+    \caption{Image Regression Prediction Algorithm}
+    \label{alg:image_regression_final_prediction}
+    \begin{algorithmic}[1]
+        \Function{\text{FinalPrediction}}{$X$, $model$, $input\_shape$}
+            \State \textbf{Input:} Input data $X$, Trained CNN model $model$, Input shape $input\_shape$
+            \State \textbf{Output:} Predicted target values $y\_pred$
+            \State Fit nearest neighbors to the training data
+            \State Initialize empty list $differences\_test\_X$
+            \For{$test$ in range(length of $X$)} \Comment{Compute differences between test and training images}
+                \For{$nn\_in\_training$ in range(length of nearest neighbors)}
+                    \State Compute difference between test and nearest neighbor: 
+                    \State \quad $diff \gets$ absolute difference between $X[test]$ and $train\_X[indices[test][nn\_in\_training]]$
+                    \State Append $diff$ to $differences\_test\_X$
+                \EndFor
+            \EndFor
+            \State Reshape $differences\_test\_X$ to match input shape
+            \State Make predictions using the trained CNN model: $predictions \gets model.predict(differences\_test\_X)$
+            \State Initialize empty list $y\_pred$
+            \For{$indexes$, $differences$ in zip($indices$, $predictions$)}
+                \State Compute predicted results for each nearest neighbor:
+                \State \quad $results \gets [\text{self.train\_y}[i][0] + d$ for $i$, $d$ in zip($indexes$, $differences)$]
+                \State Compute average of each result: $average \gets$ average of values in $results$
+                \State Append $average$ to $y\_pred$
+            \EndFor
+            \State \textbf{return} $y\_pred$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Training and Prediction Implementation}
+\subsubsection{Training Implementation}
+\begin{algorithm}
+    \caption{Initialize \texttt{LingerImageRegressor}}
+    \label{alg:initialize_regressor}
+    \begin{algorithmic}[1]
+    \State Number of nearest neighbors for difference computation
+    \State \textbf{Input:} $n\_neighbours\_1, n\_neighbours\_2$ 
+    \Procedure{InitializeRegressor}{$n\_neighbours\_1, n\_neighbours\_2$}
+        \State $self.n\_neighbours\_1 \gets n\_neighbours\_1$
+        \State $self.n\_neighbours\_2 \gets n\_neighbours\_2$
+        \State \textbf{return} self
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+The same algorithm \ref{alg:generate_image_differences_implementation} is used to generate differences for the training process in the \texttt{LingerImageRegressor} 
+as the \texttt{LingerImplicitClassifier}.
+
+\begin{algorithm}
+    \caption{Train with \texttt{LingerImplicitRegressor}}
+    \label{alg:train_image_reg_train_implementation}
+    \begin{algorithmic}[1]
+    \Procedure{Train \texttt{LingerImageRegressor}}{$X_{train}, y_{train}, X_{test}$}
+        \State Load dataset into $X_{train}, y_{train}, X_{test}, y_{test}$
+        \State Initialize \texttt{LingerImageRegressor} with $n\_neighbours\_1$ and $n\_neighbours\_2$
+        \State $differences\_X, differences\_y \gets$ \text{GenerateDifferences}($X_{train}, y_{train}$)
+        \State Train CNN model on $differences\_X, differences\_y$
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+\clearpage
+
+\subsubsection{Prediction Implementation}
+
+\begin{algorithm}
+    \caption{Prediction Process with \texttt{LingerImageRegressor}}
+    \label{alg:predict_reg_overview}
+    \begin{algorithmic}[1]
+    \Procedure{Predict}{$X_{test}, y_{test}$}
+        \State For making predictions and evaluating performance
+        \State \textbf{Input:} $X_{test}$ - Test images, $y_{test}$ - True labels for evaluation
+        \State Predict target values for $X_{test}$ using the \Call{Predict}{} procedure.
+        \State Compute final predictions and compare against $y_{test}$ to evaluate accuracy.
+        \State Calculate and report model performance metrics (e.g., accuracy, precision, recall).
+        \State \textbf{return} Model performance metrics.
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+\clearpage
+
+\begin{algorithm}
+    \caption{Prediction with LingerImageRegressor}
+    \label{alg:prediction_with_lingerImageRegressor}
+    \begin{algorithmic}[1]
+    \Procedure{Predict}{$X, model, dataset, input\_shape$}
+        \State Predicts target values using a regression approach based on image differences.
+        \State \textbf{Input:} $X$ - Input data for prediction, $model$ - Trained regression model, $dataset$ - Dataset object containing training data, $input\_shape$ - Shape of input data expected by the model.
+        \State \textbf{Output:} $y\_pred$ - Predicted target values for the input data.
+        
+        \If{$len(X.shape) > 2$}
+            \State $X \gets X.reshape(len(X), -1)$
+            \Comment{Flatten the input if it's multi-dimensional.}
+        \EndIf
+        \State Train the NearestNeighbors function on our data.
+        \State $nbrs \gets$ NearestNeighbors($n\_neighbors=self.n\_neighbours\_2$).fit($dataset.train\_X.reshape(len(dataset.train\_X), -1)$)
+        \State $indices \gets nbrs.kneighbors(X, return\_distance=False)$
+        \Comment{Identify nearest neighbors in the training set.}
+        
+        \State Prepare $differences\_test\_X$ by computing absolute differences between $X$ and its nearest neighbors in the training set.
+        
+        \State Reshape $differences\_test\_X$ to match $input\_shape$ for compatibility with the model.
+        
+        \State $predictions \gets model.predict(differences\_test\_X)$
+        \Comment{Predict target values based on computed differences.}
+        
+        \State Initialize an empty list $y\_pred$ to store final predictions.
+        
+        \For{each $indexes, differences$ pair in zipped $indices, predictions$}
+            \State Calculate the sum of the training target values and the predicted differences.
+            \State Compute the average result to obtain the regression prediction.
+            \State Append the average result to $y\_pred$.
+        \EndFor
+        
+        \State \textbf{return} $y\_pred$
+        \Comment{Return the list of predicted target values.}
+    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Optimization}
+To enhance the performance of the \texttt{LingerImageClassifier}, several optimization strategies are considered:
+\begin{itemize}
+    \item \textbf{Hyperparameter Tuning}: Utilize grid search to test multiple values for the integrated knn for both fit and predict.
+
+    \item \textbf{Convolutional Network}: Vary the structure of the convolutional neural network. To suit different datasets
+
+\end{itemize}
+\subsection{Limitations and Future Work}
+Similar to the \texttt{LingerImageClassifier} the \texttt{LingerImplicitRegressor}'s main difficulty is in testing due to its high computational costs.
+A high end GPU would be useful to test it on multiple datasets. The inclusion of the original image could be useful when training the Convolutional network.
 \chapter{Experiments}
 \label{ch:Experiments}
-
 \section{Research Objective}
 
 The overarching objective of this study is to investigate the efficacy of blended learning approaches in machine learning tasks, 
@@ -2405,16 +2750,18 @@ appropriately formatted for use in machine learning tasks.
 \subsection{Experiment 1: Glass Dataset Classification}
 
 \subsubsection{Methodology}
-For Experiment 1, we performed classification tasks on the Glass dataset. Our approach involved a two-step process. 
-Firstly, we trained a neural network (NN) classifier using grid search with cross-validation to explore various hyperparameter combinations. 
-Subsequently, we utilized the best hyperparameters from the NN training to train a Linger Classifier (LC) and its variants, aiming for enhanced robustness. 
-The LC models were then tested for robustness by conducting five runs.
+In Experiment 1, we conducted classification tasks on the Glass dataset using a two-step methodology. Initially, we trained a neural network (NN) classifier 
+through grid search and cross-validation to determine the optimal hyperparameters. These hyperparameters were then applied to train a \texttt{LingerClassifier} (LC) 
+and its variants for improved robustness, tested across five runs. For comparative analysis, we also evaluated the performance of K-Nearest Neighbors (KNN), 
+weighted (KNN), and (NN) on the same dataset. The results section details the hyperparameters selected and the test accuracies achieved.
 
-For comparison a KNN, weighted KNN and Neural Netowrk were run on the same data. To guage the relative performance of THe \texttt{LingerClassifier}.
+\subsubsection{Hyperparameter Optimization}
+For both the Neural Network and Linger Classifier, a comprehensive exploration of hyperparameters was conducted, 
+as summarized in Table \ref{tab:hyperparameters}. This table delineates the varied hyperparameters scrutinized during the optimization phase, 
+spanning hidden layer configurations, activation functions, regularization terms, and more, underscoring our meticulous approach to model 
+tuning.
 
-The following sections summarize the results obtained from Experiment 1, presenting the hyperparameters used and the corresponding test accuracy achieved.
-
-\begin{table}[H]
+\begin{table}
     \centering
     \caption{Tested Hyperparameters for Neural Network and Linger Classifier}
     \label{tab:hyperparameters}
@@ -2436,420 +2783,268 @@ The following sections summarize the results obtained from Experiment 1, present
     Neighbors 1 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
     Neighbors 2 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
     Weighted KNN & False \\ \hline
-    Additional Results Column & False \\ \hline
-    Duplicated on Distance & False \\ \hline
-    Addition of Context & False \\ \hline
+    Additional Distance Column & True, False \\ \hline
+    Duplicated on Distance & True, False \\ \hline
+    Addition of Context & True, False \\ \hline
     \end{tabular}
 \end{table}
+\clearpage
 
 \subsubsection{(LC) Results}
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for KNN Classifier}
-    \label{tab:best_parameters_knn_LC_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 2 \\ \hline
+    \caption{Best Parameters for Classifiers}
+    \label{tab:best_parameters_combined}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net and Linger Classifier}} \\
+    \midrule
+    Neural Net / Linger Classifier & activation & relu \\
+    Neural Net / Linger Classifier & alpha & 0.0001 \\
+    Neural Net / Linger Classifier & beta\_1 & 0.9 \\
+    Neural Net / Linger Classifier & beta\_2 & 0.995 \\
+    Neural Net / Linger Classifier & early\_stopping & True \\
+    Neural Net / Linger Classifier & hidden\_layer\_sizes & (300, 200, 100) \\
+    Neural Net / Linger Classifier & learning\_rate\_init & 0.01 \\
+    Neural Net / Linger Classifier & max\_iter & 1000 \\
+    Neural Net / Linger Classifier & solver & adam \\
+    Neural Net / Linger Classifier & validation\_fraction & 0.3 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
+    \midrule
+    KNN & n\_neighbors & 2 \\
+    Weighted KNN & n\_neighbors & 7 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Linger Classifier Specific}} \\
+    \midrule
+    Linger Classifier & addition\_of\_context & False \\
+    Linger Classifier & additional\_distance\_column & False \\
+    Linger Classifier & duplicated\_on\_distance & False \\
+    Linger Classifier & n\_neighbors\_1 & 2 \\
+    Linger Classifier & n\_neighbors\_2 & 5 \\
+    Linger Classifier & weighted\_knn & False \\
+    \bottomrule
     \end{tabular}
 \end{table}
+\clearpage
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Weighted KNN Classifier}
-    \label{tab:best_parameters_weighted_knn_LC_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 7 \\ \hline
+    \caption{Average Training and Test Accuracy Results}
+    \label{tab:average_results_combined}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
+    \midrule
+    KNN Classifier & $68.2$ & $60.46$ \\
+    Weighted KNN Classifier & $70.0$ & $62.8$ \\
+    Neural Net Classifier & $\mathbf{73.1}$ & $61.4$ \\
+    Linger Classifier & $70.04$ & $60.46$ \\
+    \bottomrule
     \end{tabular}
 \end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Neural Net Classifier}
-    \label{tab:best_parameters_neural_net_LC_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    activation & relu \\ \hline
-    alpha & 0.0001 \\ \hline
-    beta\_1 & 0.9 \\ \hline
-    beta\_2 & 0.995 \\ \hline
-    early\_stopping & True \\ \hline
-    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
-    learning\_rate\_init & 0.01 \\ \hline
-    max\_iter & 1000 \\ \hline
-    solver & adam \\ \hline
-    validation\_fraction & 0.3 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Linger Classifier}
-    \label{tab:best_parameters_linger_classifier_LC_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    activation & relu \\ \hline
-    addition\_of\_context & False \\ \hline
-    additional\_results\_column & False \\ \hline
-    alpha & 0.0001 \\ \hline
-    beta\_1 & 0.9 \\ \hline
-    beta\_2 & 0.995 \\ \hline
-    duplicated\_on\_distance & False \\ \hline
-    early\_stopping & True \\ \hline
-    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
-    learning\_rate\_init & 0.01 \\ \hline
-    max\_iter & 1000 \\ \hline
-    n\_neighbors\_1 & 2 \\ \hline
-    n\_neighbors\_2 & 5 \\ \hline
-    solver & adam \\ \hline
-    validation\_fraction & 0.3 \\ \hline
-    weighted\_knn & False \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Training Accuracy Results}
-    \label{tab:average_results_train_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} \\ \hline
-    KNN Classifier & $68.2\%$ \\ \hline
-    Weighted KNN Classifier & $70.0\%$ \\ \hline
-    Neural Net Classifier & $73.1\%$ \\ \hline
-    Linger Classifier & $70.04\%$ \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Test Accuracy Results}
-    \label{tab:average_results_test_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Classifier} & \textbf{Average Test Accuracy (\%)} \\ \hline
-    KNN Classifier & $60.46\%$ \\ \hline
-    Weighted KNN Classifier & $62.8\%$ \\ \hline
-    Neural Net Classifier & $61.4\%$ \\ \hline
-    Linger Classifier & $60.46\%$ \\ \hline
-    \end{tabular}
-\end{table}
+\clearpage
 
 \subsubsection{(LCV1) Results}
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for KNN Classifier}
-    \label{tab:best_parameters_knn_LCV1_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 2 \\ \hline
+    \caption{Best Parameters for Classifiers (LCV1)}
+    \label{tab:best_parameters_combined_LCV1}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net and Linger Classifier with Context (Variation 1)}} \\
+    \midrule
+    Neural Net / Linger Classifier & activation & relu \\
+    Neural Net / Linger Classifier & alpha & 0.1 \\
+    Neural Net / Linger Classifier & beta\_1 & 0.9 \\
+    Neural Net / Linger Classifier & beta\_2 & 0.999 \\
+    Neural Net / Linger Classifier & early\_stopping & True \\
+    Neural Net / Linger Classifier & hidden\_layer\_sizes & (300, 200, 100) \\
+    Neural Net / Linger Classifier & learning\_rate\_init & 0.01 \\
+    Neural Net / Linger Classifier & max\_iter & 1500 \\
+    Neural Net / Linger Classifier & solver & adam \\
+    Neural Net / Linger Classifier & validation\_fraction & 0.3 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
+    \midrule
+    KNN & n\_neighbors & 2 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Weighted KNN Classifier Specific}} \\
+    \midrule
+    Weighted KNN & n\_neighbors & 7 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Linger Classifier with Context (Variation 1) Specific}} \\
+    \midrule
+    Linger Classifier & addition\_of\_context & True \\
+    Linger Classifier & additional\_results\_column & False \\
+    Linger Classifier & duplicated\_on\_distance & False \\
+    Linger Classifier & n\_neighbours\_1 & 17 \\
+    Linger Classifier & n\_neighbours\_2 & 17 \\
+    Linger Classifier & weighted\_knn & False \\
+    \bottomrule
     \end{tabular}
 \end{table}
+\clearpage
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Weighted KNN Classifier}
-    \label{tab:best_parameters_weighted_knn_LCV1_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 7 \\ \hline
+    \caption{Average Training and Test Accuracy Results for Classifiers (LCV1)}
+    \label{tab:average_results_LCV1}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
+    \midrule
+    KNN Classifier & $68.24$ & $60.47$ \\
+    Weighted KNN Classifier & $70.00$ & $62.79$ \\
+    Neural Network Classifier & $72.79$ & $64.53$ \\
+    Linger Classifier & $69.41$ & $65.70$ \\
+    \bottomrule
     \end{tabular}
 \end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Neural Net}
-    \label{tab:best_parameters_neural_net_LCV1_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    activation & relu \\ \hline
-    alpha & 0.1 \\ \hline
-    beta\_1 & 0.9 \\ \hline
-    beta\_2 & 0.999 \\ \hline
-    early\_stopping & True \\ \hline
-    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
-    learning\_rate\_init & 0.01 \\ \hline
-    max\_iter & 1500 \\ \hline
-    solver & adam \\ \hline
-    validation\_fraction & 0.3 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Linger Classifier with Context (Variation 1)}
-    \label{tab:best_parameters_linger_classifier_LCV1_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    activation & relu \\ \hline
-    addition\_of\_context & True \\ \hline
-    additional\_results\_column & False \\ \hline
-    alpha & 0.1 \\ \hline
-    beta\_1 & 0.9 \\ \hline
-    beta\_2 & 0.999 \\ \hline
-    duplicated\_on\_distance & False \\ \hline
-    early\_stopping & True \\ \hline
-    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
-    learning\_rate\_init & 0.01 \\ \hline
-    max\_iter & 1500 \\ \hline
-    n\_neighbours\_1 & 17 \\ \hline
-    n\_neighbours\_2 & 17 \\ \hline
-    solver & adam \\ \hline
-    validation\_fraction & 0.3 \\ \hline
-    weighted\_knn & False \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Training Accuracy Results for Classifiers}
-    \label{tab:average_results_train_LCV1_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} \\ \hline
-    KNN Classifier & $68.24\%$ \\ \hline
-    Weighted KNN Classifier & $70.00\%$ \\ \hline
-    Neural Network Classifier & $72.79\%$ \\ \hline
-    Linger Classifier & $69.41\%$ \\ \hline
-    \end{tabular}
-    \end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Test Accuracy Results for Classifiers}
-    \label{tab:average_results_test_LCV1_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Classifier} & \textbf{Average Test Accuracy (\%)} \\ \hline
-    KNN Classifier & $60.47\%$ \\ \hline
-    Weighted KNN Classifier & $62.79\%$ \\ \hline
-    Neural Network Classifier & $64.53\%$ \\ \hline
-    Linger Classifier & $65.70\%$ \\ \hline
-    \end{tabular}
-\end{table}
+\clearpage
 
 \subsubsection{(LCV2) Results}
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for KNN Classifier}
-    \label{tab:best_parameters_knn_LCV2_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 2 \\ \hline
+    \caption{Best Parameters for Classifiers (LCV2)}
+    \label{tab:best_parameters_combined_LCV2}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net and Linger Classifier, Duplication using Distance (Variation 2)}} \\
+    \midrule
+    Neural Net / Linger Classifier & activation & relu \\
+    Neural Net / Linger Classifier & alpha & 0.1 \\
+    Neural Net / Linger Classifier & beta\_1 & 0.9 \\
+    Neural Net / Linger Classifier & beta\_2 & 0.995 \\
+    Neural Net / Linger Classifier & early\_stopping & True \\
+    Neural Net / Linger Classifier & hidden\_layer\_sizes & (300, 200, 100) \\
+    Neural Net / Linger Classifier & learning\_rate\_init & 0.01 \\
+    Neural Net / Linger Classifier & max\_iter & 1000 \\
+    Neural Net / Linger Classifier & solver & adam \\
+    Neural Net / Linger Classifier & validation\_fraction & 0.3 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
+    \midrule
+    KNN & n\_neighbors & 2 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Weighted KNN Classifier Specific}} \\
+    \midrule
+    Weighted KNN & n\_neighbors & 7 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Linger Classifier, Duplication using Distance (Variation 2) Specific}} \\
+    \midrule
+    Linger Classifier & addition\_of\_context & False \\
+    Linger Classifier & additional\_distance\_column & False \\
+    Linger Classifier & duplicated\_on\_distance & True \\
+    Linger Classifier & n\_neighbours\_1 & 21 \\
+    Linger Classifier & n\_neighbours\_2 & 13 \\
+    Linger Classifier & weighted\_knn & False \\
+    \bottomrule
     \end{tabular}
 \end{table}
+\clearpage
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Weighted KNN Classifier}
-    \label{tab:best_parameters_weighted_knn_LCV2_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 7 \\ \hline
+    \caption{Average Training and Test Accuracy Results for Classifiers (LCV2)}
+    \label{tab:average_results_LCV2}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
+    \midrule
+    KNN Classifier & $68.24$ & $60.47$ \\
+    Weighted KNN Classifier & $70.00$ & $62.79$ \\
+    Neural Network Classifier & $71.29$ & $67.91$ \\
+    Linger Classifier & $67.29$ & $69.30$ \\
+    \bottomrule
     \end{tabular}
 \end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Neural Net}
-    \label{tab:best_parameters_neural_net_LCV2_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    activation & relu \\ \hline
-    alpha & 0.1 \\ \hline
-    beta\_1 & 0.9 \\ \hline
-    beta\_2 & 0.995 \\ \hline
-    early\_stopping & True \\ \hline
-    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
-    learning\_rate\_init & 0.01 \\ \hline
-    max\_iter & 1000 \\ \hline
-    solver & adam \\ \hline
-    validation\_fraction & 0.3 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Linger Classifier, Duplication using Distance (Variation 2)}
-    \label{tab:best_parameters_linger_classifier_LCV2_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    activation & relu \\ \hline
-    addition\_of\_context & False \\ \hline
-    additional\_results\_column & False \\ \hline
-    alpha & 0.1 \\ \hline
-    beta\_1 & 0.9 \\ \hline
-    beta\_2 & 0.995 \\ \hline
-    duplicated\_on\_distance & True \\ \hline
-    early\_stopping & True \\ \hline
-    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
-    learning\_rate\_init & 0.01 \\ \hline
-    max\_iter & 1000 \\ \hline
-    n\_neighbours\_1 & 21 \\ \hline
-    n\_neighbours\_2 & 13 \\ \hline
-    solver & adam \\ \hline
-    validation\_fraction & 0.3 \\ \hline
-    weighted\_knn & False \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Training Accuracy Results for Classifiers (Variation 2)}
-    \label{tab:average_results_train_LCV2_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} \\ \hline
-    KNN Classifier & $68.24\%$ \\ \hline
-    Weighted KNN Classifier & $70.00\%$ \\ \hline
-    Neural Network Classifier & $71.29\%$ \\ \hline
-    Linger Classifier & $67.29\%$ \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Test Accuracy Results for Classifiers (Variation 2)}
-    \label{tab:average_results_test_LCV2_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Classifier} & \textbf{Average Test Accuracy (\%)} \\ \hline
-    KNN Classifier & $60.47\%$ \\ \hline
-    Weighted KNN Classifier & $62.79\%$ \\ \hline
-    Neural Network Classifier & $67.91\%$ \\ \hline
-    Linger Classifier & $69.30\%$ \\ \hline
-    \end{tabular}
-\end{table}
+\clearpage
 
 \subsubsection{(LCV3) Results}
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for KNN Classifier}
-    \label{tab:best_parameters_knn_LCV3_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 2 \\ \hline
-    \end{tabular}
-\end{table}
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Weighted KNN Classifier}
-    \label{tab:best_parameters_weighted_knn_LCV3_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 7 \\ \hline
+    \caption{Best Parameters for Classifiers (LCV3)}
+    \label{tab:best_parameters_combined_LCV3}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net and Linger Classifier, Additional Distance Column (Variation 3)}} \\
+    \midrule
+    Neural Net / Linger Classifier & activation & relu \\
+    Neural Net / Linger Classifier & alpha & 0.001 \\
+    Neural Net / Linger Classifier & beta\_1 & 0.99 \\
+    Neural Net / Linger Classifier & beta\_2 & 0.999 \\
+    Neural Net / Linger Classifier & early\_stopping & True \\
+    Neural Net / Linger Classifier & hidden\_layer\_sizes & (300, 200, 100) \\
+    Neural Net / Linger Classifier & learning\_rate\_init & 0.01 \\
+    Neural Net / Linger Classifier & max\_iter & 1000 \\
+    Neural Net / Linger Classifier & solver & adam \\
+    Neural Net / Linger Classifier & validation\_fraction & 0.3 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
+    \midrule
+    KNN & n\_neighbors & 2 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Weighted KNN Classifier Specific}} \\
+    \midrule
+    Weighted KNN & n\_neighbors & 7 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Linger Classifier with Additional Distance Column (Variation 3) Specific}} \\
+    \midrule
+    Linger Classifier & addition\_of\_context & False \\
+    Linger Classifier & additional\_distance\_column & True \\
+    Linger Classifier & duplicated\_on\_distance & False \\
+    Linger Classifier & n\_neighbours\_1 & 21 \\
+    Linger Classifier & n\_neighbours\_2 & 13 \\
+    Linger Classifier & weighted\_knn & False \\
+    \bottomrule
     \end{tabular}
 \end{table}
+\clearpage
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Neural Net}
-    \label{tab:best_parameters_neural_net_LCV3_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    activation & relu \\ \hline
-    alpha & 0.001 \\ \hline
-    beta\_1 & 0.99 \\ \hline
-    beta\_2 & 0.999 \\ \hline
-    early\_stopping & True \\ \hline
-    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
-    learning\_rate\_init & 0.01 \\ \hline
-    max\_iter & 1000 \\ \hline
-    solver & adam \\ \hline
-    validation\_fraction & 0.3 \\ \hline
+    \caption{Average Training and Test Accuracy Results for Classifiers (LCV3)}
+    \label{tab:average_results_LCV3}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
+    \midrule
+    KNN Classifier & $68.24$ & $60.47$ \\
+    Weighted KNN Classifier & $70.00$ & $62.79$ \\
+    Neural Network Classifier & $71.06$ & $67.44$ \\
+    Linger Classifier & $67.65$ & $60.93$ \\
+    \bottomrule
     \end{tabular}
 \end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Linger Classifier with Additional Distance Column (Variation 3)}
-    \label{tab:best_parameters_linger_classifier_LCV3_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    activation & relu \\ \hline
-    addition\_of\_context & False \\ \hline
-    additional\_results\_column & True \\ \hline
-    alpha & 0.001 \\ \hline
-    beta\_1 & 0.99 \\ \hline
-    beta\_2 & 0.999 \\ \hline
-    duplicated\_on\_distance & False \\ \hline
-    early\_stopping & True \\ \hline
-    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
-    learning\_rate\_init & 0.01 \\ \hline
-    max\_iter & 1000 \\ \hline
-    n\_neighbours\_1 & 21 \\ \hline
-    n\_neighbours\_2 & 13 \\ \hline
-    solver & adam \\ \hline
-    validation\_fraction & 0.3 \\ \hline
-    weighted\_knn & False \\ \hline
-    \end{tabular}, 
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Training Accuracy Results for Classifiers (Variation 3)}
-    \label{tab:average_results_train_LCV3_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} \\ \hline
-    KNN Classifier & $68.24\%$ \\ \hline
-    Weighted KNN Classifier & $70.00\%$ \\ \hline
-    Neural Network Classifier & $71.06\%$ \\ \hline
-    Linger Classifier & $67.65\%$ \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Test Accuracy Results for Classifiers (Variation 3)}
-    \label{tab:average_results_test_LCV3_Glass}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Classifier} & \textbf{Average Test Accuracy (\%)} \\ \hline
-    KNN Classifier & $60.47\%$ \\ \hline
-    Weighted KNN Classifier & $62.79\%$ \\ \hline
-    Neural Network Classifier & $67.44\%$ \\ \hline
-    Linger Classifier & $60.93\%$ \\ \hline
-    \end{tabular}
-\end{table}
+\clearpage
 \subsubsection{(LIC)}
 \subsubsection{(LICV1)}
 \subsubsection{(LICV2)}
+\subsubsection{Concluding Remarks}
 
 \subsection{Experiment 2: Abalone Dataset Regression}
 \subsubsection{Methodology}
-For Experiment 2, we focused on regression tasks using the Abalone dataset. 
-The approach involved a two-step process. Initially, we trained a neural network (NN) regressor using grid search with 
-cross-validation to explore various hyperparameter combinations. Following this, we utilized the best hyperparameters from the NN training 
-to train a \texttt{LingerRegressor} (LR) and its variants, aiming for enhanced robustness. 
-The LR models were then tested for their performance by conducting 4 runs to improve robustness.
 
-For comparison, a KNN, weighted KNN, and Neural Network were run on the same data, 
-to gauge the relative performance of the \texttt{LingerRegressor}.
+In Experiment 2, we explored regression tasks on the Abalone dataset with a two-step approach. 
+Initially, a neural network (NN) regressor was trained using grid search and cross-validation to identify optimal hyperparameter combinations. 
+These selected hyperparameters were then applied to train a \texttt{LingerRegressor} (LR) and its variants, targeting improved robustness, 
+with their performance evaluated across four runs. Additionally, to benchmark the \texttt{LingerRegressor}'s performance, K-Nearest Neighbors (KNN), 
+weighted KNN, and NN models were similarly assessed on the dataset. The results section will detail the hyperparameters and performance metrics obtained from Experiment 2.
 
-The following sections summarize the results obtained from Experiment 2, presenting the hyperparameters used and the corresponding performance metrics achieved.
-
-\subsection{Tested Hyperparameters}
+\subsubsection{Tested Hyperparameters}
 
 \begin{table}[H]
     \centering
@@ -2873,206 +3068,134 @@ The following sections summarize the results obtained from Experiment 2, present
     N Neighbours 1 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
     N Neighbours 2 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
     Weighted KNN & False \\ \hline
-    Additional Results Column & False \\ \hline
-    Duplicated on Distance & False \\ \hline
-    Addition of Context & False \\ \hline
+    Additional Distance Column & True, False \\ \hline
+    Duplicated on Distance & True, False \\ \hline
+    Addition of Context & True, False \\ \hline
     \end{tabular}
 \end{table}
+\clearpage
 
 \subsubsection{(LR) Results}
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for KNN Regressor}
-    \label{tab:best_parameters_knn_LR_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 17 \\ \hline
+    \caption{Best Parameters for Regressors (LR)}
+    \label{tab:best_parameters_combined_LR}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Regressor} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net Regressor and Linger Regressor}} \\
+    \midrule
+    Neural Net / Linger Regressor & Activation & relu \\
+    Neural Net / Linger Regressor & Alpha & 0.01 \\
+    Neural Net / Linger Regressor & Beta 1 & 0.95 \\
+    Neural Net / Linger Regressor & Beta 2 & 0.9 \\
+    Neural Net / Linger Regressor & Early Stopping & True \\
+    Neural Net / Linger Regressor & Hidden Layer Sizes & (200, 100) \\
+    Neural Net / Linger Regressor & Learning Rate Init & 0.01 \\
+    Neural Net / Linger Regressor & Max Iter & 2000 \\
+    Neural Net / Linger Regressor & Solver & sgd \\
+    Neural Net / Linger Regressor & Validation Fraction & 0.1 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{KNN Regressor Specific}} \\
+    \midrule
+    KNN Regressor & n\_neighbors & 17 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Weighted KNN Regressor Specific}} \\
+    \midrule
+    Weighted KNN Regressor & n\_neighbors & 21 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Linger Regressor Specific}} \\
+    \midrule
+    Linger Regressor & Addition of Context & False \\
+    Linger Regressor & Additional Distance Column & False \\
+    Linger Regressor & Duplicated on Distance & False \\
+    Linger Regressor & n\_Neighbours\_1 & 5 \\
+    Linger Regressor & n\_Neighbours\_2 & 21 \\
+    Linger Regressor & Weighted KNN & False \\
+    \bottomrule
     \end{tabular}
 \end{table}
+\clearpage
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Weighted KNN Regressor}
-    \label{tab:best_parameters_weighted_knn_LR_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 21 \\ \hline
+    \caption{Average Training and Test Negative Mean Squared Error Results (NMSE) for Regressors (LR)}
+    \label{tab:average_results_LR}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Regressor} & \textbf{Average Training NMSE} & \textbf{Average Test NMSE} \\
+    \midrule
+    KNN Regressor & $-1.95857$ & $-1.92999$ \\
+    Weighted KNN Regressor & $-1.9567$ & $-1.8717$ \\
+    Neural Net Regressor & $-1.92956$ & $-1.89454$ \\
+    Linger Regressor & $-1.89797$ & $-1.83486$ \\
+    \bottomrule
     \end{tabular}
 \end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Neural Net Regressor}
-    \label{tab:best_parameters_neural_net_LR_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    Activation & relu \\ \hline
-    Alpha & 0.01 \\ \hline
-    Beta 1 & 0.95 \\ \hline
-    Beta 2 & 0.9 \\ \hline
-    Early Stopping & True \\ \hline
-    Hidden Layer Sizes & (200, 100) \\ \hline
-    Learning Rate Init & 0.01 \\ \hline
-    Max Iter & 2000 \\ \hline
-    Solver & sgd \\ \hline
-    Validation Fraction & 0.1 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Linger Regressor}
-    \label{tab:best_parameters_linger_regressor_LR_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    Activation & relu \\ \hline
-    Addition of Context & False \\ \hline
-    Additional Results Column & False \\ \hline
-    Alpha & 0.01 \\ \hline
-    Beta 1 & 0.95 \\ \hline
-    Beta 2 & 0.9 \\ \hline
-    Duplicated on Distance & False \\ \hline
-    Early Stopping & True \\ \hline
-    Hidden Layer Sizes & (200, 100) \\ \hline
-    Learning Rate Init & 0.01 \\ \hline
-    Max Iter & 2000 \\ \hline
-    n\_Neighbours\_1 & 5 \\ \hline
-    n\_Neighbours\_2 & 21 \\ \hline
-    Solver & sgd \\ \hline
-    Validation Fraction & 0.1 \\ \hline
-    Weighted KNN & False \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Training Negative Mean Squared Error Results}
-    \label{tab:average_results_train_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Regressor} & \textbf{Average Training Negative Mean Squared Error} \\ \hline
-    KNN Regressor &  $-1.95857$\\ \hline
-    Weighted KNN Regressor &  $-1.9567$\\ \hline
-    Neural Net Regressor & $-1.92956$\\ \hline
-    Linger Regressor & $-1.89797$\\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Test Negative Mean Squared Error Results}
-    \label{tab:average_results_test_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Regressor} & \textbf{Average Test Negative Mean Squared Error} \\ \hline
-    KNN Regressor & $-1.92999$ \\ \hline
-    Weighted KNN Regressor & $-1.8717$ \\ \hline
-    Neural Net Regressor & $-1.89454$ \\ \hline
-    Linger Regressor & $-1.83486$ \\ \hline
-    \end{tabular}
-\end{table}
+\clearpage
 
 \subsubsection{(LRV1) Results}
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for KNN Regressor}
-    \label{tab:best_parameters_knn_LRV1_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 17 \\ \hline
-    \end{tabular}
-\end{table}
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Weighted KNN Regressor}
-    \label{tab:best_parameters_weighted_knn_LRV1_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    n\_neighbors & 21 \\ \hline
+    \caption{Best Parameters for Regressors (LRV1)}
+    \label{tab:best_parameters_combined_LRV1}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Regressor} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net Regressor and Linger Regressor}} \\
+    \midrule
+    Neural Net / Linger Regressor & Activation & relu \\
+    Neural Net / Linger Regressor & Alpha & 0.1 \\
+    Neural Net / Linger Regressor & Beta 1 & 0.99 \\
+    Neural Net / Linger Regressor & Beta 2 & 0.9 \\
+    Neural Net / Linger Regressor & Early Stopping & True \\
+    Neural Net / Linger Regressor & Hidden Layer Sizes & (300, 200, 100) \\
+    Neural Net / Linger Regressor & Learning Rate Init & 0.01 \\
+    Neural Net / Linger Regressor & Max Iter & 2000 \\
+    Neural Net / Linger Regressor & Solver & sgd \\
+    Neural Net / Linger Regressor & Validation Fraction & 0.1 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{KNN Regressor Specific}} \\
+    \midrule
+    KNN Regressor & n\_neighbors & 17 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Weighted KNN Regressor Specific}} \\
+    \midrule
+    Weighted KNN Regressor & n\_neighbors & 21 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Linger Regressor Specific}} \\
+    \midrule
+    Linger Regressor & Addition of Context & True \\
+    Linger Regressor & Additional Distance Column & False \\
+    Linger Regressor & Duplicated on Distance & False \\
+    Linger Regressor & n\_neighbours\_1 & 2 \\
+    Linger Regressor & n\_neighbours\_2 & 21 \\
+    Linger Regressor & Weighted KNN & False \\
+    \bottomrule
     \end{tabular}
 \end{table}
+\clearpage
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Neural Net Regressor}
-    \label{tab:best_parameters_neural_net_LRV1_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    activation & relu \\ \hline
-    alpha & 0.1 \\ \hline
-    beta\_1 & 0.99 \\ \hline
-    beta\_2 & 0.9 \\ \hline
-    early\_stopping & True \\ \hline
-    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
-    learning\_rate\_init & 0.01 \\ \hline
-    max\_iter & 2000 \\ \hline
-    solver & sgd \\ \hline
-    validation\_fraction & 0.1 \\ \hline
+    \caption{Average Training and Test Negative Mean Squared Error Results for Regressors (LRV1)}
+    \label{tab:average_results_LRV1}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Regressor} & \textbf{Average Training NMSE} & \textbf{Average Test NMSE} \\
+    \midrule
+    KNN Regressor & $-1.9586$ & $-1.9300$ \\
+    Weighted KNN Regressor & $-1.9567$ & $-1.8717$ \\
+    Neural Net Regressor & $-1.8848$ & $-1.8234$ \\
+    Linger Regressor & $-1.9420$ & $-1.8697$ \\
+    \bottomrule
     \end{tabular}
 \end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Linger Regressor}
-    \label{tab:best_parameters_linger_regressor_LRV1_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Hyperparameter} & \textbf{Value} \\ \hline
-    activation & relu \\ \hline
-    addition\_of\_context & True \\ \hline
-    additional\_results\_column & False \\ \hline
-    alpha & 0.1 \\ \hline
-    beta\_1 & 0.99 \\ \hline
-    beta\_2 & 0.9 \\ \hline
-    duplicated\_on\_distance & False \\ \hline
-    early\_stopping & True \\ \hline
-    hidden\_layer\_sizes & (300, 200, 100) \\ \hline
-    learning\_rate\_init & 0.01 \\ \hline
-    max\_iter & 2000 \\ \hline
-    n\_neighbours\_1 & 2 \\ \hline
-    n\_neighbours\_2 & 21 \\ \hline
-    solver & sgd \\ \hline
-    validation\_fraction & 0.1 \\ \hline
-    weighted\_knn & False \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Training Negative Mean Squared Error Results}
-    \label{tab:average_results_train_LRV1_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Regressor} & \textbf{Average Training Negative Mean Squared Error} \\ \hline
-    KNN Regressor &  $-1.9586$\\ \hline
-    Weighted KNN Regressor &  $-1.9567$\\ \hline
-    Neural Net Regressor & $-1.8848$\\ \hline
-    Linger Regressor & $-1.9420$\\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Average Test Negative Mean Squared Error Results}
-    \label{tab:average_results_test_LRV1_Abalone}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Regressor} & \textbf{Average Test Negative Mean Squared Error} \\ \hline
-    KNN Regressor & $-1.9300$ \\ \hline
-    Weighted KNN Regressor & $-1.8717$ \\ \hline
-    Neural Net Regressor & $-1.8234$ \\ \hline
-    Linger Regressor & $-1.8697$ \\ \hline
-    \end{tabular}
-\end{table}
+\clearpage
 
 \subsubsection{(LRV2)}
 \subsubsection{(LRV3)}
@@ -3080,27 +3203,167 @@ The following sections summarize the results obtained from Experiment 2, present
 \subsubsection{(LIRV1)}
 \subsubsection{(LIRV2)}
 
-\subsection{Experiment 6: Raisin Dataset Classification}
-\subsubsection{(LC)}
-\subsubsection{(LCV1)}
-\subsubsection{(LCV2)}
-\subsubsection{(LCV3)}
-\subsubsection{(LIC)}
-\subsubsection{(LICV1)}
-\subsubsection{(LICV2)}
+\subsection{Experiment 3: Raisin Dataset Classification}
+\subsubsection{Methodology}
+In Experiment 3, we conducted classification tasks on the Raisin dataset from \cite{uciDatasets}, specifically the dataset \cite{misc_raisin_850} using a two-step methodology. Initially, we trained a neural network (NN) classifier 
+through grid search and cross-validation to determine the optimal hyperparameters. These hyperparameters were then applied to train a \texttt{LingerClassifier} (LC) 
+and its variants for improved robustness, tested across five runs.
+For comparative analysis, we also evaluated the performance of K-Nearest Neighbors (KNN), 
+weighted (KNN), and (NN) on the same dataset. The sections below detail the hyperparameters selected and the test accuracies achieved.
 
-\subsection{Experiment 7: Car Safety Dataset Classification}
-\subsubsection{(LC)}
-\subsubsection{(LCV1)}
-\subsubsection{(LCV2)}
-\subsubsection{(LCV3)}
-\subsubsection{(LIC)}
-\subsubsection{(LICV1)}
-\subsubsection{(LICV2)}
+\subsubsection{Tested Hyperparameters}
 
-\subsection{Experiment 8: Human Wealth Dataset Classification}
-\subsubsection{(LC)}
-\subsubsection{(LCV1)}
+\begin{table}[H]
+    \centering
+    \caption{Tested Hyperparameters for Neural Network and Linger Regressor}
+    \label{tab:hyperparameters_raisin}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Values} \\ \hline
+    \multicolumn{2}{|c|}{\textbf{Neural Network}} \\ \hline
+    Hidden Layer Sizes & (256, 128), (128, 64), (200, 100), (300, 200, 100), (400, 300, 200, 100) \\ \hline
+    Activation & identity, logistic, tanh, relu \\ \hline
+    Alpha & 0.0001, 0.001, 0.01, 0.1 \\ \hline
+    Max Iterations & 1500, 2000 \\ \hline
+    Early Stopping & True \\ \hline
+    Validation Fraction & 0.1, 0.2, 0.3 \\ \hline
+    Learning Rate Init & 0.001, 0.01, 0.1 \\ \hline
+    Solver & adam, sgd \\ \hline
+    Beta 1 & 0.9, 0.95, 0.99 \\ \hline
+    Beta 2 & 0.999, 0.995, 0.9 \\ \hline
+    \multicolumn{2}{|c|}{\textbf{Linger Regressor}} \\ \hline
+    N Neighbours 1 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
+    N Neighbours 2 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
+    Weighted KNN & False \\ \hline
+    Additional Distance Column & True, False \\ \hline
+    Duplicated on Distance & True, False \\ \hline
+    Addition of Context & True, False \\ \hline
+    \end{tabular}
+\end{table}
+\clearpage
+
+\subsubsection{(LC) Results}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Classifiers (LC)}
+    \label{tab:best_parameters_combined_LC_Raisin}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net Classifier and Linger Classifier}} \\
+    \midrule
+    Neural Net / Linger Classifier & Activation & identity \\
+    Neural Net / Linger Classifier & Alpha & 0.1 \\
+    Neural Net / Linger Classifier & Beta 1 & 0.95 \\
+    Neural Net / Linger Classifier & Beta 2 & 0.999 \\
+    Neural Net / Linger Classifier & Early Stopping & True \\
+    Neural Net / Linger Classifier & Hidden Layer Sizes & (200, 100) \\
+    Neural Net / Linger Classifier & Learning Rate Init & 0.01 \\
+    Neural Net / Linger Classifier & Max Iter & 2000 \\
+    Neural Net / Linger Classifier & Solver & adam \\
+    Neural Net / Linger Classifier & Validation Fraction & 0.2 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
+    \midrule
+    KNN Classifier & n\_neighbors & 13 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Weighted KNN Classifier Specific}} \\
+    \midrule
+    Weighted KNN Classifier & n\_neighbors & 13 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Linger Classifier Specific}} \\
+    \midrule
+    Linger Classifier & Addition of Context & False \\
+    Linger Classifier & Additional Distance Column & False \\
+    Linger Classifier & Duplicated on Distance & False \\
+    Linger Classifier & n\_neighbors\_1 & 5 \\
+    Linger Classifier & n\_neighbors\_2 & 13 \\
+    Linger Classifier & Weighted KNN & False \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+\clearpage
+
+\begin{table}[H]
+    \centering
+    \caption{Average Training and Test Accuracy Results for Classifiers (LC)}
+    \label{tab:average_results_LC_Raisin}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} & \textbf{Average Test Accuracy (\%)} \\
+    \midrule
+    KNN Classifier & $91.718$ & $91$ \\
+    Weighted KNN Classifier & $91.218$ & $91$ \\
+    Neural Net Classifier & $94.098$ & $91$ \\
+    Linger Classifier & $91.655$ & $90.5$ \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{(LCV1) Results}
+This was only run twice as there were constraints on resources during testing that resulted in less robust trials.
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for Classifiers (LCV1)}
+    \label{tab:best_parameters_combined_LCV1_Raisin}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net Classifier and Linger Classifier}} \\
+    \midrule
+    Neural Net / Linger Classifier & Activation & identity \\
+    Neural Net / Linger Classifier & Alpha & 0.1 \\
+    Neural Net / Linger Classifier & Beta 1 & 0.95 \\
+    Neural Net / Linger Classifier & Beta 2 & 0.999 (0.9 for Linger Classifier) \\
+    Neural Net / Linger Classifier & Early Stopping & True \\
+    Neural Net / Linger Classifier & Hidden Layer Sizes & (200, 100) \\
+    Neural Net / Linger Classifier & Learning Rate Init & 0.01 \\
+    Neural Net / Linger Classifier & Max Iter & 2000 \\
+    Neural Net / Linger Classifier & Solver & adam \\
+    Neural Net / Linger Classifier & Validation Fraction & 0.2 (0.3 for Linger Classifier) \\
+    \midrule
+    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
+    \midrule
+    KNN Classifier & n\_neighbors & 13 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Weighted KNN Classifier Specific}} \\
+    \midrule
+    Weighted KNN Classifier & n\_neighbors & 13 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Linger Classifier Specific}} \\
+    \midrule
+    Linger Classifier & Addition of Context & True \\
+    Linger Classifier & Additional Distance Column & False \\
+    Linger Classifier & Duplicated on Distance & False \\
+    Linger Classifier & n\_neighbors\_1 & 15 \\
+    Linger Classifier & n\_neighbors\_2 & 21 \\
+    Linger Classifier & Weighted KNN & False \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+\clearpage
+
+\begin{table}[H]
+    \centering
+    \caption{Average Training and Test Accuracy Results for Classifiers (LCV1)}
+    \label{tab:average_results_LCV1_Raisin}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} & \textbf{Average Test Accuracy (\%)} \\
+    \midrule
+    KNN Classifier & $91.718$ & $91$ \\
+    Weighted KNN Classifier & $91.218$ & $91$ \\
+    Neural Net Classifier & $94.139$ & $90$ \\
+    Linger Classifier & $91.843$ & $90.168$ \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+\clearpage
+
 \subsubsection{(LCV2)}
 \subsubsection{(LCV3)}
 \subsubsection{(LIC)}
@@ -3113,9 +3376,6 @@ Summarize the key findings from the experiments and discuss their implications. 
 
 \chapter{Conclusions and Future Work}
 \label{ch:Conclusions and Future Work}
-
-\chapter{Results}
-\label{ch:Results}
 \bibliographystyle{plain}
 \bibliography{references}
 
