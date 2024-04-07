@@ -74,16 +74,16 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(300, 200, 100), (400, 300, 200, 100)],
+    "predictor__hidden_layer_sizes": [(400, 300, 200, 100)],
     "predictor__activation": ["relu"],
-    "predictor__alpha": [0.001, 0.01, 0.1],
+    "predictor__alpha": [0.01, 0.1],
     "predictor__max_iter": [2000],
     "predictor__early_stopping": [True],
     "predictor__validation_fraction": [0.1],
-    "predictor__learning_rate_init": [0.001, 0.01, 0.1],
-    "predictor__solver": ['adam', 'sgd'],
-    "predictor__beta_1": [0.9, 0.99],
-    "predictor__beta_2": [0.999, 0.9]
+    "predictor__learning_rate_init": [0.01, 0.1],
+    "predictor__solver": ['adam'],
+    "predictor__beta_1": [0.9],
+    "predictor__beta_2": [0.9]
     }
 
     nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
@@ -104,8 +104,8 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__weighted_knn": [False],
         "predictor__additional_distance_column": [False],
-        "predictor__duplicated_on_distance": [False],
-        "predictor__addition_of_context": [True],
+        "predictor__duplicated_on_distance": [True],
+        "predictor__addition_of_context": [False],
     })
     # Update with best_nn_params
     lfd_param_grid.update(best_nn_params)
@@ -120,7 +120,7 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
 
 def save_results(file_path, knn_gs, knn_weighted_gs, nn_gs, lfd_gs):
     with open(file_path, 'a') as file:
-        file.write(f"Basic regression, Variation 1")
+        file.write(f"Basic regression, Variation 2")
         file.write(f"Best Parameters KNN regression: {knn_gs.best_params_,}\n")
         file.write(f"Best Score KNN regression: {knn_gs.best_score_}\n")
         file.write(f"Best Parameters weighted KNN regression: {knn_weighted_gs.best_params_,}\n")
@@ -147,7 +147,7 @@ def calculate_test_accuracies(file_path, knn_gs, knn_weighted_gs, lfd_gs, nn_gs,
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\HousePricesResultsVar1.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\HousePricesResultsVar2.txt'
     df = pd.read_csv("datasets/house_prices/dataset_corkB_reduced.csv")
     columns = df.columns
     features = ["flarea", "bdrms", "bthrms", "floors", "type", "devment", "ber", "location"]

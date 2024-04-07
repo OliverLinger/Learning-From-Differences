@@ -72,15 +72,15 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), (300, 200, 100)],
+    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), ],
     "predictor__activation": ["relu"],
-    "predictor__alpha": [0.001, 0.01, 0.1],
+    "predictor__alpha": [0.01],
     "predictor__max_iter": [2000],
     "predictor__early_stopping": [True],
     "predictor__validation_fraction": [0.1],
     "predictor__learning_rate_init": [0.001, 0.01, 0.1],
     "predictor__solver": ['sgd'],
-    "predictor__beta_1": [0.9, 0.95, 0.99],
+    "predictor__beta_1": [0.99],
     "predictor__beta_2": [0.9]
     }
 
