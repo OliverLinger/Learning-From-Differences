@@ -76,15 +76,15 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), (300, 200, 100)],
+    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100)],
     "predictor__activation": ["relu"],
-    "predictor__alpha": [0.001, 0.01, 0.1],
+    "predictor__alpha": [0.01],
     "predictor__max_iter": [2000],
     "predictor__early_stopping": [True],
     "predictor__validation_fraction": [0.1],
-    "predictor__learning_rate_init": [0.001, 0.01, 0.1],
+    "predictor__learning_rate_init": [0.01],
     "predictor__solver": ['sgd'],
-    "predictor__beta_1": [0.9, 0.95, 0.99],
+    "predictor__beta_1": [0.9],
     "predictor__beta_2": [0.9]
     }
 
@@ -106,7 +106,7 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
 
     # Add other parameters to lfd_param_grid
     lfd_param_grid.update({
-        "predictor__random_pairs": [False],
+        "predictor__random_pairs": [True],
         "predictor__single_pair": [False],
         "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
@@ -153,7 +153,7 @@ def calculate_test_accuracies(file_path, knn_gs,weighted_knn_gs, lfd_gs, nn_gs, 
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\regressionImplicit\AbaloneImplicitResultsBasic.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\regressionImplicit\AbaloneImplicitResultsVar1.txt'
     df = load_data("datasets/abalone/abalone_reduced.csv")
     columns = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight',
                 'Shucked weight', 'Viscera weight', 'Shell weight', 'Rings']
@@ -171,7 +171,7 @@ def main():
     lfd_gs, unique_ranges, min_val, max_val = train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params)
 
     save_results(file_path, knn_gs,weighted_knn_gs,  nn_gs, lfd_gs)
-    calculate_test_accuracies(file_path, knn_gs, weighted_knn_gs, lfd_gs,  nn_gs, test_X, test_y, unique_ranges, min_val, max_val)
+    calculate_test_accuracies(file_path, knn_gs, weighted_knn_gs, lfd_gs, nn_gs, test_X, test_y, unique_ranges, min_val, max_val)
 
 if __name__ == "__main__":
     num_times_to_run = 5  # Change this to the desired number of iterations
