@@ -72,16 +72,16 @@ def train_neural_network_classifier(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), (300, 200, 100), (400, 300, 200, 100)],
-    "predictor__activation": ["identity", "logistic", "tanh", "relu"],
-    "predictor__alpha": [0.0001, 0.001, 0.01, 0.1],
-    "predictor__max_iter": [1500, 2000],
+    "predictor__hidden_layer_sizes": [(128, 64)],
+    "predictor__activation": ["tanh"],
+    "predictor__alpha": [0.001],
+    "predictor__max_iter": [2000],
     # "predictor__early_stopping": [True],
     # "predictor__validation_fraction": [0.1, 0.2, 0.3],
     "predictor__learning_rate_init": [0.001, 0.01, 0.1],
     "predictor__solver": ['adam', 'sgd'],
-    "predictor__beta_1": [0.9, 0.95, 0.99],
-    "predictor__beta_2": [0.999, 0.995, 0.9]
+    "predictor__beta_1": [0.9],
+    "predictor__beta_2": [0.9]
     }
 
     nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
@@ -100,7 +100,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
     lfd_param_grid = {}
     lfd_param_grid.update({
         "predictor__random_pairs": [False],
-        "predictor__single_pair": [False],
+        "predictor__single_pair": [True],
         "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
     })
@@ -148,7 +148,7 @@ def calculate_test_accuracies(file_path, knn_gs, knn_classifier_gs_weighted, lfd
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\classificationImplicit\GlassImplicitResultsBasic.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\classificationImplicit\GlassImplicitResultsVar2.txt'
     df = pd.read_csv("datasets/glass/glass.csv",index_col=0)
     columns = ['RI', 'Na', 'Mg', 'Al', 'Si', 'K', 'Ca', 'Ba', 'Fe', 'Class']
     features = ['RI', 'Na', 'Mg', 'Al', 'Si', 'K', 'Ca', 'Ba', 'Fe']

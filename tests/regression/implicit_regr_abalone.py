@@ -76,17 +76,17 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(200, 100)],  # Updated to best parameter
-    "predictor__activation": ["relu"],  # Already matches the best parameter
-    "predictor__alpha": [0.1],  # Updated to best parameter
-    "predictor__max_iter": [2000],  # Already matches the best parameter
-    "predictor__early_stopping": [True],  # Already matches the best parameter
-    "predictor__validation_fraction": [0.1],  # Already matches the best parameter
-    "predictor__learning_rate_init": [0.01],  # Updated to best parameter
-    "predictor__solver": ['sgd'],  # Already matches the best parameter
-    "predictor__beta_1": [0.99],  # Updated to best parameter
-    "predictor__beta_2": [0.9]  # Already matches the best parameter
-}
+    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100)],
+    "predictor__activation": ["relu"],
+    "predictor__alpha": [0.01],
+    "predictor__max_iter": [2000],
+    "predictor__early_stopping": [True],
+    "predictor__validation_fraction": [0.1],
+    "predictor__learning_rate_init": [0.01],
+    "predictor__solver": ['sgd'],
+    "predictor__beta_1": [0.9],
+    "predictor__beta_2": [0.9]
+    }
 
     nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=8)
     nn_gs.fit(dev_X, dev_y)
@@ -106,8 +106,8 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
 
     # Add other parameters to lfd_param_grid
     lfd_param_grid.update({
-        "predictor__random_pairs": [True],
-        "predictor__single_pair": [False],
+        "predictor__random_pairs": [False],
+        "predictor__single_pair": [True],
         "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
     })
@@ -136,12 +136,12 @@ def save_results(file_path, knn_gs, weighted_knn_gs, nn_gs, lfd_gs):
 
 def calculate_test_accuracies(file_path, knn_gs,weighted_knn_gs, lfd_gs, nn_gs, test_X, test_y, unique_ranges, min_val, max_val):
     knn_test_accuracy = knn_gs.score(test_X, test_y)
-    nn_test_accuracy = nn_gs.score(test_X, test_y)
     weighted_knn_test_accuracy = weighted_knn_gs.score(test_X, test_y)
 
     regr_to_class = regression_to_class.RegressionToClassificationConverter(n_segments=3, equal_division=True)
     test_y, unique_ranges, min_val, max_val = regr_to_class.transform(y=test_y, unique_ranges=unique_ranges, min_val=min_val, max_val=max_val)
     lfd_classifier_test_accuracy = lfd_gs.score(test_X, test_y)
+    nn_test_accuracy = nn_gs.score(test_X, test_y)
 
     with open(file_path, 'a') as file:
         file.write(f"Test Accuracy for KNN regressor: {knn_test_accuracy}\n")
@@ -153,7 +153,7 @@ def calculate_test_accuracies(file_path, knn_gs,weighted_knn_gs, lfd_gs, nn_gs, 
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\regressionImplicit\AbaloneImplicitResultsVar1.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\regressionImplicit\AbaloneImplicitResultsVar2.txt'
     df = load_data("datasets/abalone/abalone_reduced.csv")
     columns = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight',
                 'Shucked weight', 'Viscera weight', 'Shell weight', 'Rings']
@@ -170,8 +170,8 @@ def main():
     best_nn_params = nn_gs.best_params_
     lfd_gs, unique_ranges, min_val, max_val = train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params)
 
-    save_results(file_path, knn_gs,weighted_knn_gs,  nn_gs, lfd_gs)
-    calculate_test_accuracies(file_path, knn_gs, weighted_knn_gs, lfd_gs,  nn_gs, test_X, test_y, unique_ranges, min_val, max_val)
+    save_results(file_path, knn_gs, weighted_knn_gs,  nn_gs, lfd_gs)
+    calculate_test_accuracies(file_path, knn_gs, weighted_knn_gs, lfd_gs, nn_gs, test_X, test_y, unique_ranges, min_val, max_val)
 
 if __name__ == "__main__":
     num_times_to_run = 5  # Change this to the desired number of iterations
