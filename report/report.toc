@@ -159,21 +159,21 @@
 \contentsline {subsubsection}{(LR) Analysis}{118}{section*.81}%
 \contentsline {subsubsection}{(LRV1) Results}{119}{section*.82}%
 \contentsline {subsubsection}{(LRV1) Analysis}{121}{section*.85}%
-\contentsline {subsubsection}{(LRV2) Results}{122}{section*.86}%
-\contentsline {subsubsection}{(LRV3)}{122}{section*.87}%
-\contentsline {subsubsection}{(LIR)}{122}{section*.88}%
-\contentsline {subsubsection}{(LIRV1)}{122}{section*.89}%
-\contentsline {subsubsection}{(LIRV2)}{122}{section*.90}%
-\contentsline {subsection}{\numberline {4.2.3}Experiment 3: Raisin Dataset Classification}{122}{subsection.4.2.3}%
-\contentsline {subsubsection}{Methodology}{122}{section*.91}%
-\contentsline {subsubsection}{Tested Hyperparameters}{123}{section*.92}%
-\contentsline {subsubsection}{(LC) Results}{124}{section*.94}%
-\contentsline {subsubsection}{(LC) Analysis}{125}{section*.97}%
-\contentsline {subsubsection}{(LCV1) Results}{125}{section*.98}%
-\contentsline {subsubsection}{(LCV2)}{128}{section*.101}%
-\contentsline {subsubsection}{(LCV3)}{128}{section*.102}%
-\contentsline {subsubsection}{(LIC)}{128}{section*.103}%
-\contentsline {subsubsection}{(LICV1)}{128}{section*.104}%
-\contentsline {subsubsection}{(LICV2)}{128}{section*.105}%
-\contentsline {section}{\numberline {4.3}Discussion}{128}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{129}{chapter.5}%
+\contentsline {subsubsection}{(LRV2) Results}{123}{section*.86}%
+\contentsline {subsubsection}{(LRV3)}{123}{section*.87}%
+\contentsline {subsubsection}{(LIR)}{123}{section*.88}%
+\contentsline {subsubsection}{(LIRV1)}{124}{section*.90}%
+\contentsline {subsubsection}{(LIRV2)}{124}{section*.91}%
+\contentsline {subsection}{\numberline {4.2.3}Experiment 3: Raisin Dataset Classification}{124}{subsection.4.2.3}%
+\contentsline {subsubsection}{Methodology}{124}{section*.92}%
+\contentsline {subsubsection}{Tested Hyperparameters}{125}{section*.93}%
+\contentsline {subsubsection}{(LC) Results}{126}{section*.95}%
+\contentsline {subsubsection}{(LC) Analysis}{127}{section*.98}%
+\contentsline {subsubsection}{(LCV1) Results}{127}{section*.99}%
+\contentsline {subsubsection}{(LCV2)}{130}{section*.102}%
+\contentsline {subsubsection}{(LCV3)}{130}{section*.103}%
+\contentsline {subsubsection}{(LIC)}{130}{section*.104}%
+\contentsline {subsubsection}{(LICV1)}{130}{section*.105}%
+\contentsline {subsubsection}{(LICV2)}{130}{section*.106}%
+\contentsline {section}{\numberline {4.3}Discussion}{130}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{131}{chapter.5}%

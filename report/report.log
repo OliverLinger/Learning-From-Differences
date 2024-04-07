@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.12) (preloaded format=pdflatex 2024.1.7)  6 APR 2024 20:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.12) (preloaded format=pdflatex 2024.1.7)  6 APR 2024 20:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1193,41 +1193,41 @@ Overfull \hbox (84.47734pt too wide) in paragraph at lines 3063--3098
 
 ] [121
 
-] [122]
-Overfull \hbox (73.99126pt too wide) in paragraph at lines 3390--3412
+] [122] [123]
+Overfull \hbox (73.99126pt too wide) in paragraph at lines 3431--3453
  [][] 
  []
 
-[123] [124
+[124] [125] [126
 
 ]
-Overfull \hbox (59.26422pt too wide) in paragraph at lines 3463--3473
+Overfull \hbox (59.26422pt too wide) in paragraph at lines 3504--3514
  [][] 
  []
 
 
-Overfull \hbox (43.27234pt too wide) in paragraph at lines 3485--3520
- [][] 
- []
-
-[125
-
-] [126]
-Overfull \hbox (59.26422pt too wide) in paragraph at lines 3527--3537
+Overfull \hbox (43.27234pt too wide) in paragraph at lines 3526--3561
  [][] 
  []
 
 [127
 
-] [128
+] [128]
+Overfull \hbox (59.26422pt too wide) in paragraph at lines 3568--3578
+ [][] 
+ []
 
-]
-Chapter 5.
-(report.bbl [129
+[129
 
 ] [130
 
-]) [131] (report.aux)
+]
+Chapter 5.
+(report.bbl [131
+
+] [132
+
+]) [133] (report.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-11>
@@ -1240,17 +1240,17 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 986E0E9D7E79A9EE9C5A4F8BC165922E;21703.
  ) 
 Here is how much of TeX's memory you used:
- 36917 strings out of 474494
- 839753 string characters out of 5743915
+ 36921 strings out of 474494
+ 839829 string characters out of 5743915
  1949460 words of memory out of 5000000
- 58185 multiletter control sequences out of 15000+600000
+ 58186 multiletter control sequences out of 15000+600000
  577623 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,17n,101p,737b,2199s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectc1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1728.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2074.pk><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on report.pdf (134 pages, 697363 bytes).
+Output written on report.pdf (136 pages, 699696 bytes).
 PDF statistics:
- 2176 PDF objects out of 2487 (max. 8388607)
- 441 named destinations out of 1000 (max. 500000)
+ 2186 PDF objects out of 2487 (max. 8388607)
+ 444 named destinations out of 1000 (max. 500000)
  853 words of extra memory for PDF output out of 10000 (max. 10000000)
 

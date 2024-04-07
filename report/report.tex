@@ -3370,6 +3370,47 @@ The results from LRV1 not only reaffirm the \texttt{LingerRegressor}'s potential
 \subsubsection{(LRV2) Results}
 \subsubsection{(LRV3)}
 \subsubsection{(LIR)}
+
+\begin{table}[H]
+    \centering
+    \caption{Updated Best Parameters for Regressors (LRV1)}
+    \label{tab:updated_best_parameters_combined_LRV1}
+    \begin{tabular}{lll}
+    \toprule
+    \textbf{Regressor} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net Regressor and Linger Implicit Regressor}} \\
+    \midrule
+    Basic Neural Network / Linger Regressor & Activation & relu \\
+    Basic Neural Network / Linger Regressor & Alpha & 0.01 \\
+    Basic Neural Network / Linger Regressor & Beta 1 & 0.9 \\
+    Basic Neural Network / Linger Regressor & Beta 2 & 0.9 \\
+    Basic Neural Network / Linger Regressor & Early Stopping & True \\
+    Basic Neural Network / Linger Regressor & Hidden Layer Sizes & (128, 64) \\
+    Basic Neural Network / Linger Regressor & Learning Rate Init & 0.01 \\
+    Basic Neural Network / Linger Regressor & Max Iter & 2000 \\
+    Basic Neural Network / Linger Regressor & Solver & sgd \\
+    Basic Neural Network / Linger Regressor & Validation Fraction & 0.1 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{KNN Regressor Specific}} \\
+    \midrule
+    KNN Regressor & n\_neighbors & 21 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Weighted KNN Regressor Specific}} \\
+    \midrule
+    Weighted KNN Regressor & n\_neighbors & 21 \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Linger Regressor Specific}} \\
+    \midrule
+    Linger Regressor & n\_segments & 3 \\
+    Linger Regressor & equal\_division & True \\
+    Linger Regressor & n\_neighbors\_1 & 21 \\
+    Linger Regressor & n\_neighbors\_2 & 13 \\
+    Linger Regressor & Random Pairs & False \\
+    Linger Regressor & Single Pair & False \\
+    \bottomrule
+    \end{tabular}
+\end{table}
 \subsubsection{(LIRV1)}
 \subsubsection{(LIRV2)}
 

@@ -1,3 +1,4 @@
+
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.compose import ColumnTransformer
@@ -9,7 +10,6 @@ from differences_implicit import _classification
 import pandas as pd
 import numpy as np
 from datetime import datetime
-
 def load_data(file_path):
     df = pd.read_csv(file_path)
     df = df.sample(frac=1, random_state=2)
