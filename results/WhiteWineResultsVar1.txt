@@ -1,0 +1,14 @@
+Basic regression, Variation 1Best Parameters KNN regression: ({'predictor__n_neighbors': 2},)
+Best Score KNN regression: -0.5946557971014493
+Best Score KNN regression: -0.5946557971014493
+Best Parameters weighted KNN regression: ({'predictor__n_neighbors': 13},)
+Best Parameters Linger regression: ({'predictor__activation': 'relu', 'predictor__addition_of_context': True, 'predictor__additional_results_column': False, 'predictor__alpha': 0.01, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.9, 'predictor__duplicated_on_distance': False, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (400, 300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 2000, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 17, 'predictor__solver': 'sgd', 'predictor__validation_fraction': 0.3, 'predictor__weighted_knn': False},)
+Best Score Linger Regression: -0.6196617806030429
+Best Parameters Basic Neural Network: ({'predictor__activation': 'relu', 'predictor__alpha': 0.01, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.9, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (400, 300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 2000, 'predictor__solver': 'sgd', 'predictor__validation_fraction': 0.3},)
+Best Score Basic Neural Network: -0.5880570511754633
+--------------------------------------------------------------
+Test Accuracy for KNN regressor: -0.5333333333333333
+Test Accuracy for weighted KNN regressor: -0.4786505556864665
+Test Accuracy for Linger Regressor: -0.6214174874164904
+Test Accuracy for Basic Neural Network: -0.5757424881320586
+--------------------------------------------------------------
