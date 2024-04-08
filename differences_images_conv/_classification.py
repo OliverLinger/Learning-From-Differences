@@ -99,7 +99,6 @@ class LingerImageClassifier(BaseEstimator, ClassifierMixin):
         y_pred = []
         for indexes, differences in zip(indices, predictions):
             results = [self.train_y[i][0] + d for i, d in zip(indexes, differences)]
-            print(results[:10])
             counts = Counter(results)
 
             # Retrieve the most common item

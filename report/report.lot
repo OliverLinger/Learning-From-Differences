@@ -13,20 +13,21 @@
 \contentsline {table}{\numberline {4.1}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Classifier}}{101}{table.caption.54}%
 \contentsline {table}{\numberline {4.2}{\ignorespaces Best Parameters for Classifiers}}{102}{table.caption.56}%
 \contentsline {table}{\numberline {4.3}{\ignorespaces Average Training and Test Accuracy Results}}{103}{table.caption.57}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces Best Parameters for Classifiers (LCV1)}}{104}{table.caption.59}%
-\contentsline {table}{\numberline {4.5}{\ignorespaces Average Training and Test Accuracy Results for Classifiers (LCV1)}}{105}{table.caption.60}%
-\contentsline {table}{\numberline {4.6}{\ignorespaces Best Parameters for Classifiers (LCV2)}}{106}{table.caption.62}%
-\contentsline {table}{\numberline {4.7}{\ignorespaces Average Training and Test Accuracy Results for Classifiers (LCV2)}}{107}{table.caption.63}%
-\contentsline {table}{\numberline {4.8}{\ignorespaces Best Parameters for Classifiers (LCV3)}}{108}{table.caption.65}%
-\contentsline {table}{\numberline {4.9}{\ignorespaces Average Training and Test Accuracy Results for Classifiers (LCV3)}}{109}{table.caption.66}%
-\contentsline {table}{\numberline {4.10}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Regressor}}{111}{table.caption.73}%
-\contentsline {table}{\numberline {4.11}{\ignorespaces Best Parameters for Regressors (LR)}}{112}{table.caption.75}%
-\contentsline {table}{\numberline {4.12}{\ignorespaces Average Training and Test Negative Mean Squared Error Results (NMSE) for Regressors (LR)}}{113}{table.caption.76}%
-\contentsline {table}{\numberline {4.13}{\ignorespaces Best Parameters for Regressors (LRV1)}}{114}{table.caption.78}%
-\contentsline {table}{\numberline {4.14}{\ignorespaces Average Training and Test Negative Mean Squared Error Results for Regressors (LRV1)}}{115}{table.caption.79}%
-\contentsline {table}{\numberline {4.15}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Regressor}}{117}{table.caption.87}%
-\contentsline {table}{\numberline {4.16}{\ignorespaces Best Parameters for Classifiers (LC)}}{118}{table.caption.89}%
-\contentsline {table}{\numberline {4.17}{\ignorespaces Average Training and Test Accuracy Results for Classifiers (LC)}}{119}{table.caption.90}%
-\contentsline {table}{\numberline {4.18}{\ignorespaces Best Parameters for Classifiers (LCV1)}}{120}{table.caption.92}%
-\contentsline {table}{\numberline {4.19}{\ignorespaces Average Training and Test Accuracy Results for Classifiers (LCV1)}}{121}{table.caption.93}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Best Parameters for Classifiers (LCV1)}}{105}{table.caption.60}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Average Training and Test Accuracy Results for Classifiers (LCV1)}}{106}{table.caption.61}%
+\contentsline {table}{\numberline {4.6}{\ignorespaces Best Parameters for Classifiers (LCV2)}}{108}{table.caption.64}%
+\contentsline {table}{\numberline {4.7}{\ignorespaces Average Training and Test Accuracy Results for Classifiers (LCV2)}}{109}{table.caption.65}%
+\contentsline {table}{\numberline {4.8}{\ignorespaces Best Parameters for Classifiers (LCV3)}}{111}{table.caption.68}%
+\contentsline {table}{\numberline {4.9}{\ignorespaces Average Training and Test Accuracy Results for Classifiers (LCV3)}}{112}{table.caption.69}%
+\contentsline {table}{\numberline {4.10}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Regressor}}{115}{table.caption.77}%
+\contentsline {table}{\numberline {4.11}{\ignorespaces Best Parameters for Regressors (LR)}}{116}{table.caption.79}%
+\contentsline {table}{\numberline {4.12}{\ignorespaces Average Training and Test Negative Mean Squared Error Results (NMSE) for Regressors (LR)}}{117}{table.caption.80}%
+\contentsline {table}{\numberline {4.13}{\ignorespaces Best Parameters for Regressors (LRV1)}}{119}{table.caption.83}%
+\contentsline {table}{\numberline {4.14}{\ignorespaces Average Training and Test Negative Mean Squared Error Results for Regressors (LRV1)}}{120}{table.caption.84}%
+\contentsline {table}{\numberline {4.15}{\ignorespaces Updated Best Parameters for Regressors (LRV1)}}{123}{table.caption.89}%
+\contentsline {table}{\numberline {4.16}{\ignorespaces Tested Hyperparameters for Neural Network and Linger Regressor}}{125}{table.caption.94}%
+\contentsline {table}{\numberline {4.17}{\ignorespaces Best Parameters for Classifiers (LC)}}{126}{table.caption.96}%
+\contentsline {table}{\numberline {4.18}{\ignorespaces Average Training and Test Accuracy Results for Classifiers (LC)}}{127}{table.caption.97}%
+\contentsline {table}{\numberline {4.19}{\ignorespaces Best Parameters for Classifiers (LCV1)}}{128}{table.caption.100}%
+\contentsline {table}{\numberline {4.20}{\ignorespaces Average Training and Test Accuracy Results for Classifiers (LCV1)}}{129}{table.caption.101}%
 \addvspace {10\p@ }

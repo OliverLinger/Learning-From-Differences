@@ -1,5 +1,4 @@
 
-import datetime
 from sklearn.calibration import LabelEncoder
 from sklearn.neural_network import MLPClassifier
 from differences import _classification

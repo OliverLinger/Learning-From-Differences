@@ -35,6 +35,7 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
         self.n_neighbours_2 = n_neighbours_2
 
     def fit(self, X, y):
+        print("hello")
         """Fit the k-nearest neighbors regressor from the training dataset.
 
         Parameters
@@ -58,13 +59,10 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
             # Flatten the array if it's 3D or 4D (e.g., images with channels)
             X = X.reshape(len(X), -1)
         
-            print(f"Reshaped X to: {X.shape}")  # Debug print to confirm reshaping
-        else:
-            X = X
         self.n_neighbours_1 += 1  # Increment n_neighbours
         # Fit nearest neighbors to find the indices of nearest neighbors
         neighbours = NearestNeighbors(n_neighbors=self.n_neighbours_1).fit(X)
-        _, indices = neighbours.kneighbors(X.reshape(len(X), -1))
+        _, indices = neighbours.kneighbors(X)
 
 
         differences_X = []
@@ -85,8 +83,6 @@ class LingerImageRegressor(BaseEstimator, RegressorMixin):
         self.train_y = y
         self.classes_ = np.unique(y)
         print("differences")
-        print(differences_X)
-        print(differences_y)
         return differences_X, differences_y
 
     def predict(self, X, model, input_shape):
