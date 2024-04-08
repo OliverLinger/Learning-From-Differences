@@ -118,7 +118,7 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
 
 def save_results(file_path, knn_gs,weighted_knn_gs, nn_gs, lfd_gs):
     with open(file_path, 'a') as file:
-        file.write(f"Basic regression, No variations")
+        file.write(f"Basic regression, Variation 1")
         file.write(f"Best Parameters KNN regression: {knn_gs.best_params_,}\n")
         file.write(f"Best Score KNN regression: {knn_gs.best_score_}\n")
         file.write(f"Best Score KNN regression: {knn_gs.best_score_}\n")
@@ -145,7 +145,7 @@ def calculate_test_accuracies(file_path, knn_gs, weighted_knn_gs, lfd_gs, nn_gs,
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\WhiteWineResultsBasic.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\WhiteWineResultsVar1.txt'
     df = pd.read_csv("datasets/wineQuality/winequality-white_Reduced.csv")
     columns = ["fixed acidity","volatile acidity","citric acid","residual sugar","chlorides","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol","quality"]
     features = [
