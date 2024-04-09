@@ -1,0 +1,12 @@
+Implicit classifier, No variationBest Parameters KNN classifier: ({'predictor__n_neighbors': 13},)
+Best Score KNN classifier: 0.9171794871794873
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 13}Best score for distance weighted KNN: 0.9121794871794873Best Parameters Neural net classifier: ({'predictor__activation': 'identity', 'predictor__alpha': 0.01, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.999, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (400, 300, 200, 100), 'predictor__learning_rate_init': 0.001, 'predictor__max_iter': 2000, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3},)
+Best Score Neural net classifier: 0.9196794871794873
+Best Parameters Linger classifier: ({'predictor__activation': 'identity', 'predictor__alpha': 0.01, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.999, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (400, 300, 200, 100), 'predictor__learning_rate_init': 0.001, 'predictor__max_iter': 2000, 'predictor__n_neighbours_1': 2, 'predictor__n_neighbours_2': 17, 'predictor__random_pairs': True, 'predictor__single_pair': False, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3},)
+Best Score Linger classifier: 0.9146794871794872
+--------------------------------------------------------------
+Test Accuracy for KNN classifier: 0.91
+Test Accuracy for weighted KNN classifier: 0.91
+Test Accuracy for Neural Network classifier: 0.9
+Test Accuracy for Linger Classifier: 0.88
+--------------------------------------------------------------

@@ -153,7 +153,7 @@ def calculate_test_accuracies(file_path, knn_gs,weighted_knn_gs, lfd_gs, nn_gs, 
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\regressionImplicit\WhiteWineResultsImplicitBasic.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\regressionImplicit\WhiteWineResultsImplicitVar1.txt'
     df = pd.read_csv("datasets/wineQuality/winequality-white_Reduced.csv")
     columns = ["fixed acidity","volatile acidity","citric acid","residual sugar","chlorides","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol","quality"]
     features = [

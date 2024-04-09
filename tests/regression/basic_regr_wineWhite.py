@@ -102,8 +102,8 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__weighted_knn": [False],
          "predictor__additional_results_column": [False],
-         "predictor__duplicated_on_distance": [False],
-        "predictor__addition_of_context": [True],
+         "predictor__duplicated_on_distance": [True],
+        "predictor__addition_of_context": [False],
     })
     # Update with best_nn_params
     lfd_param_grid.update(best_nn_params)

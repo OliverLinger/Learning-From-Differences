@@ -118,16 +118,16 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     ])
 
     nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), (300, 200, 100), (400, 300, 200, 100)],
-    "predictor__activation": ["identity", "logistic", "tanh", "relu"],
-    "predictor__alpha": [0.0001, 0.001, 0.01, 0.1],
-    "predictor__max_iter": [1500, 2000],
+    "predictor__hidden_layer_sizes": [(400, 300, 200, 100)],
+    "predictor__activation": ["identity"],
+    "predictor__alpha": [0.01],
+    "predictor__max_iter": [2000],
     "predictor__early_stopping": [True],
-    "predictor__validation_fraction": [0.1, 0.2, 0.3],
-    "predictor__learning_rate_init": [0.001, 0.01, 0.1],
-    "predictor__solver": ['adam', 'sgd'],
-    "predictor__beta_1": [0.9, 0.95, 0.99],
-    "predictor__beta_2": [0.999, 0.995, 0.9]
+    "predictor__validation_fraction": [0.3],
+    "predictor__learning_rate_init": [0.001],
+    "predictor__solver": ['adam'],
+    "predictor__beta_1": [0.9],
+    "predictor__beta_2": [0.999]
     }
 
     nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
@@ -142,7 +142,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
     ])
     lfd_classifier_param_grid  = {}
     lfd_classifier_param_grid.update({
-        "predictor__random_pairs": [False],
+        "predictor__random_pairs": [True],
         "predictor__single_pair": [False],
         "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
@@ -195,7 +195,7 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         file.write("--------------------------------------------------------------\n")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\classificationImplicit\RaisinImplicitResults.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\classificationImplicit\RaisinImplicitResultsVar1.txt'
     df = pd.read_csv(r"C:\Users\USER\final_year\fyp\datasets\raisin_data\Raisin_Dataset_reduced.csv")
     columns = ['Area', 'MajorAxisLength', 'MinorAxisLength', 'Eccentricity',
        'ConvexArea', 'Extent', 'Perimeter', 'Class']
