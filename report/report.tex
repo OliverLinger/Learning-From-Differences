@@ -62,7 +62,7 @@
 
     Our methodology involves a detailed examination of the algorithms' design and implementation, highlighting the integration of novel variations such as context inclusion, 
     duplication based on distance, and the addition of a distance column to further refine the learning process. Through extensive experiments, we demonstrate the models' 
-    effectiveness in achieving higher interpretability and robust performance across diverse datasets. The LingerRegressor and LingerClassifier models not 
+    effectiveness in achieving higher interpretability and robust performance across diverse datasets. The \texttt{LingerRegressor} and \texttt{LingerClassifier} models not 
     only offer new avenues for academic research but also practical implications for developing more transparent and efficient machine learning systems.
     
     The findings underscore the potential of blending model-based and instance-based learning to enhance machine learning models' adaptability and interpretability. 
@@ -109,6 +109,48 @@ and that it has not been submitted partly or wholly for any other educational aw
 Machine learning encompasses various paradigms and methodologies aimed at enabling computational systems to learn from data and make predictions or decisions without explicit programming.
 Among the diverse approaches in machine learning, model-based and instance-based learning represents two fundamental strategies, each with distinct advantages and disadvantages.
 
+This dissertation presents a comprehensive study on blending model-based and instance-based learning methodologies to address their individual limitations and harness their strengths, leading to the development of robust, interpretable, and efficient machine learning models suitable for a wide range of applications. Below, we outline the roadmap of this dissertation and summarize our key contributions.
+
+\section{Report Roadmap}
+
+\begin{itemize}
+    \item \textbf{Chapter \ref{ch:introduction}} introduces the motivations behind exploring blended learning methodologies, highlighting the potential benefits 
+    of integrating model-based and instance-based learning approaches.
+    
+    \item \textbf{Chapter \ref{ch:Literature Review}} delves into the theoretical underpinnings of model-based and instance-based learning, 
+    providing a detailed review of the literature and identifying gaps that our research aims to fill.
+    
+    \item \textbf{Chapter \ref{ch:Design}} describes the methodology adopted in this study, including the development, and 
+    implementation of new models based ont the new learning approaches designed to address specific challenges. That integrates seamlessly with 
+    scikit-learn's code base.
+    
+    \item \textbf{Chapter \ref{ch:Experiments}} presents the results of extensive experiments conducted to evaluate the performance of the proposed models against traditional 
+    approaches, showcasing their advantages or disadvantages in various scenarios.
+    
+    \item \textbf{Chapter 5, \ref{ch:Conclusions and Future Work}}, synthesizes the findings, discusses the implications of this research, and outlines potential 
+    directions for future exploration.
+\end{itemize}
+
+\section{Contributions of This Dissertation}
+
+This dissertation makes the following significant contributions to the field of machine learning:
+
+\begin{enumerate}
+    \item The development of a novel blended learning framework that combines the strengths of model-based and instance-based 
+    learning approaches to improve prediction accuracy and model interpretability, with an adaptable and extendable code base, based on sckit-learn.
+    
+    \item An extensive evaluation of the proposed models using diverse datasets, demonstrating their performance in terms of accuracy,
+     robustness, and efficiency compared to traditional learning models.
+    
+    \item The introduction of an innovative approach to handling categorical features in blended learning models, enhancing their 
+    applicability to a wider range of problems.
+    
+    \item A detailed exploration into the application of the learning from differences methodology into image based classification and 
+    regression problems.
+    
+    \item The proposition of several areas for future work, including the exploration of other categorical similarity measures, variations in rule generation, scalability improvements, and a diversification of datasets to further enhance the effectiveness 
+    and efficiency of blended difference learning models.
+\end{enumerate}
 \section{Model-Based Learning}
 
 Model-based learning involves the construction of explicit representations of the underlying relationships within the data.
@@ -126,7 +168,7 @@ For instance, artificial neural networks (ANNs) exemplify model-based learning b
           The book \cite{bishop2006pattern} also shows the ability of models to learn underlying patterns within data, making them far more robust to noisy data.
 	\item \textbf{Efficiency:} Once trained, model-based systems can quickly return predictions, 
            making them suitable for real-time applications where rapid decision-making is essential. 
-           The journal \cite{gupta2016scalable} offers an insight how the efficiency of model based learning can be implemented to make predictions on big data.
+           The journal paper \cite{gupta2016scalable} offers an insight how the efficiency of model based learning can be implemented to make predictions on big data.
 
 \end{enumerate}
 
@@ -140,7 +182,7 @@ For instance, artificial neural networks (ANNs) exemplify model-based learning b
           learning applications \cite{theodoridis2015machine}.
 	\item \textbf{Interpretability and Decision-Making:} Certain models, like Neural Networks, lack transparency in decision-making despite their high accuracy.
 	      In critical domains like healthcare and finance, interpretability is crucial for validating decisions and ensuring trust in the system. This disadvantage of lack of transparency
-          is depicted well in the journal \cite{rudin2019stop}.
+          is depicted well in the journal paper \cite{rudin2019stop}.
 	\item \textbf{Limited Flexibility:} Traditional model-based algorithms struggle to capture complex, non-linear relationships in high-dimensional or unstructured data,
 	      limiting their performance in tasks with intricate patterns or diverse feature interactions. 
 \end{enumerate}
@@ -156,8 +198,9 @@ The advantages and disadvantages discussed with instance based learning are seen
 \begin{enumerate}
 	\item \textbf{Flexibility:} Instance-based methods adapt to the characteristics of the training data, making them suitable for tasks with complex, non-parametric relationships or evolving patterns.
 	      They can capture nuances and irregularities without imposing rigid assumptions.
-	\item \textbf{Explainability:} The transparency of instance-based learning enables analysts to trace predictions back to specific examples in the training set, facilitating interpretability and trust in the system. 
-    The journal \cite{rudin2019stop} highlights this issue for black box model based learning such as neural nets.
+	\item \textbf{Explainability:} The transparency of instance-based learning enables analysts to trace predictions back 
+    to specific examples in the training set, facilitating interpretability and trust in the system. 
+    The journal paper \cite{rudin2019stop} highlights this issue for black box model based learning such as neural nets.
 \end{enumerate}
 
 \subsection{Disadvantages of Instance-Based Learning:}
@@ -176,7 +219,7 @@ Instance-based learning offers flexibility and explainability but suffers from c
 The motivation for blended learning arises from leveraging the strengths of both approaches while mitigating their weaknesses.
 Blended methods aim to capitalize on the advantages of model-based and instance-based learning, circumventing their limitations.
 By integrating the interpretability of instance-based learning with the accuracy of model-based systems, blended learning offers a promising solution for critical domains like healthcare and finance.
-The journal \cite{rudin2019stop} provides further evidence that it is important to move towards interpretability for our models going forward, 
+The journal paper \cite{rudin2019stop} provides further evidence that it is important to move towards interpretability for our models going forward, 
 so that critical systems are interpretable and repairable by humans going forward.
 
 In recent years, neural networks have gained significant attention in regression tasks \cite{neuralNetForRegression}.
@@ -185,7 +228,6 @@ Deviating from conventional approaches, some researchers advocate for training n
 
 By adopting a blended approach, machine learning systems can achieve greater interpretability, reliability, and performance across diverse applications.
 
-% Start your content here
 \chapter{Literature Review}
 \label{ch:Literature Review}
 \section{Introduction}
@@ -255,7 +297,7 @@ while the prediction algorithm is outlined in Algorithm \ref{alg:learning_from_d
 Additionally, a variant of the training algorithm with context included is presented in Algorithm \ref{alg:learning_from_differences_variant_train_alg3}, and the
 corresponding prediction algorithm is provided in Algorithm \ref{alg:learning_from_differences_varient_predict_alg4}.
 
-Context which is utilized in \ref{alg:learning_from_differences_variant_train_alg3}, and \ref{alg:learning_from_differences_varient_predict_alg4}. 
+Context is utilized in \ref{alg:learning_from_differences_variant_train_alg3}, and \ref{alg:learning_from_differences_varient_predict_alg4}. 
 Context is the case used to retrieve (Nearest Neighbors). In the training algorithm it is $X^{train}_i$, and in prediction it is $X^{test}_j$. 
 These are included in the training, and prediction in Variant 2.
 \begin{algorithm}
@@ -292,8 +334,8 @@ These are included in the training, and prediction in Variant 2.
                 \State Use the trained neural network to predict: $Trained NN(\Delta X^{test}_{ij}) = {\Delta X^{pred}_{ij}}$
                 \State Adapt neighbor's $y$ values: $y^{pred}predictions_j = X^{train}_i + \Delta X^{pred}_{ij}$
             \EndFor
-            \State Average the adapted $y$ values: $y^{pred}_j = \frac{1}{n} \sum_{i=1}^{n} y^{pred}predictions$
-			\State Compare $y^{pred}_j$ to $y^{test}_j$ to evaluate accuracy
+            \State Average the adapted $y$ values: $y^{pred}_j = \frac{1}{n} \sum_{i=1}^{n} y^{pred}predictions_j$
+            \State \textbf{return} $y^{pred}$
         \EndFor
     \end{algorithmic}
 \end{algorithm}
@@ -337,7 +379,7 @@ These are included in the training, and prediction in Variant 2.
 			\EndFor
 			
 			\State Average the adapted $y$ values: $y^{pred}_j = \frac{1}{n} \sum_{i=1}^{n} y^{pred}_i$
-			\State Compare $y^{pred}_j$ to $y^{test}_j$ to evaluate accuracy
+            \State \textbf{return} $y^{pred}$
 		\EndFor
 
 	\end{algorithmic}
@@ -367,7 +409,6 @@ The study revealed no consistent trend across datasets, suggesting dataset-speci
 
 In conclusion, the learning from differences method achieved equal or higher accuracy compared to the base neural network model.
 
-% End of subsection
 \section{Learning Adaptations for Case-based classification}
 
 The paper by Ye et al. \cite{ye2021learning}, titled "Learning Adaptations for Case-based Classification," investigates the application of Case-Based Reasoning (CBR) for classification tasks. 
@@ -619,7 +660,7 @@ which can provide more global support, especially when there are multiple classe
 the C2C approach offers the possibility of explanation with contrastive evidence.
 
 \subsection{Conclusions on Learning adaptations for case based classification: A Neural Network approach}
-The conclusion of the paper \cite{ye2021learning} being that (variant (5)) is worth investigating using its C2C-NN-CDH approach to classification.
+The conclusion of the paper \cite{ye2021learning} is that (variant (5)) is worth investigating using its C2C-NN-CDH approach to classification.
 As it yielded the most promising results when compared to all the other variants tested in the paper. The grouping of the dataset based on class outcome and training a specialized neural network,
 has its benefits in terms of speedup. However, the retrieval of $N$ cases across all classes during testing, has shown to yield better results, in a way that allows an interpretation of the results.
 
@@ -648,8 +689,8 @@ By presenting a cohesive framework that integrates established algorithms, innov
 provide a clear overview of the design landscape. Our aim is to facilitate understanding and navigation through the complexities of machine learning methodologies, 
 empowering researchers and practitioners to leverage our framework effectively in their endeavors.
 
-
-\section{LingerRegressor and LingerClassifier Models Roadmap}
+\section{Design and Implementation Guide}
+\subsection{LingerRegressor and LingerClassifier Models}
 The following models are based on the algorithms outlined in \cite{learningFromDifferences2022}. 
 Variations such as Variant 2 and Variant 3 introduce innovative adaptations to the base models, 
 providing enhanced functionality and performance.
@@ -699,7 +740,7 @@ providing enhanced functionality and performance.
 \end{table}
 
 
-\section{\texttt{LingerImplicitClassifier} and \texttt{LingerImplicitRegressor} Models}
+\subsection{\texttt{LingerImplicitClassifier} and \texttt{LingerImplicitRegressor} Models}
 The classifier models presented here are based on algorithms from \cite{ye2021learning}, with Variations 1 and 2 also originating from the same source.
 
 The regressor models in this section extend the learning from differences framework outlined in \cite{ye2021learning} to regression tasks. 
@@ -748,7 +789,7 @@ This innovative approach maintains the core principles of the methodology while 
     \caption{LingerImplicitRegressor models based on the algorithms in \cite{ye2021learning}}
     \label{tab:ingerImplicitRegressor_models}
 \end{table}
-\section{\texttt{LingerImageClassifier} and \texttt{LingerImageRegressor}}
+\subsection{\texttt{LingerImageClassifier} and \texttt{LingerImageRegressor}}
 \begin{table}[H]
     \centering
     \begin{tabular}{ |p{6cm}|p{2cm}|p{9cm}| }
@@ -884,7 +925,7 @@ Once summed, divide by $n$ to obtain $y^{pred}_j$. Compare $y^{pred}_j$ to $y^{t
             \EndFor
             \State Average the adapted $y$ values: $y^{pred}_j = \frac{1}{n} \sum_{i=1}^{n} y^{pred}_{ji}$
         \EndFor
-		\State Compare $y^{pred}$ to $y^{test}$ to evaluate accuracy
+		\State \textbf{return} $y^{pred}$
     \end{algorithmic}
 \end{algorithm}
 
@@ -911,11 +952,11 @@ training data are stored for later use. It makes use of scikit-learns \cite{scik
             \State $differences\_X = []$ 
             \State $differences\_y = []$
             \If{$variant == 1$ (LRV1)}
-                \State Call $addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
-                \State $differences\_X, differences\_y = addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
+                \State Call $addition\_of\_context\_func\_fit()$
+                \State $differences\_X, differences\_y =$ \par $addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
             \ElsIf{$variant == 2$ (LRV2)}
-                \State Call $duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y, distances)$
-                \State $differences\_X, differences\_y = duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y, distances)$
+                \State Call $duplicate\_difference\_based\_on\_distance()$
+                \State $differences\_X, differences\_y =$ \par $duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y, distances)$
             \ElsIf{$variant == 3$ (LRV3)}
                 \State Call $add\_additional\_distance\_column(differences\_X, distances)$
                 \State $differences\_X = add\_additional\_distance\_column(differences\_X, distances)$
@@ -949,7 +990,7 @@ It makes use of scikit-learns \cite{scikit-learn} \text{NearestNeighbors}, and \
 \begin{algorithm}[H]
     \caption{Prediction Implementation Algorithm for Base Linger Regressor}
     \textbf{Input:} Input data, $X$, number of neighbors $n\_neighbors\_2$
-    \label{alg:base_linger_regressor_predict}
+    \label{alg:base_linger_regressor_predict_part1}
     \begin{algorithmic}[1]
         \Function{predict}{$X$}
             \State Fit Nearest Neighbors model with $n\_neighbours\_2$ using $train\_X$
@@ -972,6 +1013,17 @@ It makes use of scikit-learns \cite{scikit-learn} \text{NearestNeighbors}, and \
                 \State Call $add\_additional\_distance\_column(differences\_test\_X, distances)$
                 \State $differences\_X = add\_additional\_distance\_column(differences\_test\_X, distances)$
             \EndIf
+            \State Continue predict with next function.
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{Prediction Implementation Algorithm for Base Linger Regressor (Part 2)}
+    \textbf{Input:} Continuation from Part 1
+    \label{alg:base_linger_regressor_predict_part1}
+    \begin{algorithmic}[1]
+        \Function{predict\_continue}{}
             \State $predictions \gets$ Predict using \texttt{LingerRegressor} with $differences\_test\_X$
             \State Split $predictions$ into batches of size $n\_neighbours\_2$
             \State Initialise $y\_pred$ as an empty list 
@@ -1004,26 +1056,6 @@ It makes use of scikit-learns \cite{scikit-learn} \text{NearestNeighbors}, and \
 \subsection{Evaluation}
 Evaluation metrics include Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared ($R^2$) to assess model accuracy and performance.
 
-\subsection{Optimization}
-To optimize the model, we consider various strategies:
-\begin{itemize}
-    \item Hyperparameter Tuning: Grid search or randomized search cross-validation for optimal hyperparameters.
-    \item Feature Engineering: Experimentation with different feature combinations to improve model performance.
-    \item Regularization Techniques: L1 and L2 regularization to prevent overfitting.
-\end{itemize}
-
-\subsection{Limitations and Future Work}
-The Linger Regression Base Model has several limitations:
-\begin{itemize}
-    \item Sensitivity to Noise: The model may produce inaccurate predictions when faced with noisy or irrelevant data.
-    \item Interpretability: While the model enhances interpretability compared to black-box models, it may still be challenging to interpret in complex scenarios.
-\end{itemize}
-Future work includes:
-\begin{itemize}
-    \item Enhancing Noise Robustness: Investigating methods to improve model performance in the presence of noisy data.
-    \item Interpretability Improvements: Exploring techniques to enhance model interpretability for complex datasets.
-\end{itemize}
-
 \subsection{Conclusion}
 In conclusion, the \texttt{LingerRegressor} model presents a novel approach to regression analysis by integrating principles of Case-Based Reasoning (CBR) and the learning from differences methodology. 
 Through the combination of K-nearest neighbors (KNN) and \texttt{MLPRegressor}, the model offers flexibility, accuracy, and interpretability in regression tasks. 
@@ -1036,7 +1068,8 @@ Overall, the \texttt{LingerRegressor} model contributes to the advancement of ma
 \label{sec:linger_classification_base_model}
 
 \subsection{Objective}
-The objective of the Linger Classification Base Model (\texttt{LingerClassifier}) is to extend the learning from differences methodology to classification tasks. The primary goals include:
+The objective of the Linger Classification Base Model (\texttt{LingerClassifier}) is to extend the learning from differences methodology to 
+classification tasks. The primary goals include:
 
 \begin{itemize}
     \item Developing a versatile classification model that utilizes differences between cases for prediction.
@@ -1088,7 +1121,6 @@ However, the adaptation of class labels is based on the majority class among the
         \State \textbf{return} Trained neural network model $Trained NN()$.
     \end{algorithmic}
 \end{algorithm}
-\clearpage
 
 \subsubsection{Prediction Algorithm Design}
 During prediction, the algorithm adapts class labels based on the majority class among the nearest neighbors' labels.
@@ -1105,11 +1137,11 @@ During prediction, the algorithm adapts class labels based on the majority class
 			\For{each similar case $(X^{train}_i, y^{train}_i) \in D^{train}$}
 				\State Compute the differences: $\Delta X^{test}_{ji} = X^{test}_j - X^{train}_i$
 				\State Use the trained neural network to predict: $Trained NN(\Delta X^{test}_{ji}) = \Delta X^{pred}_{ji}$
-				\State Adapt neighbor's $y$ value: $yy^{pred}_{ji} = y^{train}_i + \Delta X^{pred}_{ji}$
+				\State Adapt neighbor's $y$ value: $y^{pred}_{ji} = y^{train}_i + \Delta X^{pred}_{ji}$
 			\EndFor
 			\State Perform majority voting on $y^{pred}predictions$ to obtain $y^{pred}_j$
 		\EndFor
-		\State Compare $y^{pred}$ to $y^{test}$ to evaluate accuracy
+		\State \textbf{return} $y^{pred}$
 	\end{algorithmic}
 \end{algorithm}
 
@@ -1140,11 +1172,11 @@ Finally, the predicted target values are aggregated and returned as the output o
             \State $differences\_X \gets []$
             \State $differences\_y \gets []$
             \If{$variant == 1$ (LCV1)}
-                \State Call $addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
-                \State $differences\_X, differences\_y = addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
+                \State Call $addition\_of\_context\_func\_fit()$
+                \State $differences\_X, differences\_y$ \par $= addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
             \ElsIf{$variant == 2$ (LCV2)}
-                \State Call $duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y, distances)$
-                \State $differences\_X, differences\_y = duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y, distances)$
+                \State Call $duplicate\_difference\_based\_on\_distance()$
+                \State $differences\_X, differences\_y$ \par $= duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y, distances)$
             \ElsIf{$variant == 3$ (LCV3)}
                 \State Call $add\_additional\_distance\_column(differences\_X, distances)$
                 \State $differences\_X = add\_additional\_distance\_column(differences\_X, distances)$
@@ -1179,9 +1211,9 @@ and distances, and selects the item with the highest weighted sum as the predict
 it finds the most common item among the predictions. Finally, the predicted target values are aggregated and returned 
 as the output of the algorithm.
 \begin{algorithm}[H]
-    \caption{Prediction Algorithm for Linger Classifier}
+    \caption{Prediction Algorithm for Linger Classifier (Part 1)}
     \textbf{Input:} Input data, $X$, number of neighbors $n\_neighbours\_2$
-    \label{alg:linger_classifier_predict_implementation}
+    \label{alg:linger_classifier_predict_implementation_part1}
     \begin{algorithmic}[1]
         \Function{predict}{$X$}
             \State Fit Nearest Neighbors model with $n\_neighbours\_2$ using $train\_X$
@@ -1203,12 +1235,21 @@ as the output of the algorithm.
                 \State Call $add\_additional\_distance\_column(differences\_test\_X, distances)$
                 \State $differences\_X = add\_additional\_distance\_column(differences\_test\_X, distances)$
             \EndIf
+            \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+\begin{algorithm}[H]
+    \caption{Prediction Algorithm for Linger Classifier (Part 2)}
+    \textbf{Input:} Continuation from Part 1
+    \label{alg:linger_classifier_predict_implementation_part2}
+    \begin{algorithmic}[1]
+        \Function{predict\_continue}{}
             \State $predictions \gets$ Predict using \texttt{LingerClassifier} with $differences\_test\_X$
             \State Split $predictions$ into batches of size $n\_neighbours\_2$
             \State Initialise $y\_pred$ as an empty list 
             \State $y\_pred = []$
             \If{Weighted KNN is enabled}
-                \For{each $indexes$, $differences$, $distance$ in $zip(indices, differences\_test\_X, distances)$}
+                \For{each $indexes, differences, distance$ in $zip(indices, differences\_test\_X, distances)$}
                     \State Compute weights for each neighbor
                     \State $weights = 1 \div (dist + 1e-8)$
                     \State Compute weighted sum of target values,
@@ -1234,27 +1275,13 @@ as the output of the algorithm.
 Evaluation metrics for the \texttt{LingerClassifier} include accuracy, precision, recall, F1-score, and confusion matrix analysis. 
 These metrics provide insights into the model's performance and its ability to classify instances accurately.
 
-\subsection{Optimization}
-To enhance the performance of the \texttt{LingerClassifier}, several optimization strategies are considered:
-\begin{itemize}
-    \item \textbf{Hyperparameter Tuning}: Utilize grid search or randomized search cross-validation to fine-tune the hyperparameters for optimal classifier performance.
-    
-    \item \textbf{Feature Engineering}: Experiment with different feature combinations and transformations to uncover informative patterns in the data and improve classifier accuracy.
-    
-    \item \textbf{Regularization Techniques}: Apply L1 and L2 regularization methods to the classifier to mitigate overfitting and enhance generalization ability.
-\end{itemize}
-
-These optimization strategies aim to maximize the predictive capability of the \texttt{LingerClassifier} model.
-
-\subsection{Limitations and Future Work}
-The \texttt{LingerClassifier} shares similar limitations and avenues for future work as the regression model, including sensitivity to noise and interpretability challenges. 
-Future work may focus on improving noise robustness and enhancing interpretability for complex classification tasks.
-
 \subsection{Conclusion}
 The \texttt{LingerClassifier} offers a novel approach to classification tasks by integrating the learning from differences methodology. 
 Its modular design and extensible architecture make it well-suited for a wide range of classification problems, particularly those where interpretability and adaptability are paramount.
 
-For more details on the \texttt{LingerClassifier}, and \texttt{LingerRegressor} variations, refer to Table \ref{table:linger_regressor_classifier_variations}.
+For more details on the \texttt{LingerClassifier}, and \texttt{LingerRegressor} variations, refer to Table 
+\ref{table:linger_regressor_classifier_variations}.
+
 \section{Variations For \texttt{LingerRegressor} (LR) and \texttt{LingerClassifier} (LC)}
 \subsection{Variation 1: Addition of Context Design and Implementation (LRV1, LCV1)}
 \label{sec:linger_regr_class_variation1_model}
@@ -1274,7 +1301,8 @@ This may aid in the learning process and improve the model. Its design is the sa
         \For{each case $C_i = (X^{train}_i, y^{train}_i) \in D^{train}$}
             \State Retrieve $n$ similar cases from $D^{train}$ using nearest neighbors.
             \For{each similar case $(X^{train}_j, y^{train}_j) \in D^{train}$}
-                \State Compute the differences, with concatenated context: $\Delta D^{train}_{ij} = ((X^{train}_i - X^{train}_j):X^{train}_i, y^{train}_i - y^{train}_j)$.
+                \State Compute the differences, with concatenated context: 
+                \State $\Delta D^{train}_{ij} = ((X^{train}_i - X^{train}_j):X^{train}_i, y^{train}_i - y^{train}_j)$.
                 \State Append $\Delta D^{train}_{ij}$ to $\Delta D^{train}$.
             \EndFor
         \EndFor
@@ -1305,7 +1333,7 @@ This may aid in the learning process and improve the model. Its design is the sa
 				\State Perform majority voting on $y^{pred}_j$ to obtain $y^{pred}_j$.
 			\EndIf
 		\EndFor
-		\State Compare $y^{pred}_j$ to $y^{test}_j$ to evaluate accuracy.
+		\State \textbf{return} $y^{pred}$
 	\end{algorithmic}
 \end{algorithm}
 \clearpage
@@ -1425,8 +1453,8 @@ thereby improving its predictive accuracy and generalization capabilities.
 
 \subsubsection{Training Implementation}
 \begin{algorithm}[H]
-    \caption{Difference Duplication Based on Distance}
-    \label{alg:duplication_Implementation_based_on_distance_train}
+    \caption{Difference Duplication Based on Distance (Part 1)}
+    \label{alg:duplication_Implementation_based_on_distance_train_part1}
     \begin{algorithmic}[1]
         \Function{$duplicate\_difference\_based\_on\_distance$}{$differences\_X$, $differences\_y$, $distances$}
             \State $distances\_X \gets []$
@@ -1443,29 +1471,28 @@ thereby improving its predictive accuracy and generalization capabilities.
             \If{$min\_val == max\_val$}
                 \State $scaled\_distances\_rounded \gets np.ones\_like(log\_values).astype(int)$
             \Else
-                \State $scaled\_distances \gets 10 - ((log\_values - min\_val) / (max\_val - min\_val) \times 10)$
-                \State $scaled\_distances\_rounded \gets np.round(scaled\_distances).astype(int)$
+                \State $scaled\_distances$ $\gets 10 - ((log\_values - min\_val) / (max\_val - min\_val) \times 10)$
+                \State $scaled\_distances\_rounded$ $\gets np.round(scaled\_distances).astype(int)$
             \EndIf
-            \State $filtered\_data\_X \gets []$
-            \State $filtered\_data\_y \gets []$
-            \For{each $item, count$ in zip($differences\_X, scaled\_distances\_rounded$)}
-                \If{$count \neq 0$}
-                    \State append $item$ to $filtered\_data\_X$
-                \EndIf
-            \EndFor
-            \For{each $item, count$ in zip($differences\_y, scaled\_distances\_rounded$)}
-                \If{$count \neq 0$}
-                    \State append $item$ to $filtered\_data\_y$
-                \EndIf
-            \EndFor
+            \State Algorithm continues 
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+\clearpage
+
+\begin{algorithm}[H]
+    \caption{Difference Duplication Based on Distance (Part 2)}
+    \label{alg:duplication_Implementation_based_on_distance_train_part2}
+    \begin{algorithmic}[1] 
+        \Function{duplicate\_diff\_contd}{$filtered\_data\_X$, $filtered\_data\_y$, $scaled\_distances\_rounded$}
             \State $duplicated\_list\_X \gets []$
             \State $duplicated\_list\_y \gets []$
-            \For{each $item, count$ in zip($filtered\_data\_X, scaled\_distances\_rounded$)}
+            \For{each $item, count$ in zip($filtered\_data\_X$, $scaled\_distances\_rounded$)}
                 \For{$\_ \gets 1$ to $count$}
                     \State append $item$ to $duplicated\_list\_X$
                 \EndFor
             \EndFor
-            \For{each $item, count$ in zip($filtered\_data\_y, scaled\_distances\_rounded$)}
+            \For{each $item, count$ in zip($filtered\_data\_y$, $scaled\_distances\_rounded$)}
                 \For{$\_ \gets 1$ to $count$}
                     \State append $item$ to $duplicated\_list\_y$
                 \EndFor
@@ -1546,7 +1573,7 @@ These distances are concatenated with the corresponding differences $\Delta X^{t
 		        \State Perform majority voting on $y^{pred}_j$ to obtain $y^{pred}_j$
 		    \EndIf
 
-		    \State Compare $y^{pred}_j$ to $y^{test}_j$ to evaluate accuracy
+		    \State \textbf{return} $y^{pred}$
 		\EndFor
 	\end{algorithmic}
 \end{algorithm}
@@ -1558,7 +1585,7 @@ The same function is called during both predict and training.
     \textbf{Input:}  Differences dataset $differences\_X$, Distances of the nearest neighbors $distances$
     \begin{algorithmic}[1]
         \Function{$add\_additional\_distance\_column$}{$differences\_X, distances$}
-            \State Adds an additional column with distance values associated with each $differences\_X$ during fitting.
+            \State Adds a column with distance values associated with each $differences\_X$ during fitting.
             \State \textbf{Output:} $\text{differences\_X}$ with an additional column.
             \For{$i$ \textbf{in} range($len(distances)$)}
                 \State $diff\_res \gets$ Convert $distances[i]$ to numpy array
@@ -1786,7 +1813,7 @@ Finally, it performs majority voting to decide the final classification.
     \label{alg:linger_implicit_classifier_predict}
     \begin{algorithmic}[1]
         \Function{predict}{$X$}
-            \State $predictions \gets []$
+            \State $y^{pred} \gets [] vector$
             \State $is\_sparse\_X \gets$ Check if $X$ is sparse
             \If{$is\_sparse\_X$}
                 \State Convert $X$ to dense array
@@ -1799,9 +1826,9 @@ Finally, it performs majority voting to decide the final classification.
                     \State $class\_predictions \gets$ Predict class labels for $sample$ using $N$ \texttt{NearestNeighbors}
                 \EndIf
                 \State $majority\_prediction \gets$ Perform majority voting on $class\_predictions$
-                \State Append $majority\_prediction$ to $predictions$
+                \State Append $majority\_prediction$ to $y^{pred}$
             \EndFor
-            \State \textbf{return} $predictions$
+            \State \textbf{return} $y^{pred}$
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
@@ -1821,7 +1848,6 @@ Finally, it performs majority voting to decide the final classification.
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
-\clearpage
 \begin{algorithm}[H]
     \caption{Helper: Predict Class Labels}
     \label{alg:predict_class}
@@ -1866,20 +1892,6 @@ Finally, it performs majority voting to decide the final classification.
     \end{algorithmic}
 \end{algorithm}
 
-\subsection{Optimization}
-To enhance the performance of the \texttt{LingerImplicitClassifier}, several optimization strategies are considered:
-\begin{itemize}
-    \item \textbf{Hyperparameter Tuning}: Utilize grid search or randomized search cross-validation to fine-tune the hyperparameters for optimal classifier performance.
-    
-    \item \textbf{Feature Engineering}: Experiment with different feature combinations and transformations to uncover informative patterns in the data and improve classifier accuracy.
-    
-    \item \textbf{Regularization Techniques}: Apply Regularization techniques to improve accuracy, and reduce noise.
-\end{itemize}
-
-\subsection{Limitations and Future Work}
-The \texttt{LingerImplicitClassifier} including sensitivity to noise.
-Future work may focus on improving noise robustness and enhancing interpretability for complex classification tasks.
-
 \subsection{Conclusion}
 The \texttt{LingerImplicitClassifier} offers a novel approach to classification tasks by integrating the learning from differences implicitly through case pairs. 
 It performs well for a variety of classification tasks. 
@@ -1914,7 +1926,8 @@ These neighbors serve as crucial elements in forming case pairs, enabling the re
 The integration of KNN with the \texttt{MLPClassifier} offers an interesting approach to regression tasks, combining the strengths of both algorithms. 
 It places regression values within specified ranges, offering a new type of solution to classic regression issues.
 While KNN excels in identifying similarities and forming case pairs, the \texttt{MLPClassifier} contributes 
-by providing a powerful neural network-based classification model capable of learning intricate patterns and relationships within the data. Classifying regression values.
+by providing a powerful neural network-based classification model capable of learning intricate patterns and relationships within the data. By placing continuous values,
+into classes, we essentially construct a classification problem out of a regression issue.
 
 By harnessing the complementary capabilities of KNN and the \texttt{MLPClassifier}, the \texttt{LingerImplicitRegressor}
 aims to achieve robust and accurate regression results across diverse datasets while using a classifier, making it a versatile tool for various machine learning applications. 
@@ -1944,7 +1957,7 @@ The training and prediction algorithms for the \texttt{LingerImplicitRegressor}.
         \State Split $D$ into training set $D^{train}$ and test set $D^{test}$ with an $80\%$-$20\%$ split
         \State Create $CasePairs()$ dictionary.
         \State Create $AdaptNN()$, a dictionary to store each Neural Network
-        \State Convert training data $y$ values into classes, using the algorithm \ref{alg:LingerImplicitRegressor_regression_values_to_classification_values}
+        \State Convert training data $y$ values into classes, using the algorithm \ref{alg:LingerImplicitRegressor_regression_values_to_classification_values_part_1}
         \State $D^{train}y$, $unique\_ranges$, $y_{\text{train}}^\text{max}$, $y_{\text{train}}^\text{min}$ $= Reg To Class Converter Function(D^{train}, N)$
         \State Convert test $y$ values based on the train $y$ value range. So that a new range is the same for both.
         \State $D^{test}y$, $unique\_ranges$, $y_{\text{test}}^\text{max}$, $y_{\text{test}}^\text{min}$ $= Reg To Class Converter Function(D^{train}, N, y_{\text{train}}^\text{max}, y_{\text{train}}^\text{min})$
@@ -1980,13 +1993,13 @@ converted into classes to enable accuracy testing.
 
 \subsection{Training and Prediction Implementation}
 Both the LingerImplicitClassifier and LingerImplicitRegressor share the same training and prediction implementations. 
-This shared functionality is encapsulated in a base class, allowing for code reuse and maintenance. The algorithm \ref{alg:LingerImplicitRegressor_regression_values_to_classification_values} found in the 
+This shared functionality is encapsulated in a base class, allowing for code reuse and maintenance. The algorithm \ref{alg:LingerImplicitRegressor_regression_values_to_classification_values_part_1} found in the 
 \ref{sec:regr_to_class_func} section is used during the data preprocessing stage in the same way as \texttt{sklearn} \texttt{LabelEncoder}. 
 To convert the regression problem into a classification problem.
 
 \subsubsection{Training Implementation}
 The training algorithm for \texttt{LingerImplicitRegressor} is outlined in \ref{sec:training_implementation_LIC}.
-The function \ref{sec:regr_to_class_func} is called before training to convert $y$ values into class labels. For both training and test datasets
+The function \ref{sec:regr_to_class_func} is called before training to convert $y$ values into class labels for both training and test datasets
 
 \subsubsection{Prediction Implementation}
 The prediction algorithm for \texttt{LingerImplicitRegressor} is outlined in \ref{sec:prediction_implementation_LIC}.
@@ -2001,32 +2014,40 @@ classes. This feature enables uniform representation across different segments o
 in the categorization process.
 
 \subsubsection{Regression to Classification Converter Design}
-The "Regression to Classification Converter" algorithm (Algorithm \ref{alg:LingerImplicitRegressor_regression_values_to_classification_values}) is designed to transform 
+The "Regression to Classification Converter" algorithm (Algorithm \ref{alg:LingerImplicitRegressor_regression_values_to_classification_values_part_1}) is designed to transform 
 continuous regression target values into categorical classes. It takes as input a dataset $D$, the desired number of segments $N$, and optional parameters such as $y_{\text{max}}$, $y_{\text{min}}$, 
 and $\text{Equal division}$.
 
 If $\text{Equal division}$ is set, the algorithm divides the data into $N$ segments based on nearly equal counts. Otherwise, it calculates the range for each segment based on the 
 provided or inferred maximum and minimum values of $y$. It then iterates through each value in $y$, determining the corresponding category based on the segment ranges. 
 The algorithm returns the transformed $y$ values, along with the unique ranges, minimum and maximum values of $y$, providing a categorical representation suitable for classification tasks.
-
 \begin{algorithm}[H]
-    \caption{Converter algorithm, regression to classification}
-    \label{alg:LingerImplicitRegressor_regression_values_to_classification_values}
+    \caption{Converter Algorithm: Regression to Classification (Part 1)}
+    \label{alg:LingerImplicitRegressor_regression_values_to_classification_values_part_1}
     \textbf{Input:} Dataset $D$, number of segments $N$, optional: $y_{\text{max}}$, $y_{\text{min}}, \text{Equal division}$
     \begin{algorithmic}[1]
-    \State $(X, y) \in D$
-    \State Get the minimum and maximum values of the labels
-    \State Ensure that the max and min are used from the test set so that $y$ values are classified the same in both fit and predict.
-    \If{$\text{Equal division}$}
-        \State Divide the data into $N$ segments based on nearly equal counts
-        \State $quantiles \gets \text{np.linspace}(0, 1, N+1)$
-        \If{$unique\_ranges$ is None}
-            \State $unique\_ranges \gets \text{np.quantile}(y, quantiles)$
+        \State $(X, y) \in D$
+        \State Get the minimum and maximum values of the labels
+        \State Ensure that the max and min are used from the test set so that $y$ values are classified the same in both fit and predict.
+        \If{$\text{Equal division}$}
+            \State Divide the data into $N$ segments based on nearly equal counts
+            \State $quantiles \gets \text{np.linspace}(0, 1, N+1)$
+            \If{$unique\_ranges$ is None}
+                \State $unique\_ranges \gets \text{np.quantile}(y, quantiles)$
+            \EndIf
+            \State $categories \gets \text{np.digitize}(y, unique\_ranges[:-1])$
+            \State $category\_counts \gets \text{Counter}(categories)$
+            \State \textbf{Return} $categories$, $unique\_ranges$, $y_{\text{min}}$, $y_{\text{max}}$
         \EndIf
-        \State $categories \gets \text{np.digitize}(y, unique\_ranges[:-1])$
-        \State $category\_counts \gets \text{Counter}(categories)$
-        \State \textbf{Return} $categories$, $unique\_ranges$, $y_{\text{min}}$, $y_{\text{max}}$
-    \Else
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{Converter Algorithm: Regression to Classification (Part 2)}
+    \label{alg:LingerImplicitRegressor_regression_values_to_classification_values_part_2}
+    \textbf{Input:} Continuation from Part 1
+    \begin{algorithmic}[1]
+        % Assuming the continuation from the Equal Division check
         \If{$y_{\text{max}}$ and $y_{\text{min}}$ are provided}
             \State Leave $y_{\text{max}}$ and $y_{\text{min}}$ as is
         \Else
@@ -2039,8 +2060,8 @@ The algorithm returns the transformed $y$ values, along with the unique ranges, 
         \State Initialize an empty dictionary: $unique\_ranges$
         \State $current\_index \gets 0$
         \For{each value $val$ in $y$}
-            \For{$i$ in range($N$)}
-                \If{$i < N - 1$}
+            \For $i$ in range($N$) 
+                \If{$i < N-1$}
                     \If{$y_{\text{min}} + i \times \text{segmentRange} \leq \text{val} < y_{\text{min}} + (i + 1) \times \text{segmentRange}$}
                         \State $category \gets (y_{\text{min}} + i \times \text{segmentRange}) - (y_{\text{min}} + (i + 1) \times \text{segmentRange})$
                         \If{category not in $unique\_ranges$}
@@ -2057,15 +2078,14 @@ The algorithm returns the transformed $y$ values, along with the unique ranges, 
                             \State $unique\_ranges[category] \gets current\_index$
                             \State $current\_index \gets current\_index + 1$
                         \EndIf
-                        \State Append $unique\_ranges[category]$ to $categories$
-                        \State \textbf{break}
-                    \EndIf
+                    \State Append $unique\_ranges[category]$ to $categories$
+                    \State \textbf{break}
                 \EndIf
-            \EndFor
+            \EndIf
         \EndFor
-        \State Converted $y$ values: $y \gets categories$
-        \State \textbf{Return} $y$, $unique\_ranges$, $y_{\text{min}}$, $y_{\text{max}}$
-    \EndIf
+    \EndFor 
+    \State Converted $y$ values: $y \gets categories$
+    \State \textbf{Return} $y$, $unique\_ranges$, $y_{\text{min}}$, $y_{\text{max}}$
     \end{algorithmic}
 \end{algorithm}
 \clearpage
@@ -2074,10 +2094,10 @@ The algorithm returns the transformed $y$ values, along with the unique ranges, 
 This function is encapsulated within a class called \texttt{RegressionToClassificationConverter}. 
 The \texttt{transform} function carries out the conversion of regression values to classification values.
 
-\begin{algorithm}
-    \caption{Transform function}
+\begin{algorithm}[H]
+    \caption{Transform function Initialised}
     \begin{algorithmic}[1]
-    \Function{transform}{$y$, $min\_val=None$, $max\_val=None$, $unique\_ranges=None$}
+    \Function{transformInit}{$y,min\_val=None,max\_val=None,unique\_ranges=None$}
         \State \textbf{Input:} 
         \State $y$ (list or array-like): The continuous target variable.
         \State $min\_val$ (float): Minimum value of the target variable.
@@ -2093,7 +2113,15 @@ The \texttt{transform} function carries out the conversion of regression values 
             \State $min\_val \gets \text{min}(y)$
             \State $max\_val \gets \text{max}(y)$
         \EndIf
-        
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+\clearpage
+\begin{algorithm}
+    \caption{Transform function (Part 1)}
+    \begin{algorithmic}[1]
+    \State All variables from transformInit() are available.
+    \Function{transformPartOne}{$y,min\_val=None,max\_val=None,unique\_ranges=None$}
         \If{$\text{equal\_division}$ is None}
             \State $segment\_range \gets (max\_val - min\_val) / n\_segments$
             \State $categories \gets []$
@@ -2128,36 +2156,32 @@ The \texttt{transform} function carries out the conversion of regression values 
             \EndFor
             \State \textbf{return} $categories$, $unique\_ranges$, $min\_val$, $max\_val$
         \Else
+            \State Call transformPartTwo() function
+        \EndIf
+    \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+    \caption{Transform Function (Part 2): Equal Division}
+    \begin{algorithmic}[1]
+    \Function{transformPartTwo}{$y$, $min\_val$, $max\_val$, $unique\_ranges$, $n\_segments$}
             \State $quantiles \gets \text{np.linspace}(0, 1, \text{n\_segments} + 1)$
             \If{$unique\_ranges$ is None}
                 \State $unique\_ranges \gets \text{np.quantile}(y, \text{quantiles})$
             \EndIf
             \State $categories \gets \text{np.digitize}(y, unique\_ranges[:-1])$
             \State \textbf{return} $categories$, $unique\_ranges$, $min\_val$, $max\_val$
-        \EndIf
     \EndFunction
     \end{algorithmic}
 \end{algorithm}
 \clearpage
 
-\subsection{Optimization}
-To enhance the performance of the \texttt{LingerImplicitRegressor}, several optimization strategies are considered:
-\begin{itemize}
-    \item \textbf{Hyperparameter Tuning}: Utilize grid search or randomized search cross-validation to fine-tune the hyperparameters for optimal model performance.
-    
-    \item \textbf{Feature Engineering}: Experiment with different feature combinations and transformations to uncover informative patterns in the data and improve regressor accuracy.
-    
-    \item \textbf{Regularization Techniques}: Apply regularization techniques to improve accuracy and reduce noise.
-\end{itemize}
-
-\subsection{Limitations and Future Work}
-One of the limitations of the \texttt{LingerImplicitClassifier} is its sensitivity to noise, particularly when labeling values based on the maximum and minimum. 
-However, opting to evenly distribute samples into classes can mitigate this sensitivity. 
-For future research, exploring alternative methods to bucket regression values based on diverse distributions could be an intriguing avenue.
-
 \subsection{Conclusion}
 The \texttt{LingerImplicitClassifier} offers a novel approach to regression tasks by integrating the learning from differences implicitly through case pairs. 
 It performs well for a variety of regression tasks, while utilizing a learning from differences classification model. The number of segments greatly affects the outcome of this model.
+One of the limitations observed the \texttt{LingerImplicitClassifier} is its sensitivity to noise, particularly when labeling values based on the maximum and minimum. 
+However, opting to evenly distribute samples into classes can mitigate this sensitivity. 
 
 \section{Learning from Differences For Images}
 \label{sec:lingerImage_models}
@@ -2190,7 +2214,7 @@ enhancing both predictive accuracy and interpretability.
 This architecture consists of three integral components:
 
 \begin{itemize}
-    \item \textbf{Custom Fit Method:} Developed to integrate with the scikit-learn \cite{scikit} ecosystem, this Fit method is central to the classifier's functionality. 
+    \item \textbf{Custom Fit Method:} Developed to integrate with the scikit-learn ecosystem, this Fit method is central to the classifier's functionality. 
     It generates a unique dataset of image differences, effectively capturing variations between image pairs. This method not only emphasizes the importance of contrastive learning but also enriches the model's understanding of nuanced features within the data, 
     such as changes in texture, lighting, and spatial relationships. The process involves computing the differential aspects of images, focusing on attributes that significantly influence the $y$ label values, thereby enabling a more focused and effective learning strategy.
     It also guarantees that we know what it is precisely learning from, its visual difference to its neighbor.
@@ -2310,20 +2334,20 @@ to compute the final predictions for the images. Finally, the algorithm returns 
             \State \textbf{Output:} Predictions 
             \State Use trained CNN on $X$ to predict differences
             \State $difference\_pred \gets trainedCNN(X)$
-            \State Compute final predictions using Algorithm: $y\_predictions \gets \text{FinalPrediction}(difference\_pred)$ 
-            \State \textbf{return} $y\_predictions$
+            \State Compute final predictions using Algorithm: $y^{pred} \gets \text{FinalPrediction}(difference\_pred)$ 
+            \State \textbf{return} $y^{pred}$
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
 
-This algorithm, titled "FinalPrediction," takes input data $X$, a trained CNN model $model$, and the input shape $input_shape$. 
-It computes the predicted target values $y_pred$ based on the differences between the input data and the training images using the trained CNN model.
+This algorithm, titled "FinalPrediction," takes input data $X$, a trained CNN model $model$, and the input shape $input\_shape$. 
+It computes the predicted target values $y^{pred}$ based on the differences between the input data and the training images using the trained CNN model.
 
 First, it fits nearest neighbors to the training data and then computes the absolute differences between each test image 
 and its nearest neighbors from the training set. These differences are reshaped to match the input shape and used to make predictions using the trained CNN model.
 
 Finally, it computes the predicted results for each nearest neighbor and determines the most common item among them to form the 
-final prediction $y_pred$. If no items are found, it handles this case by appending "None" to $y_pred$.
+final prediction $y^{pred}$. If no items are found, it handles this case by appending "None" to $y^{pred}$.
 
 \begin{algorithm}
     \caption{Image Classification Prediction Algorithm}
@@ -2350,12 +2374,12 @@ final prediction $y_pred$. If no items are found, it handles this case by append
                 \State Compute counts of each result: $counts \gets$ count of each value in $results$
                 \State Retrieve most common item: $most\_common\_item \gets$ most common value in $results$
                 \If{$most\_common\_item$ exists}
-                    \State Append $most\_common\_item$ to $y\_pred$
+                    \State Append $most\_common\_item$ to $y^{pred}$
                 \Else
-                    \State Append $None$ to $y\_pred$ \Comment{Handle cases with no items}
+                    \State Append $None$ to $y^{pred}$ \Comment{Handle cases with no items}
                 \EndIf
             \EndFor
-            \State \textbf{return} $y\_pred$
+            \State \textbf{return} $y^{pred}$
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
@@ -2419,25 +2443,10 @@ final prediction $y_pred$. If no items are found, it handles this case by append
 \subsubsection{Prediction Implementation}
 
 \begin{algorithm}
-    \caption{Prediction Process with \texttt{LingerImageClassifier}}
-    \label{alg:predict_class_overview}
-    \begin{algorithmic}[1]
-    \Procedure{Predict}{$X_{test}, y_{test}$}
-        \State For making predictions and evaluating performance
-        \State \textbf{Input:} $X_{test}$ - Test images, $y_{test}$ - True labels for evaluation
-        \State Predict target values for $X_{test}$ using the \Call{Predict}{} procedure.
-        \State Compute final predictions and compare against $y_{test}$ to evaluate accuracy.
-        \State Calculate and report model performance metrics (e.g., accuracy, precision, recall).
-        \State \textbf{return} Model performance metrics.
-    \EndProcedure
-    \end{algorithmic}
-\end{algorithm}
-\clearpage
-
-\begin{algorithm}
     \caption{Prediction Implementation with LingerImageClassifier}
     \label{alg:prediction_implementation_with_lingerImageClassifier}
     \begin{algorithmic}[1]
+    \State $X$ = test data set, $model$ = Trained CNN model, $input\_shape$ = image shape
     \Procedure{Predict}{$X, model, input\_shape$}
         \Comment{Pythonic steps for predicting target values using image differences.}
         \State \textbf{Input:} $X$ - Input data, $model$ - Trained CNN, $input\_shape$ - Shape for CNN input.
@@ -2451,18 +2460,18 @@ final prediction $y_pred$. If no items are found, it handles this case by append
         
         \State $predictions \gets model.predict(differences\_test\_X)$
         
-        \State $y\_pred \gets []$
+        \State $y^{pred} \gets [] vector$
         \For{$indexes, differences$ in zip($indices, predictions$)}
             \State $results \gets [self.train\_y[i][0] + d$ for $i, d$ in zip($indexes, differences)$]
             \State $counts \gets$ Counter($results$)
             \State $most\_common \gets counts.most\_common(1)$
             \If{$most\_common$}
-                \State $y\_pred.append(most\_common[0][0])$
+                \State $y^{pred}.append(most\_common[0][0])$
             \Else
-                \State $y\_pred.append(None)$
+                \State $y^{pred}.append(None)$
             \EndIf
         \EndFor
-        \State \textbf{return} $y\_pred$
+        \State \textbf{return} $y^{pred}$
     \EndProcedure
     \end{algorithmic}
 \end{algorithm}
@@ -2523,23 +2532,9 @@ For regression, it uses the same algorithm \ref{alg:alg:generate_image_differenc
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
-
-The predict method varies as it no longer takes a majority vote. 
-To finalize its prediction but takes an average of nearest neighbors with their
+. 
+To finalize its prediction it takes an average of nearest neighbors with their
 predicted differences added to them.
-\begin{algorithm}
-    \caption{ImageRegression Prediction Algorithm}
-    \label{alg:image_regression_prediction}
-    \begin{algorithmic}[1]
-        \Function{PredictImageClassifier}{$X$, $trainedCNN$}
-            \State \textbf{Input:} Dataset of images $X$, Trained CNN model $trainedCNN$
-            \State \textbf{Output:} Predictions 
-            \State Use trained CNN on $X$ to predict differences: $difference\_pred \gets trainedCNN(X)$
-            \State Compute final predictions using Algorithm: $y\_predictions \gets \text{FinalPrediction}(difference\_pred)$ 
-            \State \textbf{return} $y\_predictions$
-        \EndFunction
-    \end{algorithmic}
-\end{algorithm}
 
 This algorithm outlines a method for image regression prediction using a Convolutional Neural Network (CNN). 
 It involves fitting nearest neighbors to training data, calculating differences between test images and 
@@ -2566,14 +2561,14 @@ for image-based regression tasks. The method of learning from differences is bas
             \EndFor
             \State Reshape $differences\_test\_X$ to match input shape
             \State Make predictions using the trained CNN model: $predictions \gets model.predict(differences\_test\_X)$
-            \State Initialize empty list $y\_pred$
+            \State Initialize empty list $y^{pred}$
             \For{$indexes$, $differences$ in zip($indices$, $predictions$)}
                 \State Compute predicted results for each nearest neighbor:
                 \State \quad $results \gets [\text{self.train\_y}[i][0] + d$ for $i$, $d$ in zip($indexes$, $differences)$]
                 \State Compute average of each result: $average \gets$ average of values in $results$
-                \State Append $average$ to $y\_pred$
+                \State Append $average$ to $y^{pred}$
             \EndFor
-            \State \textbf{return} $y\_pred$
+            \State \textbf{return} $y^{pred}$
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
@@ -2614,29 +2609,13 @@ as the \texttt{LingerImplicitClassifier}.
 \subsubsection{Prediction Implementation}
 
 \begin{algorithm}
-    \caption{Prediction Process with \texttt{LingerImageRegressor}}
-    \label{alg:predict_reg_overview}
-    \begin{algorithmic}[1]
-    \Procedure{Predict}{$X_{test}, y_{test}$}
-        \State For making predictions and evaluating performance
-        \State \textbf{Input:} $X_{test}$ - Test images, $y_{test}$ - True labels for evaluation
-        \State Predict target values for $X_{test}$ using the \Call{Predict}{} procedure.
-        \State Compute final predictions and compare against $y_{test}$ to evaluate accuracy.
-        \State Calculate and report model performance metrics (e.g., accuracy, precision, recall).
-        \State \textbf{return} Model performance metrics.
-    \EndProcedure
-    \end{algorithmic}
-\end{algorithm}
-\clearpage
-
-\begin{algorithm}
     \caption{Prediction with LingerImageRegressor}
     \label{alg:prediction_with_lingerImageRegressor}
     \begin{algorithmic}[1]
     \Procedure{Predict}{$X, model, dataset, input\_shape$}
         \State Predicts target values using a regression approach based on image differences.
         \State \textbf{Input:} $X$ - Input data for prediction, $model$ - Trained regression model, $dataset$ - Dataset object containing training data, $input\_shape$ - Shape of input data expected by the model.
-        \State \textbf{Output:} $y\_pred$ - Predicted target values for the input data.
+        \State \textbf{Output:} $y^{pred}$ - Predicted target values for the input data.
         
         \If{$len(X.shape) > 2$}
             \State $X \gets X.reshape(len(X), -1)$
@@ -2654,31 +2633,64 @@ as the \texttt{LingerImplicitClassifier}.
         \State $predictions \gets model.predict(differences\_test\_X)$
         \Comment{Predict target values based on computed differences.}
         
-        \State Initialize an empty list $y\_pred$ to store final predictions.
+        \State Initialize an empty list $y^{pred}$ to store final predictions.
         
         \For{each $indexes, differences$ pair in zipped $indices, predictions$}
             \State Calculate the sum of the training target values and the predicted differences.
             \State Compute the average result to obtain the regression prediction.
-            \State Append the average result to $y\_pred$.
+            \State Append the average result to $y^{pred}$.
         \EndFor
         
-        \State \textbf{return} $y\_pred$
+        \State \textbf{return} $y^{pred}$
         \Comment{Return the list of predicted target values.}
     \EndProcedure
     \end{algorithmic}
 \end{algorithm}
 
-\subsection{Optimization}
-To enhance the performance of the \texttt{LingerImageClassifier}, several optimization strategies are considered:
+\section{Optimization Strategies}
+\label{sec:optimization_strategies}
+Across all Linger models, a consistent focus on hyperparameter tuning and architectural refinements enhances performance and interpretability. 
+For instance:
 \begin{itemize}
-    \item \textbf{Hyperparameter Tuning}: Utilize grid search to test multiple values for the integrated knn for both fit and predict.
-
-    \item \textbf{Convolutional Network}: Vary the structure of the convolutional neural network. To suit different datasets
-
+    \item \textbf{Hyperparameter Tuning:} Each model undergoes extensive hyperparameter optimization to identify settings that 
+    maximize accuracy and efficiency. This includes adjustments to learning rates, neighbor counts, and decision thresholds.
+    \item \textbf{Architectural Adjustments:} Modifications in model architectures, especially for variant models, aim to better capture 
+    the nuances of learning from differences. This involves experimenting with different layers, activation functions, and 
+    aggregation methods to improve model responsiveness to dataset specifics.
+    \item \textbf{CNN Configurations for Image-Based Models:} Image models, such as the LingerImageClassifier and LingerImageRegressor, 
+    benefit from tailored Convolutional Neural Network (CNN) configurations. By optimizing filter sizes, stride patterns, 
+    and pooling layers, these models achieve significant gains in learning efficiency and prediction accuracy.
+    \item \textbf{Computational Efficiency:} Efforts are underway to enhance the computational efficiency of the models, focusing on 
+    reducing training times without compromising performance. Techniques include model pruning, efficient data loading, and leveraging 
+    hardware accelerations.
+    \item \textbf{Dataset Applicability:} A key optimization goal is to ensure models can adapt to a wide range of datasets, encompassing 
+    varying sizes, dimensions, and complexity. This involves refining data preprocessing and feature extraction techniques to maintain model 
+    robustness across diverse data scenarios.
 \end{itemize}
-\subsection{Limitations and Future Work}
-Similar to the \texttt{LingerImageClassifier} the \texttt{LingerImplicitRegressor}'s main difficulty is in testing due to its high computational costs.
-A high end GPU would be useful to test it on multiple datasets. The inclusion of the original image could be useful when training the Convolutional network.
+
+\section{Limitations and Future Work}
+\label{sec:limitiations_future_work}
+While the Linger models introduce innovative approaches to machine learning, they encounter certain limitations 
+that direct future research:
+\begin{itemize}
+    \item \textbf{Computational Intensity:} The models, especially when dealing with large datasets or complex image data, can be 
+    computationally demanding. Ongoing research seeks to address this through algorithmic improvements that reduce computational 
+    overhead without sacrificing accuracy.
+    \item \textbf{Data Quality Dependency:} The effectiveness of the models is closely tied to the quality and representativeness of the 
+    training data. Efforts to make the models more robust to noisy or incomplete data include developing advanced noise filtering techniques 
+    and data augmentation strategies.
+    \item \textbf{Scalability to Larger Datasets:} As datasets grow in size and complexity, scaling model training and inference efficiently 
+    becomes a challenge. Future developments aim to enhance the scalability of Linger models, potentially through distributed computing techniques 
+    and more efficient data handling mechanisms.
+    \item \textbf{Extension to New Domains:} Exploring applications of Linger models in new domains, such as time series analysis, natural 
+    language processing, and more complex forms of image and video data, represents a promising avenue for future work. This includes adapting the 
+    learning from differences approach to tackle domain-specific challenges.
+    \item \textbf{Algorithmic Efficiency:} Developing more efficient algorithms to handle the iterative processes inherent in learning from 
+    differences is a primary focus. This may involve exploring new mathematical frameworks or leveraging advancements in optimization theory.
+    \item \textbf{Broadening Data Types and Applications:} The adaptability of Linger models to various data types and application contexts 
+    remains an area for exploration. Future research will investigate the integration of these models into multi-modal learning frameworks 
+    and their applicability in interdisciplinary fields.
+\end{itemize}
 \chapter{Experiments}
 \label{ch:Experiments}
 \section{Research Objective}
@@ -2720,7 +2732,7 @@ Specifically, this research aims to achieve the following objectives:
 
     \item \textbf{Develop Python Package for Seamless Integration}: 
     The final objective is to develop a Python package that seamlessly integrates with scikit-learn, allowing users to incorporate blended learning methods into their machine learning pipelines and workflows effortlessly. 
-    This package should provide compatibility with scikit-learn's APIs, enabling users to import it like any other scikit-learn package and use it seamlessly within their existing workflows. 
+    This package should provide compatibility with scikit-learn's tools, enabling users to import it like any other scikit-learn package and use it seamlessly within their existing workflows. 
     By developing such a package, we aim to enhance the accessibility and usability of blended learning methods for the broader machine learning community.
 \end{enumerate}
 
@@ -3368,6 +3380,7 @@ The results from LRV1 not only reaffirm the \texttt{LingerRegressor}'s potential
     \end{axis}
 \end{tikzpicture}
 \subsubsection{(LRV2) Results}
+
 \subsubsection{(LRV3)}
 \subsubsection{(LIR)}
 
@@ -3514,8 +3527,6 @@ weighted (KNN), and (NN) on the same dataset. The sections below detail the hype
 \end{table}
 
 \subsubsection{(LC) Analysis}
-
-
 \subsubsection{(LCV1) Results}
 This was only run twice as there were constraints on resources during testing that resulted in less robust trials.
 
@@ -3586,10 +3597,38 @@ This was only run twice as there were constraints on resources during testing th
 
 \section{Discussion}
 
-Summarize the key findings from the experiments and discuss their implications. Compare the performance of different models and datasets, and highlight any insights gained from the analysis.
-
 \chapter{Conclusions and Future Work}
 \label{ch:Conclusions and Future Work}
+This chapter outlines the additions made in our study, acknowledges its limitations, and proposes directions for future research to extend 
+the work's applicability and efficiency across multiple domains
+
+\section{Addressing Identified Limitations}
+Our study, while insightful, recognizes certain limitations in its current scope and methodology. 
+Future efforts should aim to surpass these through advanced algorithmic enhancements and the integration of novel data processing techniques, this could be implemented through 
+Scikit-learn \cite{scikit}. Such improvements are anticipated to refine the learning process further, enhancing the models' overall performance and applicability.
+
+\section{Broader Applicability}
+Exploring the applicability of our approach to broader machine learning challenges represents a promising direction for future research. 
+Adapting our models to handle unstructured data or complex, high-dimensional datasets could significantly broaden their utility, making them suitable for a wider range of applications.
+
+\section{Integration with Emerging Technologies}
+The potential integration of our models with emerging technologies, such as deep learning and reinforcement learning, offers exciting possibilities. 
+Such integration could not only provide new insights and enhance model capabilities but also facilitate the use of these models in real-time applications or 
+embedded systems where interpretability and efficiency are paramount.
+
+\section{Scalability and Efficiency}
+Investigating the scalability and efficiency of our models, especially in contexts involving large-scale datasets or distributed computing environments, is crucial. 
+Future research could focus on optimizations that reduce training times or adaptations that leverage parallel processing architectures to improve performance.
+
+\section{Cross-Domain Applications}
+Examining the effectiveness of our models across different domains or for various types of prediction tasks could uncover new applications and opportunities for impact. 
+This exploration might involve interdisciplinary research collaborations to adapt and evaluate our models in diverse contexts. 
+Evaluating the learning from difference models with real time data.
+
+\section{Exploring Other Categorical Similarity Measures}
+Investigating alternative measures for assessing the similarity of categorical features could refine the process of generating and applying adaptation rules, 
+potentially enhancing the accuracy and applicability of the Ensemble of Adaptations for Classification (EAC). As seen in the paper \cite{jalali2017learning}.
+
 \bibliographystyle{plain}
 \bibliography{references}
 
