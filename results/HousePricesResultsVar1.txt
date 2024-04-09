@@ -47,15 +47,3 @@ Test Accuracy for KNN weighted regressor: -46.944510881586055
 Test Accuracy for Linger Regressor: -46.986465250395135
 Test Accuracy for Basic Neural Network: -40.14262765747253
 --------------------------------------------------------------
-nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(400, 300, 200, 100)],
-    "predictor__activation": ["relu"],
-    "predictor__alpha": [0.01, 0.1],
-    "predictor__max_iter": [2000],
-    "predictor__early_stopping": [True],
-    "predictor__validation_fraction": [0.1],
-    "predictor__learning_rate_init": [0.001, 0.01, 0.1],
-    "predictor__solver": ['adam', 'sgd'],
-    "predictor__beta_1": [0.9],
-    "predictor__beta_2": [0.9]
-    }
