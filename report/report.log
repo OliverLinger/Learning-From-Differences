@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.12) (preloaded format=pdflatex 2024.1.7)  9 APR 2024 20:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.12) (preloaded format=pdflatex 2024.1.7)  10 APR 2024 01:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -653,6 +653,9 @@ File: l3backend-pdftex.def 2023-11-09 L3 backend support: PDF output (pdfTeX)
 
 LaTeX Warning: Label `alg:base_linger_regressor_predict_part1' multiply defined.
 
+
+LaTeX Warning: Label `tab:best_parameters_summary_exp1' multiply defined.
+
 )
 \openout1 = `report.aux'.
 
@@ -1095,22 +1098,22 @@ Overfull \hbox (29.40639pt too wide) in paragraph at lines 2459--2460
 
 [88
 
-] [89]
+]
 
-LaTeX Warning: Reference `alg:alg:generate_image_differences' on page 90 undefined on input line 2519.
+LaTeX Warning: Reference `alg:alg:generate_image_differences' on page 89 undefined on input line 2507.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 2558--2559
+[89]
+Underfull \hbox (badness 10000) in paragraph at lines 2546--2547
 []  $\OML/cmm/m/it/12 diff \OMS/cmsy/m/n/12  $ \T1/cmr/m/n/12 ab-so-lute dif-fer-ence be-tween $\OML/cmm/m/it/12 X\OT1/cmr/m/n/12 [\OML/cmm/m/it/12 test\OT1/cmr/m/n/12 ]$ \T1/cmr/m/n/12 and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2563--2564
+Underfull \hbox (badness 10000) in paragraph at lines 2551--2552
 [] \T1/cmr/m/n/12 Make pre-dic-tions us-ing the trained CNN model: $\OML/cmm/m/it/12 predictions \OMS/cmsy/m/n/12  
  []
 
 [90] [91] [92]
-Overfull \hbox (219.53606pt too wide) in paragraph at lines 2625--2626
+Overfull \hbox (219.53606pt too wide) in paragraph at lines 2613--2614
 [] $\OML/cmm/m/it/12 nbrs \OMS/cmsy/m/n/12  $ \T1/cmr/m/n/12 NearestNeighbors($\OML/cmm/m/it/12 n[]neighbors \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 self:n[]neighbours[]\OT1/cmr/m/n/12 2$\T1/cmr/m/n/12 ).fit($\OML/cmm/m/it/12 dataset:train[]X:reshape\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 len\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 dataset:train[]X\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 1)$\T1/cmr/m/n/12 ) 
  []
 
@@ -1121,16 +1124,21 @@ Chapter 4.
 [96
 
 ] [97] [98]
-Overfull \hbox (2.85588pt too wide) in paragraph at lines 2789--2811
+Overfull \hbox (2.85588pt too wide) in paragraph at lines 2780--2802
  [][] 
  []
 
 [99] [100] [101
 
-] [102
+]
+Overfull \hbox (61.59235pt too wide) in paragraph at lines 2826--2848
+ [][] 
+ []
+
+[102
 
 ]
-Overfull \hbox (0.91443pt too wide) in paragraph at lines 2902--2937
+Overfull \hbox (19.1937pt too wide) in paragraph at lines 2880--2896
  [][] 
  []
 
@@ -1139,73 +1147,31 @@ Overfull \hbox (0.91443pt too wide) in paragraph at lines 2902--2937
 ] [104] [105
 
 ]
-Overfull \hbox (77.11804pt too wide) in paragraph at lines 2988--3023
+Overfull \hbox (138.05923pt too wide) in paragraph at lines 3018--3035
  [][] 
  []
 
 [106
 
-] [107] [108
-
 ]
-Overfull \hbox (84.47734pt too wide) in paragraph at lines 3075--3110
+Overfull \hbox (73.99126pt too wide) in paragraph at lines 3055--3077
  [][] 
  []
 
-[109
+[107] [108
 
-] [110] [111
-
-] [112
-
-] [113] [114] [115
-
-] [116
-
-] [117
-
-] [118] [119
-
-] [120
-
-] [121] [122]
-Overfull \hbox (73.99126pt too wide) in paragraph at lines 3444--3466
- [][] 
- []
-
-[123] [124] [125
-
-]
-Overfull \hbox (59.26422pt too wide) in paragraph at lines 3517--3527
- [][] 
- []
-
-
-Overfull \hbox (43.27234pt too wide) in paragraph at lines 3537--3572
- [][] 
- []
-
-[126
-
-] [127]
-Overfull \hbox (59.26422pt too wide) in paragraph at lines 3579--3589
- [][] 
- []
-
-[128
-
-] [129
+] [109] [110
 
 ]
 Chapter 5.
 
-LaTeX Warning: Citation `scikit' on page 130 undefined on input line 3608.
+LaTeX Warning: Citation `scikit' on page 111 undefined on input line 3181.
 
-[130
+[111
 
-] (report.bbl [131] [132
+] (report.bbl [112] [113
 
-]) [133] (report.aux)
+]) [114] (report.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-11>
@@ -1218,20 +1184,20 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: FCD5C302791BC374BD1EACDD923B8A52;22269.
+(rerunfilecheck)             Checksum: 17688E053AB2FE587A77798D60DD05B6;21829.
  ) 
 Here is how much of TeX's memory you used:
- 36941 strings out of 474494
- 840097 string characters out of 5743915
+ 36295 strings out of 474494
+ 823634 string characters out of 5743915
  1948460 words of memory out of 5000000
- 58194 multiletter control sequences out of 15000+600000
+ 57601 multiletter control sequences out of 15000+600000
  579493 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,17n,101p,737b,2199s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,11n,101p,737b,636s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectc1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1728.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2074.pk><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on report.pdf (136 pages, 717773 bytes).
+Output written on report.pdf (117 pages, 681614 bytes).
 PDF statistics:
- 2239 PDF objects out of 2487 (max. 8388607)
- 453 named destinations out of 1000 (max. 500000)
- 861 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2094 PDF objects out of 2487 (max. 8388607)
+ 400 named destinations out of 1000 (max. 500000)
+ 837 words of extra memory for PDF output out of 10000 (max. 10000000)
 

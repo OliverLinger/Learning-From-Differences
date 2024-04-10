@@ -113,17 +113,15 @@
 \contentsline {subsection}{\numberline {3.11.6}Training and Prediction Implementation}{85}{subsection.3.11.6}%
 \contentsline {subsubsection}{Training Implementation}{85}{section*.46}%
 \contentsline {subsubsection}{Prediction Implementation}{88}{section*.47}%
-\contentsline {subsection}{\numberline {3.11.7}Optimization}{88}{subsection.3.11.7}%
-\contentsline {subsection}{\numberline {3.11.8}Limitations and Future Work}{89}{subsection.3.11.8}%
-\contentsline {section}{\numberline {3.12}Linger Image Regressor Model \texttt {LingerImageRegressor} (LIMR)}{89}{section.3.12}%
-\contentsline {subsection}{\numberline {3.12.1}Objective}{89}{subsection.3.12.1}%
+\contentsline {section}{\numberline {3.12}Linger Image Regressor Model \texttt {LingerImageRegressor} (LIMR)}{88}{section.3.12}%
+\contentsline {subsection}{\numberline {3.12.1}Objective}{88}{subsection.3.12.1}%
 \contentsline {subsection}{\numberline {3.12.2}Architecture}{89}{subsection.3.12.2}%
-\contentsline {subsection}{\numberline {3.12.3}Components}{90}{subsection.3.12.3}%
-\contentsline {subsection}{\numberline {3.12.4}Parameterization}{90}{subsection.3.12.4}%
+\contentsline {subsection}{\numberline {3.12.3}Components}{89}{subsection.3.12.3}%
+\contentsline {subsection}{\numberline {3.12.4}Parameterization}{89}{subsection.3.12.4}%
 \contentsline {subsection}{\numberline {3.12.5}Training and Prediction Design}{90}{subsection.3.12.5}%
 \contentsline {subsubsection}{Training Design}{90}{section*.48}%
-\contentsline {subsection}{\numberline {3.12.6}Training and Prediction Implementation}{92}{subsection.3.12.6}%
-\contentsline {subsubsection}{Training Implementation}{92}{section*.49}%
+\contentsline {subsection}{\numberline {3.12.6}Training and Prediction Implementation}{91}{subsection.3.12.6}%
+\contentsline {subsubsection}{Training Implementation}{91}{section*.49}%
 \contentsline {subsubsection}{Prediction Implementation}{93}{section*.50}%
 \contentsline {section}{\numberline {3.13}Optimization Strategies}{93}{section.3.13}%
 \contentsline {section}{\numberline {3.14}Limitations and Future Work}{94}{section.3.14}%
@@ -135,46 +133,19 @@
 \contentsline {subsection}{\numberline {4.2.1}Experiment 1: Glass Dataset Classification}{99}{subsection.4.2.1}%
 \contentsline {subsubsection}{Methodology}{99}{section*.52}%
 \contentsline {subsubsection}{Hyperparameter Optimization}{99}{section*.53}%
-\contentsline {subsubsection}{(LC) Results}{101}{section*.55}%
-\contentsline {subsubsection}{(LC) Analysis}{103}{section*.58}%
-\contentsline {subsubsection}{(LCV1) Results}{104}{section*.59}%
-\contentsline {subsubsection}{(LCV1) Analysis}{106}{section*.62}%
-\contentsline {subsubsection}{(LCV2) Results}{107}{section*.63}%
-\contentsline {subsubsection}{(LCV2) Analysis}{109}{section*.66}%
-\contentsline {subsubsection}{(LCV3) Results}{110}{section*.67}%
-\contentsline {subsubsection}{(LCV3) Analysis}{112}{section*.70}%
-\contentsline {subsubsection}{(LIC)}{113}{section*.71}%
-\contentsline {subsubsection}{(LICV1)}{113}{section*.72}%
-\contentsline {subsubsection}{(LICV2)}{113}{section*.73}%
-\contentsline {subsubsection}{Concluding Remarks}{113}{section*.74}%
-\contentsline {subsection}{\numberline {4.2.2}Experiment 2: Abalone Dataset Regression}{113}{subsection.4.2.2}%
-\contentsline {subsubsection}{Methodology}{113}{section*.75}%
-\contentsline {subsubsection}{Tested Hyperparameters}{114}{section*.76}%
-\contentsline {subsubsection}{(LR) Results}{115}{section*.78}%
-\contentsline {subsubsection}{(LR) Analysis}{117}{section*.81}%
-\contentsline {subsubsection}{(LRV1) Results}{118}{section*.82}%
-\contentsline {subsubsection}{(LRV1) Analysis}{120}{section*.85}%
-\contentsline {subsubsection}{(LRV2) Results}{122}{section*.86}%
-\contentsline {subsubsection}{(LRV3)}{122}{section*.87}%
-\contentsline {subsubsection}{(LIR)}{122}{section*.88}%
-\contentsline {subsubsection}{(LIRV1)}{123}{section*.90}%
-\contentsline {subsubsection}{(LIRV2)}{123}{section*.91}%
-\contentsline {subsection}{\numberline {4.2.3}Experiment 3: Raisin Dataset Classification}{123}{subsection.4.2.3}%
-\contentsline {subsubsection}{Methodology}{123}{section*.92}%
-\contentsline {subsubsection}{Tested Hyperparameters}{124}{section*.93}%
-\contentsline {subsubsection}{(LC) Results}{125}{section*.95}%
-\contentsline {subsubsection}{(LC) Analysis}{126}{section*.98}%
-\contentsline {subsubsection}{(LCV1) Results}{126}{section*.99}%
-\contentsline {subsubsection}{(LCV2)}{129}{section*.102}%
-\contentsline {subsubsection}{(LCV3)}{129}{section*.103}%
-\contentsline {subsubsection}{(LIC)}{129}{section*.104}%
-\contentsline {subsubsection}{(LICV1)}{129}{section*.105}%
-\contentsline {subsubsection}{(LICV2)}{129}{section*.106}%
-\contentsline {section}{\numberline {4.3}Discussion}{129}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{130}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Addressing Identified Limitations}{130}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Broader Applicability}{130}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Integration with Emerging Technologies}{131}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Scalability and Efficiency}{131}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Cross-Domain Applications}{131}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Exploring Other Categorical Similarity Measures}{131}{section.5.6}%
+\contentsline {subsubsection}{Results}{101}{section*.55}%
+\contentsline {subsection}{\numberline {4.2.2}Experiment 2: Abalone Dataset Regression}{103}{subsection.4.2.2}%
+\contentsline {subsubsection}{Methodology}{103}{section*.60}%
+\contentsline {subsubsection}{Tested Hyperparameters}{104}{section*.61}%
+\contentsline {subsubsection}{Results}{105}{section*.63}%
+\contentsline {subsection}{\numberline {4.2.3}Experiment 3: Raisin Dataset Classification}{107}{subsection.4.2.3}%
+\contentsline {subsubsection}{Methodology}{107}{section*.68}%
+\contentsline {subsubsection}{Tested Hyperparameters}{107}{section*.69}%
+\contentsline {subsubsection}{Results}{108}{section*.71}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{111}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Addressing Identified Limitations}{111}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Broader Applicability}{111}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Integration with Emerging Technologies}{112}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Scalability and Efficiency}{112}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Cross-Domain Applications}{112}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Exploring Other Categorical Similarity Measures}{112}{section.5.6}%
