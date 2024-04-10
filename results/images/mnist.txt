@@ -1,0 +1,2 @@
+Accuracy on MNIST test set differences: 0.8804558515548706
+Standard CNN Accuracy on MNIST test set: 0.10376668721437454

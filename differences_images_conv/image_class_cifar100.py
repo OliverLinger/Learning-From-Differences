@@ -47,12 +47,12 @@ diff_y = np.zeros((diff_y.shape[0], num_classes))
 input_shape = (32, 32, 3)
 difference_cnn_model = create_simple_cnn(input_shape, num_classes)
 difference_cnn_model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-difference_cnn_model.fit(diff_X, diff_y, epochs=1, batch_size=32, validation_split=0.2)
+difference_cnn_model.fit(diff_X, diff_y, epochs=30, batch_size=32, validation_split=0.2)
 
 # Additionally, train a standard CNN model directly on CIFAR-100 images for comparison
 standard_cnn_model = create_simple_cnn(input_shape, num_classes)
 standard_cnn_model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-standard_cnn_model.fit(X_train_cifar, y_train_cifar_one_hot, epochs=1, batch_size=32, validation_split=0.2)
+standard_cnn_model.fit(X_train_cifar, y_train_cifar_one_hot, epochs=30, batch_size=32, validation_split=0.2)
 
 # Use the standard CNN model to make predictions on the test data
 y_pred_standard = np.argmax(standard_cnn_model.predict(X_test_cifar), axis=1)
@@ -67,3 +67,8 @@ print("Standard CNN Accuracy on CIFAR-100 test set:", accuracy_standard_cnn)
 # Calculate accuracy
 accuracy_cifar_100 = accuracy_score(y_test_cifar, y_pred)
 print("Accuracy on CIFAR-100 test set differences:", accuracy_cifar_100)
+file_path = r'C:\Users\USER\final_year\fyp\results\images\cifar.txt'
+with open(file_path, 'a') as file:
+    file.write(f"Accuracy on CIFAR-100 test set differences: {accuracy_cifar_100}\n")
+    file.write(f"Standard CNN Accuracy on CIFAR-100 test set: {accuracy_standard_cnn}\n")
+

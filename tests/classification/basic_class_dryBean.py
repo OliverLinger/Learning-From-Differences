@@ -123,10 +123,10 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
     lfd_classifier_param_grid.update({
          "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 17, 21],
          "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
-         "predictor__weighted_knn": [False],
+         "predictor__weighted_knn": [False, True],
          "predictor__additional_results_column": [False],
          "predictor__duplicated_on_distance": [False],
-        "predictor__addition_of_context": [False],
+        "predictor__addition_of_context": [True],
     })
     # Update with best_nn_params
     lfd_classifier_param_grid.update(best_nn_params)
@@ -143,7 +143,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
 
 def save_results(file_path, knn_classifier_gs, knn_classifier_gs_weighted, nn_gs, lfd_classifier_gs):
     with open(file_path, 'a') as file:
-        file.write(f"Basic classifier, No variations")
+        file.write(f"Basic classifier, var1")
         file.write(f"Best Parameters KNN classifier: {knn_classifier_gs.best_params_,}\n")
         file.write(f"Best Score KNN classifier: {knn_classifier_gs.best_score_}\n")
 
@@ -177,7 +177,7 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         file.write("--------------------------------------------------------------\n")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\DryBeanResultsBasic.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\DryBeanResultsVar1.txt'
     df = pd.read_csv("datasets/DryBeanDataset/Dry_Bean_Dataset_reduced.csv")
     columns = ['Area', 'Perimeter', 'MajorAxisLength', 'MinorAxisLength',
        'AspectRation', 'Eccentricity', 'ConvexArea', 'EquivDiameter', 'Extent',
@@ -204,6 +204,6 @@ def main():
     calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_weighted, nn_gs, lfd_classifier_gs, test_X, test_y)
 
 if __name__ == "__main__":
-    num_times_to_run = 5  # Change this to the desired number of iterations
+    num_times_to_run = 3  # Change this to the desired number of iterations
     for _ in range(num_times_to_run):
         main()

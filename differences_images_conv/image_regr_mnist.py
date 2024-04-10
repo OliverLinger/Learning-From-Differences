@@ -84,22 +84,25 @@ model.fit(diff_X, diff_y, epochs=1, batch_size=32, validation_split=0.2)
 # Use the trained CNN model to make predictions on test data
 y_pred = regressor_mnist.predict(X_test_mnist, model=model,input_shape=(28, 28, 1))
 
-mse = mean_squared_error(y_test_mnist, y_pred)
-print("Mean Squared Error:", mse)
+mnse_mnist = mean_squared_error(y_test_mnist, y_pred)
+print("Mean Squared Error MNIST:", mnse_mnist)
 
 # Calculate Variance of y_test_mnist to use in MNSE calculation
 variance = np.var(y_test_mnist)
 
-# Calculate MNSE
-mnse = mse / variance
-print("Mean Normalized Squared Error:", mnse)
+
+print("Mean Normalized Squared Error MNIST:", mnse_mnist)
 
 y_pred_standard = standard_model.predict(X_test_mnist_reshaped)
 
 # Calculate MSE for the standard model
-mse_standard = mean_squared_error(y_test_mnist, y_pred_standard)
-print("Standard CNN Mean Squared Error:", mse_standard)
+mnse_standard = mean_squared_error(y_test_mnist, y_pred_standard)
+print("Standard CNN Mean Squared Error:", mnse_standard)
 
 # Calculate MNSE for the standard model
-mnse_standard = mse_standard / variance  # Using the same variance calculated earlier
 print("Standard CNN Mean Normalized Squared Error:", mnse_standard)
+
+file_path = r'C:\Users\USER\final_year\fyp\results\images\mnist.txt'
+with open(file_path, 'a') as file:
+    file.write(f"Accuracy on MNIST test set differences: {mnse_mnist}\n")
+    file.write(f"Standard CNN Accuracy on MNIST test set: {mnse_standard}\n")

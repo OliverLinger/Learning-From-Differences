@@ -1,0 +1,2 @@
+Accuracy on CIFAR-100 test set differences: 0.1715
+Standard CNN Accuracy on CIFAR-100 test set: 0.2146
