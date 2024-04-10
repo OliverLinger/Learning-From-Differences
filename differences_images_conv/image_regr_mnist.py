@@ -68,7 +68,7 @@ standard_model = create_standard_regression_cnn((28, 28, 1))
 standard_model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
 
 # Train the standard model on the original MNIST dataset
-standard_model.fit(X_train_mnist_reshaped, y_train_mnist, epochs=1, batch_size=32, validation_split=0.2)
+standard_model.fit(X_train_mnist_reshaped, y_train_mnist, epochs=50, batch_size=32, validation_split=0.2)
 
 
 # Initialize the CNN model
@@ -79,7 +79,7 @@ model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
 
 diff_y = diff_y.reshape(-1)
 # Train the model on the difference dataset
-model.fit(diff_X, diff_y, epochs=1, batch_size=32, validation_split=0.2)
+model.fit(diff_X, diff_y, epochs=50, batch_size=32, validation_split=0.2)
 
 # Use the trained CNN model to make predictions on test data
 y_pred = regressor_mnist.predict(X_test_mnist, model=model,input_shape=(28, 28, 1))
