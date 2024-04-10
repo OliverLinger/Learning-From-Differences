@@ -142,8 +142,8 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
     ])
     lfd_classifier_param_grid  = {}
     lfd_classifier_param_grid.update({
-        "predictor__random_pairs": [True],
-        "predictor__single_pair": [False],
+        "predictor__random_pairs": [False],
+        "predictor__single_pair": [True],
         "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
     })
@@ -162,7 +162,7 @@ def train_linger_classifier(dev_X, dev_y, preprocessor, best_nn_params):
 
 def save_results(file_path, knn_classifier_gs, knn_classifier_gs_weighted, nn_gs, lfd_classifier_gs):
     with open(file_path, 'a') as file:
-        file.write(f"Implicit classifier, No variation")
+        file.write(f"Implicit classifier,")
         file.write(f"Best Parameters KNN classifier: {knn_classifier_gs.best_params_,}\n")
         file.write(f"Best Score KNN classifier: {knn_classifier_gs.best_score_}\n")
 
@@ -195,7 +195,7 @@ def calculate_test_accuracies(file_path, knn_classifier_gs, knn_classifier_gs_we
         file.write("--------------------------------------------------------------\n")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\classificationImplicit\RaisinImplicitResultsVar1.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\classificationImplicit\RaisinImplicitResultsVar2.txt'
     df = pd.read_csv(r"C:\Users\USER\final_year\fyp\datasets\raisin_data\Raisin_Dataset_reduced.csv")
     columns = ['Area', 'MajorAxisLength', 'MinorAxisLength', 'Eccentricity',
        'ConvexArea', 'Extent', 'Perimeter', 'Class']
@@ -220,3 +220,4 @@ if __name__ == "__main__":
     num_times_to_run = 2  # Change this to the desired number of iterations
     for _ in range(num_times_to_run):
         main()
+                                                               
