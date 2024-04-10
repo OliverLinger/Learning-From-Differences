@@ -2476,18 +2476,6 @@ final prediction $y^{pred}$. If no items are found, it handles this case by appe
     \end{algorithmic}
 \end{algorithm}
 
-\subsection{Optimization}
-To enhance the performance of the \texttt{LingerImageClassifier}, several optimization strategies are considered:
-\begin{itemize}
-    \item \textbf{Hyperparameter Tuning}: Utilize grid search to test multiple values for the integrated knn for both fit and predict.
-
-    \item \textbf{Convolutional Network}: Vary the structure of the convolutional neural network. To suit different datasets
-
-\end{itemize}
-\subsection{Limitations and Future Work}
-The main limitation with this model is its resource intensity, and testing with only one classification image dataset.
-In the future a GPU could be used to attain results faster on a wide range of image datasets. The inclusion of the original image could be useful when training the Convolutional network.
-
 \section{Linger Image Regressor Model \texttt{LingerImageRegressor} (LIMR)}
 \label{sec:lingerImage_Regressor_model}
 \subsection{Objective}
@@ -2741,7 +2729,8 @@ traditional model-based and instance-based methods. Ultimately, the goal is to c
 systems with broader applicability across various domains.
 
 \subsection{Data Collection and Preprocessing}
-All datasets used in this study were collected from the UCI Machine Learning Repository \cite{uciRepository}, a widely recognized and reliable source of machine learning datasets. 
+All datasets used in this study were collected from the UCI Machine Learning Repository \cite{uciRepository}, 
+a widely recognized and reliable source of machine learning datasets. 
 These datasets cover various domains and have been extensively studied in the machine learning community.
 
 \subsubsection{Preprocessing For Labelled Datasets}
@@ -2775,6 +2764,8 @@ In Experiment 1, we conducted classification tasks on the Glass dataset using a 
 through grid search and cross-validation to determine the optimal hyperparameters. These hyperparameters were then applied to train a \texttt{LingerClassifier} (LC) 
 and its variants for improved robustness, tested across five runs. For comparative analysis, we also evaluated the performance of K-Nearest Neighbors (KNN), 
 weighted (KNN), and (NN) on the same dataset. The results section details the hyperparameters selected and the test accuracies achieved.
+
+The \texttt{LingerImplicitClassifier} was only run over 3 iterations due to a lack of resources.
 
 \subsubsection{Hyperparameter Optimization}
 For both the Neural Network and Linger Classifier, a comprehensive exploration of hyperparameters was conducted, 
@@ -2811,42 +2802,18 @@ tuning.
 \end{table}
 \clearpage
 
-\subsubsection{(LC) Results}
+\subsubsection{Results}
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Classifiers}
-    \label{tab:best_parameters_combined}
-    \begin{tabular}{lll}
+    \caption{Best Parameters for KNN Comparison Models}
+    \label{tab:best_parameters_combined_knn_exp1}
+    \begin{tabular}{|l|l|l|}
     \toprule
     \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
     \midrule
-    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net and Linger Classifier}} \\
-    \midrule
-    Neural Net / Linger Classifier & activation & relu \\
-    Neural Net / Linger Classifier & alpha & 0.0001 \\
-    Neural Net / Linger Classifier & beta\_1 & 0.9 \\
-    Neural Net / Linger Classifier & beta\_2 & 0.995 \\
-    Neural Net / Linger Classifier & early\_stopping & True \\
-    Neural Net / Linger Classifier & hidden\_layer\_sizes & (300, 200, 100) \\
-    Neural Net / Linger Classifier & learning\_rate\_init & 0.01 \\
-    Neural Net / Linger Classifier & max\_iter & 1000 \\
-    Neural Net / Linger Classifier & solver & adam \\
-    Neural Net / Linger Classifier & validation\_fraction & 0.3 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
-    \midrule
     KNN & n\_neighbors & 2 \\
     Weighted KNN & n\_neighbors & 7 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Linger Classifier Specific}} \\
-    \midrule
-    Linger Classifier & addition\_of\_context & False \\
-    Linger Classifier & additional\_distance\_column & False \\
-    Linger Classifier & duplicated\_on\_distance & False \\
-    Linger Classifier & n\_neighbors\_1 & 2 \\
-    Linger Classifier & n\_neighbors\_2 & 5 \\
-    Linger Classifier & weighted\_knn & False \\
     \bottomrule
     \end{tabular}
 \end{table}
@@ -2854,309 +2821,79 @@ tuning.
 
 \begin{table}[H]
     \centering
-    \caption{Average Training and Test Accuracy Results}
-    \label{tab:average_results_combined}
-    \begin{tabular}{lll}
-    \toprule
-    \textbf{Classifier} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
-    \midrule
-    KNN Classifier & $68.2$ & $60.46$ \\
-    Weighted KNN Classifier & $70.0$ & $62.8$ \\
-    Neural Net Classifier & $\mathbf{73.1}$ & $61.4$ \\
-    Linger Classifier & $70.04$ & $60.46$ \\
-    \bottomrule
+    \caption{Summary of Best Parameters for \texttt{LingerClassifier} and it's Variations}
+    \label{tab:best_parameters_summary_exp1}
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    \textbf{Parameter} & \textbf{LC} & \textbf{LCV1} & \textbf{LCV2} & \textbf{LCV3} \\
+    \hline
+    Activation & relu & relu & relu & relu \\
+    Alpha & 0.0001 & 0.1 & 0.1 & 0.001 \\
+    Beta 1 & 0.9 & 0.9 & 0.9 & 0.99 \\
+    Beta 2 & 0.995 & 0.999 & 0.995 & 0.999 \\
+    Early Stopping & True & True & True & True \\
+    Hidden Layer Sizes & (300, 200, 100) & (300, 200, 100) & (300, 200, 100) & (300, 200, 100) \\
+    Learning Rate Init & 0.01 & 0.01 & 0.01 & 0.01 \\
+    Max Iter & 1000 & 1500 & 1000 & 1000 \\
+    Solver & adam & adam & adam & adam \\
+    Validation Fraction & 0.3 & 0.3 & 0.3 & 0.3 \\
+    Addition of Context & False & True & False & False \\
+    Additional Distance Column & False & False & False & True \\
+    Duplicated on Distance & False & False & True & False \\
+    N Neighbors 1 & 2 & 17 & 21 & 21 \\
+    N Neighbors 2 & 5 & 17 & 13 & 13 \\
+    Weighted KNN & False & False & False & False \\
+    \hline
     \end{tabular}
 \end{table}
-\clearpage
-\subsubsection{(LC) Analysis}
-The initial setup without any specific variation (LC) demonstrates that the Neural Net Classifier achieves the highest training accuracy but does not significantly outperform other models in test accuracy. 
-This could suggest a tendency towards overfitting within the (NN) model. The \texttt{LingerClassifier}, even in its base form, shows competitive test accuracy, emphasizing its potential robustness. 
-Interestingly, the addition of context and other specific features in the \texttt{LingerClassifier}'s variations aims to address this balance between training performance and generalization to unseen data.
-
-\begin{tikzpicture}
-    \begin{axis}[
-        ybar,
-        enlargelimits=0.15,
-        legend style={at={(0.5,-0.35)},
-          anchor=north,legend columns=-1},
-        ylabel={Accuracy (\%)},
-        symbolic x coords={KNN,Weighted KNN,Neural Net,Linger Classifier},
-        xtick=data,
-        nodes near coords,
-        nodes near coords align={vertical},
-        x tick label style={rotate=45,anchor=east},
-        title={LC: Base Variation Accuracies}
-        ]
-    \addplot coordinates {(KNN,68.2) (Weighted KNN,70.0) (Neural Net,73.1) (Linger Classifier,70.04)};
-    \addplot coordinates {(KNN,60.46) (Weighted KNN,62.8) (Neural Net,61.4) (Linger Classifier,60.46)};
-    \legend{Training Accuracy,Test Accuracy}
-    \end{axis}
-\end{tikzpicture}
-
-\subsubsection{(LCV1) Results}
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Classifiers (LCV1)}
-    \label{tab:best_parameters_combined_LCV1}
-    \begin{tabular}{lll}
-    \toprule
-    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net and Linger Classifier with Context (Variation 1)}} \\
-    \midrule
-    Neural Net / Linger Classifier & activation & relu \\
-    Neural Net / Linger Classifier & alpha & 0.1 \\
-    Neural Net / Linger Classifier & beta\_1 & 0.9 \\
-    Neural Net / Linger Classifier & beta\_2 & 0.999 \\
-    Neural Net / Linger Classifier & early\_stopping & True \\
-    Neural Net / Linger Classifier & hidden\_layer\_sizes & (300, 200, 100) \\
-    Neural Net / Linger Classifier & learning\_rate\_init & 0.01 \\
-    Neural Net / Linger Classifier & max\_iter & 1500 \\
-    Neural Net / Linger Classifier & solver & adam \\
-    Neural Net / Linger Classifier & validation\_fraction & 0.3 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
-    \midrule
-    KNN & n\_neighbors & 2 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Weighted KNN Classifier Specific}} \\
-    \midrule
-    Weighted KNN & n\_neighbors & 7 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Linger Classifier with Context (Variation 1) Specific}} \\
-    \midrule
-    Linger Classifier & addition\_of\_context & True \\
-    Linger Classifier & additional\_results\_column & False \\
-    Linger Classifier & duplicated\_on\_distance & False \\
-    Linger Classifier & n\_neighbours\_1 & 17 \\
-    Linger Classifier & n\_neighbours\_2 & 17 \\
-    Linger Classifier & weighted\_knn & False \\
-    \bottomrule
+    \caption{Summary of Best Parameters for \texttt{LingerImplicitClassifier} and Its Variations}
+    \label{tab:best_parameters_LIC_variations_exp1}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Parameter} & \textbf{LIC} & \textbf{LICV1 (Random)} & \textbf{LICV2 (Single)} \\
+    \hline
+    Activation & tanh & tanh & tanh \\
+    Alpha & 0.01 & 0.001 & 0.001 \\
+    Beta 1 & 0.9 & 0.9 & 0.9 \\
+    Beta 2 & 0.9 & 0.9 & 0.9 \\
+    Hidden Layer Sizes & (128, 64) & (128, 64) & (128, 64) \\
+    Learning Rate Init & 0.01 & 0.01 & 0.01 \\
+    Max Iter & 2000 & 2000 & 2000 \\
+    Solver & sgd & sgd & sgd \\
+    Validation Fraction & 0.1 & 0.1 & 0.1 \\
+    N Neighbors 1 & 21 & 7 & 10 \\
+    N Neighbors 2 & 13 & 2 & 21 \\
+    Random Pairs & False & True & False \\
+    Single Pair & False & False & True \\
+    \hline
     \end{tabular}
 \end{table}
 \clearpage
 
 \begin{table}[H]
     \centering
-    \caption{Average Training and Test Accuracy Results for Classifiers (LCV1)}
-    \label{tab:average_results_LCV1}
-    \begin{tabular}{lll}
+    \caption{Summary of Training and Test Accuracy Across All Models}
+    \label{tab:summary_accuracy_all_models_exp1}
+    \begin{tabular}{|lll|}
     \toprule
-    \textbf{Classifier} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
+    \textbf{Model / Variation} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
     \midrule
-    KNN Classifier & $68.24$ & $60.47$ \\
-    Weighted KNN Classifier & $70.00$ & $62.79$ \\
-    Neural Network Classifier & $72.79$ & $64.53$ \\
-    Linger Classifier & $69.41$ & $65.70$ \\
+    KNN & $68.2$ & $60.46$ \\
+    Weighted KNN & $70.0$ & $62.8$ \\
+    Neural Network & $73.1$ & $61.4$ \\
+    LC (Base) & $70.04$ & $60.46$ \\
+    LCV1 (Context) & $69.41$ & $65.70$ \\
+    LCV2 (Duplicated on Distance) & $67.29$ & $\mathbf{69.30}$ \\
+    LCV3 (Additional Distance Column) & $67.65$ & $60.93$ \\
+    LIC (Implicit) & $41.4$ & $51.2$ \\
+    LICV1 (Random) & $31.17$ & $41.08$ \\
+    LICV2 (Single) & $50.39$ & $47.28$ \\
     \bottomrule
     \end{tabular}
 \end{table}
-\clearpage
-
-\subsubsection{(LCV1) Analysis}
-In LCV1, the inclusion of context, (setting $addition_of_context == \text{True}$) for the \texttt{LingerClassifier} led to a noticeable improvement in test accuracy for the Linger Classifier, 
-outperforming the NN in test accuracy while maintaining competitive training accuracy. 
-This improvement underscores the value of incorporating contextual information into the model, potentially enhancing its ability to generalize from training to test data.
-
-\begin{tikzpicture}
-    \begin{axis}[
-        ybar,
-        enlargelimits=0.25,
-        legend style={at={(0.5,-0.35)},
-          anchor=north,legend columns=-1},
-        ylabel={Accuracy (\%)},
-        symbolic x coords={KNN, Weighted KNN, Neural Network, Linger Classifier},
-        xtick=data,
-        nodes near coords,
-        nodes near coords align={vertical},
-        x tick label style={rotate=45,anchor=east},
-        title={LCV1: Average Training and Test Accuracy Results for Classifiers}
-        ]
-    \addplot coordinates {(KNN,68.24) (Weighted KNN,70.00) (Neural Network,72.79) (Linger Classifier,69.41)};
-    \addplot coordinates {(KNN,60.47) (Weighted KNN,62.79) (Neural Network,64.53) (Linger Classifier,65.70)};
-    \legend{Training Accuracy,Test Accuracy}
-    \end{axis}
-\end{tikzpicture}
-
-\subsubsection{(LCV2) Results}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Classifiers (LCV2)}
-    \label{tab:best_parameters_combined_LCV2}
-    \begin{tabular}{lll}
-    \toprule
-    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net and Linger Classifier, Duplication using Distance (Variation 2)}} \\
-    \midrule
-    Neural Net / Linger Classifier & activation & relu \\
-    Neural Net / Linger Classifier & alpha & 0.1 \\
-    Neural Net / Linger Classifier & beta\_1 & 0.9 \\
-    Neural Net / Linger Classifier & beta\_2 & 0.995 \\
-    Neural Net / Linger Classifier & early\_stopping & True \\
-    Neural Net / Linger Classifier & hidden\_layer\_sizes & (300, 200, 100) \\
-    Neural Net / Linger Classifier & learning\_rate\_init & 0.01 \\
-    Neural Net / Linger Classifier & max\_iter & 1000 \\
-    Neural Net / Linger Classifier & solver & adam \\
-    Neural Net / Linger Classifier & validation\_fraction & 0.3 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
-    \midrule
-    KNN & n\_neighbors & 2 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Weighted KNN Classifier Specific}} \\
-    \midrule
-    Weighted KNN & n\_neighbors & 7 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Linger Classifier, Duplication using Distance (Variation 2) Specific}} \\
-    \midrule
-    Linger Classifier & addition\_of\_context & False \\
-    Linger Classifier & additional\_distance\_column & False \\
-    Linger Classifier & duplicated\_on\_distance & True \\
-    Linger Classifier & n\_neighbours\_1 & 21 \\
-    Linger Classifier & n\_neighbours\_2 & 13 \\
-    Linger Classifier & weighted\_knn & False \\
-    \bottomrule
-    \end{tabular}
-\end{table}
-\clearpage
-
-\begin{table}[H]
-    \centering
-    \caption{Average Training and Test Accuracy Results for Classifiers (LCV2)}
-    \label{tab:average_results_LCV2}
-    \begin{tabular}{lll}
-    \toprule
-    \textbf{Classifier} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
-    \midrule
-    KNN Classifier & $68.24$ & $60.47$ \\
-    Weighted KNN Classifier & $70.00$ & $62.79$ \\
-    Neural Network Classifier & $71.29$ & $67.91$ \\
-    Linger Classifier & $67.29$ & $69.30$ \\
-    \bottomrule
-    \end{tabular}
-\end{table}
-\clearpage
-
-\subsubsection{(LCV2) Analysis}
-Variation 2, focusing on duplicating data based on distance ($duplicated_on_distance == \text{True}$), yielded the most significant test accuracy increase for the \texttt{LingerClassifier}, 
-surpassing even the Neural Network. This strategy might have provided a more nuanced understanding of the dataset's structure, aiding the model in better capturing the underlying patterns. 
-This result suggests that data duplication based on distance could be a powerful method for improving model performance, especially in classification tasks where spatial relationships within the 
-data are informative.
-
-\begin{tikzpicture}
-    \begin{axis}[
-        ybar,
-        enlargelimits=0.25,
-        legend style={at={(0.5,-0.35)},
-          anchor=north,legend columns=-1},
-        ylabel={Accuracy (\%)},
-        symbolic x coords={KNN, Weighted KNN, Neural Network, Linger Classifier},
-        xtick=data,
-        nodes near coords,
-        nodes near coords align={vertical},
-        x tick label style={rotate=45,anchor=east},
-        title={LCV2: Average Training and Test Accuracy Results for Classifiers}
-        ]
-    \addplot coordinates {(KNN,68.24) (Weighted KNN,70.00) (Neural Network,71.29) (Linger Classifier,67.29)};
-    \addplot coordinates {(KNN,60.47) (Weighted KNN,62.79) (Neural Network,67.91) (Linger Classifier,69.30)};
-    \legend{Training Accuracy,Test Accuracy}
-    \end{axis}
-\end{tikzpicture}
-
-\subsubsection{(LCV3) Results}
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Classifiers (LCV3)}
-    \label{tab:best_parameters_combined_LCV3}
-    \begin{tabular}{lll}
-    \toprule
-    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net and Linger Classifier, Additional Distance Column (Variation 3)}} \\
-    \midrule
-    Neural Net / Linger Classifier & activation & relu \\
-    Neural Net / Linger Classifier & alpha & 0.001 \\
-    Neural Net / Linger Classifier & beta\_1 & 0.99 \\
-    Neural Net / Linger Classifier & beta\_2 & 0.999 \\
-    Neural Net / Linger Classifier & early\_stopping & True \\
-    Neural Net / Linger Classifier & hidden\_layer\_sizes & (300, 200, 100) \\
-    Neural Net / Linger Classifier & learning\_rate\_init & 0.01 \\
-    Neural Net / Linger Classifier & max\_iter & 1000 \\
-    Neural Net / Linger Classifier & solver & adam \\
-    Neural Net / Linger Classifier & validation\_fraction & 0.3 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
-    \midrule
-    KNN & n\_neighbors & 2 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Weighted KNN Classifier Specific}} \\
-    \midrule
-    Weighted KNN & n\_neighbors & 7 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Linger Classifier with Additional Distance Column (Variation 3) Specific}} \\
-    \midrule
-    Linger Classifier & addition\_of\_context & False \\
-    Linger Classifier & additional\_distance\_column & True \\
-    Linger Classifier & duplicated\_on\_distance & False \\
-    Linger Classifier & n\_neighbours\_1 & 21 \\
-    Linger Classifier & n\_neighbours\_2 & 13 \\
-    Linger Classifier & weighted\_knn & False \\
-    \bottomrule
-    \end{tabular}
-\end{table}
-\clearpage
-
-\begin{table}[H]
-    \centering
-    \caption{Average Training and Test Accuracy Results for Classifiers (LCV3)}
-    \label{tab:average_results_LCV3}
-    \begin{tabular}{lll}
-    \toprule
-    \textbf{Classifier} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
-    \midrule
-    KNN Classifier & $68.24$ & $60.47$ \\
-    Weighted KNN Classifier & $70.00$ & $62.79$ \\
-    Neural Network Classifier & $71.06$ & $67.44$ \\
-    Linger Classifier & $67.65$ & $60.93$ \\
-    \bottomrule
-    \end{tabular}
-\end{table}
-\clearpage
-\subsubsection{(LCV3) Analysis}
-The third variation, which introduced an additional distance column ($additional_distance_column == \text{True}$), did not lead to 
-improvement in test accuracy for the \texttt{LingerClassifier} compared to LCV2 but maintained a competitive edge against the base NN model. 
-This indicates that while adding distance-based features can be beneficial, there may be diminishing returns to complexity, or specific dataset characteristics 
-may not fully leverage this type of information.
-
-\begin{tikzpicture}
-    \begin{axis}[
-        ybar,
-        enlargelimits=0.25,
-        legend style={at={(0.5,-0.35)},
-          anchor=north,legend columns=-1},
-        ylabel={Accuracy (\%)},
-        symbolic x coords={KNN, Weighted KNN, Neural Network, Linger Classifier},
-        xtick=data,
-        nodes near coords,
-        nodes near coords align={vertical},
-        x tick label style={rotate=45,anchor=east},
-        title={LCV3: Average Training and Test Accuracy Results for Classifiers}
-        ]
-    \addplot coordinates {(KNN,68.24) (Weighted KNN,70.00) (Neural Network,71.06) (Linger Classifier,67.65)};
-    \addplot coordinates {(KNN,60.47) (Weighted KNN,62.79) (Neural Network,67.44) (Linger Classifier,60.93)};
-    \legend{Training Accuracy,Test Accuracy}
-    \end{axis}
-\end{tikzpicture}
-
-\subsubsection{(LIC)}
-\subsubsection{(LICV1)}
-\subsubsection{(LICV2)}
-
-\subsubsection{Concluding Remarks}
 
 \subsection{Experiment 2: Abalone Dataset Regression}
 \subsubsection{Methodology}
@@ -3167,11 +2904,16 @@ These selected hyperparameters were then applied to train a \texttt{LingerRegres
 with their performance evaluated across four runs. Additionally, to benchmark the \texttt{LingerRegressor}'s performance, K-Nearest Neighbors (KNN), 
 weighted KNN, and NN models were similarly assessed on the dataset. The results section will detail the hyperparameters and performance metrics obtained from Experiment 2.
 
+LRV1 run 4 times due to resource restrictions.
+LRV2 was run 3 times due to the computational overhead.
+LIR was run 3 times
+LIRV1 was run 4 times. 
+Accuracy is used for LIR and all variations. NMSE is used for LR and all variations.
 \subsubsection{Tested Hyperparameters}
 
 \begin{table}[H]
     \centering
-    \caption{Tested Hyperparameters for Neural Network and Linger Regressor}
+    \caption{Tested Hyperparameters for Neural Network and \texttt{LingerRegressor}}
     \label{tab:hyperparameters_abalone}
     \begin{tabular}{|l|l|}
     \hline
@@ -3198,234 +2940,99 @@ weighted KNN, and NN models were similarly assessed on the dataset. The results 
 \end{table}
 \clearpage
 
-\subsubsection{(LR) Results}
+\subsubsection{Results}
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Regressors (LR)}
-    \label{tab:best_parameters_combined_LR}
-    \begin{tabular}{lll}
+    \caption{Best Parameters for KNN Comparison Models}
+    \label{tab:best_parameters_combined_knn_exp2}
+    \begin{tabular}{|l|l|l|}
     \toprule
-    \textbf{Regressor} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
     \midrule
-    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net Regressor and Linger Regressor}} \\
-    \midrule
-    Neural Net / Linger Regressor & Activation & relu \\
-    Neural Net / Linger Regressor & Alpha & 0.01 \\
-    Neural Net / Linger Regressor & Beta 1 & 0.95 \\
-    Neural Net / Linger Regressor & Beta 2 & 0.9 \\
-    Neural Net / Linger Regressor & Early Stopping & True \\
-    Neural Net / Linger Regressor & Hidden Layer Sizes & (200, 100) \\
-    Neural Net / Linger Regressor & Learning Rate Init & 0.01 \\
-    Neural Net / Linger Regressor & Max Iter & 2000 \\
-    Neural Net / Linger Regressor & Solver & sgd \\
-    Neural Net / Linger Regressor & Validation Fraction & 0.1 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{KNN Regressor Specific}} \\
-    \midrule
-    KNN Regressor & n\_neighbors & 17 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Weighted KNN Regressor Specific}} \\
-    \midrule
-    Weighted KNN Regressor & n\_neighbors & 21 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Linger Regressor Specific}} \\
-    \midrule
-    Linger Regressor & Addition of Context & False \\
-    Linger Regressor & Additional Distance Column & False \\
-    Linger Regressor & Duplicated on Distance & False \\
-    Linger Regressor & n\_Neighbours\_1 & 5 \\
-    Linger Regressor & n\_Neighbours\_2 & 21 \\
-    Linger Regressor & Weighted KNN & False \\
+    KNN & n\_neighbors & 17 \\
+    Weighted KNN & n\_neighbors & 21 \\
     \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Best Parameters for \texttt{LingerRegressor} and its Variations}
+    \label{tab:best_parameters_summary_exp1}
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    \textbf{Parameter} & \textbf{LR} & \textbf{LRV1} & \textbf{LRV2} & \textbf{LRV3} \\
+    \hline
+    Activation & relu & relu & relu & relu \\
+    Alpha & 0.01 & 0.001 & 0.1 & 0.01 \\
+    Beta 1 & 0.95 & 0.95 & 0.95 & 0.99 \\
+    Beta 2 & 0.9 & 0.9 & 0.9 & 0.9 \\
+    Early Stopping & True & True & True & True \\
+    Hidden Layer Sizes & (200, 100) & (200, 100) & (256, 128) & (200, 100) \\
+    Learning Rate Init & 0.01 & 0.01 & 0.01 & 0.01 \\
+    Max Iter & 2000 & 2000 & 2000 & 2000 \\
+    Solver & sgd & sgd & sgd & sgd \\
+    Validation Fraction & 0.1 & 0.1 & 0.1 & 0.1 \\
+    Addition of Context & False & True & False & False \\
+    Additional Distance Column & False & False & False & True \\
+    Duplicated on Distance & False & False & True & False \\
+    N Neighbors 1 & 5 & 2 & 21 & 5 \\
+    N Neighbors 2 & 21 & 17 & 21 & 17 \\
+    Weighted KNN & False & False & False & False \\
+    \hline
     \end{tabular}
 \end{table}
 \clearpage
 
 \begin{table}[H]
     \centering
-    \caption{Average Training and Test Negative Mean Squared Error Results (NMSE) for Regressors (LR)}
-    \label{tab:average_results_LR}
-    \begin{tabular}{lll}
-    \toprule
-    \textbf{Regressor} & \textbf{Average Training NMSE} & \textbf{Average Test NMSE} \\
-    \midrule
-    KNN Regressor & $-1.95857$ & $-1.92999$ \\
-    Weighted KNN Regressor & $-1.9567$ & $-1.8717$ \\
-    Neural Net Regressor & $-1.92956$ & $-1.89454$ \\
-    Linger Regressor & $-1.89797$ & $-1.83486$ \\
-    \bottomrule
+    \caption{Summary of Best Parameters for \texttt{LingerImplicitRegressor} and Its Variations}
+    \label{tab:best_parameters_LingerImageRegressor_variations_exp2}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Parameter} & \textbf{LIR} & \textbf{LIRV1} & \textbf{LIRV2} \\
+    \hline
+    Activation & relu & relu & relu \\
+    Alpha & 0.01 & 0.01 & 0.01 \\
+    Beta 1 & 0.99 & 0.9 & 0.9 \\
+    Beta 2 & 0.9 & 0.9 & 0.9 \\
+    Early Stopping & True & True & True \\
+    Hidden Layer Sizes & (128, 64) & (256, 128) & (200, 100) \\
+    Learning Rate Init & 0.01 & 0.01 & 0.01 \\
+    Max Iter & 2000 & 2000 & 2000 \\
+    Solver & sgd & sgd & sgd \\
+    Validation Fraction & 0.1 & 0.1 & 0.1 \\
+    N Neighbors 1 & 13 & 17 & 15 \\
+    N Neighbors 2 & 21 & 13 & 7 \\
+    Random Pairs & False & True & False \\
+    Single Pair & False & False & True \\
+    \hline
     \end{tabular}
 \end{table}
-\clearpage
-\subsubsection{(LR) Analysis}
-
-In an examination of the \texttt{LingerRegressor}'s performance across five iterations, it became evident that this model, even in its unvaried form, consistently outshined its counterparts during both the training and testing phases. 
-This superior performance underscores the efficacy of its unique "learning from differences" approach, adeptly uncovering and leveraging the dataset's underlying patterns. 
-Notably, while extensive hyperparameter optimization was applied to the Neural Network models, the \texttt{LingerRegressor} has yet to
- undergo a similar level of fine-tuning due to resource limitiations. 
- This observation hints at the untapped potential of the \texttt{LingerRegressor}, suggesting that with targeted hyperparameter 
- adjustments and the exploration of variations, there could be a significant opportunity to further enhance its performance.
-
-\begin{tikzpicture}
-    \begin{axis}[
-        ybar,
-        enlargelimits=0.15,
-        legend style={at={(0.5,-0.35)},
-          anchor=north,legend columns=-1},
-        ylabel={NMSE},
-        ymin=1.5, ymax=2, % Setting the y-axis limits
-        symbolic x coords={KNN, Weighted KNN, Neural Network, Linger Regressor},
-        xtick=data,
-        nodes near coords,
-        nodes near coords align={vertical},
-        x tick label style={rotate=45,anchor=east},
-        title={Average Training and Test NMSE for Regressors (LR)}
-        ]
-    \addplot coordinates {(KNN,1.95857) (Weighted KNN,1.9567) (Neural Network,1.92956) (Linger Regressor,1.89797)};
-    \addplot coordinates {(KNN,1.92999) (Weighted KNN,1.8717) (Neural Network,1.89454) (Linger Regressor,1.83486)};
-    \legend{Training NMSE,Test NMSE}
-    \end{axis}
-\end{tikzpicture}
-\subsubsection{(LRV1) Results}
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Regressors (LRV1)}
-    \label{tab:best_parameters_combined_LRV1}
-    \begin{tabular}{lll}
+    \caption{Summary of Training and Test NMSE/Accuracy Across All Models}
+    \label{tab:summary_accuracy_all_models_exp2}
+    \begin{tabular}{|l|l|l|}
     \toprule
-    \textbf{Regressor} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \textbf{Model / Variation} & \textbf{Training NMSE / Accuracy (\%)} & \textbf{Test NMSE / Accuracy (\%)} \\
     \midrule
-    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net Regressor and Linger Regressor}} \\
-    \midrule
-    Neural Net / Linger Regressor & Activation & relu \\
-    Neural Net / Linger Regressor & Alpha & 0.1 \\
-    Neural Net / Linger Regressor & Beta 1 & 0.99 \\
-    Neural Net / Linger Regressor & Beta 2 & 0.9 \\
-    Neural Net / Linger Regressor & Early Stopping & True \\
-    Neural Net / Linger Regressor & Hidden Layer Sizes & (300, 200, 100) \\
-    Neural Net / Linger Regressor & Learning Rate Init & 0.01 \\
-    Neural Net / Linger Regressor & Max Iter & 2000 \\
-    Neural Net / Linger Regressor & Solver & sgd \\
-    Neural Net / Linger Regressor & Validation Fraction & 0.1 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{KNN Regressor Specific}} \\
-    \midrule
-    KNN Regressor & n\_neighbors & 17 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Weighted KNN Regressor Specific}} \\
-    \midrule
-    Weighted KNN Regressor & n\_neighbors & 21 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Linger Regressor Specific}} \\
-    \midrule
-    Linger Regressor & Addition of Context & True \\
-    Linger Regressor & Additional Distance Column & False \\
-    Linger Regressor & Duplicated on Distance & False \\
-    Linger Regressor & n\_neighbours\_1 & 2 \\
-    Linger Regressor & n\_neighbours\_2 & 21 \\
-    Linger Regressor & Weighted KNN & False \\
+    KNN & $-1.959$ & $-1.930$ \\
+    Weighted KNN & $-1.941$ & $-1.912$ \\
+    Neural Network & $-1.930$ & $-1.895$ \\
+    LR (Base) & $-1.898$ & $-1.835$ \\
+    LRV1 (Context) & $-1.949$ & $-1.897$ \\
+    LRV2 (Duplicated on Distance) & $-2.047$ & $-1.949$ \\
+    LRV3 (Additional Distance Column) & $-1.9006$ & $\mathbf{-1.8250}$ \\
+    Neural Network with Labels Classified& $67.3$ & $\mathbf{64.8}$ \\
+    LIR (Implicit) & $63.2$ & $57.7$ \\
+    LIRV1 (Random) & $52.6$ & $48$ \\
+    LIRV2 (Single) & $59.7$ & $52$ \\
     \bottomrule
     \end{tabular}
 \end{table}
-\clearpage
-
-\begin{table}[H]
-    \centering
-    \caption{Average Training and Test Negative Mean Squared Error Results for Regressors (LRV1)}
-    \label{tab:average_results_LRV1}
-    \begin{tabular}{lll}
-    \toprule
-    \textbf{Regressor} & \textbf{Average Training NMSE} & \textbf{Average Test NMSE} \\
-    \midrule
-    KNN Regressor & $-1.9586$ & $-1.9300$ \\
-    Weighted KNN Regressor & $-1.9567$ & $-1.8717$ \\
-    Neural Net Regressor & $-1.8848$ & $-1.8234$ \\
-    Linger Regressor & $-1.9420$ & $-1.8697$ \\
-    \bottomrule
-    \end{tabular}
-\end{table}
-\clearpage
-\subsubsection{(LRV1) Analysis}
-The exploration of the \texttt{LingerRegressor} in its variation one (LRV1) configuration, incorporating the addition of context as a new parameter,
-has yielded intriguing insights. This variation maintained the \texttt{LingerRegressor}'s competitive edge, particularly in the testing phase, 
-where it achieved a lower Negative Mean Squared Error (NMSE) compared to its baseline and even outperformed the Neural Net Regressors training results. 
-The selected hyperparameters for LRV1—emphasizing a higher alpha and a shift in beta values—suggest an optimized balance between model complexity and regularization, 
-contributing to its enhanced performance. Remarkably, the Linger Regressor’s capacity to integrate context into its predictive process appears not especially benefit its ability to generalize, 
-as evidenced by its test (NMSE) scores, as they are very similar and slightly worse than the base version.
-
-This phase of experimentation underscores the substantial impact that tailored hyperparameter adjustments and strategic feature incorporation can have on model performance. 
-Despite the Neural Net Regressor undergoing extensive hyperparameter optimization, the Linger Regressor, with its focused enhancements in LRV1, demonstrates that thoughtful model refinement alter performance gains.
-The results from LRV1 not only reaffirm the \texttt{LingerRegressor}'s potential in leveraging complex patterns within the data but also spotlight the promising avenue that lies in further exploring and fine-tuning this model’s capabilities.
-
-\begin{tikzpicture}
-    \begin{axis}[
-        ybar,
-        enlargelimits=0.15,
-        legend style={at={(0.5,-0.35)},
-          anchor=north,legend columns=-1},
-        ylabel={NMSE},
-        ymin=1.5, ymax=2, % Setting the y-axis limits
-        symbolic x coords={KNN, Weighted KNN, Neural Network, Linger Regressor},
-        xtick=data,
-        nodes near coords,
-        nodes near coords align={vertical},
-        x tick label style={rotate=45,anchor=east},
-        title={Average Training and Test NMSE for Regressors (LR)}
-        ]
-    \addplot coordinates {(KNN,1.9586) (Weighted KNN,1.9567) (Neural Network,1.8848) (Linger Regressor,1.9420)};
-    \addplot coordinates {(KNN,1.9300) (Weighted KNN,1.8717) (Neural Network,1.8234) (Linger Regressor,1.8697)};
-    \legend{Training NMSE,Test NMSE}
-    \end{axis}
-\end{tikzpicture}
-\subsubsection{(LRV2) Results}
-
-\subsubsection{(LRV3)}
-\subsubsection{(LIR)}
-
-\begin{table}[H]
-    \centering
-    \caption{Updated Best Parameters for Regressors (LRV1)}
-    \label{tab:updated_best_parameters_combined_LRV1}
-    \begin{tabular}{lll}
-    \toprule
-    \textbf{Regressor} & \textbf{Hyperparameter} & \textbf{Value} \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net Regressor and Linger Implicit Regressor}} \\
-    \midrule
-    Basic Neural Network / Linger Regressor & Activation & relu \\
-    Basic Neural Network / Linger Regressor & Alpha & 0.01 \\
-    Basic Neural Network / Linger Regressor & Beta 1 & 0.9 \\
-    Basic Neural Network / Linger Regressor & Beta 2 & 0.9 \\
-    Basic Neural Network / Linger Regressor & Early Stopping & True \\
-    Basic Neural Network / Linger Regressor & Hidden Layer Sizes & (128, 64) \\
-    Basic Neural Network / Linger Regressor & Learning Rate Init & 0.01 \\
-    Basic Neural Network / Linger Regressor & Max Iter & 2000 \\
-    Basic Neural Network / Linger Regressor & Solver & sgd \\
-    Basic Neural Network / Linger Regressor & Validation Fraction & 0.1 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{KNN Regressor Specific}} \\
-    \midrule
-    KNN Regressor & n\_neighbors & 21 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Weighted KNN Regressor Specific}} \\
-    \midrule
-    Weighted KNN Regressor & n\_neighbors & 21 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Linger Regressor Specific}} \\
-    \midrule
-    Linger Regressor & n\_segments & 3 \\
-    Linger Regressor & equal\_division & True \\
-    Linger Regressor & n\_neighbors\_1 & 21 \\
-    Linger Regressor & n\_neighbors\_2 & 13 \\
-    Linger Regressor & Random Pairs & False \\
-    Linger Regressor & Single Pair & False \\
-    \bottomrule
-    \end{tabular}
-\end{table}
-\subsubsection{(LIRV1)}
-\subsubsection{(LIRV2)}
 
 \subsection{Experiment 3: Raisin Dataset Classification}
 \subsubsection{Methodology}
@@ -3435,11 +3042,15 @@ and its variants for improved robustness, tested across five runs.
 For comparative analysis, we also evaluated the performance of K-Nearest Neighbors (KNN), 
 weighted (KNN), and (NN) on the same dataset. The sections below detail the hyperparameters selected and the test accuracies achieved.
 
+LC run 4 times
+LCV1 run twice 
+LCV2 run twice 
+LIC, LICV1, LICV2 run twice
 \subsubsection{Tested Hyperparameters}
 
 \begin{table}[H]
     \centering
-    \caption{Tested Hyperparameters for Neural Network and Linger Regressor}
+    \caption{Tested Hyperparameters for Neural Network and \texttt{LingerClassifier}}
     \label{tab:hyperparameters_raisin}
     \begin{tabular}{|l|l|}
     \hline
@@ -3466,136 +3077,98 @@ weighted (KNN), and (NN) on the same dataset. The sections below detail the hype
 \end{table}
 \clearpage
 
-\subsubsection{(LC) Results}
+\subsubsection{Results}
 
 \begin{table}[H]
     \centering
-    \caption{Best Parameters for Classifiers (LC)}
-    \label{tab:best_parameters_combined_LC_Raisin}
-    \begin{tabular}{lll}
+    \caption{Best Parameters for KNN Comparison Models}
+    \label{tab:best_parameters_combined_knn_exp3}
+    \begin{tabular}{|l|l|l|}
     \toprule
     \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
     \midrule
-    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net Classifier and Linger Classifier}} \\
-    \midrule
-    Neural Net / Linger Classifier & Activation & identity \\
-    Neural Net / Linger Classifier & Alpha & 0.1 \\
-    Neural Net / Linger Classifier & Beta 1 & 0.95 \\
-    Neural Net / Linger Classifier & Beta 2 & 0.999 \\
-    Neural Net / Linger Classifier & Early Stopping & True \\
-    Neural Net / Linger Classifier & Hidden Layer Sizes & (200, 100) \\
-    Neural Net / Linger Classifier & Learning Rate Init & 0.01 \\
-    Neural Net / Linger Classifier & Max Iter & 2000 \\
-    Neural Net / Linger Classifier & Solver & adam \\
-    Neural Net / Linger Classifier & Validation Fraction & 0.2 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
-    \midrule
-    KNN Classifier & n\_neighbors & 13 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Weighted KNN Classifier Specific}} \\
-    \midrule
-    Weighted KNN Classifier & n\_neighbors & 13 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Linger Classifier Specific}} \\
-    \midrule
-    Linger Classifier & Addition of Context & False \\
-    Linger Classifier & Additional Distance Column & False \\
-    Linger Classifier & Duplicated on Distance & False \\
-    Linger Classifier & n\_neighbors\_1 & 5 \\
-    Linger Classifier & n\_neighbors\_2 & 13 \\
-    Linger Classifier & Weighted KNN & False \\
+    KNN & n\_neighbors & 13 \\
+    Weighted KNN & n\_neighbors & 13 \\
     \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Best Parameters for \texttt{LingerClassifier} and its Variations}
+    \label{tab:best_parameters_summary_exp3}
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    \textbf{Parameter} & \textbf{LC} & \textbf{LCV1} & \textbf{LCV2} & \textbf{LCV3} \\
+    \hline
+    Activation & identity & tanh & tanh & identity \\
+    Alpha & 0.01 & 0.01 & 0.01 & 0.01 \\
+    Beta 1 & 0.9 & 0.95 & 0.9 & 0.9 \\
+    Beta 2 & 0.999 & 0.9 & 0.9 & 0.9 \\
+    Early Stopping & True & True & True & True \\
+    Hidden Layer Sizes & (128, 64) & (256, 128) & (128, 64) & (300, 200, 100) \\
+    Learning Rate Init & 0.001 & 0.001 & 0.001 & 0.001 \\
+    Max Iter & 1500 & 1500 & 1500 & 2000 \\
+    Solver & adam & adam & adam & adam \\
+    Validation Fraction & 0.1 & 0.3 & 0.3 & 0.3 \\
+    Addition of Context & False & True & False & False \\
+    Additional Distance Column & False & False & False & True \\
+    Duplicated on Distance & False & False & True & False \\
+    N Neighbors 1 & 5 & 15 & 10 & 2 \\
+    N Neighbors 2 & 13 & 21 & 21 & 13 \\
+    Weighted KNN & False & False & False & False \\
+    \hline
     \end{tabular}
 \end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Best Parameters for \texttt{LingerImplicitClassifier} and Its Variations}
+    \label{tab:best_parameters_LIC_variations_exp3}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Parameter} & \textbf{LIC} & \textbf{LICV1} & \textbf{LICV2} \\
+    \hline
+    Activation & tanh & identity & identity \\
+    Alpha & 0.1 & 0.01 & 0.01 \\
+    Beta 1 & 0.95 & 0.9 & 0.9 \\
+    Beta 2 & 0.999 & 0.999 & 0.999 \\
+    Early Stopping & True & True & True \\
+    Hidden Layer Sizes & (128, 64) & (400, 300, 200, 100) & (400, 300, 200, 100) \\
+    Learning Rate Init & 0.1 & 0.001 & 0.001 \\
+    Max Iter & 1500 & 2000 & 2000 \\
+    Solver & sgd & adam & adam \\
+    Validation Fraction & 0.2 & 0.3 & 0.3 \\
+    N Neighbors 1 & 2 & 2 & 7 \\
+    N Neighbors 2 & 13 & 13 & 13 \\
+    Random Pairs & False & True & False \\
+    Single Pair & False & False & True \\
+    \hline
+    \end{tabular}
+    \end{table}
 \clearpage
 
 \begin{table}[H]
     \centering
-    \caption{Average Training and Test Accuracy Results for Classifiers (LC)}
-    \label{tab:average_results_LC_Raisin}
-    \begin{tabular}{lll}
+    \caption{Summary of Training and Test Accuracy Across All Models}
+    \label{tab:summary_accuracy_all_models_exp3}
+    \begin{tabular}{|l|l|l|}
     \toprule
-    \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} & \textbf{Average Test Accuracy (\%)} \\
+    \textbf{Model / Variation} & \textbf{Accuracy (\%)} & \textbf{Accuracy (\%)} \\
     \midrule
-    KNN Classifier & $91.718$ & $91$ \\
-    Weighted KNN Classifier & $91.218$ & $91$ \\
-    Neural Net Classifier & $94.098$ & $91$ \\
-    Linger Classifier & $91.655$ & $90.5$ \\
+    KNN & $91.7$ & $91$ \\
+    Weighted KNN & $91.2$ & $91$ \\
+    Neural Network & $94.1$ & $91$ \\
+    LC (Base) & $91.7$ & $90.5$ \\
+    LCV1 (Context) & $92.2$ & $89.5$ \\
+    LCV2 (Duplicated on Distance) & $92.3$ & $90.5$ \\
+    LCV3 (Additional Distance Column) & $91.7$ & $91$ \\
+    LIC (Implicit) & $91.6$ & $90.5$ \\
+    LICV1 (Random) & $91.6$ & $89.5$ \\
+    LICV2 (Single) & $91.5$ & $91$ \\
     \bottomrule
     \end{tabular}
 \end{table}
-
-\subsubsection{(LC) Analysis}
-\subsubsection{(LCV1) Results}
-This was only run twice as there were constraints on resources during testing that resulted in less robust trials.
-
-\begin{table}[H]
-    \centering
-    \caption{Best Parameters for Classifiers (LCV1)}
-    \label{tab:best_parameters_combined_LCV1_Raisin}
-    \begin{tabular}{lll}
-    \toprule
-    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Common Parameters for Neural Net Classifier and Linger Classifier}} \\
-    \midrule
-    Neural Net / Linger Classifier & Activation & identity \\
-    Neural Net / Linger Classifier & Alpha & 0.1 \\
-    Neural Net / Linger Classifier & Beta 1 & 0.95 \\
-    Neural Net / Linger Classifier & Beta 2 & 0.999 (0.9 for Linger Classifier) \\
-    Neural Net / Linger Classifier & Early Stopping & True \\
-    Neural Net / Linger Classifier & Hidden Layer Sizes & (200, 100) \\
-    Neural Net / Linger Classifier & Learning Rate Init & 0.01 \\
-    Neural Net / Linger Classifier & Max Iter & 2000 \\
-    Neural Net / Linger Classifier & Solver & adam \\
-    Neural Net / Linger Classifier & Validation Fraction & 0.2 (0.3 for Linger Classifier) \\
-    \midrule
-    \multicolumn{3}{l}{\textit{KNN Classifier Specific}} \\
-    \midrule
-    KNN Classifier & n\_neighbors & 13 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Weighted KNN Classifier Specific}} \\
-    \midrule
-    Weighted KNN Classifier & n\_neighbors & 13 \\
-    \midrule
-    \multicolumn{3}{l}{\textit{Linger Classifier Specific}} \\
-    \midrule
-    Linger Classifier & Addition of Context & True \\
-    Linger Classifier & Additional Distance Column & False \\
-    Linger Classifier & Duplicated on Distance & False \\
-    Linger Classifier & n\_neighbors\_1 & 15 \\
-    Linger Classifier & n\_neighbors\_2 & 21 \\
-    Linger Classifier & Weighted KNN & False \\
-    \bottomrule
-    \end{tabular}
-\end{table}
-\clearpage
-
-\begin{table}[H]
-    \centering
-    \caption{Average Training and Test Accuracy Results for Classifiers (LCV1)}
-    \label{tab:average_results_LCV1_Raisin}
-    \begin{tabular}{lll}
-    \toprule
-    \textbf{Classifier} & \textbf{Average Training Accuracy (\%)} & \textbf{Average Test Accuracy (\%)} \\
-    \midrule
-    KNN Classifier & $91.718$ & $91$ \\
-    Weighted KNN Classifier & $91.218$ & $91$ \\
-    Neural Net Classifier & $94.139$ & $90$ \\
-    Linger Classifier & $91.843$ & $90.168$ \\
-    \bottomrule
-    \end{tabular}
-\end{table}
-\clearpage
-
-\subsubsection{(LCV2)}
-\subsubsection{(LCV3)}
-\subsubsection{(LIC)}
-\subsubsection{(LICV1)}
-\subsubsection{(LICV2)}
-
-\section{Discussion}
 
 \chapter{Conclusions and Future Work}
 \label{ch:Conclusions and Future Work}
