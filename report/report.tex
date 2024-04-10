@@ -3036,16 +3036,22 @@ Accuracy is used for LIR and all variations. NMSE is used for LR and all variati
 
 \subsection{Experiment 3: Raisin Dataset Classification}
 \subsubsection{Methodology}
-In Experiment 3, we conducted classification tasks on the Raisin dataset from \cite{uciDatasets}, specifically the dataset \cite{misc_raisin_850} using a two-step methodology. Initially, we trained a neural network (NN) classifier 
-through grid search and cross-validation to determine the optimal hyperparameters. These hyperparameters were then applied to train a \texttt{LingerClassifier} (LC) 
-and its variants for improved robustness, tested across five runs.
-For comparative analysis, we also evaluated the performance of K-Nearest Neighbors (KNN), 
-weighted (KNN), and (NN) on the same dataset. The sections below detail the hyperparameters selected and the test accuracies achieved.
+In Experiment 3, we conducted a comprehensive analysis on the Raisin dataset sourced from the UCI Machine Learning Repository~\cite{uciDatasets}, 
+specifically detailed in~\cite{misc_raisin_850}. Our methodology was two-fold: initially, we determined the optimal hyperparameters for a neural network (NN) classifier 
+through an exhaustive grid search coupled with cross-validation. This foundational step ensured the NN classifier was finely tuned for the dataset. 
+Subsequently, these hyperparameters were employed to train the \texttt{LingerClassifier} (LC) and its variants, focusing on enhancing model robustness. 
+The performance of these classifiers was benchmarked against K-Nearest Neighbors (KNN), Weighted KNN, and the baseline NN classifier through five independent
+ runs to ensure statistical reliability. Our comparative analysis leverages this diverse classifier ensemble to draw insights into the efficacy and robustness of 
+ each model relative to the Raisin dataset, showcasing the nuanced trade-offs between model complexity and classification accuracy.
+ Due to time and resouce constraints the certain classifiers were run for a different number of iterations.
+\begin{itemize}
+    \item \texttt{LingerClassifier} (LC) was run 4 times.
+    \item \texttt{LingerClassifier} variant 1 (LCV1) was run twice.
+    \item \texttt{LingerClassifier} variant 2 (LCV2) was run twice.
+    \item item \texttt{LingerClassifier} variant 3 (LCV3) was run twice.
+    \item \texttt{LingerImplicitClassifier} (LIC), along with its variants LICV1 and LICV2, were each run twice.
+\end{itemize}
 
-LC run 4 times
-LCV1 run twice 
-LCV2 run twice 
-LIC, LICV1, LICV2 run twice
 \subsubsection{Tested Hyperparameters}
 
 \begin{table}[H]

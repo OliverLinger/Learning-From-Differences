@@ -20,9 +20,9 @@
 \contentsline {table}{\numberline {4.8}{\ignorespaces Summary of Best Parameters for \texttt {LingerRegressor} and its Variations}}{105}{table.caption.65}%
 \contentsline {table}{\numberline {4.9}{\ignorespaces Summary of Best Parameters for \texttt {LingerImplicitRegressor} and Its Variations}}{106}{table.caption.66}%
 \contentsline {table}{\numberline {4.10}{\ignorespaces Summary of Training and Test NMSE/Accuracy Across All Models}}{106}{table.caption.67}%
-\contentsline {table}{\numberline {4.11}{\ignorespaces Tested Hyperparameters for Neural Network and \texttt {LingerClassifier}}}{107}{table.caption.70}%
-\contentsline {table}{\numberline {4.12}{\ignorespaces Best Parameters for KNN Comparison Models}}{108}{table.caption.72}%
-\contentsline {table}{\numberline {4.13}{\ignorespaces Summary of Best Parameters for \texttt {LingerClassifier} and its Variations}}{108}{table.caption.73}%
-\contentsline {table}{\numberline {4.14}{\ignorespaces Summary of Best Parameters for \texttt {LingerImplicitClassifier} and Its Variations}}{109}{table.caption.74}%
-\contentsline {table}{\numberline {4.15}{\ignorespaces Summary of Training and Test Accuracy Across All Models}}{110}{table.caption.75}%
+\contentsline {table}{\numberline {4.11}{\ignorespaces Tested Hyperparameters for Neural Network and \texttt {LingerClassifier}}}{108}{table.caption.70}%
+\contentsline {table}{\numberline {4.12}{\ignorespaces Best Parameters for KNN Comparison Models}}{109}{table.caption.72}%
+\contentsline {table}{\numberline {4.13}{\ignorespaces Summary of Best Parameters for \texttt {LingerClassifier} and its Variations}}{109}{table.caption.73}%
+\contentsline {table}{\numberline {4.14}{\ignorespaces Summary of Best Parameters for \texttt {LingerImplicitClassifier} and Its Variations}}{110}{table.caption.74}%
+\contentsline {table}{\numberline {4.15}{\ignorespaces Summary of Training and Test Accuracy Across All Models}}{111}{table.caption.75}%
 \addvspace {10\p@ }

@@ -41,7 +41,6 @@ diff_y = np.array(diff_y)
 # Example usage:
 input_shape = (32, 32, 3)  # Input shape for CIFAR-100
 num_classes = 100  # Number of classes in CIFAR-100
-diff_y = np.zeros((diff_y.shape[0], num_classes))
 
 # Initialize and compile the CNN model for training on difference images
 input_shape = (32, 32, 3)
@@ -68,7 +67,7 @@ print("Standard CNN Accuracy on CIFAR-100 test set:", accuracy_standard_cnn)
 accuracy_cifar_100 = accuracy_score(y_test_cifar, y_pred)
 print("Accuracy on CIFAR-100 test set differences:", accuracy_cifar_100)
 file_path = r'C:\Users\USER\final_year\fyp\results\images\cifar.txt'
-with open(file_path, 'a') as file:
-    file.write(f"Accuracy on CIFAR-100 test set differences: {accuracy_cifar_100}\n")
-    file.write(f"Standard CNN Accuracy on CIFAR-100 test set: {accuracy_standard_cnn}\n")
+# with open(file_path, 'a') as file:
+#     file.write(f"Accuracy on CIFAR-100 test set differences: {accuracy_cifar_100}\n")
+#     file.write(f"Standard CNN Accuracy on CIFAR-100 test set: {accuracy_standard_cnn}\n")
 
