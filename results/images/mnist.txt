@@ -1,2 +1,7 @@
 Accuracy on MNIST test set differences: 0.8804558515548706
 Standard CNN Accuracy on MNIST test set: 0.10376668721437454
+Accuracy on MNIST test set differences: 7.304018020629883
+Standard CNN Accuracy on MNIST test set: 0.17205357551574707
+over 30 epochs
+Accuracy on MNIST test set differences: 7.290651798248291
+Standard CNN Accuracy on MNIST test set: 0.19778333604335785

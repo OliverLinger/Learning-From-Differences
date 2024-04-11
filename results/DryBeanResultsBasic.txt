@@ -1,6 +1,7 @@
 gitBasic classifier, No variationsBest Parameters KNN classifier: ({'predictor__n_neighbors': 5},)
 Best Score KNN classifier: 0.9633192389006343
-Best parameters for distance weighted KNN: {'predictor__n_neighbors': 10}Best score for distance weighted KNN: 0.96553911205074Best Parameters Neural net classifier: ({'predictor__activation': 'tanh', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.95, 'predictor__beta_2': 0.999, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (128, 64), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3},)
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 10}Best score for distance weighted KNN: 0.96553911205074
+Best Parameters Neural net classifier: ({'predictor__activation': 'tanh', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.95, 'predictor__beta_2': 0.999, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (128, 64), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3},)
 Best Score Neural net classifier: 0.9908562367864693
 Best Parameters Linger classifier: ({'predictor__activation': 'tanh', 'predictor__addition_of_context': False, 'predictor__additional_results_column': False, 'predictor__alpha': 0.001, 'predictor__beta_1': 0.95, 'predictor__beta_2': 0.999, 'predictor__duplicated_on_distance': False, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (128, 64), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 1000, 'predictor__n_neighbours_1': 21, 'predictor__n_neighbours_2': 15, 'predictor__solver': 'adam', 'predictor__validation_fraction': 0.3, 'predictor__weighted_knn': False},)
 Best Score Linger classifier: 0.9839323467230443
@@ -10,3 +11,27 @@ Test Accuracy for weighted KNN classifier: 0.9727272727272728
 Test Accuracy for Neural Network classifier: 1.0
 Test Accuracy for Linger Classifier: 1.0
 --------------------------------------------------------------
+nn_param_grid = {
+    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), (300, 200, 100), (400, 300, 200, 100)],
+    "predictor__activation": ["identity", "logistic", "tanh", "relu"],
+    "predictor__alpha": [0.0001, 0.001, 0.01, 0.1],
+    "predictor__max_iter": [1000, 1500],
+    "predictor__early_stopping": [True],
+    "predictor__validation_fraction": [0.1, 0.2, 0.3],
+    "predictor__learning_rate_init": [0.001, 0.01, 0.1],
+    "predictor__solver": ['adam', 'sgd'],
+    "predictor__beta_1": [0.9, 0.95, 0.99],
+    "predictor__beta_2": [0.999, 0.995, 0.9]
+    }
+nn_param_grid = {
+    "predictor__hidden_layer_sizes": [(128, 64)],
+    "predictor__activation": ["tanh"],
+    "predictor__alpha": [0.01],
+    "predictor__max_iter": [1000],
+    "predictor__early_stopping": [True],
+    "predictor__validation_fraction": [0.3],
+    "predictor__learning_rate_init": [0.01],
+    "predictor__solver": ['adam'],
+    "predictor__beta_1": [0.95],
+    "predictor__beta_2": [0.999]
+    }

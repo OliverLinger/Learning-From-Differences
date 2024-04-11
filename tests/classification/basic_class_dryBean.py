@@ -96,17 +96,18 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     #     "predictor__early_stopping": [True],
     #     "predictor__validation_fraction": [0.1],
     # }
+    # Using best params from basic 
     nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), (300, 200, 100), (400, 300, 200, 100)],
-    "predictor__activation": ["identity", "logistic", "tanh", "relu"],
-    "predictor__alpha": [0.0001, 0.001, 0.01, 0.1],
-    "predictor__max_iter": [1000, 1500],
+    "predictor__hidden_layer_sizes": [(128, 64)],
+    "predictor__activation": ["tanh"],
+    "predictor__alpha": [0.01],
+    "predictor__max_iter": [1000],
     "predictor__early_stopping": [True],
-    "predictor__validation_fraction": [0.1, 0.2, 0.3],
-    "predictor__learning_rate_init": [0.001, 0.01, 0.1],
-    "predictor__solver": ['adam', 'sgd'],
-    "predictor__beta_1": [0.9, 0.95, 0.99],
-    "predictor__beta_2": [0.999, 0.995, 0.9]
+    "predictor__validation_fraction": [0.3],
+    "predictor__learning_rate_init": [0.01],
+    "predictor__solver": ['adam'],
+    "predictor__beta_1": [0.95],
+    "predictor__beta_2": [0.999]
     }
 
     nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
