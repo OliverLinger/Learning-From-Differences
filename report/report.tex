@@ -2897,18 +2897,21 @@ tuning.
 
 \subsection{Experiment 2: Abalone Dataset Regression}
 \subsubsection{Methodology}
-
+\label{exp:2Abalone}
 In Experiment 2, we explored regression tasks on the Abalone dataset with a two-step approach. 
 Initially, a neural network (NN) regressor was trained using grid search and cross-validation to identify optimal hyperparameter combinations. 
 These selected hyperparameters were then applied to train a \texttt{LingerRegressor} (LR) and its variants, targeting improved robustness, 
 with their performance evaluated across four runs. Additionally, to benchmark the \texttt{LingerRegressor}'s performance, K-Nearest Neighbors (KNN), 
 weighted KNN, and NN models were similarly assessed on the dataset. The results section will detail the hyperparameters and performance metrics obtained from Experiment 2.
+The variantion in the number of run times is due to resource constraints. 
+For (LIR) and its variant, the continuous $y$ values were broken up into 3 classes with a roughly equal number of samples in each.
+\begin{itemize}
+    \item \texttt{LingerRegressor} (LR) was run 4 times, its (LRV1), (LRV2), and (LRV3) variants were each run twice
+    \item \texttt{LingerImplicitRegressor} (LIR), along with its variants LICV1 and LICV2, were each run twice.
+\end{itemize}
 
-LRV1 run 4 times due to resource restrictions.
-LRV2 was run 3 times due to the computational overhead.
-LIR was run 3 times
-LIRV1 was run 4 times. 
-Accuracy is used for LIR and all variations. NMSE is used for LR and all variations.
+Negative mean squared error is used for LR and all variations.
+Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on regression tasks.
 \subsubsection{Tested Hyperparameters}
 
 \begin{table}[H]
@@ -3043,7 +3046,7 @@ Subsequently, these hyperparameters were employed to train the \texttt{LingerCla
 The performance of these classifiers was benchmarked against K-Nearest Neighbors (KNN), Weighted KNN, and the baseline NN classifier through five independent
  runs to ensure statistical reliability. Our comparative analysis leverages this diverse classifier ensemble to draw insights into the efficacy and robustness of 
  each model relative to the Raisin dataset, showcasing the nuanced trade-offs between model complexity and classification accuracy.
- Due to time and resouce constraints the certain classifiers were run for a different number of iterations.
+ Due to time and resource constraints the certain classifiers were run for a different number of iterations.
 \begin{itemize}
     \item \texttt{LingerClassifier} (LC) was run 4 times.
     \item \texttt{LingerClassifier} variant 1 (LCV1) was run twice.
@@ -3174,6 +3177,57 @@ The performance of these classifiers was benchmarked against K-Nearest Neighbors
     LICV2 (Single) & $91.5$ & $91$ \\
     \bottomrule
     \end{tabular}
+\end{table}
+
+\subsection{Experiment 4: White Wine Dataset Regression}
+\subsubsection{Methodology}
+The methodology is identical to the Abalone experiment \ref{exp:2Abalone}. 
+The difference between  the experiments is in the number of run times per regressor and variation.
+\subsubsection{Tested Hyperparameters}
+There was a reduction in the number of hyperparameters due to the time it was taking to run the tests.
+\begin{table}[H]
+    \centering
+    \caption{Tested Hyperparameters for Neural Network and \texttt{LingerRegressor}}
+    \label{tab:hyperparameters_abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Values} \\ \hline
+    \multicolumn{2}{|c|}{\textbf{Neural Network}} \\ \hline
+    Hidden Layer Sizes & (256, 128), (128, 64), (200, 100) \\ \hline
+    Activation & relu \\ \hline
+    Alpha & 0.01 \\ \hline
+    Max Iterations & 2000 \\ \hline
+    Early Stopping & True \\ \hline
+    Validation Fraction & 0.1 \\ \hline
+    Learning Rate Init & 0.01 \\ \hline
+    Solver & sgd \\ \hline
+    Beta 1 & 0.9 \\ \hline
+    Beta 2 & 0.9 \\ \hline
+    \multicolumn{2}{|c|}{\textbf{Linger Regressor}} \\ \hline
+    N Neighbours 1 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
+    N Neighbours 2 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
+    Weighted KNN & False \\ \hline
+    Additional Distance Column & True, False \\ \hline
+    Duplicated on Distance & True, False \\ \hline
+    Addition of Context & True, False \\ \hline
+    \end{tabular}
+\end{table}
+\clearpage
+
+\subsubsection{Results}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for KNN Comparison Models}
+    \label{tab:best_parameters_combined_knn_exp2}
+    \begin{tabular}{|l|l|l|}
+    \toprule
+    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    KNN & n\_neighbors & 2 \\
+    Weighted KNN & n\_neighbors & 13 \\
+    \bottomrule
+\end{tabular}
 \end{table}
 
 \chapter{Conclusions and Future Work}

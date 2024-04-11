@@ -95,7 +95,7 @@ class LingerImageClassifier(BaseEstimator, ClassifierMixin):
         differences_test_X = diff_X.reshape(-1, *input_shape)
         # Make a prediction based on the differences in the test set X
         predictions = model.predict(differences_test_X)
-        
+        print(predictions)
         y_pred = []
         for indexes, differences in zip(indices, predictions):
             results = [self.train_y[i][0] + d for i, d in zip(indexes, differences)]
