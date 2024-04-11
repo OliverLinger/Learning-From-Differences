@@ -6,7 +6,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from differences_implicit import _regression
 from differences_implicit import regression_to_class
-from sklearn.neural_network import MLPRegressor
+from sklearn.neural_network import MLPClassifier
 import pandas as pd
 import numpy as np
 from datetime import datetime
@@ -67,25 +67,27 @@ def train_weighted_knn_regressor(dev_X, dev_y, preprocessor):
     return knn_gs
 
 def train_neural_network(dev_X, dev_y, preprocessor):
+    regr_to_class = regression_to_class.RegressionToClassificationConverter(n_segments=4, equal_division=True)
+    dev_y, unique_ranges, min_val, max_val = regr_to_class.transform(y=dev_y)
     nn_pipeline = Pipeline([
         ("preprocessor", preprocessor),
-        ("predictor", MLPRegressor())
+        ("predictor", MLPClassifier())
     ])
 
     nn_param_grid = {
-    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), (300, 200, 100)],
-    "predictor__activation": ["identity", "logistic", "relu"],
-    "predictor__alpha": [ 0.001, 0.01, 0.1],
-    "predictor__max_iter": [1000, 1500],
-    "predictor__early_stopping": [True],
-    "predictor__validation_fraction": [0.1, 0.2, 0.3],
-    "predictor__learning_rate_init": [0.001, 0.01, 0.1],
-    "predictor__solver": ['adam', 'sgd'],
-    "predictor__beta_1": [0.9, 0.95, 0.99],
-    "predictor__beta_2": [0.999, 0.995, 0.9]
+    "predictor__hidden_layer_sizes": [(128, 64)],
+    "predictor__activation": ["logistic"],
+    "predictor__alpha": [ 0.001],
+    "predictor__max_iter": [2000],
+    # "predictor__early_stopping": [True],
+    # "predictor__validation_fraction": [0.3],
+    "predictor__learning_rate_init": [ 0.01, 0.1],
+    "predictor__solver": ['sgd'],
+    "predictor__beta_1": [0.9],
+    "predictor__beta_2": [0.9]
     }
 
-    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="accuracy", cv=10, refit=True, n_jobs=1)
     nn_gs.fit(dev_X, dev_y)
 
     return nn_gs
@@ -150,7 +152,7 @@ def calculate_test_accuracies(file_path, knn_gs,weighted_knn_gs, lfd_gs, nn_gs, 
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\regressionImplicit\HousePricesImplicitResultsBasic.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\regressionImplicit\HousePricesImplicitResultsVar1.txt'
     df = pd.read_csv("datasets/house_prices/dataset_corkB.csv")
     columns = df.columns
     features = ["flarea", "bdrms", "bthrms", "floors", "type", "devment", "ber", "location"]

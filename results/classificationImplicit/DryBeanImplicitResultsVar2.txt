@@ -1,0 +1,24 @@
+nn_param_grid = {
+    "predictor__hidden_layer_sizes": [(256, 128), (128, 64), (200, 100), (300, 200, 100), (400, 300, 200, 100)],
+    "predictor__activation": ["identity", "logistic", "tanh", "relu"],
+    "predictor__alpha": [0.0001, 0.001, 0.01, 0.1],
+    "predictor__max_iter": [1500, 2000],
+    # "predictor__early_stopping": [True],
+    # "predictor__validation_fraction": [0.1, 0.2, 0.3],
+    "predictor__learning_rate_init": [0.001, 0.01, 0.1],
+    "predictor__solver": ['adam', 'sgd'],
+    "predictor__beta_1": [0.9, 0.95, 0.99],
+    "predictor__beta_2": [0.999, 0.995, 0.9]
+    }Test Time: 21:56:07.163621
+Best Parameters KNN classifier: ({'predictor__n_neighbors': 5},)
+Best Score KNN classifier: 0.9633192389006343
+Best parameters for distance weighted KNN: {'predictor__n_neighbors': 10}Best score for distance weighted KNN: 0.96553911205074Best Parameters Linger classifier: ({'predictor__activation': 'tanh', 'predictor__alpha': 0.1, 'predictor__beta_1': 0.99, 'predictor__beta_2': 0.995, 'predictor__hidden_layer_sizes': (300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 2000, 'predictor__n_neighbours_1': 7, 'predictor__n_neighbours_2': 15, 'predictor__random_pairs': False, 'predictor__single_pair': True, 'predictor__solver': 'adam'},)
+Best Score Linger Classifier: 0.0645877378435518
+Best Parameters Basic Neural Network: ({'predictor__activation': 'tanh', 'predictor__alpha': 0.1, 'predictor__beta_1': 0.99, 'predictor__beta_2': 0.995, 'predictor__hidden_layer_sizes': (300, 200, 100), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 2000, 'predictor__solver': 'adam'},)
+Best Score Basic Neural Network: 0.990909090909091
+--------------------------------------------------------------
+Test Accuracy for KNN classifier: 0.9636363636363636
+Test Accuracy for weighted KNN classifier: 0.9727272727272728
+Test Accuracy for Linger Classifier: 0.00909090909090909
+Test Accuracy for Basic Neural Network: 1.0
+--------------------------------------------------------------

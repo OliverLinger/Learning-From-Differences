@@ -1,0 +1,14 @@
+Best Parameters KNN regression: ({'predictor__n_neighbors': 2},)
+Best Score KNN regression: -68.34114509246088
+Best Parameters weighted KNN regression: ({'predictor__n_neighbors': 5},)
+Best Score weighted KNN regression: -67.48904475706937
+Best Parameters Linger regression: ({'predictor__activation': 'logistic', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.9, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (128, 64), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 2000, 'predictor__n_neighbours_1': 21, 'predictor__n_neighbours_2': 5, 'predictor__random_pairs': False, 'predictor__single_pair': False, 'predictor__solver': 'sgd', 'predictor__validation_fraction': 0.3},)
+Best Score Linger Regression: 0.2600284495021337
+Best Parameters Basic Neural Network: ({'predictor__activation': 'logistic', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.9, 'predictor__early_stopping': True, 'predictor__hidden_layer_sizes': (128, 64), 'predictor__learning_rate_init': 0.01, 'predictor__max_iter': 2000, 'predictor__solver': 'sgd', 'predictor__validation_fraction': 0.3},)
+Best Score Basic Neural Network: -115.21897691910745
+--------------------------------------------------------------
+Test Accuracy for KNN regressor: -95.32105263157895
+Test Accuracy for weighted KNN regressor: -87.93418887405241
+Test Accuracy for Linger Regressor: 0.18947368421052632
+Test Accuracy for Basic Neural Network: -325.9082408158846
+--------------------------------------------------------------
