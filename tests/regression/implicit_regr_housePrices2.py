@@ -105,7 +105,7 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
 
     # Add other parameters to lfd_param_grid
     lfd_param_grid.update({
-        "predictor__random_pairs": [False],
+        "predictor__random_pairs": [True],
         "predictor__single_pair": [False],
         "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
