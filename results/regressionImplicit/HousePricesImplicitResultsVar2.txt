@@ -2,13 +2,13 @@ Best Parameters KNN regression: ({'predictor__n_neighbors': 2},)
 Best Score KNN regression: -68.34114509246088
 Best Parameters weighted KNN regression: ({'predictor__n_neighbors': 5},)
 Best Score weighted KNN regression: -67.48904475706937
-Best Parameters Linger regression: ({'predictor__activation': 'logistic', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.9, 'predictor__hidden_layer_sizes': (128, 64), 'predictor__learning_rate_init': 0.1, 'predictor__max_iter': 2000, 'predictor__n_neighbours_1': 21, 'predictor__n_neighbours_2': 7, 'predictor__random_pairs': True, 'predictor__single_pair': False, 'predictor__solver': 'sgd'},)
-Best Score Linger Regression: 0.3161450924608819
+Best Parameters Linger regression: ({'predictor__activation': 'logistic', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.9, 'predictor__hidden_layer_sizes': (128, 64), 'predictor__learning_rate_init': 0.1, 'predictor__max_iter': 2000, 'predictor__n_neighbours_1': 15, 'predictor__n_neighbours_2': 15, 'predictor__random_pairs': False, 'predictor__single_pair': True, 'predictor__solver': 'sgd'},)
+Best Score Linger Regression: 0.4273115220483642
 Best Parameters Basic Neural Network: ({'predictor__activation': 'logistic', 'predictor__alpha': 0.001, 'predictor__beta_1': 0.9, 'predictor__beta_2': 0.9, 'predictor__hidden_layer_sizes': (128, 64), 'predictor__learning_rate_init': 0.1, 'predictor__max_iter': 2000, 'predictor__solver': 'sgd'},)
-Best Score Basic Neural Network: 0.6420341394025605
+Best Score Basic Neural Network: 0.6182076813655761
 --------------------------------------------------------------
 Test Accuracy for KNN regressor: -95.32105263157895
 Test Accuracy for weighted KNN regressor: -87.93418887405241
-Test Accuracy for Linger Regressor: 0.22105263157894736
-Test Accuracy for Basic Neural Network: 0.6
+Test Accuracy for Linger Regressor: 0.47368421052631576
+Test Accuracy for Basic Neural Network: 0.631578947368421
 --------------------------------------------------------------
