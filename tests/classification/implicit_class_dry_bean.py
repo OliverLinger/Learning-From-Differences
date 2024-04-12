@@ -175,6 +175,6 @@ def main():
     calculate_test_accuracies(file_path, knn_gs, knn_classifier_gs_weighted, lfd_gs, nn_gs, test_X, test_y)
 
 if __name__ == "__main__":
-    num_times_to_run = 2  # Change this to the desired number of iterations
+    num_times_to_run = 3  # Change this to the desired number of iterations
     for _ in range(num_times_to_run):
         main()
