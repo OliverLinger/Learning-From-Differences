@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.12) (preloaded format=pdflatex 2024.1.7)  10 APR 2024 14:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.12) (preloaded format=pdflatex 2024.1.7)  13 APR 2024 15:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -662,6 +662,15 @@ LaTeX Warning: Label `tab:hyperparameters_abalone' multiply defined.
 
 LaTeX Warning: Label `tab:best_parameters_combined_knn_exp2' multiply defined.
 
+
+LaTeX Warning: Label `tab:best_parameters_summary_exp1' multiply defined.
+
+
+LaTeX Warning: Label `tab:best_parameters_LingerImageRegressor_variations_exp2' multiply defined.
+
+
+LaTeX Warning: Label `tab:summary_accuracy_all_models_exp2' multiply defined.
+
 )
 \openout1 = `report.aux'.
 
@@ -1153,33 +1162,51 @@ Overfull \hbox (19.1937pt too wide) in paragraph at lines 2880--2896
 ] [104] [105
 
 ]
-Overfull \hbox (138.05923pt too wide) in paragraph at lines 3021--3038
+Overfull \hbox (56.19197pt too wide) in paragraph at lines 3023--3040
  [][] 
  []
 
 [106
 
 ]
-Overfull \hbox (73.99126pt too wide) in paragraph at lines 3064--3086
+Overfull \hbox (37.33853pt too wide) in paragraph at lines 3067--3089
  [][] 
  []
 
 [107] [108] [109
 
-] [110] [111
+] [110]
+Overfull \hbox (11.99255pt too wide) in paragraph at lines 3203--3225
+ [][] 
+ []
 
-] [112] [113
+[111
+
+] [112]
+Overfull \hbox (57.57271pt too wide) in paragraph at lines 3250--3272
+ [][] 
+ []
+
+[113
+
+]
+Overfull \hbox (36.99522pt too wide) in paragraph at lines 3306--3323
+ [][] 
+ []
+
+[114
 
 ]
 Chapter 5.
 
-LaTeX Warning: Citation `scikit' on page 114 undefined on input line 3241.
+LaTeX Warning: Citation `scikit' on page 115 undefined on input line 3336.
 
-[114
+[115
 
-] (report.bbl [115] [116
 
-]) [117] (report.aux)
+] (report.bbl [116] [117
+
+]) [118] (report.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-12-11>
@@ -1192,20 +1219,20 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 1A47414621767300B7CF78883E7733A9;22122.
+(rerunfilecheck)             Checksum: D8EE3F012F16818DEABECF366A7FB2BF;22132.
  ) 
 Here is how much of TeX's memory you used:
- 36306 strings out of 474494
- 823771 string characters out of 5743915
- 1947460 words of memory out of 5000000
- 57603 multiletter control sequences out of 15000+600000
- 579493 words of font info for 81 fonts, out of 8000000 for 9000
+ 36328 strings out of 474494
+ 824060 string characters out of 5743915
+ 1948460 words of memory out of 5000000
+ 57615 multiletter control sequences out of 15000+600000
+ 584423 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,11n,101p,737b,636s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectc1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1728.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2074.pk><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on report.pdf (120 pages, 689021 bytes).
+ <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectc1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1728.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\35383\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2074.pk><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/35383/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on report.pdf (121 pages, 780567 bytes).
 PDF statistics:
- 2122 PDF objects out of 2487 (max. 8388607)
- 409 named destinations out of 1000 (max. 500000)
+ 2330 PDF objects out of 2487 (max. 8388607)
+ 413 named destinations out of 1000 (max. 500000)
  845 words of extra memory for PDF output out of 10000 (max. 10000000)
 
