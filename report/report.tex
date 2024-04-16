@@ -2895,6 +2895,24 @@ tuning.
     \end{tabular}
 \end{table}
 
+\subsubsection{Analysis}
+\begin{table}[H]
+    \centering
+    \caption{Analysis Summary of Models (Experiment 1)}
+    \label{tab:analysis_summary}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Model} & \textbf{Key Observations} \\
+    \hline
+    LCV2 (Duplicated on Distance) & Highest test accuracy, effective spatial relationship modeling. \\
+    \hline
+    Neural Network & High training accuracy but reduced test performance, potential overfitting. \\
+    \hline
+    Weighted KNN & Better performance than standard KNN, benefits from using neighbor distances. \\
+    \hline
+    \end{tabular}
+\end{table}
+
 \subsection{Experiment 2: Abalone Dataset Regression}
 \subsubsection{Methodology}
 \label{exp:2Abalone}
@@ -3052,6 +3070,27 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
     \end{tabular}
 \end{table}
 
+\subsubsection{Analysis}
+
+\begin{table}[H]
+    \centering
+    \caption{Analysis Summary of Models (Experiment 2)}
+    \label{tab:concise_analysis_summary_exp2}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Model} & \textbf{Key Observations} \\
+    \hline
+    LRV2 (Duplicated on Distance) & Best test NMSE, effective in handling spatial relationships. \\
+    \hline
+    Neural Network with Labels Classified & Highest test accuracy, potential overfitting issues. \\
+    \hline
+    LRV3 (Additional Distance Column) & Competitive NMSE, efficient use of spatial data. \\
+    \hline
+    Weighted KNN & Consistent performance, benefits from weighting distances. \\
+    \hline
+    \end{tabular}
+\end{table}
+
 \subsection{Experiment 3: Raisin Dataset Classification}
 \subsubsection{Methodology}
 In Experiment 3, we conducted a comprehensive analysis on the Raisin dataset sourced from the UCI Machine Learning Repository~\cite{uciDatasets}, 
@@ -3183,7 +3222,7 @@ The performance of these classifiers was benchmarked against K-Nearest Neighbors
     \textbf{Model / Variation} & \textbf{Accuracy (\%)} & \textbf{Accuracy (\%)} \\
     \midrule
     KNN & $91.7$ & $91$ \\
-    Weighted KNN & $91.2$ & $91$ \\
+    Weighted KNN & $91.2$ & $\mathbf91$ \\
     Neural Network & $94.1$ & $91$ \\
     LC (Base) & $91.7$ & $90.5$ \\
     LCV1 (Context) & $92.2$ & $89.5$ \\
@@ -3193,6 +3232,28 @@ The performance of these classifiers was benchmarked against K-Nearest Neighbors
     LICV1 (Random) & $91.6$ & $89.5$ \\
     LICV2 (Single) & $91.5$ & $91$ \\
     \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Analysis}
+\begin{table}[H]
+    \centering
+    \caption{Analysis Summary of Models (Experiment 3)}
+    \label{tab:concise_analysis_summary_exp3}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Model} & \textbf{Key Observations} \\
+    \hline
+    Neural Network & Highest training accuracy; consistent test performance indicates effective generalization. \\
+    \hline
+    LCV1 (Context) & Slightly lower test accuracy, suggests potential overfitting or inefficacy in utilizing contextual data. \\
+    \hline
+    LCV2 (Duplicated on Distance) & Maintains high training accuracy with solid test performance, good spatial data handling. \\
+    \hline
+    Weighted KNN & Consistent test accuracy, shows robustness in weighting approach. \\
+    \hline
+    LICV1 (Random) & Lower test accuracy, randomness may introduce variability reducing robustness. \\
+    \hline
     \end{tabular}
 \end{table}
 
@@ -3288,7 +3349,7 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
 \begin{table}[H]
     \centering
     \caption{Summary of Best Parameters for \texttt{LingerImplicitRegressor} and Its Variations}
-    \label{tab:best_parameters_LingerImageRegressor_variations_exp2}
+    \label{tab:best_parameters_LingerImageRegressor_variations_exp4}
     \begin{tabular}{|l|l|l|l|}
     \hline
     \textbf{Parameter} & \textbf{LIR} & \textbf{LIRV1} & \textbf{LIRV2} \\
@@ -3348,6 +3409,26 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
     \end{tabular}
 \end{table}
 \clearpage
+
+\subsubsection{Analysis}
+\begin{table}[H]
+    \centering
+    \caption{Analysis Summary of Models (Experiment 4)}
+    \label{tab:concise_analysis_summary_exp4}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Model} & \textbf{Key Observations} \\
+    \hline
+    LRV1 (Context) & Highest NMSE improvement from training to test; effective in context utilization. \\
+    \hline
+    Neural Network & Consistently strong in both NMSE and accuracy, showcasing overall robustness. \\
+    \hline
+    Weighted KNN & Competitive test NMSE, benefiting from adaptive neighbor weighting. \\
+    \hline
+    LIRV1 (Random) & Struggles with lowest accuracy, highlighting the challenges with random feature selection. \\
+    \hline
+    \end{tabular}
+\end{table}
 
 \subsection{Experiment 5: Dry Bean Dataset Classification}
 \subsubsection{Methodology}
@@ -3480,6 +3561,199 @@ The vary factor is the number of runs, due to time constraints.
     LICV1 (Random) & $12.7$ & $1.81$ \\
     LICV2 (Single) & $6.45$ & $0.9$ \\
     \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{Analysis}
+\begin{table}[H]
+    \centering
+    \caption{Analysis Summary of Classification Models (Experiment 5)}
+    \label{tab:analysis_summary_exp5}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Model} & \textbf{Key Observations} \\
+    \hline
+    LC Variants & All three variations (Context, Duplicated on Distance, Additional Distance Column) achieved perfect test accuracy, indicating robustness in diverse settings. \\
+    \hline
+    Neural Network & High accuracy suggests effective learning, but with slightly less test resilience compared to LC variants. \\
+    \hline
+    Weighted KNN & Improved performance over standard KNN, benefiting from distance weighting in classification. \\
+    \hline
+    LIC Variants & Significantly lower accuracy, suggesting poor model fit or insufficient training for implicit methods in this context. \\
+    \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Experiment 6:}
+\subsubsection{Methodology}
+The methodology is identical to the Abalone experiment \ref{exp:2Abalone}. 
+The difference between  the experiments is in the number of run times per regressor variation.
+\begin{itemize}
+    \item \texttt{LingerRegressor} (LR),(LRV1), (LRV2), and (LRV3) were run 5 times.
+    \item \texttt{LingerImplicitRegressor} (LIR), (LICV1), and (LICV2) were run 5 times.
+\end{itemize}
+
+Negative mean squared error is used for LR and all variations.
+Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on regression tasks.
+\subsubsection{Tested Hyperparameters}
+
+\begin{table}[H]
+    \centering
+    \caption{Tested Hyperparameters for Neural Network and \texttt{LingerRegressor}}
+    \label{tab:hyperparameters_abalone}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Values} \\ \hline
+    \multicolumn{2}{|c|}{\textbf{Neural Network}} \\ \hline
+    Hidden Layer Sizes &  (128, 64), (200, 100), (300, 200, 100) (400, 300, 200, 100)\\ \hline
+    Activation & relu \\ \hline
+    Alpha & 0.0001, 0.001, 0.01, 0.1 \\ \hline
+    Max Iterations & 2000 \\ \hline
+    Early Stopping & True \\ \hline
+    Validation Fraction & 0.1 \\ \hline
+    Learning Rate Init & 0.001, 0.01, 0.1 \\ \hline
+    Solver & adam, sgd \\ \hline
+    Beta 1 & 0.9, 0.95, 0.99 \\ \hline
+    Beta 2 & 0.999, 0.995, 0.9 \\ \hline
+    \multicolumn{2}{|c|}{\textbf{Linger Regressor}} \\ \hline
+    N Neighbours 1 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
+    N Neighbours 2 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
+    Weighted KNN & False \\ \hline
+    Additional Distance Column & True, False \\ \hline
+    Duplicated on Distance & True, False \\ \hline
+    Addition of Context & True, False \\ \hline
+    \end{tabular}
+\end{table}
+\clearpage
+
+\subsubsection{Results}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for KNN Comparison Models}
+    \label{tab:best_parameters_combined_knn_exp2}
+    \begin{tabular}{|l|l|l|}
+    \toprule
+    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    KNN & n\_neighbors & 2 \\
+    Weighted KNN & n\_neighbors & 13 \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \caption{Summary of Best Parameters for \texttt{LingerRegressor} and its Variations}
+    \label{tab:best_parameters_summary_exp6}
+    \footnotesize
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    Parameter & LR & LRV1 & LRV2 & LRV3 \\
+    \hline
+    Activation & relu & relu & relu & relu \\
+    Alpha & 0.1 & 0.01 & 0.01 & 0.01 \\
+    Beta 1 & 0.95 & 0.9 & 0.95 & 0.95 \\
+    Beta 2 & 0.9 & 0.999 & 0.999 & 0.999 \\
+    Early Stopping & True & True & True & True \\
+    Hidden Layer Sizes & (400, 300, 200, 100) & (300, 200, 100) & (400, 300, 200, 100) & (400, 300, 200, 100) \\
+    Learning Rate Init & 0.01 & 0.01 & 0.01 & 0.01 \\
+    Max Iter & 2000 & 2000 & 2000 & 2000 \\
+    Solver & sgd & sgd & sgd & sgd \\
+    Validation Fraction & 0.2 & 0.2 & 0.3 & 0.3 \\
+    Addition of Context & False & True & True & False \\
+    Additional Distance Column & False & False & False & True \\
+    Duplicated on Distance & False & False & False & False \\
+    N Neighbors 1 & 21 & 2 & 2 & 21 \\
+    N Neighbors 2 & 21 & 13 & 5 & 21 \\
+    Weighted KNN & False & False & False & False \\
+    \hline
+    \end{tabular}
+\end{table}
+\clearpage
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Best Parameters for \texttt{LingerImplicitRegressor} and Its Variations}
+    \label{tab:best_parameters_LingerImageRegressor_variations_exp6}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    Parameter & LIR & LIRV1 & LIRV2 \\
+    \hline
+    Activation & relu & relu & relu \\
+    Alpha & 0.01 & 0.01 & 0.01 \\
+    Beta 1 & 0.9 & 0.9 & 0.9 \\
+    Beta 2 & 0.9 & 0.9 & 0.9 \\
+    Early Stopping & True & True & True \\
+    Hidden Layer Sizes & (128, 64) & (200, 100) & (256, 128) \\
+    Learning Rate Init & 0.01 & 0.01 & 0.01 \\
+    Max Iter & 2000 & 2000 & 2000 \\
+    Solver & sgd & sgd & sgd \\
+    Validation Fraction & 0.1 & 0.1 & 0.1 \\
+    N Neighbors 1 & 7 & 7 & 2 \\
+    N Neighbors 2 & 5 & 7 & 15 \\
+    Random Pairs & False & True & False \\
+    Single Pair & False & False & True \\
+    \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Training and Test NMSE Across Models}
+    \label{tab:summary_nmse_all_models_MNSE_exp6}
+    \small
+    \begin{tabular}{|l|l|l|}
+    \toprule
+    \textbf{Model / Variation} & \textbf{Training NMSE} & \textbf{Test NMSE} \\
+    \midrule
+    KNN & $-0.5947$ & $-0.53$ \\
+    Weighted KNN & $-0.5946$ & $\mathbf{-0.4786}$ \\
+    Neural Network & $-0.5770$ & $-0.6055$ \\
+    LR (Base) & $-0.5549$ & $-0.5819$ \\
+    LRV1 (Context) & $ -0.6178$ & $-0.6193$ \\
+    LRV2 (Duplicated on Distance) & $-0.4926$ & $-0.5287$ \\
+    LRV3 (Additional Distance Column) & $-0$ & $-0$ \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Training and Test Accuracy Across Models}
+    \label{tab:summary_accuracy_all_models_accuracy_exp6}
+    \small
+    \begin{tabular}{|l|l|l|}
+    \toprule
+    \textbf{Model / Variation} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
+    \midrule
+    Neural Network with Labels Classified & $63$ & $\mathbf{61}$ \\
+    LIR (Implicit) & $55.35$ & $47.55$ \\
+    LIRV1 (Random) & $54.79$ & $52$ \\
+    LIRV2 (Single) & $53.37$ & $51$ \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+\clearpage
+
+\begin{table}[H]
+    \centering
+    \caption{Analysis Summary of Models (Experiment 6)}
+    \label{tab:analysis_summary_exp6}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Model} & \textbf{Key Observations} \\
+    \hline
+    Weighted KNN & Best NMSE test performance among KNN variants, showing efficiency in handling data weights. \\
+    \hline
+    Neural Network & Balanced NMSE and highest accuracy among all models, indicating strong generalization. \\
+    \hline
+    LRV1 (Context) & Notably lower NMSE showing improvements in regression predictions with context. \\
+    \hline
+    LIR Variants & Consistently lower test accuracies suggest challenges in model complexity or training sufficiency. \\
+    \hline
+    LRV3 (Additional Distance Column) & NMSE of zero indicates possible errors in data handling or model application. \\
+    \hline
     \end{tabular}
 \end{table}
 
