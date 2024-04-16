@@ -3017,12 +3017,12 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
 
 \begin{table}[H]
     \centering
-    \caption{Summary of Training and Test NMSE/Accuracy Across All Models}
-    \label{tab:summary_accuracy_all_models_exp2}
+    \caption{Summary of Training and Test NMSE Across Models}
+    \label{tab:summary_nmse_all_models_MNSE_exp2}
     \footnotesize
     \begin{tabular}{|l|l|l|}
     \toprule
-    \textbf{Model / Variation} & \textbf{Training NMSE / Accuracy (\%)} & \textbf{Test NMSE / Accuracy (\%)} \\
+    \textbf{Model / Variation} & \textbf{Training NMSE} & \textbf{Test NMSE} \\
     \midrule
     KNN & $-1.959$ & $-1.930$ \\
     Weighted KNN & $-1.941$ & $-1.912$ \\
@@ -3031,7 +3031,20 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
     LRV1 (Context) & $-1.949$ & $-1.897$ \\
     LRV2 (Duplicated on Distance) & $-2.047$ & $-1.949$ \\
     LRV3 (Additional Distance Column) & $-1.9006$ & $\mathbf{-1.8250}$ \\
-    Neural Network with Labels Classified& $67.3$ & $\mathbf{64.8}$ \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Training and Test Accuracy Across Models}
+    \label{tab:summary_accuracy_all_models_accuracy_exp2}
+    \footnotesize
+    \begin{tabular}{|l|l|l|}
+    \toprule
+    \textbf{Model / Variation} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
+    \midrule
+    Neural Network with Labels Classified & $67.3$ & $\mathbf{64.8}$ \\
     LIR (Implicit) & $63.2$ & $57.7$ \\
     LIRV1 (Random) & $52.6$ & $48$ \\
     LIRV2 (Single) & $59.7$ & $52$ \\
@@ -3300,12 +3313,12 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
 
 \begin{table}[H]
     \centering
-    \caption{Summary of Training and Test NMSE/Accuracy Across All Models}
-    \label{tab:summary_accuracy_all_models_exp2}
+    \caption{Summary of Training and Test NMSE Across Models}
+    \label{tab:summary_nmse_all_models_MNSE_exp4}
     \small
     \begin{tabular}{|l|l|l|}
     \toprule
-    \textbf{Model / Variation} & \textbf{Training NMSE / Acc (\%)} & \textbf{Test NMSE / Acc (\%)} \\
+    \textbf{Model / Variation} & \textbf{Training NMSE} & \textbf{Test NMSE} \\
     \midrule
     KNN & $-61.60$ & $-48.30$ \\
     Weighted KNN & $-60.37$ & $46.94$ \\
@@ -3313,8 +3326,21 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
     LR (Base) & $-51.36$ & $-40.45$ \\
     LRV1 (Context) & $-58.29$ & $-49.87$ \\
     LRV2 (Duplicated on Distance) & $-59.69$ & $-40.04$ \\
-    LRV3 (Additional Distance Column) & $-51.37$ & $42.22$ \\
-    Neural Network with Labels Classified& $63$ & $61$ \\
+    LRV3 (Additional Distance Column) & $-51.37$ & $-42.22$ \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Training and Test Accuracy Across Models}
+    \label{tab:summary_accuracy_all_models_accuracy_exp4}
+    \small
+    \begin{tabular}{|l|l|l|}
+    \toprule
+    \textbf{Model / Variation} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
+    \midrule
+    Neural Network with Labels Classified & $63$ & $61$ \\
     LIR (Implicit) & $47.7$ & $48.42$ \\
     LIRV1 (Random) & $31.61$ & $22.10$ \\
     LIRV2 (Single) & $42.73$ & $47.36$ \\
@@ -3324,6 +3350,138 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
 \clearpage
 
 \subsection{Experiment 5: Dry Bean Dataset Classification}
+\subsubsection{Methodology}
+The experimental methodology is identical to that of the other classification experiments.
+The vary factor is the number of runs, due to time constraints.
+\begin{itemize}
+    \item \texttt{LingerRegressor} (LR),  (LRV1), (LRV2), were run once and (LRV3) was run 3 times.
+    \item \texttt{LingerImplicitRegressor} (LIR) was run twice, its variant (LICV1) was run twic and (LICV2) was run once.
+\end{itemize}
+
+\subsubsection{Tested Hyperparameters}
+\begin{table}[H]
+    \centering
+    \caption{Tested Hyperparameters for Neural Network and \texttt{LingerClassifier}}
+    \label{tab:hyperparameters_raisin}
+    \small
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Hyperparameter} & \textbf{Values} \\ \hline
+    \multicolumn{2}{|c|}{\textbf{Neural Network}} \\ \hline
+    Hidden Layer Sizes & (256, 128), (128, 64), (200, 100), (300, 200, 100), (400, 300, 200, 100) \\ \hline
+    Activation & identity, logistic, tanh, relu \\ \hline
+    Alpha & 0.0001, 0.001, 0.01, 0.1 \\ \hline
+    Max Iterations & 1000, 1500 \\ \hline
+    Early Stopping & True \\hline
+    Validation Fraction & 0.1, 0.2, 0.3 \\ \hline
+    Learning Rate Init & 0.001, 0.01, 0.1 \\ \hline
+    Solver & adam, sgd \\ \hline
+    Beta 1 & 0.9, 0.95, 0.99 \\ \hline
+    Beta 2 & 0.999, 0.995, 0.9 \\ \hline
+    \multicolumn{2}{|c|}{\textbf{LingerClassifier}} \\ \hline
+    N Neighbours 1 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
+    N Neighbours 2 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
+    Weighted KNN & False \\ \hline
+    Additional Distance Column & True, False \\ \hline
+    Duplicated on Distance & True, False \\ \hline
+    Addition of Context & True, False \\ \hline
+    \end{tabular}
+\end{table}
+\clearpage
+\subsubsection{Results}
+
+\begin{table}[H]
+    \centering
+    \caption{Best Parameters for KNN Comparison Models}
+    \label{tab:best_parameters_combined_knn_exp3}
+    \begin{tabular}{|l|l|l|}
+    \toprule
+    \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    KNN & n\_neighbors & 5 \\
+    Weighted KNN & n\_neighbors & 10 \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Best Parameters for \texttt{LingerClassifier} and its Variations}
+    \label{tab:best_parameters_summary_exp5}
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    \textbf{Parameter} & \textbf{LC} & \textbf{LCV1} & \textbf{LCV2} & \textbf{LCV3} \\
+    \hline
+    Activation & tanh & tanh & tanh & tanh \\
+    Alpha & 0.001 & 0.01 & 0.01 & 0.01 \\
+    Beta 1 & 0.95 & 0.95 & 0.95 & 0.95 \\
+    Beta 2 & 0.999 & 0.999 & 0.999 & 0.999 \\
+    Early Stopping & True & True & True & True \\
+    Hidden Layer Sizes & (128, 64) & (128, 64) & (128, 64) & (128, 64) \\
+    Learning Rate Init & 0.01 & 0.01 & 0.01 & 0.01 \\
+    Max Iter & 1000 & 1000 & 1000 & 1000 \\
+    Solver & adam & adam & adam & adam \\
+    Validation Fraction & 0.3 & 0.3 & 0.3 & 0.3 \\
+    Addition of Context & False & True & False & False \\
+    Additional Distance Column & False & False & False & True \\
+    Duplicated on Distance & False & False & True & False \\
+    N Neighbors 1 & 21 & 21 & 15 & 17 \\
+    N Neighbors 2 & 15 & 7 & 21 & 13 \\
+    Weighted KNN & False & False & False & False \\
+    \hline
+    \end{tabular}
+\end{table}
+\clearpage
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Best Parameters for \texttt{LingerImplicitClassifier} and Its Variations}
+    \label{tab:best_parameters_LIC_variations_exp5}
+    \footnotesize
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Parameter} & \textbf{LIC} & \textbf{LICV1} & \textbf{LICV2} \\
+    \hline
+    Activation & tanh & tanh & tanh \\
+    Alpha & 0.1 & 0.01 & 0.1 \\
+    Beta 1 & 0.9 & 0.9 & 0.99 \\
+    Beta 2 & 0.9 & 0.9 & 0.995 \\
+    Early Stopping & True & True & True \\
+    Hidden Layer Sizes & (300, 200, 100) & (300, 200, 100) & (300, 200, 100) \\
+    Learning Rate Init & 0.01 & 0.01 & 0.01 \\
+    Max Iter & 1500 & 2000 & 2000 \\
+    Solver & adam & sgd & adam \\
+    Validation Fraction & 0.2 & 0.3 & 0.3 \\
+    N Neighbors 1 & 13 & 2 & 7 \\
+    N Neighbors 2 & 2 & 2 & 15 \\
+    Random Pairs & False & True & False \\
+    Single Pair & False & False & True \\
+    \hline
+    \end{tabular}
+\end{table}
+\clearpage
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Training and Test Accuracy Across All Models}
+    \label{tab:summary_accuracy_all_models_exp5}
+    \begin{tabular}{|l|l|l|}
+    \toprule
+    \textbf{Model / Variation} & \textbf{Accuracy (\%)} & \textbf{Accuracy (\%)} \\
+    \midrule
+    KNN & $96.33$ & $96.36$ \\
+    Weighted KNN & $96.55$ & $97.27$ \\
+    Neural Network & $97.93$ & $98.18$ \\
+    LC (Base) & $98.39$ & $100$ \\
+    LCV1 (Context) & $98.86$ & $100$ \\
+    LCV2 (Duplicated on Distance) & $98.39$ & $100$ \\
+    LCV3 (Additional Distance Column) & $98.4$ & $97.3$ \\
+    LIC (Implicit) & $5.9$ & $5$ \\
+    LICV1 (Random) & $12.7$ & $1.81$ \\
+    LICV2 (Single) & $6.45$ & $0.9$ \\
+    \bottomrule
+    \end{tabular}
+\end{table}
 
 \chapter{Conclusions and Future Work}
 \label{ch:Conclusions and Future Work}
