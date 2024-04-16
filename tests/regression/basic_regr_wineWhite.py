@@ -47,7 +47,7 @@ def train_knn_regressor(dev_X, dev_y, preprocessor):
 
     knn_param_grid = {"predictor__n_neighbors": [2, 5, 7, 10, 13, 15, 17, 21]}
 
-    knn_gs = GridSearchCV(knn_pipeline, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+    knn_gs = GridSearchCV(knn_pipeline, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
     knn_gs.fit(dev_X, dev_y)
 
     return knn_gs
@@ -60,7 +60,7 @@ def train_weighted_knn_regressor(dev_X, dev_y, preprocessor):
 
     knn_param_grid = {"predictor__n_neighbors": [2, 5, 7, 10, 13, 15, 17, 21]}
 
-    knn_gs = GridSearchCV(knn_pipeline, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+    knn_gs = GridSearchCV(knn_pipeline, knn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
     knn_gs.fit(dev_X, dev_y)
 
     return knn_gs
@@ -84,7 +84,7 @@ def train_neural_network(dev_X, dev_y, preprocessor):
     "predictor__beta_2": [0.999, 0.9]
     }
 
-    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+    nn_gs = GridSearchCV(nn_pipeline, nn_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
     nn_gs.fit(dev_X, dev_y)
 
     return nn_gs
@@ -101,9 +101,9 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
         "predictor__n_neighbours_1": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__n_neighbours_2": [2, 5, 7, 10, 13, 15, 17, 21],
         "predictor__weighted_knn": [False],
-         "predictor__additional_results_column": [True],
+         "predictor__additional_results_column": [False],
          "predictor__duplicated_on_distance": [False],
-        "predictor__addition_of_context": [False],
+        "predictor__addition_of_context": [True],
     })
     # Update with best_nn_params
     lfd_param_grid.update(best_nn_params)
@@ -111,7 +111,7 @@ def train_linger_regressor(dev_X, dev_y, preprocessor, best_nn_params):
         if not isinstance(value, list):
             lfd_param_grid[key] = [value]
 
-    lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=1)
+    lfd_gs = GridSearchCV(lfd_pipeline, lfd_param_grid, scoring="neg_mean_absolute_error", cv=10, refit=True, n_jobs=8)
     lfd_gs.fit(dev_X, dev_y)
 
     return lfd_gs
@@ -145,7 +145,7 @@ def calculate_test_accuracies(file_path, knn_gs, weighted_knn_gs, lfd_gs, nn_gs,
     print(f"Results have been saved to {file_path}")
 
 def main():
-    file_path = r'C:\Users\USER\final_year\fyp\results\WhiteWineResultsVar3.txt'
+    file_path = r'C:\Users\USER\final_year\fyp\results\WhiteWineResultsVar1.txt'
     df = pd.read_csv("datasets/wineQuality/winequality-white_Reduced.csv")
     columns = ["fixed acidity","volatile acidity","citric acid","residual sugar","chlorides","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol","quality"]
     features = [
