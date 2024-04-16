@@ -2992,6 +2992,7 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
     \centering
     \caption{Summary of Best Parameters for \texttt{LingerImplicitRegressor} and Its Variations}
     \label{tab:best_parameters_LingerImageRegressor_variations_exp2}
+    \footnotesize
     \begin{tabular}{|l|l|l|l|}
     \hline
     \textbf{Parameter} & \textbf{LIR} & \textbf{LIRV1} & \textbf{LIRV2} \\
@@ -3018,6 +3019,7 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
     \centering
     \caption{Summary of Training and Test NMSE/Accuracy Across All Models}
     \label{tab:summary_accuracy_all_models_exp2}
+    \footnotesize
     \begin{tabular}{|l|l|l|}
     \toprule
     \textbf{Model / Variation} & \textbf{Training NMSE / Accuracy (\%)} & \textbf{Test NMSE / Accuracy (\%)} \\
@@ -3061,6 +3063,7 @@ The performance of these classifiers was benchmarked against K-Nearest Neighbors
     \centering
     \caption{Tested Hyperparameters for Neural Network and \texttt{LingerClassifier}}
     \label{tab:hyperparameters_raisin}
+    \small
     \begin{tabular}{|l|l|}
     \hline
     \textbf{Hyperparameter} & \textbf{Values} \\ \hline
@@ -3134,6 +3137,7 @@ The performance of these classifiers was benchmarked against K-Nearest Neighbors
     \centering
     \caption{Summary of Best Parameters for \texttt{LingerImplicitClassifier} and Its Variations}
     \label{tab:best_parameters_LIC_variations_exp3}
+    \footnotesize
     \begin{tabular}{|l|l|l|l|}
     \hline
     \textbf{Parameter} & \textbf{LIC} & \textbf{LICV1} & \textbf{LICV2} \\
@@ -3179,12 +3183,19 @@ The performance of these classifiers was benchmarked against K-Nearest Neighbors
     \end{tabular}
 \end{table}
 
-\subsection{Experiment 4: White Wine Dataset Regression}
+\subsection{Experiment 4: House Prices Dataset Regression}
 \subsubsection{Methodology}
 The methodology is identical to the Abalone experiment \ref{exp:2Abalone}. 
 The difference between  the experiments is in the number of run times per regressor and variation.
+\begin{itemize}
+    \item \texttt{LingerRegressor} (LR) was run 3 times, its (LRV1), (LRV2), were run once and (LRV3) was run 5 times.
+    \item \texttt{LingerImplicitRegressor} (LIR) was run 3 times, its variants (LICV1) and (LICV2), were each run twice.
+\end{itemize}
+
+Negative mean squared error is used for LR and all variations.
+Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on regression tasks.
 \subsubsection{Tested Hyperparameters}
-There was a reduction in the number of hyperparameters due to the time it was taking to run the tests.
+
 \begin{table}[H]
     \centering
     \caption{Tested Hyperparameters for Neural Network and \texttt{LingerRegressor}}
@@ -3193,16 +3204,16 @@ There was a reduction in the number of hyperparameters due to the time it was ta
     \hline
     \textbf{Hyperparameter} & \textbf{Values} \\ \hline
     \multicolumn{2}{|c|}{\textbf{Neural Network}} \\ \hline
-    Hidden Layer Sizes & (256, 128), (128, 64), (200, 100) \\ \hline
+    Hidden Layer Sizes &  (128, 64), (200, 100), (300, 200, 100) (400, 300, 200, 100)\\ \hline
     Activation & relu \\ \hline
-    Alpha & 0.01 \\ \hline
+    Alpha & 0.0001, 0.001, 0.01, 0.1 \\ \hline
     Max Iterations & 2000 \\ \hline
     Early Stopping & True \\ \hline
     Validation Fraction & 0.1 \\ \hline
-    Learning Rate Init & 0.01 \\ \hline
-    Solver & sgd \\ \hline
-    Beta 1 & 0.9 \\ \hline
-    Beta 2 & 0.9 \\ \hline
+    Learning Rate Init & 0.001, 0.01, 0.1 \\ \hline
+    Solver & adam, sgd \\ \hline
+    Beta 1 & 0.9, 0.95, 0.99 \\ \hline
+    Beta 2 & 0.999, 0.995, 0.9 \\ \hline
     \multicolumn{2}{|c|}{\textbf{Linger Regressor}} \\ \hline
     N Neighbours 1 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
     N Neighbours 2 & 2, 5, 7, 10, 13, 15, 17, 21 \\ \hline
@@ -3216,6 +3227,7 @@ There was a reduction in the number of hyperparameters due to the time it was ta
 
 \subsubsection{Results}
 
+
 \begin{table}[H]
     \centering
     \caption{Best Parameters for KNN Comparison Models}
@@ -3225,16 +3237,98 @@ There was a reduction in the number of hyperparameters due to the time it was ta
     \textbf{Classifier} & \textbf{Hyperparameter} & \textbf{Value} \\
     \midrule
     KNN & n\_neighbors & 2 \\
-    Weighted KNN & n\_neighbors & 13 \\
+    Weighted KNN & n\_neighbors & 5 \\
     \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Best Parameters for \texttt{LingerRegressor} and its Variations}
+    \label{tab:best_parameters_summary_exp1}
+    \footnotesize
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    \textbf{Parameter} & \textbf{LR} & \textbf{LRV1} & \textbf{LRV2} & \textbf{LRV3} \\
+    \hline
+    Activation & relu & relu & relu & relu \\
+    Alpha & 0.1 & 0.1 & 0.1 & 0.01 \\
+    Beta 1 & 0.9 & 0.9 & 0.9 & 0.9 \\
+    Beta 2 & 0.999 & 0.999 & 0.9 & 0.9 \\
+    Early Stopping & True & True & True & True \\
+    Hidden Layer Sizes & (400, 300, 200, 100) & (300, 200, 100) & (400, 300, 200, 100) & (400, 300, 200, 100) \\
+    Learning Rate Init & 0.01 & 0.001 & 0.01 & 0.01 \\
+    Max Iter & 2000 & 2000 & 2000 & 2000 \\
+    Solver & adam & adam & adam & adam \\
+    Validation Fraction & 0.1 & 0.1 & 0.1 & 0.1 \\
+    Addition of Context & False & True & False & False \\
+    Additional Distance Column & False & False & False & True \\
+    Duplicated on Distance & False & False & True & False \\
+    N Neighbors 1 & 17 & 2 & 17 & 15 \\
+    N Neighbors 2 & 13 & 15 & 13 & 7 \\
+    Weighted KNN & False & False & False & False \\
+    \hline
+    \end{tabular}
+\end{table}
+\clearpage
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Best Parameters for \texttt{LingerImplicitRegressor} and Its Variations}
+    \label{tab:best_parameters_LingerImageRegressor_variations_exp2}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Parameter} & \textbf{LIR} & \textbf{LIRV1} & \textbf{LIRV2} \\
+    \hline
+    Activation & logistic & logistic & logistic \\
+    Alpha & 0.001 & 0.001 & 0.001 \\
+    Beta 1 & 0.9 & 0.9 & 0.9 \\
+    Beta 2 & 0.9 & 0.9 & 0.9 \\
+    Early Stopping & True & True & True \\
+    Hidden Layer Sizes & (128, 64) & (128, 64) & (128, 64) \\
+    Learning Rate Init & 0.1 & 0.1 & 0.1 \\
+    Max Iter & 2000 & 2000 & 2000 \\
+    Solver & sgd & sgd & sgd \\
+    Validation Fraction & 0.1 & 0.1 & 0.1 \\
+    N Neighbors 1 & 7 & 21 & 15 \\
+    N Neighbors 2 & 5 & 7 & 15 \\
+    Random Pairs & False & True & False \\
+    Single Pair & False & False & True \\
+    \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Training and Test NMSE/Accuracy Across All Models}
+    \label{tab:summary_accuracy_all_models_exp2}
+    \small
+    \begin{tabular}{|l|l|l|}
+    \toprule
+    \textbf{Model / Variation} & \textbf{Training NMSE / Acc (\%)} & \textbf{Test NMSE / Acc (\%)} \\
+    \midrule
+    KNN & $-61.60$ & $-48.30$ \\
+    Weighted KNN & $-60.37$ & $46.94$ \\
+    Neural Network & $-56.06$ & $-48.21$ \\
+    LR (Base) & $-51.36$ & $-40.45$ \\
+    LRV1 (Context) & $-58.29$ & $-49.87$ \\
+    LRV2 (Duplicated on Distance) & $-59.69$ & $-40.04$ \\
+    LRV3 (Additional Distance Column) & $-51.37$ & $42.22$ \\
+    Neural Network with Labels Classified& $63$ & $61$ \\
+    LIR (Implicit) & $47.7$ & $48.42$ \\
+    LIRV1 (Random) & $31.61$ & $22.10$ \\
+    LIRV2 (Single) & $42.73$ & $47.36$ \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+\clearpage
+
+\subsection{Experiment 5: Dry Bean Dataset Classification}
 
 \chapter{Conclusions and Future Work}
 \label{ch:Conclusions and Future Work}
 This chapter outlines the additions made in our study, acknowledges its limitations, and proposes directions for future research to extend 
 the work's applicability and efficiency across multiple domains
-
 \section{Addressing Identified Limitations}
 Our study, while insightful, recognizes certain limitations in its current scope and methodology. 
 Future efforts should aim to surpass these through advanced algorithmic enhancements and the integration of novel data processing techniques, this could be implemented through 
