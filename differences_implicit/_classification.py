@@ -123,7 +123,6 @@ class LingerImplicitClassifier(BaseEstimator, ClassifierMixin):
         )
 
     def fit(self, X, y):
-        print("hello world")
         # Check if input matrices are sparse
         is_sparse_X = issparse(X)
         is_sparse_y = issparse(y)

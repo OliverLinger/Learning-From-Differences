@@ -1347,7 +1347,7 @@ This algorithm is called during the Fit stage of both the \texttt{LingerClassifi
     \textbf{Output:} Updated differences in $X$ $differences\_X$, updated differences in $y$ $differences\_y$
     \label{alg:context_addition_fit}
     \begin{algorithmic}[1]
-        \Function{$addition\_of\_context\_func\_fit$}{$X$, $y$, $indices$, $differences\_X$, $differences\_y$}
+        \Function{$addition\_of\_context\_func\_fit$}{$X,y,indices,differences\_X,differences\_y$}
             \For{$i$ in $indices$}
                 \State $base \gets i[0]$
                 \State $neighbors \gets i[1:]$
@@ -1377,7 +1377,7 @@ This algorithm is called during the predict algorithm for both the \texttt{Linge
     \textbf{Output:} Combined differences in test data $combined\_differences\_test\_X$
     \label{alg:context_addition_pred}
     \begin{algorithmic}[1]
-        \Function{$addition\_of\_context\_func\_pred$}{$differences\_test\_X$, $X$}
+        \Function{$addition\_of\_context\_func\_pred$}{$differences\_test\_X,X$}
             \State $combined\_differences\_test\_X \gets []$
             \State $duplicated\_test\_data \gets [item \text{ for } item \text{ in } X \text{ for } \_ \text{ in } range(\text{n\_neighbours\_2})]$
             \State $num\_items \gets \text{length of } duplicated\_test\_data$
@@ -1456,7 +1456,7 @@ thereby improving its predictive accuracy and generalization capabilities.
     \caption{Difference Duplication Based on Distance (Part 1)}
     \label{alg:duplication_Implementation_based_on_distance_train_part1}
     \begin{algorithmic}[1]
-        \Function{$duplicate\_difference\_based\_on\_distance$}{$differences\_X$, $differences\_y$, $distances$}
+        \Function{$duplicate\_difference\_based\_on\_distance$}{$differences\_X,differences\_y,distances$}
             \State $distances\_X \gets []$
             \For{$d$ in $distances$}
                 \State $neighbors \gets d[1:]$
@@ -1484,7 +1484,7 @@ thereby improving its predictive accuracy and generalization capabilities.
     \caption{Difference Duplication Based on Distance (Part 2)}
     \label{alg:duplication_Implementation_based_on_distance_train_part2}
     \begin{algorithmic}[1] 
-        \Function{duplicate\_diff\_contd}{$filtered\_data\_X$, $filtered\_data\_y$, $scaled\_distances\_rounded$}
+        \Function{duplicate\_diff\_contd}{$filtered\_data\_X,filtered\_data\_y,scaled\_distances\_rounded$}
             \State $duplicated\_list\_X \gets []$
             \State $duplicated\_list\_y \gets []$
             \For{each $item, count$ in zip($filtered\_data\_X$, $scaled\_distances\_rounded$)}
@@ -1785,7 +1785,7 @@ enhancing its performance on the task.
                     \State Append $case\_y$ to $case\_pairs\_y$
                 \EndFor
             \EndFor
-            \State Initialize dictionaries: $case\_pairs\_by\_class$, $cases\_without\_concatenation$, $case\_pairs\_y$
+            \State Initialize dictionaries: $case\_pairs\_by\_class,Cases\_without\_concatenation,case\_pairs\_y$
             \For{each $(source, target)$ in $zip(case\_pairs\_X, case\_pairs\_y)$}
                 \State Append $source[0]$ to $cases\_without\_concatenation[target[1]]$
                 \State $problem\_query \gets$ Concatenate $source[0]$ and $source[1]$
@@ -2334,7 +2334,8 @@ to compute the final predictions for the images. Finally, the algorithm returns 
             \State \textbf{Output:} Predictions 
             \State Use trained CNN on $X$ to predict differences
             \State $difference\_pred \gets trainedCNN(X)$
-            \State Compute final predictions using Algorithm: $y^{pred} \gets \text{FinalPrediction}(difference\_pred)$ 
+            \State Compute final predictions using Algorithm: 
+            \State $y^{pred} \gets \text{FinalPrediction}(difference\_pred)$ 
             \State \textbf{return} $y^{pred}$
         \EndFunction
     \end{algorithmic}
@@ -2358,21 +2359,28 @@ final prediction $y^{pred}$. If no items are found, it handles this case by appe
             \State \textbf{Output:} Predicted target values $y\_pred$
             \State Fit nearest neighbors to the training data
             \State Initialize empty list $differences\_test\_X$
-            \For{$test$ in range(length of $X$)} \Comment{Compute differences between test and training images}
+            \State Compute differences between test and training images
+            \For{$test$ in range(length of $X$)} 
                 \For{$nn\_in\_training$ in range(length of nearest neighbors)}
                     \State Compute difference between test and nearest neighbor: 
-                    \State \quad $diff \gets$ absolute difference between $X[test]$ and $self.train\_X[indices[test][nn\_in\_training]]$
+                    \State $diff \gets \text{absolute difference between} X[test]$
+                    \State \hspace{\algorithmicindent} $\text{and} self.train\_X[indices[test][nn\_in\_training]]$
                     \State Append $diff$ to $differences\_test\_X$
                 \EndFor
             \EndFor
             \State Reshape $differences\_test\_X$ to match input shape
-            \State Make predictions using the trained CNN model: $predictions \gets model.predict(differences\_test\_X)$
+            \State Make predictions using the trained CNN model: 
+            \State $predictions \gets model.predict(differences\_test\_X)$
             \State Initialize empty list $y\_pred$
             \For{$indexes$, $differences$ in zip($indices$, $predictions$)}
                 \State Compute predicted results for each nearest neighbor:
-                \State \quad $results \gets [\text{self.train\_y}[i][0] + d$ for $i$, $d$ in zip($indexes$, $differences)$]
-                \State Compute counts of each result: $counts \gets$ count of each value in $results$
-                \State Retrieve most common item: $most\_common\_item \gets$ most common value in $results$
+                \State $results \gets [$
+                \State \hspace{\algorithmicindent} $\text{self.train\_y}[i][0] + d$
+                \State \hspace{\algorithmicindent} $\text{for } i, d \text{ in zip}(indexes, differences)]$
+                \State Compute counts of each result: 
+                \State $counts \gets \text{count of each value in results}$
+                \State Retrieve most common item:
+                \State $most\_common\_item \gets$ most common value in $results$
                 \If{$most\_common\_item$ exists}
                     \State Append $most\_common\_item$ to $y^{pred}$
                 \Else
@@ -2449,10 +2457,11 @@ final prediction $y^{pred}$. If no items are found, it handles this case by appe
     \State $X$ = test data set, $model$ = Trained CNN model, $input\_shape$ = image shape
     \Procedure{Predict}{$X, model, input\_shape$}
         \Comment{Pythonic steps for predicting target values using image differences.}
-        \State \textbf{Input:} $X$ - Input data, $model$ - Trained CNN, $input\_shape$ - Shape for CNN input.
-        \State \textbf{Output:} $y\_pred$ - Predicted targets.
+        \State \textbf{Input:} $X - \text{Input data}, model - \text{Trained CNN}, input\_shape - \text{Shape for CNN input.}$
+        \State \textbf{Output:} $y\_pred - \text{Predicted targets}$.
         
-        \State $nbrs \gets$ \text{NearestNeighbors}($n\_neighbors=self.n\_neighbours\_2$).fit($self.train\_X$.reshape($len(self.train\_X), -1$))
+        \State $nbrs \gets$ \text{NearestNeighbors}($n\_neighbors=self.n\_neighbours\_2)$
+        \State \hspace{\algorithmicindent} $.fit(self.train\_X.reshape(len(self.train\_X), -1$))
         \State $indices \gets nbrs.kneighbors(X.reshape(len(X), -1), return\_distance=False)$
         
         \State $differences\_test\_X \gets [$np.abs($X[test].flatten() - self.train\_X[indices[test][nn]].flatten())$ for $test$ in range($len(X)$) for $nn$ in range($len(indices[0]))]$
@@ -2540,15 +2549,18 @@ for image-based regression tasks. The method of learning from differences is bas
             \State \textbf{Output:} Predicted target values $y\_pred$
             \State Fit nearest neighbors to the training data
             \State Initialize empty list $differences\_test\_X$
-            \For{$test$ in range(length of $X$)} \Comment{Compute differences between test and training images}
+            \State Compute differences between test and training images
+            \For{$test$ in range(length of $X$)} 
                 \For{$nn\_in\_training$ in range(length of nearest neighbors)}
                     \State Compute difference between test and nearest neighbor: 
-                    \State \quad $diff \gets$ absolute difference between $X[test]$ and $train\_X[indices[test][nn\_in\_training]]$
+                    \State $diff \gets \text{absolute difference between}$ $X[test]$ 
+                    \State \hspace{\algorithmicindent} $\text{and train\_X}[indices[test][nn\_in\_training]]$
                     \State Append $diff$ to $differences\_test\_X$
                 \EndFor
             \EndFor
             \State Reshape $differences\_test\_X$ to match input shape
-            \State Make predictions using the trained CNN model: $predictions \gets model.predict(differences\_test\_X)$
+            \State Make predictions using the trained CNN model: 
+            \State $predictions \gets model.predict(differences\_test\_X)$
             \State Initialize empty list $y^{pred}$
             \For{$indexes$, $differences$ in zip($indices$, $predictions$)}
                 \State Compute predicted results for each nearest neighbor:
@@ -2602,24 +2614,26 @@ as the \texttt{LingerImplicitClassifier}.
     \begin{algorithmic}[1]
     \Procedure{Predict}{$X, model, dataset, input\_shape$}
         \State Predicts target values using a regression approach based on image differences.
-        \State \textbf{Input:} $X$ - Input data for prediction, $model$ - Trained regression model, $dataset$ - Dataset object containing training data, $input\_shape$ - Shape of input data expected by the model.
+        \State \textbf{Input:} $X \text{- Input data for prediction}, model \text{- Trained regression model}, dataset \text{- Dataset object containing training data}, input\_shape \text{- Shape of input data expected by the model}$.
         \State \textbf{Output:} $y^{pred}$ - Predicted target values for the input data.
         
         \If{$len(X.shape) > 2$}
             \State $X \gets X.reshape(len(X), -1)$
-            \Comment{Flatten the input if it's multi-dimensional.}
+            \State Flatten the input if it's multi-dimensional.
         \EndIf
         \State Train the NearestNeighbors function on our data.
-        \State $nbrs \gets$ NearestNeighbors($n\_neighbors=self.n\_neighbours\_2$).fit($dataset.train\_X.reshape(len(dataset.train\_X), -1)$)
+        \State $nbrs \gets \text{NearestNeighbors}(n\_neighbors=self.n\_neighbours\_2)$
+        \State \hspace{\algorithmicindent} $.fit(dataset.train\_X.reshape(len(dataset.train\_X), -1))$
         \State $indices \gets nbrs.kneighbors(X, return\_distance=False)$
         \Comment{Identify nearest neighbors in the training set.}
         
-        \State Prepare $differences\_test\_X$ by computing absolute differences between $X$ and its nearest neighbors in the training set.
+        \State Prepare differences\_test\_X by computing absolute differences between X 
+        \State \hspace{\algorithmicindent} and its nearest neighbors in the training set.
         
         \State Reshape $differences\_test\_X$ to match $input\_shape$ for compatibility with the model.
         
         \State $predictions \gets model.predict(differences\_test\_X)$
-        \Comment{Predict target values based on computed differences.}
+        \State Predict target values based on computed differences.
         
         \State Initialize an empty list $y^{pred}$ to store final predictions.
         
@@ -2630,7 +2644,7 @@ as the \texttt{LingerImplicitClassifier}.
         \EndFor
         
         \State \textbf{return} $y^{pred}$
-        \Comment{Return the list of predicted target values.}
+        \State Return the list of predicted target values.
     \EndProcedure
     \end{algorithmic}
 \end{algorithm}
@@ -2896,22 +2910,25 @@ tuning.
 \end{table}
 
 \subsubsection{Analysis}
-\begin{table}[H]
-    \centering
-    \caption{Analysis Summary of Models (Experiment 1)}
-    \label{tab:analysis_summary}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Model} & \textbf{Key Observations} \\
-    \hline
-    LCV2 (Duplicated on Distance) & Highest test accuracy, effective spatial relationship modeling. \\
-    \hline
-    Neural Network & High training accuracy but reduced test performance, potential overfitting. \\
-    \hline
-    Weighted KNN & Better performance than standard KNN, benefits from using neighbor distances. \\
-    \hline
-    \end{tabular}
-\end{table}
+\begin{itemize}
+    \item \textbf{LCV2 (Duplicated on Distance)}
+    \begin{itemize}
+        \item Highest test accuracy.
+        \item Effective relationship modeling.
+    \end{itemize}
+    
+    \item \textbf{Neural Network}
+    \begin{itemize}
+        \item High training accuracy.
+        \item Reduced test performance, indicating potential overfitting on training data.
+    \end{itemize}
+    
+    \item \textbf{Weighted KNN}
+    \begin{itemize}
+        \item Better performance than standard KNN.
+        \item Benefits from using neighbor distances as weights.
+    \end{itemize}
+\end{itemize}
 
 \subsection{Experiment 2: Abalone Dataset Regression}
 \subsubsection{Methodology}
@@ -3072,24 +3089,31 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
 
 \subsubsection{Analysis}
 
-\begin{table}[H]
-    \centering
-    \caption{Analysis Summary of Models (Experiment 2)}
-    \label{tab:concise_analysis_summary_exp2}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Model} & \textbf{Key Observations} \\
-    \hline
-    LRV2 (Duplicated on Distance) & Best test NMSE, effective in handling spatial relationships. \\
-    \hline
-    Neural Network with Labels Classified & Highest test accuracy, potential overfitting issues. \\
-    \hline
-    LRV3 (Additional Distance Column) & Competitive NMSE, efficient use of spatial data. \\
-    \hline
-    Weighted KNN & Consistent performance, benefits from weighting distances. \\
-    \hline
-    \end{tabular}
-\end{table}
+\begin{itemize}
+    \item \textbf{LRV2 (Duplicated on Distance)}
+    \begin{itemize}
+        \item Best test NMSE.
+        \item Effective in handling patterns and relationships within the data.
+    \end{itemize}
+    
+    \item \textbf{Neural Network with Labels Classified}
+    \begin{itemize}
+        \item Highest test accuracy.
+        \item Potential overfitting issues, based on the reduction in accuracy from training to test.
+    \end{itemize}
+    
+    \item \textbf{LRV3 (Additional Distance Column)}
+    \begin{itemize}
+        \item Competitive NMSE to the leading accuracy.
+        \item Efficient in capturing relationships within the data.
+    \end{itemize}
+    
+    \item \textbf{Weighted KNN}
+    \begin{itemize}
+        \item Consistent performance.
+        \item Benefits from weighting distances.
+    \end{itemize}
+\end{itemize}
 
 \subsection{Experiment 3: Raisin Dataset Classification}
 \subsubsection{Methodology}
@@ -3236,26 +3260,38 @@ The performance of these classifiers was benchmarked against K-Nearest Neighbors
 \end{table}
 
 \subsubsection{Analysis}
-\begin{table}[H]
-    \centering
-    \caption{Analysis Summary of Models (Experiment 3)}
-    \label{tab:concise_analysis_summary_exp3}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Model} & \textbf{Key Observations} \\
-    \hline
-    Neural Network & Highest training accuracy; consistent test performance indicates effective generalization. \\
-    \hline
-    LCV1 (Context) & Slightly lower test accuracy, suggests potential overfitting or inefficacy in utilizing contextual data. \\
-    \hline
-    LCV2 (Duplicated on Distance) & Maintains high training accuracy with solid test performance, good spatial data handling. \\
-    \hline
-    Weighted KNN & Consistent test accuracy, shows robustness in weighting approach. \\
-    \hline
-    LICV1 (Random) & Lower test accuracy, randomness may introduce variability reducing robustness. \\
-    \hline
-    \end{tabular}
-\end{table}
+\begin{itemize}
+    \item \textbf{Neural Network}
+    \begin{itemize}
+        \item Highest training accuracy.
+        \item Consistent test performance indicates effective generalization.
+    \end{itemize}
+    
+    \item \textbf{LCV1 (Context)}
+    \begin{itemize}
+        \item Slightly lower test accuracy.
+        \item Suggests potential overfitting or inefficacy in utilizing contextual data.
+    \end{itemize}
+    
+    \item \textbf{LCV2 (Duplicated on Distance)}
+    \begin{itemize}
+        \item Maintains high training accuracy.
+        \item Solid test performance, indicating good performance.
+    \end{itemize}
+    
+    \item \textbf{Weighted KNN}
+    \begin{itemize}
+        \item Consistent test accuracy.
+        \item Shows robustness in weighting approach.
+    \end{itemize}
+
+    \item \textbf{LICV1 (Random)}
+    \begin{itemize}
+        \item Lower test accuracy.
+        \item Randomness may introduce variability reducing robustness; over more runs, results may vary.
+    \end{itemize}
+\end{itemize}
+
 
 \subsection{Experiment 4: House Prices Dataset Regression}
 \subsubsection{Methodology}
@@ -3411,24 +3447,30 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
 \clearpage
 
 \subsubsection{Analysis}
-\begin{table}[H]
-    \centering
-    \caption{Analysis Summary of Models (Experiment 4)}
-    \label{tab:concise_analysis_summary_exp4}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Model} & \textbf{Key Observations} \\
-    \hline
-    LRV1 (Context) & Highest NMSE improvement from training to test; effective in context utilization. \\
-    \hline
-    Neural Network & Consistently strong in both NMSE and accuracy, showcasing overall robustness. \\
-    \hline
-    Weighted KNN & Competitive test NMSE, benefiting from adaptive neighbor weighting. \\
-    \hline
-    LIRV1 (Random) & Struggles with lowest accuracy, highlighting the challenges with random feature selection. \\
-    \hline
-    \end{tabular}
-\end{table}
+\begin{itemize}
+    \item \textbf{LRV1 (Context)}
+    \begin{itemize}
+        \item Highest NMSE improvement from training to test.
+        \item Effective in context utilization.
+    \end{itemize}
+    
+    \item \textbf{Neural Network}
+    \begin{itemize}
+        \item Consistently strong in both NMSE and accuracy, showcasing overall robustness.
+    \end{itemize}
+    
+    \item \textbf{Weighted KNN}
+    \begin{itemize}
+        \item Competitive test NMSE.
+        \item Benefiting from adaptive neighbor weighting.
+    \end{itemize}
+
+    \item \textbf{LIRV1 (Random)}
+    \begin{itemize}
+        \item Struggles with lowest accuracy.
+        \item Highlights the challenges with random feature selection.
+    \end{itemize}
+\end{itemize}
 
 \subsection{Experiment 5: Dry Bean Dataset Classification}
 \subsubsection{Methodology}
@@ -3565,26 +3607,33 @@ The vary factor is the number of runs, due to time constraints.
 \end{table}
 
 \subsubsection{Analysis}
-\begin{table}[H]
-    \centering
-    \caption{Analysis Summary of Classification Models (Experiment 5)}
-    \label{tab:analysis_summary_exp5}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Model} & \textbf{Key Observations} \\
-    \hline
-    LC Variants & All three variations (Context, Duplicated on Distance, Additional Distance Column) achieved perfect test accuracy, indicating robustness in diverse settings. \\
-    \hline
-    Neural Network & High accuracy suggests effective learning, but with slightly less test resilience compared to LC variants. \\
-    \hline
-    Weighted KNN & Improved performance over standard KNN, benefiting from distance weighting in classification. \\
-    \hline
-    LIC Variants & Significantly lower accuracy, suggesting poor model fit or insufficient training for implicit methods in this context. \\
-    \hline
-    \end{tabular}
-\end{table}
+\begin{itemize}
+    \item \textbf{LC Variants}
+    \begin{itemize}
+        \item All three variations (Context, Duplicated on Distance, Additional Distance Column) achieved perfect test accuracy.
+        \item Indicates robustness in diverse settings.
+    \end{itemize}
+    
+    \item \textbf{Neural Network}
+    \begin{itemize}
+        \item High accuracy suggests effective learning.
+        \item Slightly less test resilience compared to LC variants.
+    \end{itemize}
+    
+    \item \textbf{Weighted KNN}
+    \begin{itemize}
+        \item Improved performance over standard KNN.
+        \item Benefiting from distance weighting in classification.
+    \end{itemize}
 
-\subsection{Experiment 6:}
+    \item \textbf{LIC Variants}
+    \begin{itemize}
+        \item Significantly lower accuracy.
+        \item Suggesting poor model fit or insufficient training for implicit methods in this context.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Experiment 6: White Wine Database Regression}
 \subsubsection{Methodology}
 The methodology is identical to the Abalone experiment \ref{exp:2Abalone}. 
 The difference between  the experiments is in the number of run times per regressor variation.
@@ -3713,7 +3762,7 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
     LR (Base) & $-0.5549$ & $-0.5819$ \\
     LRV1 (Context) & $ -0.6178$ & $-0.6193$ \\
     LRV2 (Duplicated on Distance) & $-0.4926$ & $-0.5287$ \\
-    LRV3 (Additional Distance Column) & $-0$ & $-0$ \\
+    LRV3 (Additional Distance Column) &  $-0.5600$ & $-0.5799$ \\
     \bottomrule
     \end{tabular}
 \end{table}
@@ -3736,26 +3785,38 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
 \end{table}
 \clearpage
 
-\begin{table}[H]
-    \centering
-    \caption{Analysis Summary of Models (Experiment 6)}
-    \label{tab:analysis_summary_exp6}
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{Model} & \textbf{Key Observations} \\
-    \hline
-    Weighted KNN & Best NMSE test performance among KNN variants, showing efficiency in handling data weights. \\
-    \hline
-    Neural Network & Balanced NMSE and highest accuracy among all models, indicating strong generalization. \\
-    \hline
-    LRV1 (Context) & Notably lower NMSE showing improvements in regression predictions with context. \\
-    \hline
-    LIR Variants & Consistently lower test accuracies suggest challenges in model complexity or training sufficiency. \\
-    \hline
-    LRV3 (Additional Distance Column) & NMSE of zero indicates possible errors in data handling or model application. \\
-    \hline
-    \end{tabular}
-\end{table}
+\subsubsection{Analysis}
+\begin{itemize}
+    \item \textbf{Weighted KNN}
+    \begin{itemize}
+        \item Best NMSE test performance among KNN variants.
+        \item Shows efficiency in handling data weights.
+    \end{itemize}
+    
+    \item \textbf{Neural Network}
+    \begin{itemize}
+        \item Balanced NMSE and highest accuracy among all models.
+        \item Indicates strong generalization.
+    \end{itemize}
+    
+    \item \textbf{LRV1 (Context)}
+    \begin{itemize}
+        \item Notably lower NMSE than the leading model.
+        \item Shows improvements in Linger Regression predictions with context.
+    \end{itemize}
+    
+    \item \textbf{LIR Variants}
+    \begin{itemize}
+        \item Consistently lower test accuracies.
+        \item Suggest challenges in model complexity or training sufficiency, possibly due to inadequate amounts of data.
+    \end{itemize}
+
+    \item \textbf{LRV3 (Additional Distance Column)}
+    \begin{itemize}
+        \item Slightly worse results than LRV2.
+        \item Suggesting an increase in the amount of samples would benefit the learning process.
+    \end{itemize}
+\end{itemize}
 
 \chapter{Conclusions and Future Work}
 \label{ch:Conclusions and Future Work}

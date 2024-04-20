@@ -136,33 +136,34 @@
 \contentsline {subsubsection}{Results}{102}{section*.55}%
 \contentsline {subsubsection}{Analysis}{104}{section*.60}%
 \contentsline {subsection}{\numberline {4.2.2}Experiment 2: Abalone Dataset Regression}{104}{subsection.4.2.2}%
-\contentsline {subsubsection}{Methodology}{104}{section*.62}%
-\contentsline {subsubsection}{Tested Hyperparameters}{105}{section*.63}%
-\contentsline {subsubsection}{Results}{106}{section*.65}%
-\contentsline {subsubsection}{Analysis}{108}{section*.71}%
-\contentsline {subsection}{\numberline {4.2.3}Experiment 3: Raisin Dataset Classification}{108}{subsection.4.2.3}%
-\contentsline {subsubsection}{Methodology}{108}{section*.73}%
-\contentsline {subsubsection}{Tested Hyperparameters}{109}{section*.74}%
-\contentsline {subsubsection}{Results}{110}{section*.76}%
-\contentsline {subsubsection}{Analysis}{112}{section*.81}%
-\contentsline {subsection}{\numberline {4.2.4}Experiment 4: House Prices Dataset Regression}{112}{subsection.4.2.4}%
-\contentsline {subsubsection}{Methodology}{112}{section*.83}%
-\contentsline {subsubsection}{Tested Hyperparameters}{113}{section*.84}%
-\contentsline {subsubsection}{Results}{114}{section*.86}%
-\contentsline {subsubsection}{Analysis}{116}{section*.92}%
-\contentsline {subsection}{\numberline {4.2.5}Experiment 5: Dry Bean Dataset Classification}{116}{subsection.4.2.5}%
-\contentsline {subsubsection}{Methodology}{116}{section*.94}%
-\contentsline {subsubsection}{Tested Hyperparameters}{117}{section*.95}%
-\contentsline {subsubsection}{Results}{118}{section*.97}%
-\contentsline {subsubsection}{Analysis}{120}{section*.102}%
-\contentsline {subsection}{\numberline {4.2.6}Experiment 6:}{120}{subsection.4.2.6}%
-\contentsline {subsubsection}{Methodology}{120}{section*.104}%
-\contentsline {subsubsection}{Tested Hyperparameters}{121}{section*.105}%
-\contentsline {subsubsection}{Results}{122}{section*.107}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{125}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Addressing Identified Limitations}{125}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Broader Applicability}{125}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Integration with Emerging Technologies}{126}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Scalability and Efficiency}{126}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Cross-Domain Applications}{126}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Exploring Other Categorical Similarity Measures}{126}{section.5.6}%
+\contentsline {subsubsection}{Methodology}{104}{section*.61}%
+\contentsline {subsubsection}{Tested Hyperparameters}{106}{section*.62}%
+\contentsline {subsubsection}{Results}{107}{section*.64}%
+\contentsline {subsubsection}{Analysis}{108}{section*.70}%
+\contentsline {subsection}{\numberline {4.2.3}Experiment 3: Raisin Dataset Classification}{109}{subsection.4.2.3}%
+\contentsline {subsubsection}{Methodology}{109}{section*.71}%
+\contentsline {subsubsection}{Tested Hyperparameters}{110}{section*.72}%
+\contentsline {subsubsection}{Results}{111}{section*.74}%
+\contentsline {subsubsection}{Analysis}{113}{section*.79}%
+\contentsline {subsection}{\numberline {4.2.4}Experiment 4: House Prices Dataset Regression}{114}{subsection.4.2.4}%
+\contentsline {subsubsection}{Methodology}{114}{section*.80}%
+\contentsline {subsubsection}{Tested Hyperparameters}{114}{section*.81}%
+\contentsline {subsubsection}{Results}{115}{section*.83}%
+\contentsline {subsubsection}{Analysis}{117}{section*.89}%
+\contentsline {subsection}{\numberline {4.2.5}Experiment 5: Dry Bean Dataset Classification}{117}{subsection.4.2.5}%
+\contentsline {subsubsection}{Methodology}{117}{section*.90}%
+\contentsline {subsubsection}{Tested Hyperparameters}{118}{section*.91}%
+\contentsline {subsubsection}{Results}{119}{section*.93}%
+\contentsline {subsubsection}{Analysis}{121}{section*.98}%
+\contentsline {subsection}{\numberline {4.2.6}Experiment 6: White Wine Database Regression}{122}{subsection.4.2.6}%
+\contentsline {subsubsection}{Methodology}{122}{section*.99}%
+\contentsline {subsubsection}{Tested Hyperparameters}{122}{section*.100}%
+\contentsline {subsubsection}{Results}{123}{section*.102}%
+\contentsline {subsubsection}{Analysis}{125}{section*.108}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Work}{126}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Addressing Identified Limitations}{126}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Broader Applicability}{126}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Integration with Emerging Technologies}{127}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Scalability and Efficiency}{127}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Cross-Domain Applications}{127}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Exploring Other Categorical Similarity Measures}{127}{section.5.6}%
