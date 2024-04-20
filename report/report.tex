@@ -84,7 +84,7 @@ and that it has not been submitted partly or wholly for any other educational aw
 \vspace{2em} % Vertical space for the signature
 
 \begin{flushright}
-	\textit{Signed} \\
+	\textit{Signed}{ Oliver Linger} \\
 	\rule{6cm}{0.4pt} \\
 	\textit{Date: \today}
 \end{flushright}
@@ -207,7 +207,8 @@ The advantages and disadvantages discussed with instance based learning are seen
 The disadvantages discussed with instance based learning are discussed in the paper \cite{aha1991instance}.
 \begin{enumerate}
 	\item \textbf{Computational Complexity:} Storing and manipulating the entire training dataset can lead to high memory consumption and computational overhead during prediction, limiting scalability.
-	\item \textbf{Susceptibility to Noise and Redundancy:} Instance-based approaches are sensitive to noisy or irrelevant features, which can lead to suboptimal performance or overfitting. Redundant instances or outliers may distort similarity measures, compromising model robustness.
+	\item \textbf{Susceptibility to Noise and Redundancy:} Instance-based approaches are sensitive to noisy or irrelevant features, which can lead to suboptimal performance or overfitting. 
+    Redundant instances or outliers may distort similarity measures, compromising model robustness.
 \end{enumerate}
 
 \subsection{Motivation for Blended Learning}
@@ -845,6 +846,70 @@ This rigorous analysis empowers stakeholders to make informed decisions about th
 However, we encountered the critical challenge of compatibility during model development. Our codebase is structured as a downloadable package, 
 seamlessly integrating with Scikit-learn's ecosystem to ensure interoperability across various datasets and environments. 
 This compatibility enhances accessibility and usability for practitioners in diverse machine learning endeavors.
+
+Here is an image overview of the learning from differences process from the paper\cite{learningFromDifferences2022}.
+
+\subsection{Image Depiction of \texttt{LingerRegressor}, \texttt{LingerClassifier}}
+Here is the algorithm for the \texttt{LingerRegressor} in picture format. 
+It is very similar for \texttt{LingerClassifier}, the difference being that instead of the average of 
+predictions being taken at the end, a majority vote is taken.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{house_prices_training_part_1.PNG}
+    \caption{\texttt{LingerRegression} training part 1}
+    \label{fig:lingerRegression_training_part1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{house_prices_training_part_2.PNG}
+    \caption{\texttt{LingerRegression} training part 2}
+    \label{fig:lingerRegression_training_part2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{house_prices_training_part_3.PNG}
+    \caption{\texttt{LingerRegression} training part 3}
+    \label{fig:lingerRegression_training_part3}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{house_prices_training_part_4.PNG}
+    \caption{\texttt{LingerRegression} training part 4}
+    \label{fig:lingerRegression_training_part4}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{house_prices_training_part_5.PNG}
+    \caption{\texttt{LingerRegression} prediction part 1}
+    \label{fig:lingerRegression_prediction_part1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{house_prices_training_part_6.PNG}
+    \caption{\texttt{LingerRegression} prediction part 2}
+    \label{fig:lingerRegression_prediction_part2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{house_prices_training_part_7.PNG}
+    \caption{\texttt{LingerRegression} prediction part 3}
+    \label{fig:lingerRegression_training_part6}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{house_prices_training_part_8.PNG}
+    \caption{\texttt{LingerRegression} prediction part 4}
+    \label{fig:lingerRegression_training_part7}
+\end{figure}
 
 \section{Linger Regression Base Model: \texttt{LingerRegressor} (LR)}
 \label{sec:linger_regression_base_model}
@@ -2196,7 +2261,6 @@ Visually we could Identify exactly what the image is learning from based on the 
 The key components of the \texttt{LingerImageClassifier} include:
 \begin{itemize}
 \item KNN Module: Computes nearest neighbors used to extract differences during training phase and prediction phase.
-\item 
 \item \textbf{Convolutional Neural Network (CNN):} The heart of the classification process is a Convolutional Neural Network (CNN), 
     meticulously designed to analyze and interpret the differences identified by the KNN module. This CNN is notable for its flexibility, 
     allowing for the customization of activation functions, solvers, and an extensive range of hyperparameters to optimize classification performance. 

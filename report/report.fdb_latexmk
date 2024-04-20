@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex report"] 1713630717.80017 "report.aux" "report.bbl" "report" 1713631053.24908 0
+["bibtex report"] 1713645951.86194 "report.aux" "report.bbl" "report" 1713645955.49407 0
   "./references.bib" 1712410671 5353 61e1d6debbe02a7d611e1e82b1650c76 ""
   "C:/Users/USER/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291864736 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "report.aux" 1713631052 61118 c3a066ebcd3f92b43e7a76b196b270a7 "pdflatex"
+  "report.aux" 1713645954 63695 86f11a1a48c7fe9b9f048367c65a5c51 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1713631050.16221 "c:/Users/USER/final_year/fyp/report/report.tex" "report.pdf" "report" 1713631053.24988 0
+["pdflatex"] 1713645952.14392 "c:/Users/USER/final_year/fyp/report/report.tex" "report.pdf" "report" 1713645955.49477 0
   "C:/Users/USER/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1713608213 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/USER/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1000.pk" 1713608221 25420 1751aef0595fa8eddd31b0ef8932441a ""
   "C:/Users/USER/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1095.pk" 1713608219 28976 623c44910ec76750125cec96042d3b91 ""
@@ -274,14 +274,22 @@
   "C:/Users/USER/AppData/Local/Programs/MiKTeX/tex/latex/tools/tabularx.sty" 1700599895 7147 d45559f8a31b8c53ada0640516660003 ""
   "C:/Users/USER/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/USER/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "c:/Users/USER/final_year/fyp/report/report.tex" 1713631049 236276 69edf6cc8c39087ec01135674c0d3666 ""
-  "report.aux" 1713631052 61118 c3a066ebcd3f92b43e7a76b196b270a7 "pdflatex"
-  "report.bbl" 1713630718 3970 c4d961b4e742149b528d2c752577f951 "bibtex report"
-  "report.lof" 1713631052 130 f826c84079cca262924fc91efb7dde9a "pdflatex"
-  "report.lot" 1713631052 6649 cbb34fe41540b450768129f24c7bfd47 "pdflatex"
-  "report.out" 1713631052 23648 40109d6280258730afda9c7d2f5dea0c "pdflatex"
-  "report.tex" 1713631049 236276 69edf6cc8c39087ec01135674c0d3666 ""
-  "report.toc" 1713631052 15607 e2104726eaaf5bac127f28fba6d4675f "pdflatex"
+  "c:/Users/USER/final_year/fyp/report/report.tex" 1713645947 238626 f07796af576d01d90ef754a334cd5c4c ""
+  "house_prices_training_part_1.PNG" 1713638445 56419 c69eb2daa1b8867f4e4094892f4b38ca ""
+  "house_prices_training_part_2.PNG" 1713645069 98066 aa679b2535ae376ce75e4b11b4059f06 ""
+  "house_prices_training_part_3.PNG" 1713645100 102905 5b93194a6044a918de2cb6702a89ce90 ""
+  "house_prices_training_part_4.PNG" 1713645133 45680 db7108419888a1174dfbed8cd5497c1a ""
+  "house_prices_training_part_5.PNG" 1713645157 70235 3c2c61c5c43de5eece975c2fad4f8646 ""
+  "house_prices_training_part_6.PNG" 1713645185 79421 9a7bdddeb9af399eaf5ae4f2a801e715 ""
+  "house_prices_training_part_7.PNG" 1713645215 53226 24fb3054a59a28c3e3430a2991fa206f ""
+  "house_prices_training_part_8.PNG" 1713645242 54056 9b89d09907f55419f23425633d35d879 ""
+  "report.aux" 1713645954 63695 86f11a1a48c7fe9b9f048367c65a5c51 "pdflatex"
+  "report.bbl" 1713645952 3970 c4d961b4e742149b528d2c752577f951 "bibtex report"
+  "report.lof" 1713645954 1130 74ebbffcfca811f75775a789bc7ccd1a "pdflatex"
+  "report.lot" 1713645954 6654 9d3cd09e577b7753150248bc1a503739 "pdflatex"
+  "report.out" 1713645954 23983 184fbe5b5c858e4a45fd92d1964b9c52 "pdflatex"
+  "report.tex" 1713645947 238626 f07796af576d01d90ef754a334cd5c4c ""
+  "report.toc" 1713645954 15760 d2ae1b2034e19cc9824c2d9a70f14262 "pdflatex"
   (generated)
   "report.aux"
   "report.lof"
