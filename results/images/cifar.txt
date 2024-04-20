@@ -1,2 +1,13 @@
-Accuracy on CIFAR-100 test set differences: 0.1715
-Standard CNN Accuracy on CIFAR-100 test set: 0.2146
+On 10 epochs
+Accuracy on CIFAR-100 test set differences: 0.0488
+Standard CNN Accuracy on CIFAR-100 test set: 0.01
+On 50 epochs
+Accuracy on CIFAR-100 test set differences: 0.0091
+Standard CNN Accuracy on CIFAR-100 test set: 0.01
+Accuracy on CIFAR-100 test set differences: 0.008
+Standard CNN Accuracy on CIFAR-100 test set: 0.01
+
+Accuracy on CIFAR-100 test set differences: 0.0094
+Standard CNN Accuracy on CIFAR-100 test set: 0.0273
+Accuracy on CIFAR-100 test set differences: 0.0078
+Standard CNN Accuracy on CIFAR-100 test set: 0.0486
