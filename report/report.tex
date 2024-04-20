@@ -57,7 +57,7 @@
 \begin{abstract}
     This study presents an innovative exploration into the realm of machine learning, specifically focusing on enhancing model interpretability and 
     performance through a novel ensemble of model-based and instance-based learning approaches. Grounded in the principles of Case-Based Reasoning (CBR) 
-    and the Learning From Differences methodology, we introduce the \texttt{LingerRegressor} and \texttt{LingerClassifier} models. These models aim to leverage the strengths 
+    and the Learning From Differences methodology, we introduce the \texttt{LingerRegressor} and \texttt{LingerClassifier} models with their novel variations. These models aim to leverage the strengths 
     of both learning approaches to address the limitations present in traditional machine learning algorithms, particularly in the contexts of regression and classification tasks.
 
     Our methodology involves a detailed examination of the algorithms' design and implementation, highlighting the integration of novel variations such as context inclusion, 
@@ -931,12 +931,10 @@ Once summed, divide by $n$ to obtain $y^{pred}_j$. Compare $y^{pred}_j$ to $y^{t
 
 \subsection{Training and Prediction Implementation}
 \subsubsection{Training Implementation}
-During training, the algorithm fits the base Linger Regressor to the input dataset $X$ and the corresponding label vector $y$. 
-It computes the nearest neighbors for each sample in $X$ and constructs the input features and target 
-labels for the regressor by calculating the differences between each sample and its neighbors. 
-These differences are then used to train the regressor, and the trained model along with the 
-training data are stored for later use. It makes use of scikit-learns \cite{scikit-learn} \text{NearestNeighbors}, \text{numpy} and \text{MLPRegressor}.
-
+During training, the Linger Regressor is fitted to the dataset $X$ with labels $y$. It computes nearest neighbors for each $X$
+to construct features and targets by calculating differences between each sample and its neighbors, using scikit-learn's 
+\texttt{NearestNeighbors}, \texttt{numpy}, and \texttt{MLPRegressor}. 
+These differences train the regressor, and both the model and data are saved for future use.
 \begin{algorithm}[H]
     \caption{Training Implementation Algorithm for Base Linger Regressor}
     \textbf{Input:} Dataset, $X$, label vector $y$, number of neighbors $n\_neighbors\_1$
@@ -1003,7 +1001,8 @@ It makes use of scikit-learns \cite{scikit-learn} \text{NearestNeighbors}, and \
             \EndIf
             \For{each sample $test$ in $X$}
                 \For{each nearest neighbor $nn\_in\_training$ in $indices[test]$}
-                    \State Append $(X[test, :] - train\_X[indices[test][nn\_in\_training], :])$ to $differences\_test\_X$
+                    \State Append $(X[test, :] - train\_X[indices[test][nn\_in\_training], :])$ 
+                    \State \hspace{\algorithmicindent} $\text{ to }differences\_test\_X$
                 \EndFor
             \EndFor
             \If{$variant == 1$ (LRV1)}
@@ -1033,7 +1032,8 @@ It makes use of scikit-learns \cite{scikit-learn} \text{NearestNeighbors}, and \
                     \State Compute weights for each neighbor
                     \State $weights = 1 \div (dist + 1e-8)$
                     \State Compute weighted sum of target values
-                    \State $weighted\_sum = sum(w \times (train\_y[i] + d)$ for i, d, w in zip($indexes$, $differences$, $weights$))
+                    \State $weighted\_sum = sum(w \times (train\_y[i] + d)$ 
+                    \State \hspace{\algorithmicindent}for i, d, w in zip($indexes$, $differences$, $weights$))
                     \State Compute weighted average
                     \State $weighted\_avg = weighted\_sum \div sum(weights)$
                     \State Append $weighted\_avg$ to $y\_pred$
@@ -1068,34 +1068,31 @@ Overall, the \texttt{LingerRegressor} model contributes to the advancement of ma
 \label{sec:linger_classification_base_model}
 
 \subsection{Objective}
-The objective of the Linger Classification Base Model (\texttt{LingerClassifier}) is to extend the learning from differences methodology to 
-classification tasks. The primary goals include:
-
+The \texttt{LingerClassifier} extends the learning from differences methodology to classification tasks, aiming for:
 \begin{itemize}
-    \item Developing a versatile classification model that utilizes differences between cases for prediction.
-    \item Ensuring compatibility with Scikit-learn for seamless integration and extensive hyperparameter testing.
-    \item Providing interpretable predictions to facilitate user understanding.
-    \item Implementing enhancements to the learning from differences algorithm for improved classification performance.
-    \item Designing a modular and extensible codebase to support future variations and enhancements.
+    \item Development of a flexible model that leverages differences between cases for predictions.
+    \item Full compatibility with Scikit-learn, ensuring seamless integration and robust hyperparameter testing.
+    \item Enhanced interpretability of predictions to improve user understanding.
+    \item Continuous improvements in the classification performance through algorithmic enhancements.
+    \item A modular and expandable design for accommodating future model variations.
 \end{itemize}
-
-The \texttt{LingerClassifier} is tailored for classification problems where interpretability and adaptability are critical.
+This model is designed for classification scenarios demanding high interpretability and adaptability.
 
 \subsection{Architecture}
-Similar to the regression counterpart, the \texttt{LingerClassifier} integrates K-nearest neighbors (KNN) and Scikit-learn's \texttt{MLPClassifier} for classification tasks. 
-During training, KNN is used to compute nearest neighbors, and during prediction, the differences are used to adapt the class labels.
+The architecture of \texttt{LingerClassifier} parallels that of its regression counterpart, incorporating both K-nearest neighbors (KNN) and Scikit-learn's 
+\texttt{MLPClassifier}. It utilizes KNN to determine nearest neighbors during both the training and prediction phases, adapting class labels based on 
+learned differences.
 
 \subsection{Components}
-The key components of the \texttt{LingerClassifier} include:
+\texttt{LingerClassifier} comprises:
 \begin{itemize}
-    \item KNN Module: Computes nearest neighbors and extracts differences during training and prediction phases.
-    \item \texttt{MLPClassifier}: Offers flexibility in activation functions, solvers, and hyperparameters for classification.
-    \item Additional Features: Similar to the regression model, features like weighted KNN, context addition, additional results' column, and duplication based on distance can be activated through hyperparameters.
+    \item \textbf{KNN Module:} Determines nearest neighbors and captures case differences throughout the training and prediction processes.
+    \item \textbf{\texttt{MLPClassifier}:} Allows for configurable activation functions and solvers, enhancing classification flexibility.
+    \item \textbf{Supplementary Features:} Includes Weighted KNN, Context Addition, and Distance-Based Duplication among others, all configurable via hyperparameters.
 \end{itemize}
 
 \subsection{Parameterization}
-The model provides extensive parameterization options for fine-tuning KNN, \texttt{MLPClassifier}, and additional features. 
-Hyperparameters for the classification model mirror those available in standard KNN and neural networks, with additional parameters specific to \texttt{LingerClassifier}.
+Extensive parameterization options enable detailed customization of KNN and \texttt{MLPClassifier} settings, alongside specialized \texttt{LingerClassifier} parameters, facilitating precise model tuning for varied classification needs.
 
 \subsection{Training and Prediction Design}
 The training and prediction algorithms for the \texttt{LingerClassifier} are similar to those of the \texttt{LingerRegressor}, with adjustments made to accommodate classification tasks.
@@ -1147,17 +1144,9 @@ During prediction, the algorithm adapts class labels based on the majority class
 
 \subsection{Training and Prediction Implementation}
 \subsubsection{Training Algorithm Implementation}
-The provided algorithm outlines the prediction process for the Linger Classifier implemented in Python. 
-It begins by fitting a Nearest Neighbors model with a specified number of neighbors using the training data. 
-Next, it computes the nearest neighbors for each sample in the input data and initializes an empty list 
-to store the differences between the test samples and their corresponding neighbors. 
-If the input data is sparse, it is converted to a dense array for compatibility. 
-The algorithm then iterates through each test sample and its nearest neighbors to calculate the feature differences. 
-After computing the differences, it proceeds to make predictions using the trained classifier. 
-If weighted KNN is enabled, it calculates the weighted results based on the differences and distances 
-to determine the item with the highest weighted sum as the prediction. 
-Otherwise, it finds the most common item among the predictions. 
-Finally, the predicted target values are aggregated and returned as the output of the algorithm.
+This algorithm implements the texttt{LingerClassifier} by fitting a Nearest Neighbors model, computing nearest neighbors for the training data, 
+and calculating differences for feature preparation. Differences are used to train the \texttt{MLPClassifier}, accounting for sparse data and employing
+variants like context addition or distance-based duplication as needed.
 
 \begin{algorithm}[H]
     \caption{Training Implementation Algorithm for Base Linger Classifier}
@@ -1173,10 +1162,13 @@ Finally, the predicted target values are aggregated and returned as the output o
             \State $differences\_y \gets []$
             \If{$variant == 1$ (LCV1)}
                 \State Call $addition\_of\_context\_func\_fit()$
-                \State $differences\_X, differences\_y$ \par $= addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
+                \State $differences\_X, differences\_y$ 
+                \State \hspace{\algorithmicindent} $= addition\_of\_context\_func\_fit(X, y, indices, differences\_X, differences\_y)$
             \ElsIf{$variant == 2$ (LCV2)}
-                \State Call $duplicate\_difference\_based\_on\_distance()$
-                \State $differences\_X, differences\_y$ \par $= duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y, distances)$
+                \State Call $duplicate\_difference\_based\_on\_distance() = $
+                \State $differences\_X, differences\_y = $ 
+                \State \hspace{\algorithmicindent} $duplicate\_difference\_based\_on\_distance(differences\_X, differences\_y,$
+                \State \hspace{\algorithmicindent} $distances)$
             \ElsIf{$variant == 3$ (LCV3)}
                 \State Call $add\_additional\_distance\_column(differences\_X, distances)$
                 \State $differences\_X = add\_additional\_distance\_column(differences\_X, distances)$
@@ -1199,17 +1191,9 @@ Finally, the predicted target values are aggregated and returned as the output o
 \clearpage
 
 \subsubsection{Prediction Algorithm Implementation}
-The prediction algorithm for the Linger Classifier, implemented in Python, outlines the process of predicting 
-target values for the input data. Initially, it fits a Nearest Neighbors model with a specified number of 
-neighbors using the training data. Then, it computes the nearest neighbors for each sample in the input 
-data and initializes an empty list to store the feature differences between the test samples and their corresponding neighbors. 
-If the input data is sparse, it is converted to a dense array for compatibility. 
-The algorithm iterates through each test sample and its \texttt{NearestNeighbors} to calculate the feature differences. 
-After computing the differences, it proceeds to make predictions using the trained \texttt{LingerClassifier}. 
-If weighted KNN is enabled, it calculates the weighted sum of target values for each neighbor based on the differences 
-and distances, and selects the item with the highest weighted sum as the prediction. Otherwise, 
-it finds the most common item among the predictions. Finally, the predicted target values are aggregated and returned 
-as the output of the algorithm.
+The prediction process utilizes the trained model and Nearest Neighbors to predict outcomes for new data. It includes adjustments for sparse data and 
+leverages weighted KNN if enabled, ultimately aggregating predicted values based on computed differences.
+
 \begin{algorithm}[H]
     \caption{Prediction Algorithm for Linger Classifier (Part 1)}
     \textbf{Input:} Input data, $X$, number of neighbors $n\_neighbours\_2$
@@ -1225,7 +1209,8 @@ as the output of the algorithm.
             \EndIf
             \For{each sample $test$ in $X$}
                 \For{each nearest neighbor $nn\_in\_training$ in $indices[test]$}
-                    \State Append $(X[test, :] - \text{train\_X}[indices[test][nn\_in\_training], :])$ to $differences\_test\_X$
+                    \State Append $(X[test, :] - \text{train\_X}[indices[test][nn\_in\_training], :])$ 
+                    \State \hspace{\algorithmicindent} to $differences\_test\_X$
                 \EndFor
             \EndFor
             \If{$variant == 1$ (LCV1)}
@@ -1271,6 +1256,7 @@ as the output of the algorithm.
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
+
 \subsection{Evaluation}
 Evaluation metrics for the \texttt{LingerClassifier} include accuracy, precision, recall, F1-score, and confusion matrix analysis. 
 These metrics provide insights into the model's performance and its ability to classify instances accurately.
@@ -1287,10 +1273,12 @@ For more details on the \texttt{LingerClassifier}, and \texttt{LingerRegressor} 
 \label{sec:linger_regr_class_variation1_model}
 
 \subsubsection{Objective}
-The objective of adding context is to incorporate the original attribute values of the source cases into the generated differences array. 
-This ensures that the new datasets used for fitting and prediction contain both the original attribute values of the source cases and the differences between them and their nearest neighbors. 
-This may aid in the learning process and improve the model. Its design is the same for both the \texttt{LingerRegressor} and \texttt{LingerClassifier}.
+Enhance model learning by including both the original attribute values and the differences with nearest neighbors in the dataset. 
+This is applied similarly in both \texttt{LingerRegressor} and \texttt{LingerClassifier} models.
 
+During both training and prediction, the algorithm appends the source case attributes to the differences array, 
+enriching the feature set with contextual data. 
+This is intended to improve prediction accuracy by preserving information about the original attributes.
 \subsubsection{Training Design}
 \begin{algorithm}[H]
     \caption{Training Algorithm for Learning from Differences, with context included in \texttt{LingerClassifier} and \texttt{LingerRegressor}}
@@ -1340,7 +1328,6 @@ This may aid in the learning process and improve the model. Its design is the sa
 
 \subsubsection{Training Implementation}
 This algorithm is called during the Fit stage of both the \texttt{LingerClassifier}, and \texttt{LingerRegressor}.
-
 \begin{algorithm}[H]
     \caption{Context Addition Function for Base Linger Classifier}
     \textbf{Input:} Dataset $X$, label vector $y$, nearest neighbor indices $indices$, differences in $X$ $differences\_X$, differences in $y$ $differences\_y$
@@ -1399,14 +1386,11 @@ This algorithm is called during the predict algorithm for both the \texttt{Linge
 \label{sec:linger_regr_class_variation2_model}
 
 \subsubsection{Objective}
-A novel variation introduced in this study involves duplicating differences based on distance, aiming to amplify the influence of neighbors closely resembling the base case. 
-This innovative approach represents a departure from conventional methods in the learning from differences paradigm. 
-By magnifying the impact of differences that exhibit stronger correlation with the base case, this technique effectively mitigates the influence of outliers, 
-leading to more robust model performance.
-
-This novel approach is specifically integrated into the fitting process of both the \texttt{LingerClassifier} and \texttt{LingerRegressor} models. 
-By emphasizing the significance of closely resembling neighbors, this technique enhances the model's ability to discern meaningful patterns in the data, 
-thereby improving its predictive accuracy and generalization capabilities.
+This study introduces a variation that duplicates differences based on distance, enhancing the influence of neighbors closely resembling the base case. 
+This novel approach diverges from traditional methods by prioritizing differences that strongly correlate with the base case, 
+thus reducing the impact of outliers and enhancing model robustness. Integrated into the fitting process 
+of both the \texttt{LingerClassifier} and \texttt{LingerRegressor}, this method emphasizes the importance of similar neighbors, 
+improving the model's ability to identify meaningful patterns and boosting predictive accuracy and generalization.
 
 \begin{enumerate}
     \item \textbf{Normalize Distances}: Normalize the distances from the base case to its nearest neighbors represented by $Distances_{ij}$. 
@@ -1471,7 +1455,8 @@ thereby improving its predictive accuracy and generalization capabilities.
             \If{$min\_val == max\_val$}
                 \State $scaled\_distances\_rounded \gets np.ones\_like(log\_values).astype(int)$
             \Else
-                \State $scaled\_distances$ $\gets 10 - ((log\_values - min\_val) / (max\_val - min\_val) \times 10)$
+                \State $scaled\_distances$ $\gets 10 - ((log\_values - min\_val) / $
+                \State \hspace{\algorithmicindent} $(max\_val - min\_val) \times 10)$
                 \State $scaled\_distances\_rounded$ $\gets np.round(scaled\_distances).astype(int)$
             \EndIf
             \State Algorithm continues 
@@ -1484,15 +1469,15 @@ thereby improving its predictive accuracy and generalization capabilities.
     \caption{Difference Duplication Based on Distance (Part 2)}
     \label{alg:duplication_Implementation_based_on_distance_train_part2}
     \begin{algorithmic}[1] 
-        \Function{duplicate\_diff\_contd}{$filtered\_data\_X,filtered\_data\_y,scaled\_distances\_rounded$}
+        \Function{duplicate\_diff\_contd}{$filtered\_data\_X, filtered\_data\_y,scaled\_dist\_rounded$}
             \State $duplicated\_list\_X \gets []$
             \State $duplicated\_list\_y \gets []$
-            \For{each $item, count$ in zip($filtered\_data\_X$, $scaled\_distances\_rounded$)}
+            \For{each $item, count$ in zip($filtered\_data\_X$, $scaled\_dist\_rounded$)}
                 \For{$\_ \gets 1$ to $count$}
                     \State append $item$ to $duplicated\_list\_X$
                 \EndFor
             \EndFor
-            \For{each $item, count$ in zip($filtered\_data\_y$, $scaled\_distances\_rounded$)}
+            \For{each $item, count$ in zip($filtered\_data\_y$, $scaled\_dist\_rounded$)}
                 \For{$\_ \gets 1$ to $count$}
                     \State append $item$ to $duplicated\_list\_y$
                 \EndFor
@@ -1507,21 +1492,16 @@ thereby improving its predictive accuracy and generalization capabilities.
 \label{sec:linger_regr_class_variation3_model}
 
 \subsubsection{Objective}
-Variation 3 introduces a novel approach by incorporating the distance between each base case and its nearest neighbor into both the training and prediction 
-phases of the neural network. This innovative method aims to leverage the proximity information to enhance the learning process and predictive performance of the model.
-
-By integrating distance information, the neural network gains insight into the spatial relationships between data points. 
-This allows the model to potentially learn associations between differences and their corresponding distances, 
-leading to improved accuracy and effectiveness in both training and prediction tasks.
-
-The motivation behind this variation lies in its potential to provide the model with a deeper understanding of the underlying data structure. 
-By considering distance as a factor in the learning process, the model can better capture nuanced patterns and relationships, 
-resulting in more robust and reliable predictions.
+This novel variation incorporates the distance between each base case and its nearest neighbor into both the training and 
+prediction phases of the neural network. By leveraging this proximity information, the approach enhances the learning process and predictive 
+accuracy of the model. 
+Integrating distance information helps the model capture nuanced patterns and relationships, enhancing its robustness and reliability. 
+It also improves rhobustness by identifying outliers via distance.
 
 \subsubsection{Design for Training}
-In the fit phase, the distances between each base case $D^{train}_i$ and its nearest neighbor in $D^{train}$ are computed and stored in $Distances_{ij}$.
-To incorporate these distances into the training data, each distance in $Distances_{ij}$ is concatenated with the corresponding difference $\Delta D^{train}$.
-This results in a new dataset where each difference is paired with its corresponding distance, ensuring a one-to-one ratio between distances and differences.
+In the training phase, distances between each base case $D^{train}_i$ and its nearest neighbor are calculated and stored in $Distances_{ij}$. 
+These distances are then concatenated with the corresponding differences $\Delta D^{train}$, forming a new dataset where each difference is 
+paired with its respective distance.
 
 \begin{algorithm}[H]
     \caption{Training Algorithm for Learning from Differences, with Distance Column}
@@ -1546,9 +1526,10 @@ This results in a new dataset where each difference is paired with its correspon
     \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Design for Predict}
-In the prediction phase, distances between each test case $X^{test}_j$ and its nearest neighbors in $D^{train}$ are stored in $Distances_{ji}$.
-These distances are concatenated with the corresponding differences $\Delta X^{test}$, ensuring a one-to-one ratio between distances and differences in the prediction dataset.
+\subsubsection{Design for Prediction}
+During the prediction phase, distances between each test case $X^{test}_j$ and its nearest neighbors are calculated and stored in $Distances_{ji}$. 
+These distances are then added as attributes to the differences $\Delta X^{test}$, creating a dataset that maintains a one-to-one ratio between 
+distances and differences.
 
 \begin{algorithm}[H]
 	\caption{Prediction Algorithm for Learning from Differences with Additional Distance Column}
@@ -1596,22 +1577,6 @@ The same function is called during both predict and training.
     \end{algorithmic}
 \end{algorithm}
 
-\section{Acronym Guide}
-\begin{table}[ht]
-    \centering
-    \caption{Variations for \texttt{LingerRegressor} and \texttt{LingerClassifier}}
-    \begin{tabular}{ |c|c| }
-        \hline
-        \textbf{Variation} & \textbf{Acronym} \\
-        \hline
-        Addition of Context & LRV1, LCV1 \\
-        Duplication Based on Distance & LRV2, LCV2 \\
-        Addition of Distance Column & LRV3, LCV3 \\
-        \hline
-    \end{tabular}
-    \label{table:linger_regressor_classifier_variations}
-\end{table}
-
 \section{Learning From differences Implicitly}
 
 \subsection{Introduction and Motivation}
@@ -1649,32 +1614,20 @@ The \texttt{LingerImplicitClassifier} is tailored for classification problems wh
 It adds another layer of interpretability, as both the target case and retrieved case are visible within the case pair which the Neural Nets are trained on.
 
 \subsection{Architecture}
-The \texttt{LingerImplicitClassifier} leverages a hybrid architecture incorporating K-nearest neighbors (KNN) and Scikit-learn's \texttt{MLPClassifier} to tackle classification tasks.
-In the training phase, KNN plays a pivotal role in computing nearest neighbors, thereby facilitating the creation of case pairs.
-During the prediction phase, KNN is again utilized to retrieve the most similar cases from each class.
-
-The process of generating case pairs for predictions involves KNN's functionality to identify the nearest neighbors. 
-These neighbors serve as crucial elements in forming case pairs, enabling the classifier to make informed predictions based on similarities observed within the dataset.
-
-The integration of KNN with the \texttt{MLPClassifier} offers a comprehensive approach to classification tasks, combining the strengths of both algorithms. 
-While KNN excels in identifying similarities and forming case pairs, the \texttt{MLPClassifier} contributes 
-by providing a powerful neural network-based classification model capable of learning intricate patterns and relationships within the data.
-
-By harnessing the complementary capabilities of KNN and the \texttt{MLPClassifier}, 
-the \texttt{LingerImplicitClassifier} aims to achieve robust and accurate classification results across diverse datasets,
-making it a versatile tool for various machine learning applications.
+The \texttt{LingerImplicitClassifier} combines K-nearest neighbors (KNN) and \texttt{MLPClassifier}, utilizing KNN for generating informative
+ case pairs during both training and prediction phases. This hybrid approach leverages the strengths of both models to enhance classification accuracy.
 
 \subsection{Components}
-The key components of the \texttt{LingerClassifier} include:
 \begin{itemize}
-    \item KNN Module: Computes nearest neighbors and extracts differences during training and prediction phases.
-    \item \texttt{MLPClassifier}: Offers flexibility in activation functions, solvers, and hyperparameters for classification.
-    \item Additional Features: Class to class pairs, random N selected neighbors, and N nearest neighbors.
+    \item \textbf{KNN Module:} Identifies nearest neighbors to form case pairs.
+    \item \textbf{\texttt{MLPClassifier}:} Provides a robust framework for learning from the identified case pairs.
+    \item \textbf{Additional Features:} Includes class-to-class pair formation and selection mechanisms for neighbors.
 \end{itemize}
 
 \subsection{Parameterization}
 The model provides extensive parameterization options for fine-tuning KNN, \texttt{MLPClassifier}, and additional features. 
-Hyperparameters for the classification model mirror those available in standard KNN and neural networks, with additional parameters specific to \texttt{LingerClassifier}.
+Hyperparameters for the classification model mirror those available in standard KNN and neural networks, with additional parameters specific to
+ \texttt{LingerClassifier}.
 
 \subsection{Training and Prediction Design}
 The training and prediction algorithms for the \texttt{LingerImplicitClassifier}.
@@ -1748,13 +1701,9 @@ Each variant may be suitable depending on the specific characteristics of the da
 
 \subsubsection{Training Algorithm Implementation}
 \label{sec:training_implementation_LIC}
-The \texttt{fit} function of the \texttt{LingerImplicitClassifier} model trains the classifier using the provided training data $X$ and target labels $y$. 
-It begins by handling input data, converting sparse matrices to dense arrays if necessary. 
-Next, it initializes structures to store trained adaptation neural networks and unique classes. 
-The algorithm then computes the nearest neighbors for each sample in $X$, generates pairs of cases (consisting of base and retrieved cases), 
-and organizes the data based on class labels. Finally, it trains adaptation neural networks for each class label using the generated case pairs and target labels. 
-Overall, this process enables the \texttt{LingerImplicitClassifier} model to adapt to specific instances retrieved during inference, 
-enhancing its performance on the task.
+Both training and prediction phases share similar structural implementations, promoting code reuse and maintainability. 
+The training phase involves preparing the neural networks by forming and utilizing case pairs, while the prediction phase focuses on applying 
+these trained networks to new data.
 
 \begin{algorithm}[H]
     \caption{Fit Function for LingerImplicitClassifier}
@@ -1821,12 +1770,12 @@ Finally, it performs majority voting to decide the final classification.
             \State $nbrs\_by\_class \gets$ Create nearest neighbor finders for each class
             \For{each $sample$ in $X$}
                 \If{$variant == 2$ (LICV2)}
-                    \State $class\_predictions \gets$ Predict class labels for $sample$ using $1$ \texttt{NearestNeighbor}
+                    \State $class\_predictions \gets \text{ Predict class labels for } \text{ sample } \text{using }  1 \texttt{ NearestNeighbor}$
                 \Else
-                    \State $class\_predictions \gets$ Predict class labels for $sample$ using $N$ \texttt{NearestNeighbors}
+                    \State $class\_predictions \gets \text{ Predict class labels for }  sample \text{ using }N \texttt{ NearestNeighbors}$
                 \EndIf
-                \State $majority\_prediction \gets$ Perform majority voting on $class\_predictions$
-                \State Append $majority\_prediction$ to $y^{pred}$
+                \State $majority\_prediction \gets \text{ Perform majority voting on } class\_predictions$
+                \State $\text{Append }majority\_prediction \text{ to } y^{pred}$
             \EndFor
             \State \textbf{return} $y^{pred}$
         \EndFunction
@@ -1856,7 +1805,7 @@ Finally, it performs majority voting to decide the final classification.
             \State $class\_predictions \gets \{\text{class\_label}: [] \text{ for class\_label in } classes\_\}$
             \For{each $class\_label$, $nbrs$ in $nbrs\_by\_class.items()$}
                 \If{$variant == 1$ (LICV1)}
-                    \State $indices \gets$ Randomly select $n\_neighbours\_2$ indices from $range(\text{len}(cases\_without\_concatenation[class\_label]))$
+                    \State $indices \gets \text{ Randomly select }n\_neighbours\_2 \text{ indices from } range(\text{len}(cases\_without\_concatenation[class\_label]))$
                 \Else
                     \State $distances, indices \gets nbrs.kneighbors([sample])$
                 \EndIf
@@ -1864,7 +1813,8 @@ Finally, it performs majority voting to decide the final classification.
                 \For{each $neighbor\_index$ in $nearest\_neighbors$}
                     \State $neighbor\_sample \gets cases\_without\_concatenation[class\_label][neighbor\_index]$
                     \State $merged\_case\_pair \gets$ Concatenate $neighbor\_sample$ and $sample$
-                    \State $adapted\_prediction \gets$ Predict with $adaptation\_networks\_[class\_label]$ using $merged\_case\_pair$
+                    \State $adapted\_prediction \gets$ Predict with $adaptation\_networks\_[class\_label]$ 
+                    \State \hspace{\algorithmicindent} $\text{using }merged\_case\_pair$
                     \State Append $adapted\_prediction[0]$ to $class\_predictions[class\_label]$
                 \EndFor
             \EndFor
@@ -1878,7 +1828,8 @@ Finally, it performs majority voting to decide the final classification.
     \label{alg:majority_vote}
     \begin{algorithmic}[1]
         \Function{$\_majority\_vote$}{$class\_predictions$}
-            \State $all\_predictions \gets [prediction \text{ for predictions in } class\_predictions.values() \text{ for prediction in predictions}]$
+            \State $all\_predictions \gets [prediction \text{ for predictions in }$
+            \State \hspace{\algorithmicindent} $class\_predictions.values() \text{ for prediction in predictions}]$
             \State $prediction\_counter \gets$ Counter($all\_predictions$)
             \State $most\_common\_predictions \gets prediction\_counter.most\_common(1)$
             \State If the case occurs where there is no distinct most common.
@@ -1934,13 +1885,10 @@ aims to achieve robust and accurate regression results across diverse datasets w
 This new approach to regression tasks that allows for categorization of regression results.
 It processes a regression task and converts it to a classification task, this could be useful for problems where ranges of values are highly important. 
 This would make certain regression tasks more interpretable.
+
 \subsection{Components}
-The key components of the \texttt{LingerRegressor} include:
-\begin{itemize}
-\item KNN Module: Computes nearest neighbors and extracts differences during training and prediction phases.
-\item \texttt{MLPClassifier}: Offers flexibility in activation functions, solvers, and hyperparameters for classification.
-\item Additional Features: Class to class pairs, random N selected neighbors, and N nearest neighbors.
-\end{itemize}
+The components are analogous to those of the \texttt{LingerImplicitClassifier}, focusing on the effective 
+generation of case pairs and leveraging neural networks for predictive modeling.
 
 \subsection{Parameterization}
 The model provides extensive parameterization options for fine-tuning KNN, \texttt{MLPClassifier}, and additional features. Hyperparameters for the classifier model mirror those available in standard KNN and neural networks, with additional parameters specific to \texttt{LingerRegressor}.
@@ -2097,14 +2045,15 @@ The \texttt{transform} function carries out the conversion of regression values 
 \begin{algorithm}[H]
     \caption{Transform function Initialised}
     \begin{algorithmic}[1]
-    \Function{transformInit}{$y,min\_val=None,max\_val=None,unique\_ranges=None$}
+    \Function{transformInit}{$y,min\_val, max\_val, unique\_ranges$}
         \State \textbf{Input:} 
         \State $y$ (list or array-like): The continuous target variable.
         \State $min\_val$ (float): Minimum value of the target variable.
         \State $max\_val$ (float): Maximum value of the target variable.
         \State $unique\_ranges$ (array-like): Predefined unique ranges for segments.
         \State \textbf{Output:}
-        \State $categories$ (list): A list of categories (segment indices) corresponding to each value in $y$.
+        \State $categories$ (list): A list of categories (segment indices) corresponding 
+        \State \hspace{\algorithmicindent} to each value in $y$.
         \State $unique\_ranges$ (dict or array-like): Unique ranges for segments.
         \State $min\_val$ (float): Minimum value of the target variable.
         \State $max\_val$ (float): Maximum value of the target variable.
@@ -2165,7 +2114,7 @@ The \texttt{transform} function carries out the conversion of regression values 
 \begin{algorithm}
     \caption{Transform Function (Part 2): Equal Division}
     \begin{algorithmic}[1]
-    \Function{transformPartTwo}{$y$, $min\_val$, $max\_val$, $unique\_ranges$, $n\_segments$}
+    \Function{transformPartTwo}{$y, min\_val, max\_val, unique\_ranges, n\_segments$}
             \State $quantiles \gets \text{np.linspace}(0, 1, \text{n\_segments} + 1)$
             \If{$unique\_ranges$ is None}
                 \State $unique\_ranges \gets \text{np.quantile}(y, \text{quantiles})$
@@ -2293,7 +2242,8 @@ for subsequent use in the training process.
     \begin{algorithmic}
         \Function{generateDifferences}{$X$, $y$}
             \State \textbf{Input:} Training images $X$, Target values $y$
-            \State \textbf{Output:} List of arrays representing differences $differences_X$, List of target differences $differences_y$
+            \State \textbf{Output:} List of arrays representing differences $differences_X$, 
+            \State \hspace{\algorithmicindent} List of target differences $differences_y$
             \If{Shape of $X$ is More than 2-dimensional}
                 \State Reshape $X$ to 2-dimensional array
             \Else
@@ -2415,7 +2365,7 @@ final prediction $y^{pred}$. If no items are found, it handles this case by appe
     \label{alg:generate_image_differences_implementation}
     \begin{algorithmic}[1]
     \Procedure{GenerateDifferences}{$X, y, n\_neighbours$}
-        \State \textbf{Input:} $X$ - dataset of images, $y$ - target labels, $n\_neighbours$ - number of neighbors
+        \State \textbf{Input:} $X \text{: dataset of images}, y\text{: target labels}, n\_neighbours \text{: number of neighbors}$
         \State Differences in images and labels
         \State \textbf{Output:} $differences\_X$, $differences\_y$ 
         \State Initialize $differences\_X$ and $differences\_y$ as empty lists
@@ -2464,7 +2414,9 @@ final prediction $y^{pred}$. If no items are found, it handles this case by appe
         \State \hspace{\algorithmicindent} $.fit(self.train\_X.reshape(len(self.train\_X), -1$))
         \State $indices \gets nbrs.kneighbors(X.reshape(len(X), -1), return\_distance=False)$
         
-        \State $differences\_test\_X \gets [$np.abs($X[test].flatten() - self.train\_X[indices[test][nn]].flatten())$ for $test$ in range($len(X)$) for $nn$ in range($len(indices[0]))]$
+        \State $differences\_test\_X \gets [np.abs(X[test].flatten() -$
+        \State \hspace{\algorithmicindent} $self.train\_X[indices[test][nn]].flatten())$
+        \State \hspace{\algorithmicindent} $\text{ for test in range}(len(X)) \text{ for nn in range}(len(indices[0]))]$
         \State $differences\_test\_X \gets np.array(differences\_test\_X).reshape(-1, *input\_shape)$
         
         \State $predictions \gets model.predict(differences\_test\_X)$
@@ -2607,14 +2559,15 @@ as the \texttt{LingerImplicitClassifier}.
 \clearpage
 
 \subsubsection{Prediction Implementation}
-
 \begin{algorithm}
     \caption{Prediction with LingerImageRegressor}
     \label{alg:prediction_with_lingerImageRegressor}
     \begin{algorithmic}[1]
     \Procedure{Predict}{$X, model, dataset, input\_shape$}
         \State Predicts target values using a regression approach based on image differences.
-        \State \textbf{Input:} $X \text{- Input data for prediction}, model \text{- Trained regression model}, dataset \text{- Dataset object containing training data}, input\_shape \text{- Shape of input data expected by the model}$.
+        \State \textbf{Input:} $X \text{- Input data for prediction}, model \text{- Trained regression model},$
+        \State \hspace{\algorithmicindent} $dataset \text{- Dataset object containing training data},$
+        \State \hspace{\algorithmicindent} $input\_shape \text{- Shape of input data expected by the model}$.
         \State \textbf{Output:} $y^{pred}$ - Predicted target values for the input data.
         
         \If{$len(X.shape) > 2$}
@@ -2624,13 +2577,14 @@ as the \texttt{LingerImplicitClassifier}.
         \State Train the NearestNeighbors function on our data.
         \State $nbrs \gets \text{NearestNeighbors}(n\_neighbors=self.n\_neighbours\_2)$
         \State \hspace{\algorithmicindent} $.fit(dataset.train\_X.reshape(len(dataset.train\_X), -1))$
+        \State Identify nearest neighbors in the training set.
         \State $indices \gets nbrs.kneighbors(X, return\_distance=False)$
-        \Comment{Identify nearest neighbors in the training set.}
         
         \State Prepare differences\_test\_X by computing absolute differences between X 
         \State \hspace{\algorithmicindent} and its nearest neighbors in the training set.
         
-        \State Reshape $differences\_test\_X$ to match $input\_shape$ for compatibility with the model.
+        \State Reshape $differences\_test\_X$ to match $input\_shape$ for 
+        \State \hspace{\algorithmicindent} compatibility with the model.
         
         \State $predictions \gets model.predict(differences\_test\_X)$
         \State Predict target values based on computed differences.
@@ -2644,7 +2598,6 @@ as the \texttt{LingerImplicitClassifier}.
         \EndFor
         
         \State \textbf{return} $y^{pred}$
-        \State Return the list of predicted target values.
     \EndProcedure
     \end{algorithmic}
 \end{algorithm}
@@ -2693,6 +2646,7 @@ that direct future research:
     remains an area for exploration. Future research will investigate the integration of these models into multi-modal learning frameworks 
     and their applicability in interdisciplinary fields.
 \end{itemize}
+
 \chapter{Experiments}
 \label{ch:Experiments}
 \section{Research Objective}
@@ -3246,15 +3200,15 @@ The performance of these classifiers was benchmarked against K-Nearest Neighbors
     \textbf{Model / Variation} & \textbf{Accuracy (\%)} & \textbf{Accuracy (\%)} \\
     \midrule
     KNN & $91.7$ & $91$ \\
-    Weighted KNN & $91.2$ & $\mathbf91$ \\
-    Neural Network & $94.1$ & $91$ \\
+    Weighted KNN & $91.2$ & $\mathbf{91}$ \\
+    Neural Network & $94.1$ & $\mathbf{91}$ \\
     LC (Base) & $91.7$ & $90.5$ \\
     LCV1 (Context) & $92.2$ & $89.5$ \\
     LCV2 (Duplicated on Distance) & $92.3$ & $90.5$ \\
-    LCV3 (Additional Distance Column) & $91.7$ & $91$ \\
+    LCV3 (Additional Distance Column) & $91.7$ & $\mathbf{91}$ \\
     LIC (Implicit) & $91.6$ & $90.5$ \\
     LICV1 (Random) & $91.6$ & $89.5$ \\
-    LICV2 (Single) & $91.5$ & $91$ \\
+    LICV2 (Single) & $91.5$ & $\mathbf{91}$ \\
     \bottomrule
     \end{tabular}
 \end{table}
@@ -3422,7 +3376,7 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
     Neural Network & $-56.06$ & $-48.21$ \\
     LR (Base) & $-51.36$ & $-40.45$ \\
     LRV1 (Context) & $-58.29$ & $-49.87$ \\
-    LRV2 (Duplicated on Distance) & $-59.69$ & $-40.04$ \\
+    LRV2 (Duplicated on Distance) & $-59.69$ & $\mathbf{-40.04}$ \\
     LRV3 (Additional Distance Column) & $-51.37$ & $-42.22$ \\
     \bottomrule
     \end{tabular}
@@ -3437,7 +3391,7 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
     \toprule
     \textbf{Model / Variation} & \textbf{Training Accuracy (\%)} & \textbf{Test Accuracy (\%)} \\
     \midrule
-    Neural Network with Labels Classified & $63$ & $61$ \\
+    Neural Network with Labels Classified & $63$ & $\mathbf{61}$ \\
     LIR (Implicit) & $47.7$ & $48.42$ \\
     LIRV1 (Random) & $31.61$ & $22.10$ \\
     LIRV2 (Single) & $42.73$ & $47.36$ \\
@@ -3595,9 +3549,9 @@ The vary factor is the number of runs, due to time constraints.
     KNN & $96.33$ & $96.36$ \\
     Weighted KNN & $96.55$ & $97.27$ \\
     Neural Network & $97.93$ & $98.18$ \\
-    LC (Base) & $98.39$ & $100$ \\
+    LC (Base) & $98.39$ & $\mathbf{100}$ \\
     LCV1 (Context) & $98.86$ & $100$ \\
-    LCV2 (Duplicated on Distance) & $98.39$ & $100$ \\
+    LCV2 (Duplicated on Distance) & $98.39$ & $\mathbf{100}$ \\
     LCV3 (Additional Distance Column) & $98.4$ & $97.3$ \\
     LIC (Implicit) & $5.9$ & $5$ \\
     LICV1 (Random) & $12.7$ & $1.81$ \\
@@ -3818,36 +3772,185 @@ Accuracy $\%$ is used for LIR and all variations. As it uses a classifier on reg
     \end{itemize}
 \end{itemize}
 
+\subsection{Experiment 7: Image Classification using CIFAR-100}
+\subsubsection{Methodology}
+In this study, we utilized the CIFAR-100 dataset, ensuring data security through modified SSL settings. 
+Our methodology focused on the development and comparative analysis of two convolutional neural network (CNN) models: 
+the \textit{difference CNN model} and the \textit{standard CNN model}.
+
+The \textit{difference CNN model} processes difference images created by the \texttt{LingerImageClassifier}, 
+which uses settings of 5 neighbors for comparison to preprocess the original CIFAR images. 
+This model's architecture, detailed in Table \ref{tab:cnn_models}, emphasizes feature extraction and computational efficiency, 
+culminating in a regression output for predictions.
+
+Simultaneously, the \textit{standard CNN model} was trained directly on normalized CIFAR-100 images, utilizing a similar 
+architecture but concluding with a softmax layer for 100-class classification. Both models were trained over 10, 30, and 100 epochs, 
+with a batch size of 32 and a 20\% validation split.
+
+Post-training, model performance was evaluated based on accuracy, comparing predicted labels against the test set. 
+This dual-model approach facilitates a thorough analysis of differing methodologies in image classification efficacy.
+
+\begin{table}[H]
+    \centering
+    \caption{Comparison of CNN Architectures for Standard and Difference Models}
+    \label{tab:cnn_models}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Layer Type} & \textbf{Standard Model} & \textbf{Difference Model} \\ \hline
+    Input Layer & \multicolumn{2}{c|}{32x32x3 images} \\ \hline
+    Conv2D & 32 filters, 3x3, padding=same, relu & 32 filters, 3x3, padding=same, relu \\ \hline
+    Conv2D & 32 filters, 3x3, relu & 32 filters, 3x3, relu \\ \hline
+    MaxPooling2D & 2x2 & 2x2 \\ \hline
+    Dropout & 0.2 & 0.2 \\ \hline
+    Conv2D & 64 filters, 3x3, padding=same, relu & 64 filters, 3x3, padding=same, relu \\ \hline
+    Conv2D & 64 filters, 3x3, relu & 64 filters, 3x3, relu \\ \hline
+    MaxPooling2D & 2x2 & 2x2 \\ \hline
+    Dropout & 0.3 & 0.3 \\ \hline
+    Conv2D & 128 filters, 3x3, padding=same, relu & 128 filters, 3x3, padding=same, relu \\ \hline
+    Conv2D & 128 filters, 3x3, relu & 128 filters, 3x3, relu \\ \hline
+    MaxPooling2D & 2x2 & 2x2 \\ \hline
+    Dropout & 0.4 & 0.4 \\ \hline
+    Flatten & \multicolumn{2}{c|}{Flatten output} \\ \hline
+    Dense & 512, relu & 512, relu \\ \hline
+    Dropout & 0.5 & 0.5 \\ \hline
+    Output Layer & 100 classes, softmax & 1 output, linear \\ \hline
+    \end{tabular}
+\end{table}
+\clearpage
+
+\subsubsection{Results}
+
+\begin{table}[H]
+    \centering
+    \caption{Regression Performance on CIFAR-100 Dataset Over Different Epochs}
+    \label{tab:regression_performance_cifar100}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Epochs} & \textbf{MSE} & \textbf{Epochs} & \textbf{MSE} & \textbf{Epochs} & \textbf{MSE} \\ \hline
+    LingerImageRegressor CNN & 10 & $0.0078$ & 30 & $0.0078$ & 100 & $0.0078$ \\ \hline
+    Standard Regressor CNN & 10 & $0.0426$ & 30 & $\mathbf{0.0543}$ & 100 & $0.0486$ \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{Analysis}
+The analysis of the LingerImageClassifier and Standard CNN on the CIFAR-100 dataset highlights the challenges of using a 
+regression-based approach for classification tasks. While both models share similar convolutional architectures, they differ 
+notably in their output layers. The Standard CNN is optimized for classification with a softmax layer, showing improved MSE from 0.0543 at 
+30 epochs to 0.0486 at 100 epochs. Conversely, the LingerImageClassifier uses a linear output, typical for regression, to predict label 
+differences, not direct classes, resulting in a low MSE of 0.0078 across all epochs. This consistently low MSE does not necessarily 
+indicate high classification accuracy but rather the model’s precision in estimating label differences, which may not 
+effectively reflect actual class distinctions. This misalignment suggests the need for future model adaptations that better 
+suit classification by aligning output mechanisms with standard classification metrics and better addressing the categorical 
+nature of the dataset. Future improvements might include a modified CNN that categorizes label differences directly, potentially 
+involving a broader range of output classes. Which includes all possible differences.
+
+\subsection{Experiment 8: Image Regression Using MNIST Dataset}
+\subsubsection{Methodology}
+In this proof-of-concept study, we adapted the MNIST dataset, traditionally used for classification, 
+to evaluate image-based regression. We employed the \texttt{LingerImageRegressor} configured with two neighbors to 
+manage image regression nuances effectively. The MNIST images were reshaped to 28x28x1, treating digit labels as 
+continuous regression targets. We implemented and compared two CNN models: a standard CNN and a regression-specific 
+modified CNN. Both were trained on original and transformed MNIST data, respectively—the latter enhanced by the \texttt{LingerImageRegressor} 
+to highlight differences between neighboring images. This experiment primarily assessed the models' adaptability 
+within a regression framework rather than focusing on achieving maximum accuracy, due to the dataset's inherent 
+constraints for regression tasks.
+
+\begin{table}[H]
+    \centering
+    \caption{CNN Architectures for LingerImageRegressor and Standard Regressor on MNIST}
+    \label{tab:cnn_architecture}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Layer} & \textbf{LingerImageRegressor CNN} & \textbf{Standard Regressor CNN} \\ \hline
+    Input Layer & \multicolumn{2}{c|}{28x28x1 images} \\ \hline
+    Conv2D & 32 filters, 3x3, relu & 32 filters, 3x3, relu \\ \hline
+    MaxPooling2D & 2x2 & 2x2 \\ \hline
+    Conv2D & 64 filters, 3x3, relu & 64 filters, 3x3, relu \\ \hline
+    MaxPooling2D & 2x2 & 2x2 \\ \hline
+    Conv2D & 64 filters, 3x3, relu & 128 filters, 3x3, relu \\ \hline
+    Flatten & \multicolumn{2}{c|}{Flatten output} \\ \hline
+    Dense & 64, relu & 128, relu \\ \hline
+    Output Layer & 1 output, linear & 1 output, linear \\ \hline
+    \end{tabular}
+\end{table}
+\clearpage
+
+\subsubsection{Results}
+
+\begin{table}[h]
+    \centering
+    \caption{Regression Performance on MNIST Dataset Over Different Epochs}
+    \label{tab:regression_performance_epochs}
+    \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Epochs} & \textbf{MSE at 10 Epochs} & \textbf{Epochs} & \textbf{MSE at 30 Epochs} \\ \hline
+    LingerImageRegressor CNN & 10 & $7.2907$ & 30 & $7.3202$ \\ \hline
+    Standard Regressor CNN & 10 & $0.1978$ & 30 & $\mathbf{0.1632}$ \\ \hline
+    \end{tabular}
+\end{table}
+    
+\subsubsection{Analysis}
+The comparative analysis between the \texttt{LingerImageRegressor} and the Standard Regressor CNN on the 
+MNIST dataset reveals that the \texttt{LingerImageRegressor}, designed to exploit differences between data points, 
+produced higher mean squared errors (MSE) of 7.2907 and 7.3202 across 10 and 30 epochs respectively. 
+This indicates a less effective adaptation to this particular dataset. Conversely, the Standard Regressor 
+demonstrated substantially lower MSEs of 0.1978 and 0.1632, showing superior adaptation and learning efficiency. 
+These results underscore the critical role of dataset suitability in machine learning, highlighting the MNIST 
+dataset's limitations for regression tasks due to its categorical nature. Future experiments using a dataset with 
+genuine continuous variables are recommended to better evaluate the \texttt{LingerImageRegressor}'s performance, 
+enhancing the validity of this proof of concept.
+
+\subsection{Comparative Analysis}
+This section synthesises the findings of our experiments. It asses the blended learning approch and it performance overall.
+
+\subsubsection{Key Findings}
+\begin{itemize}
+    \item \textbf{Performance Improvement:} Blended learning methods generally showed an improvement in accuracy and robustness across most datasets compared to traditional model-based and instance-based learning. 
+    \item  For example, in experiments with the Glass and Abalone datasets, blended approaches significantly outperformed KNN and standard neural networks in terms of accuracy and handling noisy data.
+    \item \textbf{Model Interpretability:} The experiments consistently demonstrated that blended learning approaches enhance model interpretability for classification tasks involving complex datasets compared to black-box models.
+    \item \textbf{Efficiency and Scalability:} While blended models tend to require more computational resources initially, their adaptability to large datasets was evident, particularly in regression tasks with the House Prices and Abalone datasets
+    \item \textbf{Innovative Architectures:} The exploration of novel architectures within the blended learning framework yielded promising results. Innovations such as case-based reasoning and feature difference techniques significantly enhanced model accuracy and interpretability, as shown in experiments 3 and 5.
+    A specialised neural netowrk for the differences model could enhance ther performance even further, rather than resuing the trained neural networks from a seperate model.
+    \item \textbf{Practical Applications:} Insights from the experiments indicate significant potential for blended learning methods in critical domains such as healthcare and finance. These methods are particularly beneficial in predictive analytics, where interpretability and accuracy are crucial.
+\end{itemize}
 \chapter{Conclusions and Future Work}
 \label{ch:Conclusions and Future Work}
-This chapter outlines the additions made in our study, acknowledges its limitations, and proposes directions for future research to extend 
-the work's applicability and efficiency across multiple domains
+This chapter reflects on the contributions of our study, identifies its limitations, and outlines potential avenues for future research to 
+extend the work's applicability and improve efficiency across multiple domains.
+
 \section{Addressing Identified Limitations}
-Our study, while insightful, recognizes certain limitations in its current scope and methodology. 
-Future efforts should aim to surpass these through advanced algorithmic enhancements and the integration of novel data processing techniques, this could be implemented through 
-Scikit-learn \cite{scikit}. Such improvements are anticipated to refine the learning process further, enhancing the models' overall performance and applicability.
+Our study, while providing valuable insights, recognizes certain limitations in scope and methodology. Future efforts should focus on 
+surpassing these through advanced algorithmic enhancements and the integration of novel data processing techniques, such as those that 
+could be implemented through Scikit-learn. These improvements are expected to refine the learning process, thus enhancing the models' 
+overall performance and applicability.
+
+\section{Innovative Label Representation}
+A significant area for future research is the development of innovative methods for representing classification labels in ways that avoid 
+implicit ordering. Traditional numeric and categorical encodings can inadvertently introduce bias or incorrect assumptions into the learning 
+process, especially in models sensitive to feature scaling or order.This is true in the case of the \texttt{LingerClassifier}, which numerically encodes classes. 
+Exploring label representations that maintain the distinctness of categories without implying ordinal relationships could enhance model accuracy and interpretability, particularly in complex classification tasks.
 
 \section{Broader Applicability}
-Exploring the applicability of our approach to broader machine learning challenges represents a promising direction for future research. 
-Adapting our models to handle unstructured data or complex, high-dimensional datasets could significantly broaden their utility, making them suitable for a wider range of applications.
+Exploring the applicability of our approach to broader machine learning challenges represents a promising direction for future research. Adapting our models to handle unstructured data or complex, high-dimensional datasets could significantly broaden their utility, making them suitable for a wider range of applications.
 
 \section{Integration with Emerging Technologies}
-The potential integration of our models with emerging technologies, such as deep learning and reinforcement learning, offers exciting possibilities. 
-Such integration could not only provide new insights and enhance model capabilities but also facilitate the use of these models in real-time applications or 
-embedded systems where interpretability and efficiency are paramount.
+The potential integration of our models with emerging technologies, such as deep learning and reinforcement learning, offers exciting 
+possibilities. Such integration could not only provide new insights and enhance model capabilities but also facilitate the use of these models in real-time applications or embedded systems where interpretability and efficiency are paramount.
 
 \section{Scalability and Efficiency}
-Investigating the scalability and efficiency of our models, especially in contexts involving large-scale datasets or distributed computing environments, is crucial. 
-Future research could focus on optimizations that reduce training times or adaptations that leverage parallel processing architectures to improve performance.
+Investigating the scalability and efficiency of our models, especially in contexts involving large-scale datasets or distributed computing 
+environments, is crucial. Future research could focus on optimizations that reduce training times or adaptations that leverage parallel 
+processing architectures to improve performance.
 
 \section{Cross-Domain Applications}
-Examining the effectiveness of our models across different domains or for various types of prediction tasks could uncover new applications and opportunities for impact. 
-This exploration might involve interdisciplinary research collaborations to adapt and evaluate our models in diverse contexts. 
-Evaluating the learning from difference models with real time data.
+Examining the effectiveness of our models across different domains or for various types of prediction tasks could uncover new applications and 
+opportunities for impact. This exploration might involve interdisciplinary research collaborations to adapt and evaluate our models in diverse 
+contexts. It would be interesting to perform long term studies to asses the performance of blended learning models in dynamic enironments to validate their real world applications.
 
 \section{Exploring Other Categorical Similarity Measures}
-Investigating alternative measures for assessing the similarity of categorical features could refine the process of generating and applying adaptation rules, 
-potentially enhancing the accuracy and applicability of the Ensemble of Adaptations for Classification (EAC). As seen in the paper \cite{jalali2017learning}.
+Investigating alternative measures for assessing the similarity of categorical features could refine the process of generating and applying 
+adaptation rules, potentially enhancing the accuracy and applicability of the Ensemble of Adaptations for Classification (EAC). As seen in the 
+paper \cite{jalali2017learning}. This could redefine the measurement of similarity between instances in a dataset.
 
 \bibliographystyle{plain}
 \bibliography{references}

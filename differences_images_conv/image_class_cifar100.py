@@ -48,7 +48,7 @@ diff_y = np.array(diff_y)
 input_shape = (32, 32, 3)
 difference_cnn_model = create_simple_cnn(input_shape)
 difference_cnn_model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
-difference_cnn_model.fit(diff_X, diff_y, epochs=100, batch_size=32, validation_split=0.2)
+difference_cnn_model.fit(diff_X, diff_y, epochs=30, batch_size=32, validation_split=0.2)
 
 # Define the CNN model
 def create_standard_cnn(input_shape):
@@ -91,7 +91,7 @@ standard_cnn_model.compile(optimizer='adam', loss='categorical_crossentropy', me
 # Additionally, train a standard CNN model directly on CIFAR-100 images for comparison
 standard_cnn_model = create_standard_cnn(input_shape)
 standard_cnn_model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-standard_cnn_model.fit(X_train_cifar_standard, y_train_cifar_standard, epochs=100, batch_size=32, validation_split=0.2)
+standard_cnn_model.fit(X_train_cifar_standard, y_train_cifar_standard, epochs=30, batch_size=32, validation_split=0.2)
 
 predictions = standard_cnn_model.predict(X_test_cifar)
 # Use the standard CNN model to make predictions on the test data

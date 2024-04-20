@@ -7,11 +7,10 @@ Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
 Warning--entry type for "uciRepository" isn't style-file defined
 --line 309 of file references.bib
-Warning--I didn't find a database entry for "scikit"
 Warning--empty journal in leake1996acquiring
 You've used 18 entries,
             2118 wiz_defined-function locations,
-            611 strings with 7106 characters,
+            610 strings with 7100 characters,
 and the built_in function-call counts, 6370 in all, are:
 = -- 645
 > -- 268
@@ -50,4 +49,4 @@ warning$ -- 1
 while$ -- 60
 width$ -- 20
 write$ -- 196
-(There were 3 warnings)
+(There were 2 warnings)
